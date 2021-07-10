@@ -1,0 +1,10 @@
+For the project, you are going to implement the GUI design that you have made in the previous activity (Election Candidates Record Management Application). Make it a complete application.
+
+Apply all the concepts that were presented and will be presented in the following weeks. 
+
+Criteria for grading:
+
+UI Design  - 30 
+UX Design - 30
+Functionality (Application of event handling concepts) - 30
+Teamwork - 10
