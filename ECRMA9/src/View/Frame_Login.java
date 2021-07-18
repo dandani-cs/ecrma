@@ -21,6 +21,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -39,6 +40,7 @@ public class Frame_Login extends JFrame{
     ImagePanel bgImagePanel;
     BufferedImage bgImage;
     
+
     JLabel lbl_email, lbl_password, lbl_about, lbl_logo, lbl_header;
     JTextField txt_email, txt_password;
     JButton btn_login, btn_empty;
