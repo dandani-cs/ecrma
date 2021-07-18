@@ -1,0 +1,64 @@
+July 15
+
+Title bar - name of app: Election Candidates Record Management
+Header - NO HEADER
+Side panel - 300px width; 16px font, main color bg; font berlin sans fb demi; all caps
+side panel contents 
+	ADMIN: Add candidates, view candidates, view elections, logout
+	USER: Search candidate, search by party, search by position, view all
+bottom panel - no bottom panel 
+
+LOGIN:
+need logo
+
+VIEW CANDIDATE DETAILS:
+side bar
+
+SEARCH:
+side bar
+
+ARCHIVE:
+header, side bar, name of election, select -> archived
+
+ADD/EDIT:
+header, bottom panel, side bar
+
+DELETE:
+buttons
+
+ADD CAMPAIGN FORMS
+Candidate
+Election Period
+Party
+Position
+Platform
+
+DATABASE:
+USERS TABLE
+	email: email field
+	password: password field
+	is_admin: boolean field
+
+CANDIDATES TABLE:
+	last name: char field
+	first name: char field
+	middle initial: char field
+	birthdate: date field
+	degree: char field
+	university: char field
+	graduation date: date field
+	picture: image field
+	campaigns: (FK)
+
+ELECTION PERIOD:
+	name: char field
+	starting date: date field
+	finish date: date field
+	archived: boolean field
+
+CAMPAIGNS TABLE:
+	candidate (fk)
+	election period (fk)
+	party: char field
+	position: char field
+	platform: char field
