@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View;
+package viewcandidatedetails;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -82,8 +82,13 @@ public class CandidateDetailsPanel extends JPanel {
         this.education_bg_list = new_educ_bg;
         
         educ_content.removeAll();
+        educ_content.setLayout(new GridLayout(0, 2));
         for(int i = 0; i < education_bg_list.size(); i++) {
-            JPanel institute_info = new JPanel();
+            JPanel institute_info      = new JPanel();
+            JPanel institute_container = new JPanel();
+            
+            institute_container.setLayout(new BorderLayout());
+            institute_container.setBackground(primary_bg);
             institute_info.setBackground(primary_bg);
             institute_info.setLayout(new GridLayout(2, 1));
             
@@ -102,8 +107,8 @@ public class CandidateDetailsPanel extends JPanel {
             
             institute_info.add(degree_label);
             institute_info.add(institute_name);
-            
-            educ_content.add(institute_info);
+            institute_container.add(institute_info, BorderLayout.NORTH);
+            educ_content.add(institute_container);
             
             JLabel date_label = new JLabel(gradudation_date_str);
             date_label.setFont(info_font);
@@ -172,7 +177,7 @@ public class CandidateDetailsPanel extends JPanel {
         header_gbc.gridy      = 0;
         header_gbc.insets     = new Insets(inset/2, inset, inset / 2, inset / 2);
         
-        AvatarImagePanel image_test   = new AvatarImagePanel("img/avatar-icon2.png");
+        AvatarImagePanel image_test   = new AvatarImagePanel("img/avatar-icon.png");
         
         image_test.setBackground(primary_bg);
         image_panel.setLayout(new BorderLayout());
