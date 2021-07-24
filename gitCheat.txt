@@ -1,0 +1,19 @@
+git clone (link) - clones repo 
+
+git status - checks the modified files and added files 
+
+git checkout -b - creates new branches and uses that branch 
+
+git checkout (name of branch) - goes to a branch 
+
+git add . - adds the files listed in git status 
+
+git commit -m "message" - gives messages to messages, to know the changes every push 
+
+git config --global user.email "email.com"
+
+git config --global user.name "Name" 
+
+git push -u origin (branch name) - Note: never push to the main branch, Pushing to the main branch is a mortal sin. 
+					Appends the changes to github 
+
