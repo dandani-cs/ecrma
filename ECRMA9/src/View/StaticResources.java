@@ -3,22 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ecrma9;
-import View.Frame_Login;
-import View.TestFrame;
+package View;
+
 import java.awt.Color;
 
 /**
  *
  * @author dandani-cs
  */
-public class ECRMA9 {   
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        new TestFrame();
-    }
+public class StaticResources {
+    public static final Color main_color = new Color(33, 97, 140);
     
+    public static Color getMainColor() {
+        return main_color;
+    }
 }
