@@ -1,4 +1,4 @@
-package SearchTables2;
+package View;
 
 import java.awt.*;
 import javax.swing.*;
@@ -17,7 +17,4 @@ public class SearchFrame extends JFrame {
         this.setVisible(true);
     }
     
-    public static void main(String[] args) {
-        new SearchFrame();
-    }
 }
