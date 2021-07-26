@@ -1,4 +1,4 @@
-package SearchTables2;
+package View;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
