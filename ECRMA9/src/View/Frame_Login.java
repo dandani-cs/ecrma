@@ -19,9 +19,13 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+<<<<<<< HEAD
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+=======
+>>>>>>> dde5968 (merged with main project folder)
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -40,7 +44,10 @@ public class Frame_Login extends JFrame{
     ImagePanel bgImagePanel;
     BufferedImage bgImage;
     
+<<<<<<< HEAD
 
+=======
+>>>>>>> dde5968 (merged with main project folder)
     JLabel lbl_email, lbl_password, lbl_about, lbl_logo, lbl_header;
     JTextField txt_email, txt_password;
     JButton btn_login, btn_empty;
