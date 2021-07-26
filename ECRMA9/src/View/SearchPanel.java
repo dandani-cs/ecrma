@@ -231,8 +231,8 @@ public class SearchPanel extends JPanel {
             ImageIcon[] img = new ImageIcon[24];
             for(int i = 0; i < 24; i++) {
                 Random rand = new Random();
-                String str = "pic"+ (rand.nextInt(4) + 1) +".jpg";
-                img[i] = new ImageIcon(getClass().getResource(str));
+                String str = "C:\\Users\\apmbonifacio\\Documents\\GitHub\\ecrma\\ECRMA9\\src\\Icons\\pic"+ (rand.nextInt(4) + 1) +".jpg";
+                img[i] = new ImageIcon(str);
                 Image imagestr = img[i].getImage();
                 imagestr = imagestr.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
                 img[i] = new ImageIcon(imagestr);
@@ -294,12 +294,5 @@ public class SearchPanel extends JPanel {
     
     class South extends JPanel {
         
-    }
-    
-    
-    
-    
-    public static void main(String[] args) {
-        new SearchFrame();
     }
 }
