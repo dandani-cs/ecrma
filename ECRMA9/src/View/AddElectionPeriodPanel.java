@@ -38,7 +38,9 @@ public class AddElectionPeriodPanel extends JPanel {
             editor_final_date;
     private JButton btn_save, btn_cancel;
     
-    private JPanel panel_header, panel_content, panel_options;
+    private JPanel panel_content, panel_options;
+    
+    private HeaderPanel panel_header;
     
     Date today = new Date();
     
@@ -46,19 +48,7 @@ public class AddElectionPeriodPanel extends JPanel {
         setLayout(new BorderLayout());
         setBackground(Color.WHITE);
         
-        panel_header = new JPanel(new GridLayout(2, 1, 50, 30));
-        panel_header.setOpaque(false);
-        panel_header.setBorder(BorderFactory.createEmptyBorder(50, 50, 75, 50));
-        
-        lbl_header = new JLabel("ADD ELECTION PERIOD");
-        lbl_header.setFont(new Font("Tahoma", Font.BOLD, 20));
-        lbl_header.setForeground(StaticResources.getMainColor());
-        
-        lbl_description = new JLabel("Set the name, starting date, and final date of the election period.");
-        lbl_description.setForeground(StaticResources.getMainColor());
-        
-        panel_header.add(lbl_header);
-        panel_header.add(lbl_description);
+        panel_header = new HeaderPanel("ADD ELECTION PERIOD", "Specify the name, starting date, and final date of the new election period. ");
         
         panel_content = new JPanel(new GridLayout(3, 2));
         panel_content.setOpaque(false);
