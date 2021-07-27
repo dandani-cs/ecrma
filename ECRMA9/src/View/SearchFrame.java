@@ -4,11 +4,11 @@ import java.awt.*;
 import javax.swing.*;
 
 public class SearchFrame extends JFrame {
-    SearchPanel searchPanel;
+    AdminViewCandidates adminviewcand;
     
     public SearchFrame() {
-        searchPanel = new SearchPanel();
-        this.add(searchPanel);
+        adminviewcand = new AdminViewCandidates();
+        this.add(adminviewcand);
         
         this.setSize(new Dimension(1920,1080));
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
