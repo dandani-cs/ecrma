@@ -1,0 +1,72 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Model;
+
+import java.util.Date;
+import java.util.Random;
+
+/**
+ *
+ * @author Uriel Federez
+ */
+public class Candidate {
+
+    private int    candidate_id;
+    private String last_name;
+    private String first_name;
+    private char   middle_initial;
+    private Date   birth_date;
+    private String religion;
+    private String degree;
+    private String university;
+    private Date   grad_date;
+    private String image_path;
+    private String campaigns;
+    
+    public Candidate()
+    {
+    }
+    
+    public Candidate(String last_name, 
+                     String first_name, 
+                     char   middle_initial, 
+                     Date   birth_date,
+                     String religion,
+                     String degree, 
+                     String university, 
+                     Date   grad_date, 
+                     String image_path, 
+                     String campaigns) 
+    {
+        this.last_name      = last_name;
+        this.first_name     = first_name;
+        this.middle_initial = middle_initial;
+        this.birth_date     = birth_date;
+        this.religion       = religion;
+        this.degree         = degree;
+        this.university     = university;
+        this.grad_date      = grad_date;
+        this.image_path     = image_path;
+        this.campaigns      = campaigns;
+    }
+    
+    public void set_candidate_id(int new_id)
+    {
+        this.candidate_id = new_id;
+    }
+    
+    public int    get_candidate_id() { return candidate_id;   }
+    public String get_last_name()    { return last_name;      }
+    public String get_first_name()   { return first_name;     }
+    public char   get_mid_initial()  { return middle_initial; }
+    public Date   get_birth_date()   { return birth_date;     }
+    public String get_religion()     { return religion;       }
+    public String get_degree()       { return degree;         }
+    public String get_university()   { return university;     }
+    public Date   get_grad_date()    { return grad_date;      }
+    public String get_image_path()   { return image_path;     }
+    public String get_campaigns()    { return campaigns;      }
+}
