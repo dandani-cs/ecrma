@@ -191,10 +191,8 @@ public class CandidateDatabase {
         try
         {
             Statement statement = db_connection.createStatement();
-            String query = "SELECT * FROM candidates";
-            
-            if(candidate_id != ALL_CANDIDATES)
-                query += " WHERE candidate_id = " + candidate_id;
+            String query = "SELECT * FROM candidates "
+                         + "WHERE candidate_id = " + candidate_id;
             
             ResultSet results = statement.executeQuery(query);
             if(results.next())
