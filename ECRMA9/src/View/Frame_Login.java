@@ -55,7 +55,7 @@ public class Frame_Login extends JFrame{
         Border login_margin = new EmptyBorder(150, 100, 250, 100);
         login_panel.setBorder(login_margin);
         
-        ImageIcon icon = new ImageIcon("C:\\Users\\Admin\\Desktop\\ecrma-main\\logo.png");
+        ImageIcon icon = new ImageIcon("C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ecrmaLogo.png");
         lbl_logo = new JLabel(icon);
         
         lbl_header = new JLabel("Login Your Account");
@@ -134,7 +134,7 @@ public class Frame_Login extends JFrame{
         
         
         try {
-            bgImage = ImageIO.read(new File("\\Users\\Admin\\Desktop\\ecrma-main\\bg.jpg"));
+            bgImage = ImageIO.read(new File("C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\bg.jpg"));
             bgImagePanel = new ImagePanel(bgImage);
             bgImagePanel.setLayout(new BorderLayout());
             setContentPane(bgImagePanel);

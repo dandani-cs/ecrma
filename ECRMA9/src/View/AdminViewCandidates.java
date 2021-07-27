@@ -1,27 +1,48 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package View;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Insets;
 import java.util.Random;
-import javax.swing.*;
-import javax.swing.border.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
-public class SearchPanel extends JPanel {
+
+/**
+ *
+ * @author Admin
+ */
+public class AdminViewCandidates extends JPanel{
+    
     Color bgColor;
     
     North north;
     West west;
     Insets westInsets;
     Center center;
-    South south;
-    
-    public SearchPanel() {
+
+    public AdminViewCandidates(){
         bgColor = new Color(255,255,255);
-        
         
         this.setLayout(new BorderLayout());
         north = new North();
@@ -29,8 +50,7 @@ public class SearchPanel extends JPanel {
         westInsets = new Insets(5,5,5,5);
         west = new West();
         west.setBorder(new CompoundBorder(new EmptyBorder(westInsets),
-                    new MatteBorder(0, 0, 0, 1, Color.black))                );
-
+                    new MatteBorder(0, 0, 0, 0, Color.black))                );
         center = new Center();
         
         this.add(north, BorderLayout.NORTH);
@@ -40,145 +60,66 @@ public class SearchPanel extends JPanel {
         this.setBackground(bgColor);
     }
     
-    class North extends JPanel {
-        JLabel title;
-        
+    class North extends JPanel{
         North() {
-            this.setLayout(new BorderLayout());
-            
-            title = new JLabel("Election Candidates Record Management Application");
-            title.setFont(new Font("CALIBRI", Font.PLAIN, 24));
-            title.setForeground(Color.white);
-            this.add(title, BorderLayout.WEST);
-            this.setPreferredSize(new Dimension(50,50));
-            this.setBackground(Color.decode("#21618C"));
-            
+            //add header here
         }
     }
     
-    class West extends JPanel {
-       
+    //side panel
+    class West extends JPanel{
         JPanel center;
-        JTextField candNameJTF;
-        JPanel candNameJP;
-        JList partyJL;
-        JScrollPane partyJSP;
-        JPanel partyJP;
-        JList positionJL;
-        JScrollPane positionJSP;
-        JPanel positionJP;
-        
-        JLabel searchBy;
-        ButtonGroup searchesBG;
-        JRadioButton[] searches;
-        
-        JSeparator separator;
-        JLabel candDetails;
-        
-        
-        JLabel backButton;
-
+        JLabel viewAllCand;
+        JLabel viewElections;
+        JLabel mainMenu;
+        JLabel logOut;
         
         West() {
-            this.setOpaque(false);
-            this.setPreferredSize(new Dimension(250,250));
+            this.setOpaque(true);
+            this.setPreferredSize(new Dimension(300,250));
             this.setLayout(new BorderLayout());
+            this.setBackground(new Color(33, 97, 140));
             
+            center = new JPanel(new GridLayout(12, 1, 0, 0));
+            center.setMaximumSize(new Dimension(280, 10));
+            center.setPreferredSize(new Dimension(280, 10));
+            center.setBackground(new Color(33, 97, 140));
+            center.setForeground(Color.WHITE);
+        
+            //view all candidates
+            ImageIcon People = new ImageIcon("C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ECRMA9\\src\\Icons\\tao.png");
+            viewAllCand = new JLabel("VIEW ALL CANDIDATES", People, SwingConstants.LEFT);
+            viewAllCand.setForeground(Color.WHITE);
+            viewAllCand.setFont(new Font("BERLIN SANS FB DEMI", Font.BOLD, 16));
+                    
+            //view candidates by party
+            ImageIcon Party = new ImageIcon("C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ECRMA9\\src\\Icons\\EYE.png");
+            viewElections = new JLabel("VIEW CANDIDATES BY PARTY", Party, SwingConstants.LEFT);
+            viewElections.setForeground(Color.WHITE);
+            viewElections.setFont(new Font("BERLIN SANS FB DEMI", Font.BOLD, 16));
             
-            center = new JPanel();
-            center.setLayout(new BoxLayout(center, BoxLayout.PAGE_AXIS));
+            //go back to main menu
+            ImageIcon Menu = new ImageIcon("C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ECRMA9\\src\\Icons\\Home 2.png");
+            mainMenu = new JLabel("BACK TO MAIN MENU", Menu, SwingConstants.LEFT);
+            mainMenu.setForeground(Color.WHITE);
+            mainMenu.setFont(new Font("BERLIN SANS FB DEMI", Font.BOLD, 16));
             
-            candNameJTF = new JTextField();
-            candNameJTF.setFont(new Font("CALIBRI", Font.PLAIN, 14));
-            candNameJP = panelize(candNameJTF,-1,25,0,0);
-            partyJL = new JList(new Object[] {"PartyA","PartyB","PartyC","PartyD"});          
-            partyJL.setFont(new Font("CALIBRI", Font.PLAIN, 14));
-            partyJL.setBorder(BorderFactory.createLineBorder(Color.lightGray));
-            partyJSP = new JScrollPane(partyJL);
-            partyJP = panelize(partyJSP,-1,100,0,0);
-            partyJP.setVisible(false);
-            positionJL = new JList(new Object[] {"PositionA","PositionB","PositionC","PositionD"});
-            positionJL.setFont(new Font("CALIBRI", Font.PLAIN, 14));
-            positionJL.setBorder(BorderFactory.createLineBorder(Color.lightGray));            
-            positionJSP = new JScrollPane(positionJL);
-            positionJP = panelize(positionJSP,-1,100,0,0);            
-            positionJP.setVisible(false);
-            searchBy = new JLabel("Search By:");
-            searchBy.setFont(new Font("CALIBRI", Font.PLAIN, 18));
-            
-            String[] searchesSTR = new String[] {"Candidate Name", "Party", "Position"};
-            searchesBG = new ButtonGroup();
-            searches = new JRadioButton[3];
-            for(int i = 0; i < 3; i++) {
-                searches[i] = new JRadioButton(searchesSTR[i]);
-                searches[i].setFont(new Font("CALIBRI", Font.PLAIN, 14));
-                searches[i].setForeground(Color.black);
-                searches[i].setOpaque(false);
-                searchesBG.add(searches[i]);               
-            }
-            
-            searches[0].setSelected(true);
-            searches[0].addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    candNameJP.setVisible(true);
-                    partyJP.setVisible(false);
-                    positionJP.setVisible(false);
-                    refresh();
-                }
-            });
+            //logout
+            ImageIcon logout = new ImageIcon("C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ECRMA9\\src\\Icons\\exit.png");
+            logOut = new JLabel("LOGOUT", logout, SwingConstants.LEFT);
+            logOut.setForeground(Color.WHITE);
+            logOut.setFont(new Font("BERLIN SANS FB DEMI", Font.BOLD, 16));
 
-            searches[1].addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    candNameJP.setVisible(false);
-                    partyJP.setVisible(true);
-                    positionJP.setVisible(false);
-                    refresh();
-                }
-            });
-            
-            searches[2].addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    candNameJP.setVisible(false);
-                    partyJP.setVisible(false);
-                    positionJP.setVisible(true);
-                    refresh();
-                }
-            });
-            
-            
-            separator = new JSeparator(SwingConstants.HORIZONTAL);
-            candDetails = new JLabel("View Candidate Details");
-            candDetails.setFont(new Font("CALIBRI", Font.PLAIN, 18));
-            
-            center.add(candNameJP);
-            center.add(partyJP);
-            center.add(positionJP);
-            
-            center.add(panelize(searchBy));
-            for(int i = 0; i < 3; i++) {
-                center.add(panelize(searches[i]));
-            }
-            center.add(panelize(separator,-1,2,0,0));
-            center.add(panelize(candDetails,-1,-1,0,10));
             center.setOpaque(false);
             
-            
-            backButton = new JLabel("BACK BUTTON");
-            backButton.setFont(new Font("CALIBRI", Font.PLAIN, 18));
+            center.add(viewAllCand);
+            center.add(viewElections);
+            center.add(mainMenu);
+            center.add(logOut);
             
             this.add(center, BorderLayout.CENTER);
-            this.add(backButton, BorderLayout.SOUTH);
-            
         }
-        
-        private void refresh() {
-            this.center.revalidate();
-            this.center.repaint();
-        }
-        
+    
         private JPanel panelize(Component cmp) {
             FlowLayout layout = new FlowLayout(FlowLayout.LEFT);
             layout.setHgap(0);
@@ -221,17 +162,19 @@ public class SearchPanel extends JPanel {
     
     class Center extends JPanel {
         JTable table;
+        JButton btn_add;
         
         Center() {
             this.setLayout(new BorderLayout());
             this.setBorder(new EmptyBorder(60,60,60,60));
             this.setOpaque(false);
             
+            
             String[] colNames = {"","Name", "Party", "Position"};
             ImageIcon[] img = new ImageIcon[24];
             for(int i = 0; i < 24; i++) {
                 Random rand = new Random();
-                String str = "C:\\Users\\apmbonifacio\\Documents\\GitHub\\ecrma\\ECRMA9\\src\\Icons\\pic"+ (rand.nextInt(4) + 1) +".jpg";
+                String str = "C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ECRMA9\\src\\Icons\\pic"+ (rand.nextInt(4) + 1) +".jpg";
                 img[i] = new ImageIcon(str);
                 Image imagestr = img[i].getImage();
                 imagestr = imagestr.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
@@ -285,14 +228,20 @@ public class SearchPanel extends JPanel {
             table.setFont(new Font("CALIBRI", Font.PLAIN, 18));
             
             JScrollPane sp = new JScrollPane(table);
+            
+            //add button
+            btn_add = new JButton("<html><center>ADD CANDIDATES</center></html>");
+            btn_add.setBackground(new Color(51,55,69));
+            btn_add.setFont(new Font("CALIBRI", Font.BOLD, 18));
+            btn_add.setForeground(Color.WHITE);
+            
+            
             this.revalidate();
             this.repaint();
             this.add(sp);
+            this.add(btn_add, BorderLayout.SOUTH);
         }
         
     }
     
-    class South extends JPanel {
-        
-    }
 }
