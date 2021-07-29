@@ -94,7 +94,7 @@ public class AdminViewCandidates extends JPanel{
                     
             //view candidates by party
             ImageIcon Party = new ImageIcon("C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ECRMA9\\src\\Icons\\EYE.png");
-            viewElections = new JLabel("VIEW CANDIDATES BY PARTY", Party, SwingConstants.LEFT);
+            viewElections = new JLabel("VIEW ELECTIONS", Party, SwingConstants.LEFT);
             viewElections.setForeground(Color.WHITE);
             viewElections.setFont(new Font("BERLIN SANS FB DEMI", Font.BOLD, 16));
             
