@@ -10,8 +10,7 @@
         degree      VARCHAR(32),
         university  VARCHAR(32),
         grad_date   DATE,
-        img_path    VARCHAR(32),
-        campaigns   VARCHAR(64), 
+        img_path    VARCHAR(32), 
         UNIQUE (last_name, first_name, mid_initial, birth_date));
  */
 package Model;
@@ -37,8 +36,8 @@ public class CandidateDatabase {
     private Connection db_connection = null;
     
     // TODO: standardize on these
-    private String username = "uafederez";
-    private String password = "sql1234";
+    private String username = "root";
+    private String password = "admin";
     private String db_name  = "ecrma";
     
     public void get_connection()
@@ -70,7 +69,6 @@ public class CandidateDatabase {
                             "university  VARCHAR(32), " +
                             "grad_date   DATE,"         +
                             "img_path    VARCHAR(32), " +
-                            "campaigns   VARCHAR(64), " +
                             "UNIQUE (last_name, first_name, mid_initial, birth_date))";
             statement.executeUpdate(query);
         } catch(SQLException se)
@@ -95,7 +93,7 @@ public class CandidateDatabase {
             String query = "INSERT INTO candidates "
                   + "(last_name, first_name, mid_initial, "
                   + "birth_date, religion, degree, university, grad_date,"
-                  + "img_path, campaigns) "
+                  + "img_path) "
                   + "VALUES ("
                     + "\"" + candidate.get_last_name()   + "\", "
                     + "\"" + candidate.get_first_name()  + "\", "
@@ -105,8 +103,7 @@ public class CandidateDatabase {
                     + "\"" + candidate.get_degree()      + "\", "
                     + "\"" + candidate.get_university()  + "\", "
                     + "\"" + date_fmt.format(candidate.get_grad_date())+ "\", "
-                    + "\"" + candidate.get_image_path()  + "\", "
-                    + "\"" + candidate.get_campaigns()   + "\")";
+                    + "\"" + candidate.get_image_path()  + "\")";
 
             System.out.println("Query: " + query);
             statement.executeUpdate(query);
@@ -143,8 +140,7 @@ public class CandidateDatabase {
                 + "degree      = \"" + new_information.get_degree()     + "\", "
                 + "university  = \"" + new_information.get_university() + "\", "
                 + "grad_date   = \"" + date_fmt.format(new_information.get_grad_date())+ "\", "
-                + "img_path    = \"" + new_information.get_image_path() + "\", "
-                + "campaigns   = \"" + new_information.get_campaigns()  + "\" "
+                + "img_path    = \"" + new_information.get_image_path() + "\" "
                 + "WHERE candidate_id = " + target_id;
 
             statement.executeUpdate(query);
@@ -183,6 +179,29 @@ public class CandidateDatabase {
         return query_set;
     }
     
+    public ArrayList<Candidate> query_all_candidates()
+    {
+        ArrayList<Candidate> query_set = new ArrayList<>();
+        
+        get_connection();
+        try 
+        {
+            Statement statement = db_connection.createStatement();
+            String query = "SELECT * FROM candidates";
+            System.out.println("Query: " + query);
+            
+            ResultSet results = statement.executeQuery(query);
+            while(results.next())
+                query_set.add(construct_from_result(results));
+            
+            statement.close();
+        } catch(SQLException se)
+        {
+            System.err.printf(ERROR_MSG_FMT, "query_all_candidates", se.getMessage());
+        }
+        
+        return query_set;
+    }
     
     public Candidate query_candidate_by_id(int candidate_id)
     {
@@ -250,8 +269,7 @@ public class CandidateDatabase {
                 results.getString("degree"),
                 results.getString("university"),
                 grad_date,
-                results.getString("img_path"),
-                results.getString("campaigns"));
+                results.getString("img_path"));
         new_candidate.set_candidate_id(results.getInt("candidate_id"));
         
         return new_candidate;

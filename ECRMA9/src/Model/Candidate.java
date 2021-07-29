@@ -24,12 +24,11 @@ public class Candidate {
     private String university;
     private Date   grad_date;
     private String image_path;
-    private String campaigns;
     
     public Candidate()
     {
     }
-    
+
     public Candidate(String last_name, 
                      String first_name, 
                      char   middle_initial, 
@@ -38,8 +37,7 @@ public class Candidate {
                      String degree, 
                      String university, 
                      Date   grad_date, 
-                     String image_path, 
-                     String campaigns) 
+                     String image_path) 
     {
         this.last_name      = last_name;
         this.first_name     = first_name;
@@ -50,13 +48,49 @@ public class Candidate {
         this.university     = university;
         this.grad_date      = grad_date;
         this.image_path     = image_path;
-        this.campaigns      = campaigns;
     }
     
     public void set_candidate_id(int new_id)
     {
         this.candidate_id = new_id;
     }
+    
+    public void set_last_name(String last_name) {
+        this.last_name = last_name;
+    }
+
+    public void set_first_name(String first_name) {
+        this.first_name = first_name;
+    }
+
+    public void set_middle_initial(char middle_initial) {
+        this.middle_initial = middle_initial;
+    }
+
+    public void set_birth_date(Date birth_date) {
+        this.birth_date = birth_date;
+    }
+
+    public void set_religion(String religion) {
+        this.religion = religion;
+    }
+
+    public void set_degree(String degree) {
+        this.degree = degree;
+    }
+
+    public void set_university(String university) {
+        this.university = university;
+    }
+
+    public void set_grad_date(Date grad_date) {
+        this.grad_date = grad_date;
+    }
+
+    public void set_image_path(String image_path) {
+        this.image_path = image_path;
+    }
+    
     
     public int    get_candidate_id() { return candidate_id;   }
     public String get_last_name()    { return last_name;      }
@@ -68,5 +102,4 @@ public class Candidate {
     public String get_university()   { return university;     }
     public Date   get_grad_date()    { return grad_date;      }
     public String get_image_path()   { return image_path;     }
-    public String get_campaigns()    { return campaigns;      }
 }
