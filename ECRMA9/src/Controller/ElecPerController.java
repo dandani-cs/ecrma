@@ -1,5 +1,8 @@
 package Controller;
 
+import Model.ElecPer;
+import Model.ElecPerSQL;
+
 public class ElecPerController {
     
     public void addElectionPeriod(/*CUSTOM EVENT OBJECT*/) {

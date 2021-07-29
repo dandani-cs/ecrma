@@ -23,7 +23,7 @@ import java.util.logging.Logger;
  */
 public class UserDatabase {
     private static final String ERROR_MSG_FMT = "[Users DB (%s)] %s\n";
-    private ArrayList<User> users;
+    private static ArrayList<User> users;
     private String file_name;
     
     public UserDatabase(String src_file)
@@ -47,8 +47,11 @@ public class UserDatabase {
     
     public void delete_user(User user)
     {
-        if(users.contains(user))
+        if(users.contains(user)) {
             users.remove(user);
+            save_to_file();
+        }
+            
     }
     
     public User contains_credentials(String email, String password)
