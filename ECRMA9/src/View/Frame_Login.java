@@ -13,6 +13,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -32,18 +33,24 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import java.awt.event.ActionEvent; 
+import java.awt.event.ActionListener;
+import javax.swing.*;
 
 /**
  *
  * @author dandani-cs
  */
-public class Frame_Login extends JFrame{
+public class Frame_Login extends JFrame implements ActionListener{
+    AdminMenu adminmenu;
+    UserMenu usermenu;
+    
     JPanel login_panel, about_panel, input_panel;
     ImagePanel bgImagePanel;
     BufferedImage bgImage;
     JLabel lbl_email, lbl_password, lbl_about, lbl_logo, lbl_header;
     JTextField txt_email, txt_password;
-    JButton btn_login, btn_empty;
+    JButton btn_login, btn_empty, btn_loginUser;
    
     public Frame_Login() {    
         Color main = new Color(33, 97, 140);
@@ -94,6 +101,16 @@ public class Frame_Login extends JFrame{
         btn_login.setFont(new Font("Tahoma", Font.BOLD, 16));
         btn_login.setBackground(Color.WHITE);
         btn_login.setForeground(main);
+        btn_login.addActionListener(this);
+        
+        //login as guest
+        btn_loginUser = new JButton("or LOGIN AS GUEST");
+        btn_loginUser.setFont(new Font("Tahoma", Font.ITALIC, 12));
+        btn_loginUser.setBackground(main);
+        btn_loginUser.setForeground(Color.WHITE);
+        btn_loginUser.setHorizontalAlignment(SwingConstants. CENTER);
+        btn_loginUser.setBorder(null);
+        btn_loginUser.addActionListener(this);
         
         txt_email.setFont(new Font("Tahoma", Font.PLAIN, 18));
         txt_password.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -107,6 +124,7 @@ public class Frame_Login extends JFrame{
         input_panel.add(txt_password);
         input_panel.add(checkBox1);
         input_panel.add(btn_login);
+        input_panel.add(btn_loginUser);
         
         login_panel.add(lbl_logo, BorderLayout.NORTH);
         login_panel.add(lbl_header, BorderLayout.CENTER);
@@ -149,10 +167,26 @@ public class Frame_Login extends JFrame{
         bgImagePanel.add(about_panel, BorderLayout.EAST);
         
         this.pack();
-        setSize(1920, 1080);
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        int xsize = (int) tk.getScreenSize().getWidth();
+        int ysize = (int) tk.getScreenSize().getHeight();
+        this.setSize(xsize, ysize);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == btn_login) {
+            adminmenu = new AdminMenu();
+            adminmenu.setVisible(true);
+            this.setVisible(false);
+        }
+        else if (e.getSource() == btn_loginUser) {
+            JOptionPane.showMessageDialog(this, "bye");
+        }
+    }
+    
 }
 
 class ImagePanel extends JComponent {
@@ -166,3 +200,5 @@ class ImagePanel extends JComponent {
         g.drawImage(image, 0, 0, this);
     }
 }
+
+
