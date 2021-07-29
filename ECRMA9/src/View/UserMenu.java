@@ -15,6 +15,8 @@ import javax.swing.JPanel;
  */
 public class UserMenu extends javax.swing.JFrame {
 
+    Frame_Login login;
+    
     /** Creates new form UserMenu */
     public UserMenu() {
         initComponents();
@@ -361,6 +363,9 @@ public class UserMenu extends javax.swing.JFrame {
 
     private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
         // TODO add your handling code here:
+        login = new Frame_Login();
+        login.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jPanel7MouseClicked
 
     private void jPanel5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseExited

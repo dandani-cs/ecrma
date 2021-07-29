@@ -7,12 +7,16 @@ package View;
 
 import java.awt.Toolkit;
 import javax.swing.JPanel;
+import View.Frame_Login;
 
 /**
  *
  * @author Admin
  */
 public class AdminMenu extends javax.swing.JFrame {
+    
+    Frame_Login login;
+    AdminViewCandidates adminviewcandidates;
 
     /**
      * Creates new form AdminMenu
@@ -332,6 +336,9 @@ public class AdminMenu extends javax.swing.JFrame {
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel6MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jPanel6MouseEntered(evt);
             }
@@ -387,6 +394,7 @@ public class AdminMenu extends javax.swing.JFrame {
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void jPanel5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseExited
@@ -401,6 +409,9 @@ public class AdminMenu extends javax.swing.JFrame {
 
     private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
         // TODO add your handling code here:
+        adminviewcandidates = new AdminViewCandidates();
+        adminviewcandidates.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jPanel5MouseClicked
 
     private void jPanel2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseExited
@@ -454,6 +465,14 @@ public class AdminMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         setColor(jPanel6);
     }//GEN-LAST:event_jPanel6MouseEntered
+
+    private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
+        // TODO add your handling code here:
+        login = new Frame_Login();
+        login.setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_jPanel6MouseClicked
 
     public void setColor(JPanel panel){
         panel.setBackground(new java.awt.Color(211,211,211));

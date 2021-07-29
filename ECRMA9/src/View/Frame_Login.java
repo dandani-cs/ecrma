@@ -183,7 +183,9 @@ public class Frame_Login extends JFrame implements ActionListener{
             this.setVisible(false);
         }
         else if (e.getSource() == btn_loginUser) {
-            JOptionPane.showMessageDialog(this, "bye");
+            usermenu = new UserMenu();
+            usermenu.setVisible(true);
+            this.setVisible(false);
         }
     }
     
