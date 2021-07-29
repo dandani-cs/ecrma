@@ -29,14 +29,39 @@ public class CampaignsSQL {
     
     static String user = "root";
     static String pass = "admin";
+    static String db_name  = "ecrma";
 
     public static void getConnection()
     {
         try {
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/intest?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", user, pass);
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + db_name + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", user, pass);
         }catch(SQLException se)	{System.out.println(se.getMessage());}  
     }
     
+    public static void createTable() {
+        getConnection();
+        try{
+            myStmt=myConn.createStatement();	
+            
+            String qry="CREATE TABLE CAMPAIGNS(CAMPAIGNID INT NOT NULL AUTO_INCREMENT, "
+                    + "CANDIDATEID INT, "
+                    + "ELECPERID INT, "
+                    + "PARTY VARCHAR(40), "
+                    + "POSITION VARCHAR(40), "
+                    + "PLATFORM TEXT, "
+                    + "PRIMARY KEY (CAMPAIGNID), "
+                    + "FOREIGN KEY (CANDIDATEID) REFERENCES CANDIDATES (CANDIDATEID), "
+                    + "FOREIGN KEY (ELECPERID) REFERENCES ELECPER(ELECPERID));";
+            myStmt.executeUpdate(qry);
+                        
+            myStmt.close();
+            
+            System.out.println("CAMPAIGN SQL: CREATE TABLE SUCCESSFUL");
+	} catch(SQLException se){
+            System.out.println("CAMPAIGN SQL: CREATE TABLE FAIL\n" + se.getMessage() + "\n");
+        }
+    }
+
     public static void addRow(Campaigns campaign) {
         getConnection();
         try{

@@ -31,12 +31,35 @@ public class ElecPerSQL {
     
     static String user = "root";
     static String pass = "admin";
+    static String db_name  = "intest";
 
     public static void getConnection()
     {
         try {
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/intest?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", user, pass);
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + db_name + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", user, pass);
         }catch(SQLException se)	{System.out.println(se.getMessage());}  
+    }
+    
+    public static void createTable() {
+        getConnection();
+        try{
+            myStmt=myConn.createStatement();	
+            
+            String qry="CREATE TABLE ELECPER(ELECPER INT NOT NULL AUTO_INCREMENT, "
+                    + "NAME VARCHAR(30), "
+                    + "SDATE DATE, "
+                    + "FDATE DATE, "
+                    + "ARCHIVED BOOLEAN, "
+                    + "PRIMARY KEY (ELECPERID));";
+
+            myStmt.executeUpdate(qry);
+                        
+            myStmt.close();
+            
+            System.out.println("ELECPER SQL: CREATE TABLE SUCCESSFUL");
+	} catch(SQLException se){
+            System.out.println("ELECPER SQL: CREATE TABLE FAIL\n" + se.getMessage() + "\n");
+        }
     }
     
     public static void addRow(ElecPer elecPer) {
@@ -123,6 +146,8 @@ public class ElecPerSQL {
             System.out.println("ELECPER SQL: EDIT ROW FAIL\n" + se.getMessage() + "\n");
         }
     }
+
+
     
     public static Object[] getRow(int elecPerId) {
                 getConnection();
