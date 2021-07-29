@@ -62,6 +62,15 @@ public class UserDatabase {
         return null;
     }
     
+    public Boolean existing_email(String email) {
+        for(User user : users)
+        {
+            if(user.get_email().equals(email))
+                return true;
+        }
+        return false;
+    }
+    
     public void update_user(User user)
     {
         if(!users.contains(user))
