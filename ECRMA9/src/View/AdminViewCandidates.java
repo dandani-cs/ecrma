@@ -187,7 +187,7 @@ public class AdminViewCandidates extends JPanel{
             AdminViewCandidatesTableModel model;
             model = new AdminViewCandidatesTableModel();
             
-            model.setData(main_controller.candidate_controller.query_all_candidates());
+            model.setData(main_controller.candidate_controller.query_all_candidates_for_admin_view());
 
             table = new JTable() {
                 public boolean editCellAt(int row, int column, java.util.EventObject e) {

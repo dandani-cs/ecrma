@@ -14,7 +14,7 @@ import javax.swing.table.AbstractTableModel;
  * @author dandani-cs
  */
 public class AdminViewCandidatesTableModel extends AbstractTableModel {
-    private ArrayList<Candidate> candidate_list;
+    private Object[][] candidate_list;
     private String [] column_names = {"Image", "Last Name", "First Name", "Edit", "Delete"};
     
     @Override
@@ -22,16 +22,15 @@ public class AdminViewCandidatesTableModel extends AbstractTableModel {
         return column_names[column]; 
     }
     
-    public void setData(ArrayList<Candidate> new_candidate_list){
+    public void setData(Object[][] new_candidate_list){
         this.candidate_list = new_candidate_list;
     }
     
     @Override
     public int getRowCount() {
-        return candidate_list.size();
+        return 5;
     }
     
-
     @Override
     public int getColumnCount() {
         return column_names.length;
@@ -39,13 +38,8 @@ public class AdminViewCandidatesTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int row, int col) {
-        Candidate candidate = candidate_list.get(row);
-        
-        switch(col){
-            case 0: return candidate.get_candidate_id();
-            case 1: return candidate.get_last_name();
-            case 2: return candidate.get_first_name();
-        }
+        if (candidate_list.length > row)
+            return candidate_list[row][col];
         return null;
     }
     

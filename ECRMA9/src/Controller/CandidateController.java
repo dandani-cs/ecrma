@@ -8,6 +8,7 @@ package Controller;
 import Model.Candidate;
 import Model.CandidateDatabase;
 import java.util.ArrayList;
+import javax.swing.JButton;
 
 /**
  *
@@ -39,6 +40,25 @@ public class CandidateController {
     public ArrayList<Candidate> query_all_candidates()
     {
         return candidate_db.query_all_candidates();
+    }
+    
+    public Object[][] query_all_candidates_for_admin_view() {
+        ArrayList<Candidate> candidate_list = candidate_db.query_all_candidates();
+        Object[][] format = new Object[candidate_list.size()][5];
+        
+        for (int i = 0; i < candidate_list.size(); i++) {
+            Candidate candidate = candidate_list.get(i);
+            
+            format[i] = new Object[] {
+                candidate.get_image_path(),
+                candidate.get_last_name(),
+                candidate.get_first_name(),
+                new JButton("Edit"),
+                new JButton("Delete")
+            };
+        }
+        
+        return format;
     }
     
     public ArrayList<Candidate> query_candidate_by_name(String pattern)
