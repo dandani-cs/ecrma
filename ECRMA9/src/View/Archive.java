@@ -5,6 +5,10 @@
  */
 package View;
 
+import Controller.ElecPerController;
+import Controller.FormEvent;
+import Controller.MainController;
+import Model.ElecPer;
 import Model.ElecPerSQL;
 import java.awt.Color;
 import java.awt.Component;
@@ -20,6 +24,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,7 +32,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author caeth
  */
-public class Archive extends javax.swing.JFrame {
+public class Archive extends javax.swing.JFrame {    
     
     private Color hoverMENU = new Color(33,82,117);
     private Color byeMENU = new Color(33,97,140);
@@ -45,12 +50,8 @@ public class Archive extends javax.swing.JFrame {
                 new String[] {"ELECPERID", "Name", "Starting Date", "Finish Date", "Archive"}) {
                         @Override
             public boolean isCellEditable(int row, int column) {
-               if(column == 4)
-                   return true;
                 return false;
-            }
-            
-            
+            }                      
         };
         datatable.setModel(dataModel);
         datatable.setAutoCreateRowSorter(true);
@@ -59,13 +60,14 @@ public class Archive extends javax.swing.JFrame {
         datatable.getTableHeader().setBackground(new Color(255,255,255));
         datatable.getTableHeader().setForeground(new Color(33,82,117));
         datatable.setRowHeight(25);
-        
-        ((DefaultTableCellRenderer)datatable.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
-        
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-        datatable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
-        datatable.getColumnModel().getColumn(4).setCellRenderer(getDefaultRenderer(java.lang.Boolean.class));
+               
+        DefaultTableCellRenderer tableCellRenderer = new DefaultTableCellRenderer();
+        tableCellRenderer.setHorizontalAlignment(JLabel.CENTER);
+        for(int i = 0; i < datatable.getColumnModel().getColumnCount(); i++) {
+            datatable.getColumnModel().getColumn(i).setCellRenderer(tableCellRenderer);            
+        }
+        datatable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        datatable.getColumnModel().getColumn(4).setCellRenderer(datatable.getDefaultRenderer(java.lang.Boolean.class));
         datatable.removeColumn(datatable.getColumnModel().getColumn(0));
         
 
@@ -423,8 +425,24 @@ public class Archive extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutMouseExited
 
     private void datatableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_datatableMousePressed
-        int[] test = datatable.getSelectedRows();        
-        //System.out.println(datatable.getModel().getValueAt(datatable.getSelectedRows(),0));
+        if(evt.getClickCount() == 1) {
+            boolean setArchived = false;
+            
+            boolean archived = (boolean) datatable.getModel().getValueAt(datatable.getSelectedRow(), 4);
+            if(archived == true) {
+                datatable.getModel().setValueAt(setArchived, datatable.getSelectedRow(), 4);
+            } else {
+                setArchived = true;
+                datatable.getModel().setValueAt(setArchived, datatable.getSelectedRow(), 4);
+            }
+            
+            ElecPer ep = new ElecPer();
+            ep.setElecPerId((int) datatable.getModel().getValueAt(datatable.getSelectedRow(), 0));
+            ep.setArchived(setArchived);
+            FormEvent e = new FormEvent(evt, ep);
+            ElecPerController epc = new ElecPerController();
+            epc.archivedElectionPeriod(e);
+        }
     }//GEN-LAST:event_datatableMousePressed
 
     /**

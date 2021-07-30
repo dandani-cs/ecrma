@@ -21,6 +21,11 @@ public class ElecPerController {
         ElecPerSQL.deleteRow(elecPerId);
     }
 
+    public void archivedElectionPeriod(FormEvent e) {
+        ElecPerSQL.editArchived(e.getElection_period().getElecPerId(), 
+                e.getElection_period().isArchived());
+    }
+    
     public void editElectionPeriod(FormEvent e) {
         int elecPerId = e.getElection_period().getElecPerId();
         String name = e.getElection_period().getName();
