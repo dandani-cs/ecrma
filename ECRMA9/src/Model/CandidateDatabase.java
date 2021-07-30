@@ -40,6 +40,10 @@ public class CandidateDatabase {
     private String password = "admin";
     private String db_name  = "ecrma";
     
+    public void CandidateDatabase() {
+        get_connection();
+    }
+    
     public void get_connection()
     {
         try 

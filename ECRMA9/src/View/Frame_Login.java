@@ -152,7 +152,8 @@ public class Frame_Login extends JFrame implements ActionListener{
         
         
         try {
-            bgImage = ImageIO.read(new File("C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\bg.jpg"));
+            System.out.println(new File(".").getCanonicalPath() + "\\bg.jpg");
+            bgImage = ImageIO.read(new File(new File(".").getCanonicalPath() + "\\img\\bg.jpg"));
             bgImagePanel = new ImagePanel(bgImage);
             bgImagePanel.setLayout(new BorderLayout());
             setContentPane(bgImagePanel);

@@ -5,6 +5,7 @@
  */
 package View;
 
+import Controller.MainController;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -40,6 +41,7 @@ public class AdminViewCandidates extends JPanel{
     West west;
     Insets westInsets;
     Center center;
+    MainController main_controller = new MainController();
 
     public AdminViewCandidates(){
         bgColor = new Color(255,255,255);
@@ -181,34 +183,11 @@ public class AdminViewCandidates extends JPanel{
                 img[i] = new ImageIcon(imagestr);
             }
                  
-            Object[][] data = {{img[0],"Esther Hamer","Right","Senator"},
-                            {img[1],"Fred Leach","Right","Vice President"},
-                            {img[2],"Aaisha Coles","Left","Vice President"},
-                            {img[3],"Carl Carpenter","Center","President"},
-                            {img[4],"Malcolm Mcknight","Center","Vice President"},
-                            {img[5],"Bridget Everett","Left","Senator"},
-                            {img[6],"Malaki Grant","Party Party","Prime Minister"},
-                            {img[7],"Poppy-Rose Fellows","Party Party","President"},
-                            {img[8],"Barbara Emery","Right","Prime Minister"},
-                            {img[9],"Keeva Vance","Party Party","Senator"},
-                            {img[10],"Saif Southern","Center","Senator"},
-                            {img[11],"Jo Zhang","Right","President"},
-                            {img[12],"Piotr Wolf","Right","Prime Minister"},
-                            {img[13],"Kali Dorsey","Center","Senator"},
-                            {img[14],"Abdul Mccabe","Left","President"},
-                            {img[15],"Hakeem Hilton","Left","Vice President"},
-                            {img[16],"Kieren Khan","Party Party","President"},
-                            {img[17],"Romany Wells","Right","Prime Minister"},
-                            {img[18],"Emmanuella Hayden","Left","Prime Minister"},
-                            {img[19],"Naseem Marshall","Center","Vice President"},
-                            {img[20],"Frank Alford","Center","Senator"},
-                            {img[21],"Tobey Lim","Party Party","President"},
-                            {img[22],"Kareena Palmer","Left","Prime Minister"},
-                            {img[23],"Izzy Harris","Party Party","Vice President"},
-            };
             
-            DefaultTableModel model;
-            model = new DefaultTableModel(data,colNames);
+            AdminViewCandidatesTableModel model;
+            model = new AdminViewCandidatesTableModel();
+            
+            model.setData(main_controller.candidate_controller.query_all_candidates());
 
             table = new JTable() {
                 public boolean editCellAt(int row, int column, java.util.EventObject e) {

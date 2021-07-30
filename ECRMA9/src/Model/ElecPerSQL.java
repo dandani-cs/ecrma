@@ -31,7 +31,7 @@ public class ElecPerSQL {
     
     static String user = "root";
     static String pass = "admin";
-    static String db_name  = "intest";
+    static String db_name  = "ecrma";
 
     public static void getConnection()
     {
@@ -205,17 +205,17 @@ public class ElecPerSQL {
             ArrayList<Object[]> al = new ArrayList<>();
             while(rs.next()) {
                 
-            sDateStr = rs.getString("SDATE");
-            sDateYear = Integer.valueOf(sDateStr.substring(0, 4));
-            sDateMonth = Integer.valueOf(sDateStr.substring(5, 7));
-            sDateDate = Integer.valueOf(sDateStr.substring(8, 10));
-            sDate = new Date(sDateYear, sDateMonth, sDateDate);
-            
-            fDateStr = rs.getString("fDATE");
-            fDateYear = Integer.valueOf(fDateStr.substring(0, 4));
-            fDateMonth = Integer.valueOf(fDateStr.substring(5, 7));
-            fDateDate = Integer.valueOf(fDateStr.substring(8, 10));
-            fDate = new Date(fDateYear, fDateMonth, fDateDate);
+                sDateStr = rs.getString("SDATE");
+                sDateYear = Integer.valueOf(sDateStr.substring(0, 4));
+                sDateMonth = Integer.valueOf(sDateStr.substring(5, 7));
+                sDateDate = Integer.valueOf(sDateStr.substring(8, 10));
+                sDate = new Date(sDateYear, sDateMonth, sDateDate);
+
+                fDateStr = rs.getString("fDATE");
+                fDateYear = Integer.valueOf(fDateStr.substring(0, 4));
+                fDateMonth = Integer.valueOf(fDateStr.substring(5, 7));
+                fDateDate = Integer.valueOf(fDateStr.substring(8, 10));
+                fDate = new Date(fDateYear, fDateMonth, fDateDate);
             
                 al.add(new Object[] {
                 rs.getString("NAME"),
@@ -226,6 +226,8 @@ public class ElecPerSQL {
             
             rs.close();
             myStmt.close();
+            
+            System.out.println("AL.SIZE" + Integer.toString(al.size()));
             
             Object[][] elecPer = new Object[al.size()][4];
             for(int i = 0; i < al.size(); i++) {
