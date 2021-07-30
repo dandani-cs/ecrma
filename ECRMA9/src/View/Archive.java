@@ -51,10 +51,11 @@ public class Archive extends javax.swing.JFrame {
                         @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
-            }                      
+            }                
+            
         };
         datatable.setModel(dataModel);
-        datatable.setAutoCreateRowSorter(true);
+        //datatable.setAutoCreateRowSorter(true);
         
         datatable.getTableHeader().setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 15));
         datatable.getTableHeader().setBackground(new Color(255,255,255));
