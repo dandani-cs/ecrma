@@ -21,6 +21,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -31,7 +32,7 @@ public class ElecPerSQL {
     
     static String user = "root";
     static String pass = "admin";
-    static String db_name  = "intest";
+    static String db_name  = "ecrma";
 
     public static void getConnection()
     {
@@ -66,15 +67,7 @@ public class ElecPerSQL {
         getConnection();
         try{
             myStmt=myConn.createStatement();	
-            
-            String sDate = elecPer.getSdate().getYear() + "-"
-                    + elecPer.getSdate().getMonth() + "-"
-                    + elecPer.getSdate().getDate();
-            
-            String fDate = elecPer.getFdate().getYear() + "-"
-                    + elecPer.getFdate().getMonth() + "-"
-                    + elecPer.getFdate().getDate();
-            
+                        
             int archived;
             if(elecPer.isArchived() == true) {
                 archived = 1;
@@ -84,8 +77,8 @@ public class ElecPerSQL {
             
             String qry="INSERT INTO ELECPER (NAME, SDATE, FDATE, ARCHIVED) VALUES ('"
                     + elecPer.getName() + "','"
-                    + sDate + "','"
-                    + fDate + "',"
+                    + elecPer.getSdate() + "','"
+                    + elecPer.getFdate() + "',"
                     + archived + ");";
             myStmt.executeUpdate(qry);                    
             myStmt.close();
@@ -115,14 +108,7 @@ public class ElecPerSQL {
     public static void editRow(ElecPer elecPer) {
         getConnection();
         try{            
-            String sDate = elecPer.getSdate().getYear() + "-"
-                    + elecPer.getSdate().getMonth() + "-"
-                    + elecPer.getSdate().getDate();
-            
-            String fDate = elecPer.getFdate().getYear() + "-"
-                    + elecPer.getFdate().getMonth() + "-"
-                    + elecPer.getFdate().getDate();
-            
+
             int archived;
             if(elecPer.isArchived() == true) {
                 archived = 1;
@@ -133,8 +119,8 @@ public class ElecPerSQL {
             myStmt=myConn.createStatement();	
             
             String qry="UPDATE ELECPER SET NAME = '" + elecPer.getName() + "', "
-                    + "SDATE = '" + sDate + "', " 
-                    + "FDATE = '" + fDate + "', " 
+                    + "SDATE = '" + elecPer.getSdate() + "', " 
+                    + "FDATE = '" + elecPer.getFdate() + "', " 
                     + "ARCHIVED = " + archived 
                     + " WHERE ELECPERID = " + elecPer.getElecPerId() + ";";
             myStmt.executeUpdate(qry);                        
@@ -146,47 +132,28 @@ public class ElecPerSQL {
             System.out.println("ELECPER SQL: EDIT ROW FAIL\n" + se.getMessage() + "\n");
         }
     }
-
-
     
-    public static Object[] getRow(int elecPerId) {
-                getConnection();
+    public static void editArchived(int elecPerId,boolean archived) {
+        getConnection();
+        
+        int intArchived = 0;
+        if(archived == true) {
+            intArchived = 1;
+        }
+        
         try{
             myStmt=myConn.createStatement();	
             
-            String qry="SELECT * FROM ELECPER WHERE ELECPERID = " + elecPerId + ";";
-            ResultSet rs = myStmt.executeQuery(qry);             
-            rs.next();
+            String qry="UPDATE ELECPER SET ARCHIVED = " + intArchived + " WHERE ELECPERID = " + elecPerId + ";";
+            myStmt.executeUpdate(qry);             
             
-            String sDateStr = rs.getString("SDATE");
-            int sDateYear = Integer.valueOf(sDateStr.substring(0, 4));
-            int sDateMonth = Integer.valueOf(sDateStr.substring(5, 7));
-            int sDateDate = Integer.valueOf(sDateStr.substring(8, 10));
-            Date sDate = new Date(sDateYear, sDateMonth, sDateDate);
-            
-            String fDateStr = rs.getString("fDATE");
-            int fDateYear = Integer.valueOf(fDateStr.substring(0, 4));
-            int fDateMonth = Integer.valueOf(fDateStr.substring(5, 7));
-            int fDateDate = Integer.valueOf(fDateStr.substring(8, 10));
-            Date fDate = new Date(fDateYear, fDateMonth, fDateDate);
-            
-            //Date sDate = new Date();
-            Object[] elecPer = new Object[] {
-                    rs.getString("NAME"),
-                    sDate,
-                    fDate,
-                    rs.getBoolean("ARCHIVED")};
-
-            rs.close();
             myStmt.close();
             
-            System.out.println("ELECPER SQL: GET ROW SUCCESSFUL");
+            System.out.println("ELECPER SQL: EDIT ARCHIVED SUCCESSFUL");
             
-            return elecPer;
 	} catch(SQLException se){
-            System.out.println("ELECPER SQL: GET ROW FAIL\n" + se.getMessage() + "\n");
+            System.out.println("ELECPER SQL: EDIT ARCHIVED FAIL\n" + se.getMessage() + "\n");
         }
-        return null;
     }
     
     public static Object[][] getTable() {
@@ -194,40 +161,24 @@ public class ElecPerSQL {
         try{
             myStmt=myConn.createStatement();	
             
-            String qry="SELECT * FROM ELECPER WHERE ARCHIVED = 0;";
+            String qry="SELECT * FROM ELECPER;";
             ResultSet rs = myStmt.executeQuery(qry);                        
-            
-            
-            String sDateStr, fDateStr;
-            int sDateYear, sDateMonth, sDateDate;
-            int fDateYear, fDateMonth, fDateDate;
-            Date sDate, fDate;
+                        
             ArrayList<Object[]> al = new ArrayList<>();
             while(rs.next()) {
                 
-            sDateStr = rs.getString("SDATE");
-            sDateYear = Integer.valueOf(sDateStr.substring(0, 4));
-            sDateMonth = Integer.valueOf(sDateStr.substring(5, 7));
-            sDateDate = Integer.valueOf(sDateStr.substring(8, 10));
-            sDate = new Date(sDateYear, sDateMonth, sDateDate);
-            
-            fDateStr = rs.getString("fDATE");
-            fDateYear = Integer.valueOf(fDateStr.substring(0, 4));
-            fDateMonth = Integer.valueOf(fDateStr.substring(5, 7));
-            fDateDate = Integer.valueOf(fDateStr.substring(8, 10));
-            fDate = new Date(fDateYear, fDateMonth, fDateDate);
-            
                 al.add(new Object[] {
-                rs.getString("NAME"),
-                sDate,
-                fDate,
+                rs.getInt("ELECPERID"),
+                rs.getString("NAME"), 
+                rs.getTimestamp("SDATE").toLocalDateTime().format(DateTimeFormatter.ofPattern("LLLL/dd/yyyy")),                               
+                rs.getTimestamp("FDATE").toLocalDateTime().format(DateTimeFormatter.ofPattern("LLLL/dd/yyyy")),
                 rs.getBoolean("ARCHIVED")});
             }
             
             rs.close();
             myStmt.close();
             
-            Object[][] elecPer = new Object[al.size()][4];
+            Object[][] elecPer = new Object[al.size()][3];
             for(int i = 0; i < al.size(); i++) {
                 elecPer[i] = al.get(i);
             }

@@ -6,6 +6,7 @@
 package View;
 
 import Model.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -56,10 +57,10 @@ public class ELECPER_CAMPAIGN_TEST {
         //ElecPerSQL.addRow(elecPer);
         
         //edit row
-        //Date sDate = new Date(1998,5,6);
-        //Date fDate = new Date(1999,6,7);
-        //ElecPer elecPer = new ElecPer(2,"older", sDate, fDate, false);    //elecPerID is needed
-        //ElecPerSQL.editRow(elecPer);
+//        LocalDate sDate = LocalDate.parse("1999-11-03");
+//        LocalDate fDate = LocalDate.parse("2001-12-04");
+//        ElecPer elecPer = new ElecPer(1,"old", sDate, fDate, false);    //elecPerID is needed
+//        ElecPerSQL.editRow(elecPer);
         
         //delete row
         //ElecPerSQL.deleteRow(6);
@@ -71,14 +72,20 @@ public class ELECPER_CAMPAIGN_TEST {
 //        System.out.println("fDate: " + elecper[2]);
 //        System.out.println("archived: " + elecper[3]);
 
-        //get table
+//              edit archived
+        ElecPerSQL.editArchived(10, false);
+
+//        get table
 //        Object[][] elecper = ElecPerSQL.getTable();
 //        for(int i = 0; i < elecper.length; i++) {
 //            System.out.println(
 //                    elecper[i][0].toString() + ", " 
-//                    + elecper[i][1].toString() + ", " 
-//                    + elecper[i][2].toString() + ", " 
-//                    + elecper[i][3].toString());
+//                    + elecper[i][1].toString() + ", "
+//                    + elecper[i][2].toString() + ", ");
+////                    + elecper[i][3].toString());
 //        }        
+//        Date date = (Date) elecper[2][2];
+//        System.out.println(date.getYear());
+//        
     }
 }
