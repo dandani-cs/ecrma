@@ -58,29 +58,13 @@ public class CandidateController {
             btn_edit = new JButton("Edit");
             btn_delete = new JButton("Delete");
             
-            btn_edit.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    // open ViewCandidateDetails card
-                    System.out.println("Btn_edit for " + Integer.toString(candidate.get_candidate_id()));
-                }
-            });
-            btn_edit.setBorder(padding);
-            
-            
-            btn_delete.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    // open DeleteConfirmation frame
-                    System.out.println("btn_delete for " + Integer.toString(candidate.get_candidate_id()));
-                }
-            });
-            btn_delete.setBorder(padding);
-            
             format[i] = new Object[] {
                 candidate.get_image_path(),
                 candidate.get_last_name(),
                 candidate.get_first_name(),
                 btn_edit,
-                btn_delete
+                btn_delete,
+                candidate.get_candidate_id()
             };
         }
         

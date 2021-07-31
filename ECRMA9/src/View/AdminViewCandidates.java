@@ -198,6 +198,11 @@ public class AdminViewCandidates extends JPanel{
             model = new AdminViewCandidatesTableModel();
             
             model.setData(main_controller.candidate_controller.query_all_candidates_for_admin_view());
+            
+            Object[][] main_list;
+            main_list = main_controller.candidate_controller.query_all_candidates_for_admin_view();
+            
+            System.out.println((Integer) main_list[0].length);;
 
             table = new JTable() {
                 public boolean editCellAt(int row, int column, java.util.EventObject e) {
@@ -219,6 +224,23 @@ public class AdminViewCandidates extends JPanel{
             
             table.getTableHeader().setFont(new Font("CALIBRI", Font.PLAIN,24));
             table.setFont(new Font("CALIBRI", Font.PLAIN, 18));
+            
+            table.addMouseListener(new MouseAdapter() {
+               public void mouseClicked(MouseEvent e) {
+                   int col = table.columnAtPoint(e.getPoint());
+                   int row = table.rowAtPoint(e.getPoint());
+                   
+                   if (col == 3) {
+                       // open EditCandidate
+                       System.out.println("Edit candidate: " + table.getValueAt(row, 2) + " " + table.getValueAt(row, 1));
+                       System.out.println("Candidate ID: " + main_controller.candidate_controller.query_candidate_by_id((Integer) table.getValueAt(row, 5)).get_candidate_id());
+                   } else if (col == 4) {
+                       // open DeleteCandidate
+                       System.out.println("Edit candidate: " + table.getValueAt(row, 2) + " " + table.getValueAt(row, 1));
+                       System.out.println("Candidate ID: " + main_controller.candidate_controller.query_candidate_by_id((Integer) table.getValueAt(row, 5)).get_candidate_id());
+                   }
+               }
+            });
             
             JScrollPane sp = new JScrollPane(table);
             

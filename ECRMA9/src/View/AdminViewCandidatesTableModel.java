@@ -16,7 +16,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class AdminViewCandidatesTableModel extends AbstractTableModel {
     private Object[][] candidate_list;
-    private String [] column_names = {"Image", "Last Name", "First Name", "Edit", "Delete"};
+    private String [] column_names = {"Image", "Last Name", "First Name", "Edit", "Delete", "Candidate ID"};
     
     @Override
     public String getColumnName(int column) {
