@@ -333,7 +333,7 @@ public class AddCampaignPanel extends JPanel {
         String error_message = "";
         
         boolean is_valid_party = party_combo.isVisible() ||
-                                 (!party_combo.isVisible() && party_text.getText().isBlank());
+                                 (!party_combo.isVisible() && !party_text.getText().isBlank());
         boolean is_valid_position = !position_text.getText().isBlank();
         boolean is_valid_platform = !platform_textarea.getText().isEmpty();
      
