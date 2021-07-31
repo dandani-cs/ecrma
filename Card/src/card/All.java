@@ -203,7 +203,7 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
             btn_add.setFont(new Font("CALIBRI", Font.BOLD, 18));
             btn_add.setForeground(Color.WHITE);
             
-            btn_edit = new JButton("<html><center>EDIT CANDIDATE</center></html>"); //ito gab pati aaction listener din???
+            btn_edit = new JButton("<html><center>EDIT CANDIDATE</center></html>"); 
             btn_edit.setBackground(new Color(33,97,140));
             btn_edit.setFont(new Font("CALIBRI", Font.BOLD, 18));
             btn_edit.setForeground(Color.WHITE);
