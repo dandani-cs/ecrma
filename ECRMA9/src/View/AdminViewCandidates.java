@@ -27,6 +27,7 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 
 /**
@@ -41,6 +42,7 @@ public class AdminViewCandidates extends JPanel{
     West west;
     Insets westInsets;
     Center center;
+    TableCellRenderer table_renderer;
     MainController main_controller = new MainController();
 
     public AdminViewCandidates(){
@@ -172,16 +174,16 @@ public class AdminViewCandidates extends JPanel{
             this.setOpaque(false);
             
             
-            String[] colNames = {"","Name", "Party", "Position"};
-            ImageIcon[] img = new ImageIcon[24];
-            for(int i = 0; i < 24; i++) {
-                Random rand = new Random();
-                String str = "C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ECRMA9\\src\\Icons\\pic"+ (rand.nextInt(4) + 1) +".jpg";
-                img[i] = new ImageIcon(str);
-                Image imagestr = img[i].getImage();
-                imagestr = imagestr.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
-                img[i] = new ImageIcon(imagestr);
-            }
+//            String[] colNames = {"","Name", "Party", "Position"};
+//            ImageIcon[] img = new ImageIcon[24];
+//            for(int i = 0; i < 24; i++) {
+//                Random rand = new Random();
+//                String str = "C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ECRMA9\\src\\Icons\\pic"+ (rand.nextInt(4) + 1) +".jpg";
+//                img[i] = new ImageIcon(str);
+//                Image imagestr = img[i].getImage();
+//                imagestr = imagestr.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
+//                img[i] = new ImageIcon(imagestr);
+//            }
                  
             
             AdminViewCandidatesTableModel model;
