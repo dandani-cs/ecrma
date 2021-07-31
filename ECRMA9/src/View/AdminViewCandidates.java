@@ -15,6 +15,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -195,6 +197,7 @@ public class AdminViewCandidates extends JPanel{
 
             table = new JTable() {
                 public boolean editCellAt(int row, int column, java.util.EventObject e) {
+                    
                     return false;
                 }
             };

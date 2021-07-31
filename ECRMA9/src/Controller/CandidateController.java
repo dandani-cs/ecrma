@@ -7,6 +7,8 @@ package Controller;
 
 import Model.Candidate;
 import Model.CandidateDatabase;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
 
@@ -45,16 +47,34 @@ public class CandidateController {
     public Object[][] query_all_candidates_for_admin_view() {
         ArrayList<Candidate> candidate_list = candidate_db.query_all_candidates();
         Object[][] format = new Object[candidate_list.size()][5];
+        JButton btn_edit, btn_delete;
         
         for (int i = 0; i < candidate_list.size(); i++) {
             Candidate candidate = candidate_list.get(i);
+            
+            btn_edit = new JButton("Edit");
+            btn_delete = new JButton("Delete");
+            
+            btn_edit.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    // open ViewCandidateDetails card
+                    System.out.println("Btn_edit for " + Integer.toString(candidate.get_candidate_id()));
+                }
+            });
+            
+            btn_delete.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    // open DeleteConfirmation frame
+                    System.out.println("btn_delete for " + Integer.toString(candidate.get_candidate_id()));
+                }
+            });
             
             format[i] = new Object[] {
                 candidate.get_image_path(),
                 candidate.get_last_name(),
                 candidate.get_first_name(),
-                new JButton("Edit"),
-                new JButton("Delete")
+                btn_edit,
+                btn_delete
             };
         }
         
