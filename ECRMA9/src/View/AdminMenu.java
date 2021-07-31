@@ -5,9 +5,15 @@
  */
 package View;
 
+import Controller.CandidateController;
+import Controller.FormEvent;
+import Controller.FormListener;
+import Controller.MainController;
+import Model.Candidate;
 import java.awt.Toolkit;
 import javax.swing.JPanel;
 import View.Frame_Login;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,6 +23,9 @@ public class AdminMenu extends javax.swing.JFrame {
     
     Frame_Login login;
     AdminViewCandidates adminviewcandidates;
+    
+    //TODO: change this to main controller due to ElecPerController errors for now
+    CandidateController candidate_controller = new CandidateController();
 
     /**
      * Creates new form AdminMenu
@@ -394,7 +403,31 @@ public class AdminMenu extends javax.swing.JFrame {
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
         // TODO add your handling code here:
-        
+        AddGUI add_new_candidate = new AddGUI();
+        add_new_candidate.set_form_listener(new FormListener() {
+            @Override           
+            public void formEventOccurred(FormEvent e) {
+                Boolean is_successful = candidate_controller.add_candidate(e);
+                
+                if(!is_successful)
+                {
+                    // TODO: possibly change message if there is a better message/design
+                    // Candidates are specifically unique by ID, fname, lname, sex and birthdate
+                    JOptionPane.showMessageDialog(null, 
+                                                  "A candidate with similar information already exists",
+                                                  "Add Candidate failed!",
+                                                  JOptionPane.ERROR_MESSAGE);
+                } else
+                {
+                    JOptionPane.showMessageDialog(null, 
+                                                  "Candidate has been successfully added.",
+                                                  "Successfully Added Candidate!",
+                                                  JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        add_new_candidate.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void jPanel5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseExited
@@ -425,7 +458,31 @@ public class AdminMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel2MouseEntered
 
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
-        // TODO add your handling code here:
+        AddGUI edit_candidate = new AddGUI();
+        
+        // Set candidate here
+        Candidate to_edit = candidate_controller.query_candidate_by_id(1);
+        edit_candidate.set_candidate_details(to_edit);
+        
+        edit_candidate.set_form_listener(new FormListener() {
+            @Override           
+            public void formEventOccurred(FormEvent e) {
+                Boolean is_successful = candidate_controller.update_candidate(to_edit.get_candidate_id(), 
+                                                                              e.getCandidate());
+                
+                if(!is_successful)
+                {
+                    // TODO: possibly change message if there is a better message/design
+                    // Candidates are specifically unique by ID, fname, lname, sex and birthdate
+                    JOptionPane.showMessageDialog(null, 
+                                                  "A candidate with similar information already exists",
+                                                  "Add Candidate failed!",
+                                                  JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        edit_candidate.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_jPanel2MouseClicked
 
     private void jPanel7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseExited
