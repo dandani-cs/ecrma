@@ -31,6 +31,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -281,29 +282,41 @@ public class AddCampaignPanel extends JPanel {
         save_btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Candidate candidate = (Candidate)candidates_combo.getSelectedItem(); 
-                ElecPer   elecper   = (ElecPer)  elecper_combo.getSelectedItem();
-                
-                int candidate_id = candidate.get_candidate_id();
-                int elecper_id   = elecper.getElecPerId();
-                
-                String party     = party_combo.isVisible() ? 
-                                        (String) party_combo.getSelectedItem() : 
-                                        party_text.getText();
-                
-                String position  = position_text.getText();
-                String platform  = platform_textarea.getText();
-                
-                Campaigns campaign = new Campaigns(candidate_id, elecper_id, party,
-                                                   position, platform);
-                
-                FormEvent fe = new FormEvent(this);
-                fe.setCampaign(campaign);
-                fe.setCandidate((Candidate)candidates_combo.getSelectedItem());
-                fe.setElection_period(elecper);
-                
-                if(form_listener != null)
-                    form_listener.formEventOccurred(fe);
+                String error = validate_input();
+                System.out.println("Error: " + error);
+                System.out.println("Error size: " + error.length());
+                if(!error.isEmpty())
+                {
+                    JOptionPane.showMessageDialog(null, error, 
+                                                  "Add Campaign Failed!", 
+                                                  JOptionPane.ERROR_MESSAGE); 
+                }
+                else
+                {
+                    Candidate candidate = (Candidate)candidates_combo.getSelectedItem(); 
+                    ElecPer   elecper   = (ElecPer)  elecper_combo.getSelectedItem();
+
+                    int candidate_id = candidate.get_candidate_id();
+                    int elecper_id   = elecper.getElecPerId();
+
+                    String party     = party_combo.isVisible() ? 
+                                            (String) party_combo.getSelectedItem() : 
+                                            party_text.getText();
+
+                    String position  = position_text.getText();
+                    String platform  = platform_textarea.getText();
+
+                    Campaigns campaign = new Campaigns(candidate_id, elecper_id, party,
+                                                       position, platform);
+
+                    FormEvent fe = new FormEvent(this);
+                    fe.setCampaign(campaign);
+                    fe.setCandidate((Candidate)candidates_combo.getSelectedItem());
+                    fe.setElection_period(elecper);
+
+                    if(form_listener != null)
+                        form_listener.formEventOccurred(fe);
+                }
             }
         });
         
@@ -313,6 +326,25 @@ public class AddCampaignPanel extends JPanel {
                 controller.campaign_controller.addCampaign(e);
             }
         };
+    }
+    
+    private String validate_input()
+    {
+        String error_message = "";
+        
+        boolean is_valid_party = party_combo.isVisible() ||
+                                 (!party_combo.isVisible() && party_text.getText().isBlank());
+        boolean is_valid_position = !position_text.getText().isBlank();
+        boolean is_valid_platform = !platform_textarea.getText().isEmpty();
+     
+        if(!is_valid_party)
+            error_message += "Invalid input for party!\n";
+        if(!is_valid_position)
+            error_message += "Invalid position entered!\n";
+        if(!is_valid_platform)
+            error_message += "Invalid platform entered!\n";
+        
+        return error_message;
     }
     
     private void swap_with_party_text()

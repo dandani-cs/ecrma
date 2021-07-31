@@ -422,7 +422,7 @@ public class AdminMenu extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, 
                                                   "Candidate has been successfully added.",
                                                   "Successfully Added Candidate!",
-                                                  JOptionPane.ERROR_MESSAGE);
+                                                  JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         });

@@ -413,11 +413,13 @@ public class AddGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_resetBtnActionPerformed
 
     private void confirmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmBtnActionPerformed
-        if(!validate_input())
+        String error = validate_input();
+        System.out.println("Error: " + error);
+        if(!error.isEmpty())
         {
             // TODO: possibly change message if there is a better message/design
             JOptionPane.showMessageDialog(null, 
-                                          "Invalid information entered on some fields",
+                                          error,
                                           "Add Candidate failed!",
                                           JOptionPane.ERROR_MESSAGE);
             return;
@@ -454,13 +456,15 @@ public class AddGUI extends javax.swing.JFrame {
         System.out.println("added candidate");
     }//GEN-LAST:event_confirmBtnActionPerformed
 
-    private Boolean validate_input()
+    private String validate_input()
     {
-        boolean is_valid_fname = (!firstNameTxt.getText().isBlank() ||
+        String error = "";
+        boolean is_valid_fname = (!firstNameTxt.getText().isBlank() &&
                                   !firstNameTxt.getText().equals("First name"));
-        boolean is_valid_lname = (!lastNameTxt.getText().isBlank() ||
+        boolean is_valid_lname = (!lastNameTxt.getText().isBlank() &&
                                   !lastNameTxt.getText().equals("Last name"));
-        boolean is_valid_midI  = (!midInitialTxt.getText().isBlank());
+        boolean is_valid_midI  = (!midInitialTxt.getText().isBlank() &&
+                                  midInitialTxt.getText().equals("Middle initial"));
         boolean is_valid_uni   = (!universityTxt.getText().equals("University"));
         boolean is_valid_deg   = (!degreeTxt.getText().equals("degree"));
         
@@ -472,9 +476,13 @@ public class AddGUI extends javax.swing.JFrame {
                                   && (birth_date.getTime() < grad_date.getTime());
         boolean is_valid_gdate =  (get_date_difference(current_date, grad_date) >= (365));
         
-        return is_valid_fname && is_valid_lname && is_valid_midI &&
-               is_valid_bdate && is_valid_uni   && is_valid_deg  && 
-               is_valid_gdate;
+        if(!is_valid_fname)
+            error += "Invalid name entered!\n";
+        if(!is_valid_bdate)
+            error += "Invalid birth date entered!\n";
+        if(!is_valid_uni || !is_valid_deg || !is_valid_gdate)
+            error += "Invalid educational background entered!\n";
+        return error;
     }
     
     private long get_date_difference(Date d1, Date d2) {
