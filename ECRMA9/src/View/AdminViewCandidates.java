@@ -18,16 +18,20 @@ import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Random;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
@@ -206,8 +210,9 @@ public class AdminViewCandidates extends JPanel{
             table.getColumnModel().getColumn(0).setMaxWidth(120);
             table.getColumnModel().getColumn(0).setMinWidth(120);
             
-            table.getColumnModel().getColumn(3).setCellRenderer(button_renderer);
-            table.getColumnModel().getColumn(4).setCellRenderer(button_renderer);
+            table.setDefaultRenderer(JButton.class, new JTableButtonRenderer());
+            table.getColumnModel().getColumn(3).setCellRenderer(new JTableButtonRenderer());
+            table.getColumnModel().getColumn(4).setCellRenderer(new JTableButtonRenderer());
             
             table.setRowHeight(120);
             
@@ -232,9 +237,20 @@ public class AdminViewCandidates extends JPanel{
         
     }
     
-    private static class JTableButtonRenderer implements TableCellRenderer {        
+    private class JTableButtonRenderer implements TableCellRenderer {        
         @Override public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-            JButton button = (JButton)value;
+            Border padding = BorderFactory.createEmptyBorder(50, 50, 50, 50);
+
+            JButton button = (JButton) value;
+            
+            if (button != null) {
+                button.setFont(new Font("Tahoma", Font.BOLD, 30));
+                button.setBorder(BorderFactory.createCompoundBorder(getBorder(), padding));
+                System.out.println("BUTTON IS NOT NULL");
+                System.out.println(getBorder());
+            }
+                
+                
             return button;  
         }
     }

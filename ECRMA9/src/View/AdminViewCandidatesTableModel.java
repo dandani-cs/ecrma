@@ -7,6 +7,7 @@ package View;
 
 import Model.Candidate;
 import java.util.ArrayList;
+import javax.swing.JButton;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -35,6 +36,13 @@ public class AdminViewCandidatesTableModel extends AbstractTableModel {
     public int getColumnCount() {
         return column_names.length;
     }
+    
+    @Override
+        public Class<?> getColumnClass(int columnIndex) {
+            if (columnIndex == 3 || columnIndex == 4)
+                return JButton.class;
+            return Object.class;
+        }
 
     @Override
     public Object getValueAt(int row, int col) {

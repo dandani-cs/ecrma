@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 
 /**
  *
@@ -48,6 +50,7 @@ public class CandidateController {
         ArrayList<Candidate> candidate_list = candidate_db.query_all_candidates();
         Object[][] format = new Object[candidate_list.size()][5];
         JButton btn_edit, btn_delete;
+        Border padding = new EmptyBorder(20, 20, 20, 20);
         
         for (int i = 0; i < candidate_list.size(); i++) {
             Candidate candidate = candidate_list.get(i);
@@ -61,6 +64,8 @@ public class CandidateController {
                     System.out.println("Btn_edit for " + Integer.toString(candidate.get_candidate_id()));
                 }
             });
+            btn_edit.setBorder(padding);
+            
             
             btn_delete.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -68,6 +73,7 @@ public class CandidateController {
                     System.out.println("btn_delete for " + Integer.toString(candidate.get_candidate_id()));
                 }
             });
+            btn_delete.setBorder(padding);
             
             format[i] = new Object[] {
                 candidate.get_image_path(),
