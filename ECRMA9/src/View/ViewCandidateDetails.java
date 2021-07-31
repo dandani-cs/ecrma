@@ -5,6 +5,9 @@
  */
 package proj;
 
+import View.AddGUI;
+import View.DeleteGUI;
+
 /**
  *
  * @author Rheeeiiii

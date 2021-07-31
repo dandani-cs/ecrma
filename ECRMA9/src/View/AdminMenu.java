@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
 public class AdminMenu extends javax.swing.JFrame {
     
     Frame_Login login;
-    AdminViewCandidates adminviewcandidates;
+    AdminMainContentArea adminmaincontentarea;
     
     //TODO: change this to main controller due to ElecPerController errors for now
     CandidateController candidate_controller = new CandidateController();
@@ -402,7 +402,11 @@ public class AdminMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel1MouseEntered
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
-        // TODO add your handling code here:
+         // TODO add your handling code here:
+        adminmaincontentarea = new AdminMainContentArea();
+        adminmaincontentarea.setVisible(true);
+        this.setVisible(false);
+       
         AddGUI add_new_candidate = new AddGUI();
         add_new_candidate.set_form_listener(new FormListener() {
             @Override           
@@ -442,9 +446,10 @@ public class AdminMenu extends javax.swing.JFrame {
 
     private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
         // TODO add your handling code here:
-        adminviewcandidates = new AdminViewCandidates();
-        adminviewcandidates.setVisible(true);
+        adminmaincontentarea = new AdminMainContentArea();
+        adminmaincontentarea.setVisible(true);
         this.setVisible(false);
+        
     }//GEN-LAST:event_jPanel5MouseClicked
 
     private void jPanel2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseExited
@@ -497,6 +502,9 @@ public class AdminMenu extends javax.swing.JFrame {
 
     private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
         // TODO add your handling code here:
+        adminmaincontentarea = new AdminMainContentArea();
+        adminmaincontentarea.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jPanel7MouseClicked
 
     private void jPanel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseExited
@@ -511,6 +519,9 @@ public class AdminMenu extends javax.swing.JFrame {
 
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
         // TODO add your handling code here:
+        adminmaincontentarea = new AdminMainContentArea();
+        adminmaincontentarea.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jPanel3MouseClicked
 
     private void jPanel6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseExited

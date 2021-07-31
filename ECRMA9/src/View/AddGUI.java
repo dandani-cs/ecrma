@@ -56,8 +56,9 @@ public class AddGUI extends javax.swing.JFrame {
         gradDateSpinner.setEditor(new JSpinner.DateEditor(gradDateSpinner,
                                                           date_fmt.toPattern()));     
         
-        setSize(1250, 1080);
+        setSize(1250, 810);
         this.setTitle("Election Candidates Record Management");
+        this.setLocationRelativeTo(null);
     }
     
     
@@ -138,7 +139,7 @@ public class AddGUI extends javax.swing.JFrame {
         firstNameTxt.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         firstNameTxt.setForeground(new java.awt.Color(33, 97, 140));
         firstNameTxt.setText("First name");
-        firstNameTxt.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        firstNameTxt.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
         jLabel17.setBackground(new java.awt.Color(33, 97, 140));
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -147,7 +148,7 @@ public class AddGUI extends javax.swing.JFrame {
 
         jTextField3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jTextField3.setText("Position");
-        jTextField3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jTextField3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
         jPanel4.setLayout(new java.awt.BorderLayout());
 
@@ -319,12 +320,12 @@ public class AddGUI extends javax.swing.JFrame {
         lastNameTxt.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         lastNameTxt.setForeground(new java.awt.Color(33, 97, 140));
         lastNameTxt.setText("Last name");
-        lastNameTxt.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        lastNameTxt.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
         midInitialTxt.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         midInitialTxt.setForeground(new java.awt.Color(33, 97, 140));
         midInitialTxt.setText("Middle initial");
-        midInitialTxt.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        midInitialTxt.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
         browseImageBtn.setText("Browse Image");
         browseImageBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -348,12 +349,13 @@ public class AddGUI extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(browseImageBtn)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(firstNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(firstNameTxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
+                                        .addGap(18, 18, 18)
                                         .addComponent(lastNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(midInitialTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(midInitialTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1156, Short.MAX_VALUE)
                                 .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
@@ -388,18 +390,20 @@ public class AddGUI extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(93, 93, 93)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(firstNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lastNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(midInitialTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(2, 2, 2)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(14, 14, 14)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(browseImageBtn))
-                    .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel17)
                 .addGap(15, 15, 15)
@@ -519,6 +523,7 @@ public class AddGUI extends javax.swing.JFrame {
     
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void browseImageBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseImageBtnActionPerformed
