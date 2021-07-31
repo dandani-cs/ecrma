@@ -13,6 +13,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.File;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
@@ -54,7 +58,23 @@ public class AddGUI extends javax.swing.JFrame {
         
         gradDateSpinner.setModel(new SpinnerDateModel(new Date(), null, null, Calendar.DAY_OF_MONTH));
         gradDateSpinner.setEditor(new JSpinner.DateEditor(gradDateSpinner,
-                                                          date_fmt.toPattern()));     
+                                                          date_fmt.toPattern()));  
+        
+        midInitialTxt.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if(midInitialTxt.getText().length() >= 1)
+                    e.consume();
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        });
         
         setSize(1250, 1080);
         this.setTitle("Election Candidates Record Management");
@@ -133,7 +153,6 @@ public class AddGUI extends javax.swing.JFrame {
         firstNameTxt.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         firstNameTxt.setForeground(new java.awt.Color(33, 97, 140));
         firstNameTxt.setText("First name");
-        firstNameTxt.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         jLabel17.setBackground(new java.awt.Color(33, 97, 140));
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -300,12 +319,10 @@ public class AddGUI extends javax.swing.JFrame {
         lastNameTxt.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         lastNameTxt.setForeground(new java.awt.Color(33, 97, 140));
         lastNameTxt.setText("Last name");
-        lastNameTxt.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         midInitialTxt.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         midInitialTxt.setForeground(new java.awt.Color(33, 97, 140));
         midInitialTxt.setText("Middle initial");
-        midInitialTxt.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         browseImageBtn.setText("Browse Image");
         browseImageBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -464,7 +481,7 @@ public class AddGUI extends javax.swing.JFrame {
         boolean is_valid_lname = (!lastNameTxt.getText().isBlank() &&
                                   !lastNameTxt.getText().equals("Last name"));
         boolean is_valid_midI  = (!midInitialTxt.getText().isBlank() &&
-                                  midInitialTxt.getText().equals("Middle initial"));
+                                  !midInitialTxt.getText().equals("Middle initial"));
         boolean is_valid_uni   = (!universityTxt.getText().equals("University"));
         boolean is_valid_deg   = (!degreeTxt.getText().equals("degree"));
         
@@ -476,7 +493,7 @@ public class AddGUI extends javax.swing.JFrame {
                                   && (birth_date.getTime() < grad_date.getTime());
         boolean is_valid_gdate =  (get_date_difference(current_date, grad_date) >= (365));
         
-        if(!is_valid_fname)
+        if(!is_valid_fname || !is_valid_lname || !is_valid_midI)
             error += "Invalid name entered!\n";
         if(!is_valid_bdate)
             error += "Invalid birth date entered!\n";
