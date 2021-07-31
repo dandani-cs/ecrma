@@ -42,7 +42,6 @@ public class AdminViewCandidates extends JPanel{
     West west;
     Insets westInsets;
     Center center;
-    TableCellRenderer table_renderer;
     MainController main_controller = new MainController();
 
     public AdminViewCandidates(){
@@ -167,11 +166,16 @@ public class AdminViewCandidates extends JPanel{
     class Center extends JPanel {
         JTable table;
         JButton btn_add;
+        TableCellRenderer button_renderer;
+        AdminViewCandidatesTableModel model;
         
         Center() {
             this.setLayout(new BorderLayout());
             this.setBorder(new EmptyBorder(60,60,60,60));
             this.setOpaque(false);
+            button_renderer = new JTableButtonRenderer();
+            
+            
             
             
 //            String[] colNames = {"","Name", "Party", "Position"};
@@ -184,9 +188,7 @@ public class AdminViewCandidates extends JPanel{
 //                imagestr = imagestr.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
 //                img[i] = new ImageIcon(imagestr);
 //            }
-                 
-            
-            AdminViewCandidatesTableModel model;
+                        
             model = new AdminViewCandidatesTableModel();
             
             model.setData(main_controller.candidate_controller.query_all_candidates_for_admin_view());
@@ -198,9 +200,11 @@ public class AdminViewCandidates extends JPanel{
             };
             table.setModel(model);
             table.getColumnModel().getColumn(0).setCellRenderer(table.getDefaultRenderer(ImageIcon.class));
-            
             table.getColumnModel().getColumn(0).setMaxWidth(120);
             table.getColumnModel().getColumn(0).setMinWidth(120);
+            
+            table.getColumnModel().getColumn(3).setCellRenderer(button_renderer);
+            table.getColumnModel().getColumn(4).setCellRenderer(button_renderer);
             
             table.setRowHeight(120);
             
@@ -223,6 +227,13 @@ public class AdminViewCandidates extends JPanel{
             this.add(btn_add, BorderLayout.SOUTH);
         }
         
+    }
+    
+    private static class JTableButtonRenderer implements TableCellRenderer {        
+        @Override public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            JButton button = (JButton)value;
+            return button;  
+        }
     }
     
 }
