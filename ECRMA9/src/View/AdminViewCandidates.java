@@ -233,11 +233,11 @@ public class AdminViewCandidates extends JPanel{
                    if (col == 3) {
                        // open EditCandidate
                        System.out.println("Edit candidate: " + table.getValueAt(row, 2) + " " + table.getValueAt(row, 1));
-                       System.out.println("Candidate ID: " + table.getValueAt(row, 6));
+                       System.out.println("Candidate ID: " + table.getValueAt(row, 5));
                    } else if (col == 4) {
                        // open DeleteCandidate
                        System.out.println("Delete candidate: " + table.getValueAt(row, 2) + " " + table.getValueAt(row, 1));
-                       System.out.println("Candidate ID: " + table.getValueAt(row, 6));
+                       System.out.println("Candidate ID: " + table.getValueAt(row, 5));
                    }
                }
             });
@@ -266,10 +266,7 @@ public class AdminViewCandidates extends JPanel{
             JButton button = (JButton) value;
             
             if (button != null) {
-                button.setFont(new Font("Tahoma", Font.BOLD, 30));
                 button.setBorder(BorderFactory.createCompoundBorder(getBorder(), padding));
-                System.out.println("BUTTON IS NOT NULL");
-                System.out.println(getBorder());
             }
                 
                 

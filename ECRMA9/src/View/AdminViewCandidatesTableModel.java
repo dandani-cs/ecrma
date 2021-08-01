@@ -16,7 +16,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class AdminViewCandidatesTableModel extends AbstractTableModel {
     private ArrayList<Candidate> candidate_list;
-    private String [] column_names = {"Image", "Last Name", "First Name", "Edit", "Delete", "Candidate ID"};
+    private String [] column_names = {"Image", "Last Name", "First Name", "Edit", "Delete"};
     
     @Override
     public String getColumnName(int column) {
@@ -49,12 +49,12 @@ public class AdminViewCandidatesTableModel extends AbstractTableModel {
         if (candidate_list.size() > row) {
             Candidate current_candidate = candidate_list.get(row);
             switch (col) {
-                case 1: return current_candidate.get_image_path();
-                case 2: return current_candidate.get_last_name();
-                case 3: return current_candidate.get_first_name();
-                case 4: return new JButton("Edit");
-                case 5: return new JButton("Delete");
-                case 6: return current_candidate.get_candidate_id();
+                case 0: return current_candidate.get_image_path();
+                case 1: return current_candidate.get_last_name();
+                case 2: return current_candidate.get_first_name();
+                case 3: return new JButton("Edit");
+                case 4: return new JButton("Delete");
+                case 5: return current_candidate.get_candidate_id();
             }
         }
         return null;
