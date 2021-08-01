@@ -13,6 +13,7 @@ import Model.Candidate;
 import java.awt.Toolkit;
 import javax.swing.JPanel;
 import View.Frame_Login;
+import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,7 +23,7 @@ import javax.swing.JOptionPane;
 public class AdminMenu extends javax.swing.JFrame {
     
     Frame_Login login;
-    AdminViewCandidates adminviewcandidates;
+    AdminMainContentArea adminmaincontentarea;
     
     //TODO: change this to main controller due to ElecPerController errors for now
     CandidateController candidate_controller = new CandidateController();
@@ -402,32 +403,37 @@ public class AdminMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel1MouseEntered
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
-        // TODO add your handling code here:
-        AddGUI add_new_candidate = new AddGUI();
-        add_new_candidate.set_form_listener(new FormListener() {
-            @Override           
-            public void formEventOccurred(FormEvent e) {
-                Boolean is_successful = candidate_controller.add_candidate(e);
-                
-                if(!is_successful)
-                {
-                    // TODO: possibly change message if there is a better message/design
-                    // Candidates are specifically unique by ID, fname, lname, sex and birthdate
-                    JOptionPane.showMessageDialog(null, 
-                                                  "A candidate with similar information already exists",
-                                                  "Add Candidate failed!",
-                                                  JOptionPane.ERROR_MESSAGE);
-                } else
-                {
-                    JOptionPane.showMessageDialog(null, 
-                                                  "Candidate has been successfully added.",
-                                                  "Successfully Added Candidate!",
-                                                  JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        });
-        add_new_candidate.setVisible(true);
-        setVisible(false);
+         // TODO add your handling code here:
+        adminmaincontentarea = new AdminMainContentArea();
+        adminmaincontentarea.setVisible(true);
+        adminmaincontentarea.setCard("cardViewCandidates");
+        this.setVisible(false);
+       
+//        AddGUI add_new_candidate = new AddGUI();
+//        add_new_candidate.set_form_listener(new FormListener() {
+//            @Override           
+//            public void formEventOccurred(FormEvent e) {
+//                Boolean is_successful = candidate_controller.add_candidate(e);
+//                
+//                if(!is_successful)
+//                {
+//                    // TODO: possibly change message if there is a better message/design
+//                    // Candidates are specifically unique by ID, fname, lname, sex and birthdate
+//                    JOptionPane.showMessageDialog(null, 
+//                                                  "A candidate with similar information already exists",
+//                                                  "Add Candidate failed!",
+//                                                  JOptionPane.ERROR_MESSAGE);
+//                } else
+//                {
+//                    JOptionPane.showMessageDialog(null, 
+//                                                  "Candidate has been successfully added.",
+//                                                  "Successfully Added Candidate!",
+//                                                  JOptionPane.ERROR_MESSAGE);
+//                }
+//            }
+//        });
+//        add_new_candidate.setVisible(true);
+//        setVisible(false);
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void jPanel5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseExited
@@ -442,9 +448,10 @@ public class AdminMenu extends javax.swing.JFrame {
 
     private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
         // TODO add your handling code here:
-        adminviewcandidates = new AdminViewCandidates();
-        adminviewcandidates.setVisible(true);
+        adminmaincontentarea = new AdminMainContentArea();
+        adminmaincontentarea.setVisible(true);
         this.setVisible(false);
+        
     }//GEN-LAST:event_jPanel5MouseClicked
 
     private void jPanel2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseExited
@@ -497,6 +504,9 @@ public class AdminMenu extends javax.swing.JFrame {
 
     private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
         // TODO add your handling code here:
+        adminmaincontentarea = new AdminMainContentArea();
+        adminmaincontentarea.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jPanel7MouseClicked
 
     private void jPanel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseExited
@@ -511,6 +521,9 @@ public class AdminMenu extends javax.swing.JFrame {
 
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
         // TODO add your handling code here:
+        adminmaincontentarea = new AdminMainContentArea();
+        adminmaincontentarea.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jPanel3MouseClicked
 
     private void jPanel6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseExited

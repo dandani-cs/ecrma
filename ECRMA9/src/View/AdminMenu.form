@@ -204,6 +204,9 @@
                 <Component class="javax.swing.JLabel" name="jLabel9">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="2" name="C:\Users\Admin\Documents\GitHub\ecrma\ECRMA9\src\Icons\add128px.png"/>
+                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -255,6 +258,9 @@
                 <Component class="javax.swing.JLabel" name="jLabel10">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="2" name="C:\Users\Admin\Documents\GitHub\ecrma\ECRMA9\src\Icons\edit128px.png"/>
+                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -306,6 +312,9 @@
                 <Component class="javax.swing.JLabel" name="jLabel11">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="2" name="C:\Users\Admin\Documents\GitHub\ecrma\ECRMA9\src\Icons\delete128px.png"/>
+                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -377,6 +386,9 @@
                 <Component class="javax.swing.JLabel" name="jLabel12">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="2" name="C:\Users\Admin\Documents\GitHub\ecrma\ECRMA9\src\Icons\view2_128px.png"/>
+                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -428,6 +440,9 @@
                 <Component class="javax.swing.JLabel" name="jLabel13">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="2" name="C:\Users\Admin\Documents\GitHub\ecrma\ECRMA9\src\Icons\archive128px.png"/>
+                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -479,6 +494,9 @@
                 <Component class="javax.swing.JLabel" name="jLabel15">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="2" name="C:\Users\Admin\Documents\GitHub\ecrma\ECRMA9\src\Icons\logout128px.png"/>
+                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>

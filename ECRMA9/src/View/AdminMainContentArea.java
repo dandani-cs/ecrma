@@ -3,19 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package card;
+package View;
 
-import card.All.AdminViewCandidates.Center;
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -28,19 +32,38 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Rheeeiiii
  */
-public class All extends javax.swing.JFrame{
+public class AdminMainContentArea extends javax.swing.JFrame{
+    
+    AdminMenu menu;
+    Frame_Login login;
     
     private Color hoverMENU = new Color(33,82,117);
     private Color byeMENU = new Color(33,97,140);
     
     AdminViewCandidates myPanel = new AdminViewCandidates();
 
-    public All() {
+    CardLayout card; 
+    
+   
+    public AdminMainContentArea() {
         initComponents(); 
-        setSize(1920, 1080);
+        this.pack();
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        int xsize = (int) tk.getScreenSize().getWidth();
+        int ysize = (int) tk.getScreenSize().getHeight();
+        this.setSize(xsize, ysize);
+        this.setLocationRelativeTo(null);
         this.setTitle("Election Candidates Record Management");
         cardViewCandidates.add(myPanel);
+        
+        card = (CardLayout)MainPanel.getLayout();
+     
     }
+    
+    public void setCard(String str){
+        card.show(MainPanel, str);
+    }
+    
     
    public void reset(){
          jTextField1.setText("NAME");
@@ -58,18 +81,18 @@ public class All extends javax.swing.JFrame{
      }
    
    public void reset1(){
-         jTextField56.setText("NAME");
-         jTextField57.setText("Position");
-         jTextField58.setText(" ");
-         jTextField59.setText(" ");
-         jTextField60.setText(" ");
-         jTextField61.setText("Course");
-         jTextField62.setText("University");
-         jTextField63.setText("Date");
-         jTextField64.setText("Course");
-         jTextField65.setText("University");
-         jTextField66.setText("Date");
-         jTextArea6.setText(" ");
+//         jTextField56.setText("NAME");
+//         jTextField57.setText("Position");
+//         jTextField58.setText(" ");
+//         jTextField59.setText(" ");
+//         jTextField60.setText(" ");
+//         jTextField61.setText("Course");
+//         jTextField62.setText("University");
+//         jTextField63.setText("Date");
+//         jTextField64.setText("Course");
+//         jTextField65.setText("University");
+//         jTextField66.setText("Date");
+//         jTextArea6.setText(" ");
    }
 
    
@@ -96,7 +119,7 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
         this.setBackground(bgColor);
         
         setVisible(true);
-        setSize(new Dimension(1360,880));
+        setSize(new Dimension(1280,800));
     }
  @Override
     public void actionPerformed(ActionEvent e) {
@@ -109,7 +132,7 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
         cardAddCandidate.repaint();
         cardAddCandidate.revalidate();
         
-         setSize(new Dimension(1360,850));
+         setSize(new Dimension(1280,800));
     }
     
     
@@ -117,6 +140,8 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
         JTable table;
         JButton btn_add;
         JButton btn_edit;
+        JLabel lbl_header, lbl_description;
+        JPanel header;
         
         Center() {
             this.setLayout(new BorderLayout());
@@ -199,23 +224,43 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
                     }
                 }   
     });
-            
             //add button
             btn_add = new JButton("<html><center>ADD CANDIDATE</center></html>");
-            btn_add.setBackground(new Color(33,97,140));
+            btn_add.setBackground(new Color(33,97,140)); //(new Color(33,97,140))
             btn_add.setFont(new Font("CALIBRI", Font.BOLD, 18));
             btn_add.setForeground(Color.WHITE);
             
             btn_edit = new JButton("<html><center>EDIT CANDIDATE</center></html>"); 
-            btn_edit.setBackground(new Color(33,97,140));
+            btn_edit.setBackground((new Color(33,97,140))); //(new Color(33,97,140))
             btn_edit.setFont(new Font("CALIBRI", Font.BOLD, 18));
             btn_edit.setForeground(Color.WHITE);
+            
+            //header
+            header = new JPanel();
+            setOpaque(false);
+            setBorder(BorderFactory.createEmptyBorder(50, 50, 100, 50));
+            lbl_header = new JLabel("View All Candidates");
+            lbl_header.setFont(new Font("Bebas Neue", Font.BOLD, 35));
+            lbl_header.setForeground(StaticResources.getMainColor());
+            lbl_header.setBackground(Color.WHITE);
+
+            lbl_description = new JLabel("");
+            lbl_description.setFont(new Font("Open Sans", Font.PLAIN, 20));
+            lbl_description.setForeground(StaticResources.getMainColor());
+            lbl_header.setBackground(Color.WHITE);
+            
+            header.add(lbl_header);
+            header.add(lbl_description);
   
+            header.setMinimumSize(new Dimension(720, 100));
+            header.setPreferredSize(new Dimension(720, 100));
+            header.setBackground(Color.WHITE);
+            
             this.revalidate();
             this.repaint();
             this.add(sp);
+            this.add(header, BorderLayout.NORTH);
             this.add(btn_add, BorderLayout.SOUTH);
-            //this.add(btn_edit, BorderLayout.SOUTH); //////////aaaa
         }
        
     }
@@ -236,6 +281,7 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
         AdminBackground = new javax.swing.JPanel();
         SidePanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         SidePanelContent = new javax.swing.JPanel();
         vCandidate = new javax.swing.JPanel();
@@ -246,8 +292,26 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
         sp2LBL3 = new javax.swing.JLabel();
         Logout = new javax.swing.JPanel();
         sp2LBL4 = new javax.swing.JLabel();
-        card1 = new javax.swing.JPanel();
+        MainPanel = new javax.swing.JPanel();
         cardViewCandidates = new javax.swing.JPanel();
+        cardAddElec = new javax.swing.JPanel();
+        cardBG = new javax.swing.JPanel();
+        formtitle = new javax.swing.JLabel();
+        formsubtitle = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jTextField23 = new javax.swing.JTextField();
+        jTextField24 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea3 = new javax.swing.JTextArea();
+        cancelBTN = new javax.swing.JButton();
+        saveBTN = new javax.swing.JButton();
         cardViewDetails = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
@@ -281,36 +345,37 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
         jButton16 = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
         cardAddCandidate = new javax.swing.JPanel();
-        jPanel30 = new javax.swing.JPanel();
-        jLabel47 = new javax.swing.JLabel();
-        jTextField56 = new javax.swing.JTextField();
-        jLabel48 = new javax.swing.JLabel();
-        jTextField57 = new javax.swing.JTextField();
-        jPanel27 = new javax.swing.JPanel();
-        jPanel28 = new javax.swing.JPanel();
-        jTextField58 = new javax.swing.JTextField();
-        jTextField59 = new javax.swing.JTextField();
-        jLabel49 = new javax.swing.JLabel();
-        jTextField60 = new javax.swing.JTextField();
-        jLabel50 = new javax.swing.JLabel();
-        jLabel51 = new javax.swing.JLabel();
-        jLabel52 = new javax.swing.JLabel();
-        jPanel29 = new javax.swing.JPanel();
-        jTextField61 = new javax.swing.JTextField();
-        jTextField62 = new javax.swing.JTextField();
-        jTextField63 = new javax.swing.JTextField();
-        jTextField64 = new javax.swing.JTextField();
-        jTextField65 = new javax.swing.JTextField();
-        jTextField66 = new javax.swing.JTextField();
-        jLabel53 = new javax.swing.JLabel();
-        jSeparator19 = new javax.swing.JSeparator();
-        jSeparator20 = new javax.swing.JSeparator();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        jTextArea6 = new javax.swing.JTextArea();
-        jSeparator21 = new javax.swing.JSeparator();
-        jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        imageLabel = new javax.swing.JLabel();
+        firstNameTxt = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        jTextField12 = new javax.swing.JTextField();
+        jPanel6 = new javax.swing.JPanel();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        religionTxt = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        birthDateSpinner = new javax.swing.JSpinner();
+        sexComboBox = new javax.swing.JComboBox<>();
+        jLabel21 = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
+        degreeTxt = new javax.swing.JTextField();
+        universityTxt = new javax.swing.JTextField();
+        gradDateSpinner = new javax.swing.JSpinner();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jSeparator8 = new javax.swing.JSeparator();
+        jSeparator9 = new javax.swing.JSeparator();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        jSeparator13 = new javax.swing.JSeparator();
+        cancelBtn = new javax.swing.JButton();
+        resetBtn = new javax.swing.JButton();
+        confirmBtn = new javax.swing.JButton();
+        lastNameTxt = new javax.swing.JTextField();
+        midInitialTxt = new javax.swing.JTextField();
+        browseImageBtn = new javax.swing.JButton();
         cardEdit = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
@@ -342,32 +407,15 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        cardAddElec = new javax.swing.JPanel();
-        cardBG = new javax.swing.JPanel();
-        formtitle = new javax.swing.JLabel();
-        formsubtitle = new javax.swing.JLabel();
-        jSeparator5 = new javax.swing.JSeparator();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jTextField23 = new javax.swing.JTextField();
-        jTextField24 = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
-        cancelBTN = new javax.swing.JButton();
-        saveBTN = new javax.swing.JButton();
         cardViewElec = new javax.swing.JPanel();
         archivecardBG = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         datatable = new javax.swing.JTable();
-        archiveBTN = new javax.swing.JButton();
         archivetitle = new javax.swing.JLabel();
         archivesubtitle = new javax.swing.JLabel();
         jSeparator7 = new javax.swing.JSeparator();
+        addElecBTN = new javax.swing.JButton();
+        archiveBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -377,19 +425,28 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
         SidePanel.setPreferredSize(new java.awt.Dimension(100, 100));
         SidePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(33, 97, 140));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ecrmaLogo.png")); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 260, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 120, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        SidePanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, 120));
-        SidePanel.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 280, 30));
+        SidePanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 300, 120));
+        SidePanel.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 260, 40));
 
         SidePanelContent.setBackground(new java.awt.Color(33, 97, 140));
         SidePanelContent.setLayout(new java.awt.GridLayout(4, 0));
@@ -416,7 +473,7 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
         vCandidateLayout.setHorizontalGroup(
             vCandidateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(vCandidateLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
+                .addGap(42, 42, 42)
                 .addComponent(sp1LBL, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -464,6 +521,9 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
         vMenu.setBackground(new java.awt.Color(33, 97, 140));
         vMenu.setPreferredSize(new java.awt.Dimension(250, 69));
         vMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                vMenuMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 vMenuMouseEntered(evt);
             }
@@ -481,7 +541,7 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
         vMenuLayout.setHorizontalGroup(
             vMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(vMenuLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(45, 45, 45)
                 .addComponent(sp2LBL3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -495,6 +555,9 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
         Logout.setBackground(new java.awt.Color(33, 97, 140));
         Logout.setPreferredSize(new java.awt.Dimension(250, 69));
         Logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LogoutMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 LogoutMouseEntered(evt);
             }
@@ -512,7 +575,7 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
         LogoutLayout.setHorizontalGroup(
             LogoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LogoutLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(45, 45, 45)
                 .addComponent(sp2LBL4, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -525,8 +588,8 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
 
         SidePanel.add(SidePanelContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(-1, 187, 300, 310));
 
-        card1.setBackground(new java.awt.Color(204, 255, 255));
-        card1.setLayout(new java.awt.CardLayout());
+        MainPanel.setBackground(new java.awt.Color(204, 255, 255));
+        MainPanel.setLayout(new java.awt.CardLayout());
 
         cardViewCandidates.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -534,14 +597,184 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
         cardViewCandidates.setLayout(cardViewCandidatesLayout);
         cardViewCandidatesLayout.setHorizontalGroup(
             cardViewCandidatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1630, Short.MAX_VALUE)
+            .addGap(0, 1629, Short.MAX_VALUE)
         );
         cardViewCandidatesLayout.setVerticalGroup(
             cardViewCandidatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1130, Short.MAX_VALUE)
+            .addGap(0, 1278, Short.MAX_VALUE)
         );
 
-        card1.add(cardViewCandidates, "card5");
+        MainPanel.add(cardViewCandidates, "cardViewCandidates");
+
+        cardBG.setBackground(new java.awt.Color(255, 255, 255));
+
+        formtitle.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 30)); // NOI18N
+        formtitle.setForeground(new java.awt.Color(33, 82, 117));
+        formtitle.setText("ADD ELECTION PERIOD");
+
+        formsubtitle.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        formsubtitle.setForeground(new java.awt.Color(33, 82, 117));
+        formsubtitle.setText("Set the name, starting date, and final date of the Election Period.");
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(33, 82, 117));
+        jLabel1.setText("Name of Election Period:");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(33, 82, 117));
+        jLabel3.setText("Candidate:");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(33, 82, 117));
+        jLabel4.setText("Party:");
+
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(33, 82, 117));
+        jLabel26.setText("Position:");
+
+        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(33, 82, 117));
+        jLabel27.setText("Platform:");
+
+        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jComboBox1.setForeground(new java.awt.Color(33, 82, 117));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "", "" }));
+
+        jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jComboBox2.setForeground(new java.awt.Color(33, 82, 117));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "", "" }));
+
+        jTextField23.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jTextField23.setForeground(new java.awt.Color(33, 82, 117));
+
+        jTextField24.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jTextField24.setForeground(new java.awt.Color(33, 82, 117));
+
+        jTextArea3.setColumns(20);
+        jTextArea3.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jTextArea3.setForeground(new java.awt.Color(33, 82, 117));
+        jTextArea3.setLineWrap(true);
+        jTextArea3.setRows(5);
+        jScrollPane1.setViewportView(jTextArea3);
+
+        cancelBTN.setBackground(new java.awt.Color(33, 97, 140));
+        cancelBTN.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        cancelBTN.setForeground(new java.awt.Color(255, 255, 255));
+        cancelBTN.setText("Cancel");
+        cancelBTN.setContentAreaFilled(false);
+        cancelBTN.setOpaque(true);
+        cancelBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cancelBTNMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cancelBTNMouseExited(evt);
+            }
+        });
+        cancelBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBTNActionPerformed(evt);
+            }
+        });
+
+        saveBTN.setBackground(new java.awt.Color(33, 97, 140));
+        saveBTN.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        saveBTN.setForeground(new java.awt.Color(255, 255, 255));
+        saveBTN.setText("Save");
+        saveBTN.setContentAreaFilled(false);
+        saveBTN.setOpaque(true);
+        saveBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                saveBTNMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                saveBTNMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout cardBGLayout = new javax.swing.GroupLayout(cardBG);
+        cardBG.setLayout(cardBGLayout);
+        cardBGLayout.setHorizontalGroup(
+            cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cardBGLayout.createSequentialGroup()
+                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(cardBGLayout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(formsubtitle)
+                            .addComponent(formtitle)
+                            .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(cardBGLayout.createSequentialGroup()
+                                    .addComponent(cancelBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(23, 23, 23)
+                                    .addComponent(saveBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, cardBGLayout.createSequentialGroup()
+                                    .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jLabel26)
+                                        .addComponent(jLabel27))
+                                    .addGap(91, 91, 91)
+                                    .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(cardBGLayout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 1130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(448, Short.MAX_VALUE))
+        );
+        cardBGLayout.setVerticalGroup(
+            cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cardBGLayout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(formtitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(formsubtitle)
+                .addGap(34, 34, 34)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(93, 93, 93)
+                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(67, 67, 67)
+                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel26)
+                    .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(67, 67, 67)
+                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel27)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(78, 78, 78)
+                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 550, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout cardAddElecLayout = new javax.swing.GroupLayout(cardAddElec);
+        cardAddElec.setLayout(cardAddElecLayout);
+        cardAddElecLayout.setHorizontalGroup(
+            cardAddElecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(cardBG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        cardAddElecLayout.setVerticalGroup(
+            cardAddElecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(cardBG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        MainPanel.add(cardAddElec, "carrdAddElec");
 
         jPanel15.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -848,7 +1081,7 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
                             .addComponent(jLabel29)
                             .addComponent(jSeparator11, javax.swing.GroupLayout.DEFAULT_SIZE, 1159, Short.MAX_VALUE)
                             .addComponent(jLabel56))))
-                .addGap(0, 430, Short.MAX_VALUE))
+                .addGap(0, 429, Short.MAX_VALUE))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -886,8 +1119,8 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(273, Short.MAX_VALUE))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(465, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout cardViewDetailsLayout = new javax.swing.GroupLayout(cardViewDetails);
@@ -903,359 +1136,318 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
             .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        card1.add(cardViewDetails, "card6");
+        MainPanel.add(cardViewDetails, "cardViewDetails");
 
-        jPanel30.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel47.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel47.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(33, 97, 140)));
+        imageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        imageLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(33, 97, 140)));
 
-        jTextField56.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        jTextField56.setForeground(new java.awt.Color(33, 97, 140));
-        jTextField56.setText("NAME");
-        jTextField56.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jTextField56.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField12ActionPerformed(evt);
-            }
-        });
+        firstNameTxt.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        firstNameTxt.setForeground(new java.awt.Color(33, 97, 140));
+        firstNameTxt.setText("First name");
+        firstNameTxt.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
-        jLabel48.setBackground(new java.awt.Color(33, 97, 140));
-        jLabel48.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel48.setForeground(new java.awt.Color(33, 97, 140));
-        jLabel48.setText("Personal Information");
+        jLabel20.setBackground(new java.awt.Color(33, 97, 140));
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(33, 97, 140));
+        jLabel20.setText("Personal Information");
 
-        jTextField57.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jTextField57.setText("Position");
-        jTextField57.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jTextField57.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField13ActionPerformed(evt);
-            }
-        });
+        jTextField12.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jTextField12.setText("Position");
+        jTextField12.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
-        jPanel27.setLayout(new java.awt.BorderLayout());
+        jPanel6.setLayout(new java.awt.BorderLayout());
 
-        jPanel28.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel28.setLayout(new java.awt.GridBagLayout());
+        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel9.setLayout(new java.awt.GridBagLayout());
 
-        jTextField58.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField58.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField58.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(33, 97, 140));
+        jLabel10.setText("Sex");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 201;
-        gridBagConstraints.ipady = 13;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 41, 0, 0);
-        jPanel28.add(jTextField58, gridBagConstraints);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        gridBagConstraints.weightx = 0.33;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
+        jPanel9.add(jLabel10, gridBagConstraints);
 
-        jTextField59.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField59.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField59.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        religionTxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        religionTxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        religionTxt.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 201;
-        gridBagConstraints.ipady = 13;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 120, 0, 0);
-        jPanel28.add(jTextField59, gridBagConstraints);
+        gridBagConstraints.weightx = 0.33;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
+        jPanel9.add(religionTxt, gridBagConstraints);
 
-        jLabel49.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel49.setForeground(new java.awt.Color(33, 97, 140));
-        jLabel49.setText("Sex");
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(33, 97, 140));
+        jLabel11.setText("Religion");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 212, 0, 0);
-        jPanel28.add(jLabel49, gridBagConstraints);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        gridBagConstraints.weightx = 0.33;
+        jPanel9.add(jLabel11, gridBagConstraints);
 
-        jTextField60.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField60.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField60.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 201;
-        gridBagConstraints.ipady = 13;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 120, 0, 30);
-        jPanel28.add(jTextField60, gridBagConstraints);
-
-        jLabel50.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel50.setForeground(new java.awt.Color(33, 97, 140));
-        jLabel50.setText("Party List");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 196, 0, 0);
-        jPanel28.add(jLabel50, gridBagConstraints);
-
-        jLabel51.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel51.setForeground(new java.awt.Color(33, 97, 140));
-        jLabel51.setText("Date of Birth");
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(33, 97, 140));
+        jLabel12.setText("Date of Birth");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 94, 0, 0);
-        jPanel28.add(jLabel51, gridBagConstraints);
-
-        jLabel52.setBackground(new java.awt.Color(33, 97, 140));
-        jLabel52.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel52.setForeground(new java.awt.Color(33, 97, 140));
-        jLabel52.setText("Educational Background");
-
-        jPanel29.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel29.setLayout(new java.awt.GridBagLayout());
-
-        jTextField61.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField61.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField61.setText("Course");
-        jTextField61.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        gridBagConstraints.weightx = 0.33;
+        gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 30);
+        jPanel9.add(jLabel12, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 474;
-        gridBagConstraints.ipady = 13;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 36, 0, 0);
-        jPanel29.add(jTextField61, gridBagConstraints);
+        gridBagConstraints.weightx = 0.33;
+        gridBagConstraints.insets = new java.awt.Insets(0, 30, 5, 30);
+        jPanel9.add(birthDateSpinner, gridBagConstraints);
 
-        jTextField62.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField62.setForeground(new java.awt.Color(33, 97, 140));
-        jTextField62.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField62.setText("University");
-        jTextField62.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        sexComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 30);
+        jPanel9.add(sexComboBox, gridBagConstraints);
+
+        jLabel21.setBackground(new java.awt.Color(33, 97, 140));
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(33, 97, 140));
+        jLabel21.setText("Educational Background");
+
+        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel10.setLayout(new java.awt.GridBagLayout());
+
+        degreeTxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        degreeTxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        degreeTxt.setText("Degree");
+        degreeTxt.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipady = 15;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(0, 30, 15, 30);
+        jPanel10.add(degreeTxt, gridBagConstraints);
+
+        universityTxt.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        universityTxt.setForeground(new java.awt.Color(33, 97, 140));
+        universityTxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        universityTxt.setText("University");
+        universityTxt.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 378;
-        gridBagConstraints.ipady = 8;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipady = 15;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 82, 0, 0);
-        jPanel29.add(jTextField62, gridBagConstraints);
-
-        jTextField63.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField63.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField63.setText("Date");
-        jTextField63.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTextField63.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField19ActionPerformed(evt);
-            }
-        });
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(0, 120, 0, 120);
+        jPanel10.add(universityTxt, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 216;
-        gridBagConstraints.ipady = 13;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 161, 0, 0);
-        jPanel29.add(jTextField63, gridBagConstraints);
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 15, 0);
+        jPanel10.add(gradDateSpinner, gridBagConstraints);
 
-        jTextField64.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField64.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField64.setText("Course");
-        jTextField64.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(33, 97, 140));
+        jLabel13.setText("Graduation Date");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 474;
-        gridBagConstraints.ipady = 13;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(35, 36, 0, 0);
-        jPanel29.add(jTextField64, gridBagConstraints);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        jPanel10.add(jLabel13, gridBagConstraints);
 
-        jTextField65.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField65.setForeground(new java.awt.Color(33, 97, 140));
-        jTextField65.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField65.setText("University");
-        jTextField65.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipadx = 378;
-        gridBagConstraints.ipady = 8;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 82, 0, 0);
-        jPanel29.add(jTextField65, gridBagConstraints);
+        jLabel22.setBackground(new java.awt.Color(33, 97, 140));
+        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(33, 97, 140));
+        jLabel22.setText("Platform");
 
-        jTextField66.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField66.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField66.setText("Date");
-        jTextField66.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTextField66.addActionListener(new java.awt.event.ActionListener() {
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jTextArea2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jScrollPane5.setViewportView(jTextArea2);
+
+        cancelBtn.setBackground(new java.awt.Color(33, 97, 140));
+        cancelBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cancelBtn.setForeground(new java.awt.Color(255, 255, 255));
+        cancelBtn.setText("Cancel");
+        cancelBtn.setContentAreaFilled(false);
+        cancelBtn.setOpaque(true);
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField22ActionPerformed(evt);
+                cancelBtnActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.ipadx = 217;
-        gridBagConstraints.ipady = 13;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(35, 160, 0, 0);
-        jPanel29.add(jTextField66, gridBagConstraints);
 
-        jLabel53.setBackground(new java.awt.Color(33, 97, 140));
-        jLabel53.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel53.setForeground(new java.awt.Color(33, 97, 140));
-        jLabel53.setText("Platform");
-
-        jTextArea6.setColumns(20);
-        jTextArea6.setRows(5);
-        jTextArea6.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jScrollPane7.setViewportView(jTextArea6);
-
-        jButton13.setBackground(new java.awt.Color(33, 97, 140));
-        jButton13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton13.setForeground(new java.awt.Color(255, 255, 255));
-        jButton13.setText("Cancel");
-        jButton13.setContentAreaFilled(false);
-        jButton13.setOpaque(true);
-        jButton13.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton4MouseClicked(evt);
-            }
-        });
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
+        resetBtn.setBackground(new java.awt.Color(33, 97, 140));
+        resetBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        resetBtn.setForeground(new java.awt.Color(255, 255, 255));
+        resetBtn.setText("Reset");
+        resetBtn.setContentAreaFilled(false);
+        resetBtn.setOpaque(true);
+        resetBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
+                resetBtnActionPerformed(evt);
             }
         });
 
-        jButton14.setBackground(new java.awt.Color(33, 97, 140));
-        jButton14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton14.setForeground(new java.awt.Color(255, 255, 255));
-        jButton14.setText("Reset");
-        jButton14.setContentAreaFilled(false);
-        jButton14.setOpaque(true);
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
+        confirmBtn.setBackground(new java.awt.Color(33, 97, 140));
+        confirmBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        confirmBtn.setForeground(new java.awt.Color(255, 255, 255));
+        confirmBtn.setText("Confirm");
+        confirmBtn.setContentAreaFilled(false);
+        confirmBtn.setOpaque(true);
+        confirmBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                confirmBtnActionPerformed(evt);
             }
         });
 
-        jButton15.setBackground(new java.awt.Color(33, 97, 140));
-        jButton15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton15.setForeground(new java.awt.Color(255, 255, 255));
-        jButton15.setText("Confirm");
-        jButton15.setContentAreaFilled(false);
-        jButton15.setOpaque(true);
-        jButton15.addActionListener(new java.awt.event.ActionListener() {
+        lastNameTxt.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        lastNameTxt.setForeground(new java.awt.Color(33, 97, 140));
+        lastNameTxt.setText("Last name");
+        lastNameTxt.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+
+        midInitialTxt.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        midInitialTxt.setForeground(new java.awt.Color(33, 97, 140));
+        midInitialTxt.setText("Middle initial");
+        midInitialTxt.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+
+        browseImageBtn.setText("Browse Image");
+        browseImageBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                browseImageBtnActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel30Layout = new javax.swing.GroupLayout(jPanel30);
-        jPanel30.setLayout(jPanel30Layout);
-        jPanel30Layout.setHorizontalGroup(
-            jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel30Layout.createSequentialGroup()
-                .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel30Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
-                        .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel30Layout.createSequentialGroup()
-                                .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField56, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField57, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel30Layout.createSequentialGroup()
-                                    .addComponent(jButton13)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(browseImageBtn)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jTextField12, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(firstNameTxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(lastNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(midInitialTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(cancelBtn)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jButton14)
+                                    .addComponent(resetBtn)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jButton15))
-                                .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jSeparator20, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1156, Short.MAX_VALUE)
-                                    .addComponent(jSeparator19, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel52, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel53, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel48, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jSeparator21, javax.swing.GroupLayout.Alignment.LEADING)))))
-                    .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel30Layout.createSequentialGroup()
+                                    .addComponent(confirmBtn))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jSeparator9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1156, Short.MAX_VALUE)
+                                    .addComponent(jSeparator8, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jSeparator13, javax.swing.GroupLayout.Alignment.LEADING)))))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(139, 139, 139)
-                        .addComponent(jPanel29, javax.swing.GroupLayout.PREFERRED_SIZE, 895, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel30Layout.createSequentialGroup()
-                .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel30Layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addComponent(jPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel30Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(175, 175, 175)
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 857, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(564, Short.MAX_VALUE))
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 857, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(137, 137, 137)
+                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(592, Short.MAX_VALUE))
         );
-        jPanel30Layout.setVerticalGroup(
-            jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel30Layout.createSequentialGroup()
-                .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
-                .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel30Layout.createSequentialGroup()
-                        .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel48))
-                    .addGroup(jPanel30Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jTextField56, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(93, 93, 93)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(firstNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lastNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(midInitialTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(14, 14, 14)
+                        .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField57, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(browseImageBtn))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel20)
+                .addGap(15, 15, 15)
+                .addComponent(jSeparator13, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator21, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22)
-                .addComponent(jLabel52)
+                .addComponent(jLabel21)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator19, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel53)
+                .addComponent(jLabel22)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator20, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton15)
-                    .addComponent(jButton14)
-                    .addComponent(jButton13))
-                .addContainerGap(315, Short.MAX_VALUE))
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(confirmBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(resetBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(487, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout cardAddCandidateLayout = new javax.swing.GroupLayout(cardAddCandidate);
         cardAddCandidate.setLayout(cardAddCandidateLayout);
         cardAddCandidateLayout.setHorizontalGroup(
             cardAddCandidateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         cardAddCandidateLayout.setVerticalGroup(
             cardAddCandidateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cardAddCandidateLayout.createSequentialGroup()
-                .addComponent(jPanel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        card1.add(cardAddCandidate, "card4");
+        MainPanel.add(cardAddCandidate, "cardAddCandidate");
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1584,10 +1776,10 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
                 .addGap(6, 6, 6)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout cardEditLayout = new javax.swing.GroupLayout(cardEdit);
@@ -1603,169 +1795,7 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        card1.add(cardEdit, "card3");
-
-        cardBG.setBackground(new java.awt.Color(255, 255, 255));
-
-        formtitle.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 30)); // NOI18N
-        formtitle.setForeground(new java.awt.Color(33, 82, 117));
-        formtitle.setText("ADD ELECTION PERIOD");
-
-        formsubtitle.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        formsubtitle.setForeground(new java.awt.Color(33, 82, 117));
-        formsubtitle.setText("Set the name, starting date, and final date of the Election Period.");
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(33, 82, 117));
-        jLabel1.setText("Name of Election Period:");
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(33, 82, 117));
-        jLabel3.setText("Candidate:");
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(33, 82, 117));
-        jLabel4.setText("Party:");
-
-        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel26.setForeground(new java.awt.Color(33, 82, 117));
-        jLabel26.setText("Position:");
-
-        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel27.setForeground(new java.awt.Color(33, 82, 117));
-        jLabel27.setText("Platform:");
-
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(33, 82, 117));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "", "" }));
-
-        jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jComboBox2.setForeground(new java.awt.Color(33, 82, 117));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "", "" }));
-
-        jTextField23.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jTextField23.setForeground(new java.awt.Color(33, 82, 117));
-
-        jTextField24.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jTextField24.setForeground(new java.awt.Color(33, 82, 117));
-
-        jTextArea3.setColumns(20);
-        jTextArea3.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jTextArea3.setForeground(new java.awt.Color(33, 82, 117));
-        jTextArea3.setLineWrap(true);
-        jTextArea3.setRows(5);
-        jScrollPane1.setViewportView(jTextArea3);
-
-        cancelBTN.setBackground(new java.awt.Color(255, 255, 255));
-        cancelBTN.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 15)); // NOI18N
-        cancelBTN.setForeground(new java.awt.Color(33, 82, 117));
-        cancelBTN.setText("Cancel");
-        cancelBTN.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                cancelBTNMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                cancelBTNMouseExited(evt);
-            }
-        });
-        cancelBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelBTNActionPerformed(evt);
-            }
-        });
-
-        saveBTN.setBackground(new java.awt.Color(255, 255, 255));
-        saveBTN.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 15)); // NOI18N
-        saveBTN.setForeground(new java.awt.Color(33, 82, 117));
-        saveBTN.setText("Save");
-        saveBTN.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                saveBTNMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                saveBTNMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout cardBGLayout = new javax.swing.GroupLayout(cardBG);
-        cardBG.setLayout(cardBGLayout);
-        cardBGLayout.setHorizontalGroup(
-            cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cardBGLayout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(formsubtitle)
-                    .addComponent(formtitle)
-                    .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(cardBGLayout.createSequentialGroup()
-                            .addComponent(cancelBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(saveBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(cardBGLayout.createSequentialGroup()
-                            .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel26)
-                                .addComponent(jLabel27))
-                            .addGap(200, 200, 200)
-                            .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextField23)
-                                .addComponent(jTextField24)
-                                .addComponent(jScrollPane1)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 1392, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        cardBGLayout.setVerticalGroup(
-            cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cardBGLayout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(formtitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(formsubtitle)
-                .addGap(52, 52, 52)
-                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(124, 124, 124)
-                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(67, 67, 67)
-                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel26)
-                    .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(67, 67, 67)
-                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel27)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(112, 112, 112)
-                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(saveBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 337, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout cardAddElecLayout = new javax.swing.GroupLayout(cardAddElec);
-        cardAddElec.setLayout(cardAddElecLayout);
-        cardAddElecLayout.setHorizontalGroup(
-            cardAddElecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cardBG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        cardAddElecLayout.setVerticalGroup(
-            cardAddElecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cardBG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        card1.add(cardAddElec, "card2");
+        MainPanel.add(cardEdit, "cardEdit");
 
         archivecardBG.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1781,13 +1811,44 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
         });
         jScrollPane3.setViewportView(datatable);
 
-        archiveBTN.setBackground(new java.awt.Color(255, 255, 255));
-        archiveBTN.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 15)); // NOI18N
-        archiveBTN.setForeground(new java.awt.Color(33, 82, 117));
-        archiveBTN.setText("Archive Data");
-        archiveBTN.setBorderPainted(false);
+        archivetitle.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 30)); // NOI18N
+        archivetitle.setForeground(new java.awt.Color(33, 82, 117));
+        archivetitle.setText("MANAGE DATA BY ELECTION PERIOD");
+
+        archivesubtitle.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        archivesubtitle.setForeground(new java.awt.Color(33, 82, 117));
+        archivesubtitle.setText("Select the Election Period/s to archive from the data table below.");
+
+        addElecBTN.setBackground(new java.awt.Color(33, 97, 140));
+        addElecBTN.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        addElecBTN.setForeground(new java.awt.Color(255, 255, 255));
+        addElecBTN.setText("Add Election");
+        addElecBTN.setContentAreaFilled(false);
+        addElecBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        addElecBTN.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        addElecBTN.setOpaque(true);
+        addElecBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                addElecBTNMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                addElecBTNMouseExited(evt);
+            }
+        });
+        addElecBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addElecBTNActionPerformed(evt);
+            }
+        });
+
+        archiveBTN.setBackground(new java.awt.Color(33, 97, 140));
+        archiveBTN.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        archiveBTN.setForeground(new java.awt.Color(255, 255, 255));
+        archiveBTN.setText("Archive Election");
+        archiveBTN.setContentAreaFilled(false);
         archiveBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         archiveBTN.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        archiveBTN.setOpaque(true);
         archiveBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 archiveBTNMouseEntered(evt);
@@ -1802,14 +1863,6 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
             }
         });
 
-        archivetitle.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 30)); // NOI18N
-        archivetitle.setForeground(new java.awt.Color(33, 82, 117));
-        archivetitle.setText("MANAGE DATA BY ELECTION PERIOD");
-
-        archivesubtitle.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        archivesubtitle.setForeground(new java.awt.Color(33, 82, 117));
-        archivesubtitle.setText("Select the Election Period/s to archive from the data table below.");
-
         javax.swing.GroupLayout archivecardBGLayout = new javax.swing.GroupLayout(archivecardBG);
         archivecardBG.setLayout(archivecardBGLayout);
         archivecardBGLayout.setHorizontalGroup(
@@ -1823,17 +1876,18 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(archivecardBGLayout.createSequentialGroup()
-                .addGroup(archivecardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(116, 116, 116)
+                .addGroup(archivecardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(archivecardBGLayout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1031, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(archivecardBGLayout.createSequentialGroup()
-                        .addGap(540, 540, 540)
-                        .addComponent(archiveBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(addElecBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(archiveBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1031, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 482, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, archivecardBGLayout.createSequentialGroup()
-                .addGap(0, 59, Short.MAX_VALUE)
-                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 1571, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 1140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(430, 430, 430))
         );
         archivecardBGLayout.setVerticalGroup(
             archivecardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1842,20 +1896,22 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
                 .addComponent(archivetitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(archivesubtitle)
-                .addGap(44, 44, 44)
-                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(archiveBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(443, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(archivecardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addElecBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(archiveBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(623, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout cardViewElecLayout = new javax.swing.GroupLayout(cardViewElec);
         cardViewElec.setLayout(cardViewElecLayout);
         cardViewElecLayout.setHorizontalGroup(
             cardViewElecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1630, Short.MAX_VALUE)
+            .addGap(0, 1629, Short.MAX_VALUE)
             .addGroup(cardViewElecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(cardViewElecLayout.createSequentialGroup()
                     .addComponent(archivecardBG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1863,12 +1919,12 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
         );
         cardViewElecLayout.setVerticalGroup(
             cardViewElecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1130, Short.MAX_VALUE)
+            .addGap(0, 1278, Short.MAX_VALUE)
             .addGroup(cardViewElecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(archivecardBG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        card1.add(cardViewElec, "card7");
+        MainPanel.add(cardViewElec, "cardViewElec");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1879,7 +1935,7 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(AdminBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(card1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1887,7 +1943,7 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
                 .addComponent(AdminBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(SidePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(card1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -1912,19 +1968,21 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        cardEdit.setVisible(false);
-        cardAddElec.setVisible(false);
-        cardViewDetails.setVisible(false);
-        cardAddCandidate.setVisible(false);
-        cardViewElec.setVisible(false);
-        this.remove(cardEdit);
-        this.remove(cardAddElec);
-        this.remove(cardAddCandidate);
-        this.remove(cardViewDetails);
-
-        cardViewCandidates.setVisible(true);
-        cardViewCandidates.repaint();
-        cardViewCandidates.revalidate();
+//        cardEdit.setVisible(false);
+//        cardAddElec.setVisible(false);
+//        cardViewDetails.setVisible(false);
+//        cardAddCandidate.setVisible(false);
+//        cardViewElec.setVisible(false);
+//        this.remove(cardEdit);
+//        this.remove(cardAddElec);
+//        this.remove(cardAddCandidate);
+//        this.remove(cardViewDetails);
+//
+//        cardViewCandidates.setVisible(true);
+//        cardViewCandidates.repaint();
+//        cardViewCandidates.revalidate();
+        
+        card.show(MainPanel, "cardViewCandidates");
   
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -1936,55 +1994,6 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-        reset1();
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-        // TODO add your handling code here:
-        //new ViewCandidateDetails().setVisible(true);
-    }//GEN-LAST:event_jButton4MouseClicked
-
-    private void jTextField22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField22ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField22ActionPerformed
-
-    private void jTextField19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField19ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField19ActionPerformed
-
-    private void jTextField13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField13ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField13ActionPerformed
-
-    private void jTextField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField12ActionPerformed
-
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:
-        cardViewDetails.setVisible(false);
-        cardEdit.setVisible(false);
-        cardAddElec.setVisible(false);
-        cardAddCandidate.setVisible(false);
-        cardViewElec.setVisible(false);
-        this.remove(cardViewCandidates);
-        this.remove(cardViewDetails);
-        this.remove(cardAddElec);
-        this.remove(cardEdit);
-
-        cardViewCandidates.setVisible(true);
-        cardViewCandidates.repaint();
-        cardViewCandidates.revalidate();
-        setSize(new Dimension(1920,1080));
-                   
-    }//GEN-LAST:event_jButton13ActionPerformed
 
     private void cancelBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelBTNMouseEntered
         // TODO add your handling code here:
@@ -1998,6 +2007,21 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
 
     private void cancelBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBTNActionPerformed
         // TODO add your handling code here:
+//        cardEdit.setVisible(false);
+//        cardAddElec.setVisible(false);
+//        cardViewDetails.setVisible(false);
+//        cardAddCandidate.setVisible(false);
+//        cardViewCandidates.setVisible(false);
+//        this.remove(cardEdit);
+//        this.remove(cardAddElec);
+//        this.remove(cardAddCandidate);
+//        this.remove(cardViewDetails);
+//
+//        cardViewElec.setVisible(true);
+//        cardViewElec.repaint();
+//        cardViewElec.revalidate();
+
+          card.show(MainPanel, "cardViewElec");
     }//GEN-LAST:event_cancelBTNActionPerformed
 
     private void saveBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBTNMouseEntered
@@ -2023,20 +2047,22 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
 
     private void jButton16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton16MouseClicked
         // TODO add your handling code here:
-        cardViewCandidates.setVisible(false);
-        cardViewDetails.setVisible(false);
-        cardAddElec.setVisible(false);
-        cardAddCandidate.setVisible(false);
-        cardViewElec.setVisible(false);
-        this.remove(cardViewDetails);
-        this.remove(cardViewCandidates);
-        this.remove(cardAddElec);
-        this.remove(cardAddCandidate);
+//        cardViewCandidates.setVisible(false);
+//        cardViewDetails.setVisible(false);
+//        cardAddElec.setVisible(false);
+//        cardAddCandidate.setVisible(false);
+//        cardViewElec.setVisible(false);
+//        this.remove(cardViewDetails);
+//        this.remove(cardViewCandidates);
+//        this.remove(cardAddElec);
+//        this.remove(cardAddCandidate);
+//
+//        cardEdit.setVisible(true);
+//        cardEdit.repaint();
+//        cardEdit.revalidate();
+//        cardEdit.setSize(new Dimension(1280,800));
 
-        cardEdit.setVisible(true);
-        cardEdit.repaint();
-        cardEdit.revalidate();
-        cardEdit.setSize(new Dimension(960,880));
+        card.show(MainPanel, "cardEdit");
     }//GEN-LAST:event_jButton16MouseClicked
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
@@ -2095,36 +2121,42 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
 
     private void vCandidateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vCandidateMouseClicked
         // TODO add your handling code here:
-        cardEdit.setVisible(false);
-        cardAddElec.setVisible(false);
-        cardViewDetails.setVisible(false);
-        cardAddCandidate.setVisible(false);
-        cardViewElec.setVisible(false);
-        this.remove(cardEdit);
-        this.remove(cardAddElec);
-        this.remove(cardAddCandidate);
-        this.remove(cardViewDetails);
+//        cardEdit.setVisible(false);
+//        cardAddElec.setVisible(false);
+//        cardViewDetails.setVisible(false);
+//        cardAddCandidate.setVisible(false);
+//        cardViewElec.setVisible(false);
+//        this.remove(cardEdit);
+//        this.remove(cardAddElec);
+//        this.remove(cardAddCandidate);
+//        this.remove(cardViewDetails);
+//
+//        cardViewCandidates.setVisible(true);
+//        cardViewCandidates.repaint();
+//        cardViewCandidates.revalidate();
+//        
+//        cardViewCandidates.setSize(new Dimension(1280,800));
 
-        cardViewCandidates.setVisible(true);
-        cardViewCandidates.repaint();
-        cardViewCandidates.revalidate();
+        card.show(MainPanel, "cardViewCandidates");
     }//GEN-LAST:event_vCandidateMouseClicked
 
     private void vElectionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vElectionMouseClicked
         // TODO add your handling code here:
-        cardEdit.setVisible(false);
-        cardViewCandidates.setVisible(false);
-        cardViewDetails.setVisible(false);
-        cardAddCandidate.setVisible(false);
-        cardAddElec.setVisible(false);
-        this.remove(cardEdit);
-        this.remove(cardAddElec);
-        this.remove(cardAddCandidate);
-        this.remove(cardViewDetails);
-
-        cardViewElec.setVisible(true);
-        cardViewElec.repaint();
-        cardViewElec.revalidate();
+//        cardEdit.setVisible(false);
+//        cardViewCandidates.setVisible(false);
+//        cardViewDetails.setVisible(false);
+//        cardAddCandidate.setVisible(false);
+//        cardAddElec.setVisible(false);
+//        this.remove(cardEdit);
+//        this.remove(cardAddElec);
+//        this.remove(cardAddCandidate);
+//        this.remove(cardViewDetails);
+//
+//        cardViewElec.setVisible(true);
+//        cardViewElec.repaint();
+//        cardViewElec.revalidate();
+        
+        card.show(MainPanel, "cardViewElec");
     }//GEN-LAST:event_vElectionMouseClicked
 
     private void datatableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_datatableMousePressed
@@ -2148,38 +2180,145 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
         }
     }//GEN-LAST:event_datatableMousePressed
 
+    private void vMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vMenuMouseClicked
+        // TODO add your handling code here:
+        menu = new AdminMenu();
+        menu.setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_vMenuMouseClicked
+
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        // TODO add your handling code here:
+//        cardEdit.setVisible(false);
+//        cardAddElec.setVisible(false);
+//        cardViewDetails.setVisible(false);
+//        cardAddCandidate.setVisible(false);
+//        cardViewElec.setVisible(false);
+//        this.remove(cardEdit);
+//        this.remove(cardAddElec);
+//        this.remove(cardAddCandidate);
+//        this.remove(cardViewDetails);
+//
+//        cardViewCandidates.setVisible(true);
+//        cardViewCandidates.repaint();
+//        cardViewCandidates.revalidate();
+        
+        card.show(MainPanel, "cardViewCandidates");
+    }//GEN-LAST:event_cancelBtnActionPerformed
+
+    private void resetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBtnActionPerformed
+        // TODO add your handling code here:
+        reset();
+    }//GEN-LAST:event_resetBtnActionPerformed
+
+    private void confirmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmBtnActionPerformed
+//        if(!validate_input())
+//        {
+//            // TODO: possibly change message if there is a better message/design
+//            JOptionPane.showMessageDialog(null,
+//                "Invalid information entered on some fields",
+//                "Add Candidate failed!",
+//                JOptionPane.ERROR_MESSAGE);
+//            return;
+//        }
+//
+//        String first_name  = firstNameTxt.getText();
+//        String last_name   = lastNameTxt.getText();
+//        char mid_initial   = midInitialTxt.getText().charAt(0);
+//        String religion    = religionTxt.getText();
+//        Date birth_date    = (Date) birthDateSpinner.getValue();
+//
+//        String degree      = degreeTxt.getText();
+//        String univeristy  = universityTxt.getText();
+//        Date grad_date     = (Date) gradDateSpinner.getValue();
+//
+//        candidate_info = new Candidate();
+//        candidate_info.set_birth_date(birth_date);
+//        candidate_info.set_first_name(first_name);
+//        candidate_info.set_last_name(last_name);
+//        candidate_info.set_middle_initial(mid_initial);
+//        candidate_info.set_religion(religion);
+//        candidate_info.set_degree(degree);
+//        candidate_info.set_university(univeristy);
+//        candidate_info.set_grad_date(grad_date);
+//        candidate_info.set_sex((String) sexComboBox.getSelectedItem());
+//        candidate_info.set_image_path(image_path);
+//
+//        if(form_listener != null)
+//        {
+//            FormEvent form_event = new FormEvent(this);
+//            form_event.setCandidate(candidate_info);
+//            form_listener.formEventOccurred(form_event);
+//        }
+        System.out.println("added candidate");
+    }//GEN-LAST:event_confirmBtnActionPerformed
+
+    private void browseImageBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseImageBtnActionPerformed
+//        int return_val = image_chooser.showDialog(null, "Select");
+//
+//        if(return_val == JFileChooser.APPROVE_OPTION)
+//        {
+//            File selected_file = image_chooser.getSelectedFile();
+//            try {
+//                image_path = "img/" + selected_file.getName();
+//
+//                Files.copy(selected_file.toPath(),
+//                    new File(image_path).toPath(),
+//                    StandardCopyOption.REPLACE_EXISTING);
+//
+//                set_image_label(image_path);
+//
+//            } catch (IOException ex) {
+//                Logger.getLogger(AddGUI.class.getName()).log(Level.ALL.SEVERE, null, ex);
+//            }
+//        }
+    }//GEN-LAST:event_browseImageBtnActionPerformed
+
+    private void LogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogoutMouseClicked
+        // TODO add your handling code here:
+        login = new Frame_Login();
+        login.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_LogoutMouseClicked
+
+    private void addElecBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addElecBTNMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addElecBTNMouseEntered
+
+    private void addElecBTNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addElecBTNMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addElecBTNMouseExited
+
+    private void addElecBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addElecBTNActionPerformed
+        // TODO add your handling code here:
+        card.show(MainPanel, "cardAddElec");
+//        cardEdit.setVisible(false);
+//        cardViewCandidates.setVisible(false);
+//        cardViewDetails.setVisible(false);
+//        cardAddCandidate.setVisible(false);
+//        cardViewElec.setVisible(false);
+//        this.remove(cardEdit);
+//        this.remove(cardAddElec);
+//        this.remove(cardAddCandidate);
+//        this.remove(cardViewDetails);
+//
+//        cardAddElec.setVisible(true);
+//        cardAddElec.repaint();
+//        cardAddElec.revalidate();
+
+    }//GEN-LAST:event_addElecBTNActionPerformed
+
     private void archiveBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_archiveBTNMouseEntered
         // TODO add your handling code here:
-        Color hoverBTN = new Color(15,43,61);
-
-        archiveBTN.setBackground(hoverBTN);
-        archiveBTN.setForeground(Color.WHITE);
     }//GEN-LAST:event_archiveBTNMouseEntered
 
     private void archiveBTNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_archiveBTNMouseExited
         // TODO add your handling code here:
-        Color byeBTN = new Color(0,51,51);
-
-        archiveBTN.setBackground(Color.WHITE);
-        archiveBTN.setForeground(byeBTN);
     }//GEN-LAST:event_archiveBTNMouseExited
 
     private void archiveBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_archiveBTNActionPerformed
         // TODO add your handling code here:
-        cardEdit.setVisible(false);
-        cardViewCandidates.setVisible(false);
-        cardViewDetails.setVisible(false);
-        cardAddCandidate.setVisible(false);
-        cardViewElec.setVisible(false);
-        this.remove(cardEdit);
-        this.remove(cardAddElec);
-        this.remove(cardAddCandidate);
-        this.remove(cardViewDetails);
-
-        cardAddElec.setVisible(true);
-        cardAddElec.repaint();
-        cardAddElec.revalidate();
-        
     }//GEN-LAST:event_archiveBTNActionPerformed
 
     /**
@@ -2199,14 +2338,15 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(All.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminMainContentArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(All.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminMainContentArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(All.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminMainContentArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(All.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminMainContentArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
         
          
@@ -2216,7 +2356,7 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
             
             public void run() {
                 
-                new All().setVisible(true);    
+                new AdminMainContentArea().setVisible(true);    
             }
 
         });
@@ -2225,15 +2365,18 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AdminBackground;
     private javax.swing.JPanel Logout;
+    private javax.swing.JPanel MainPanel;
     private javax.swing.JPanel SidePanel;
     private javax.swing.JPanel SidePanelContent;
+    private javax.swing.JButton addElecBTN;
     private javax.swing.JButton archiveBTN;
     private javax.swing.JPanel archivecardBG;
     private javax.swing.JLabel archivesubtitle;
     private javax.swing.JLabel archivetitle;
-    private javax.swing.JPanel back;
+    private javax.swing.JSpinner birthDateSpinner;
+    private javax.swing.JButton browseImageBtn;
     private javax.swing.JButton cancelBTN;
-    private javax.swing.JPanel card1;
+    private javax.swing.JButton cancelBtn;
     private javax.swing.JPanel cardAddCandidate;
     private javax.swing.JPanel cardAddElec;
     private javax.swing.JPanel cardBG;
@@ -2241,13 +2384,15 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
     private javax.swing.JPanel cardViewCandidates;
     private javax.swing.JPanel cardViewDetails;
     private javax.swing.JPanel cardViewElec;
+    private javax.swing.JButton confirmBtn;
     private javax.swing.JTable datatable;
+    private javax.swing.JTextField degreeTxt;
+    private javax.swing.JTextField firstNameTxt;
     private javax.swing.JLabel formsubtitle;
     private javax.swing.JLabel formtitle;
+    private javax.swing.JSpinner gradDateSpinner;
+    private javax.swing.JLabel imageLabel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton2;
@@ -2255,10 +2400,18 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
@@ -2268,13 +2421,6 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel48;
-    private javax.swing.JLabel jLabel49;
-    private javax.swing.JLabel jLabel50;
-    private javax.swing.JLabel jLabel51;
-    private javax.swing.JLabel jLabel52;
-    private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
@@ -2285,41 +2431,42 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
-    private javax.swing.JPanel jPanel27;
-    private javax.swing.JPanel jPanel28;
-    private javax.swing.JPanel jPanel29;
-    private javax.swing.JPanel jPanel30;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator12;
-    private javax.swing.JSeparator jSeparator19;
-    private javax.swing.JSeparator jSeparator20;
-    private javax.swing.JSeparator jSeparator21;
+    private javax.swing.JSeparator jSeparator13;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextArea jTextArea6;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
+    private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField23;
     private javax.swing.JTextField jTextField24;
@@ -2335,28 +2482,22 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
     private javax.swing.JTextField jTextField33;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField56;
-    private javax.swing.JTextField jTextField57;
-    private javax.swing.JTextField jTextField58;
-    private javax.swing.JTextField jTextField59;
     private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField60;
-    private javax.swing.JTextField jTextField61;
-    private javax.swing.JTextField jTextField62;
-    private javax.swing.JTextField jTextField63;
-    private javax.swing.JTextField jTextField64;
-    private javax.swing.JTextField jTextField65;
-    private javax.swing.JTextField jTextField66;
     private javax.swing.JTextField jTextField67;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField lastNameTxt;
+    private javax.swing.JTextField midInitialTxt;
+    private javax.swing.JTextField religionTxt;
+    private javax.swing.JButton resetBtn;
     private javax.swing.JButton saveBTN;
+    private javax.swing.JComboBox<String> sexComboBox;
     private javax.swing.JLabel sp1LBL;
     private javax.swing.JLabel sp2LBL2;
     private javax.swing.JLabel sp2LBL3;
     private javax.swing.JLabel sp2LBL4;
-    private javax.swing.JLabel sp3LBL;
+    private javax.swing.JTextField universityTxt;
     private javax.swing.JPanel vCandidate;
     private javax.swing.JPanel vElection;
     private javax.swing.JPanel vMenu;
