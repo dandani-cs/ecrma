@@ -44,10 +44,16 @@ import javax.swing.table.DefaultTableModel;
  */
 public class UserMainContent extends javax.swing.JFrame {
     
+    UserMenu menu;
+    Frame_Login login;
+    
     UserCard myPanel = new UserCard();
     UserCard1 myPanel1 = new UserCard1();
     UserCard3 myPanel2 = new UserCard3();
 
+    private Color hoverMENU = new Color(33,82,117);
+    private Color byeMENU = new Color(33,97,140);
+    
     /**
      * Creates new form UserCard2
      */
@@ -1031,18 +1037,17 @@ public class UserCard extends JPanel{
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel13 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
-        jPanel9 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
-        jPanel11 = new javax.swing.JPanel();
-        jLabel18 = new javax.swing.JLabel();
-        jPanel12 = new javax.swing.JPanel();
-        jLabel20 = new javax.swing.JLabel();
+        vCandidate = new javax.swing.JPanel();
+        sp1LBL = new javax.swing.JLabel();
+        vParty = new javax.swing.JPanel();
+        sp1LBL1 = new javax.swing.JLabel();
+        vPosition = new javax.swing.JPanel();
+        sp1LBL2 = new javax.swing.JLabel();
+        vMenu = new javax.swing.JPanel();
+        sp2LBL3 = new javax.swing.JLabel();
+        Logout = new javax.swing.JPanel();
+        sp2LBL4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        cardViewAll = new javax.swing.JPanel();
         ByParty = new javax.swing.JPanel();
         ByPosition = new javax.swing.JPanel();
         cardDetails = new javax.swing.JPanel();
@@ -1075,6 +1080,7 @@ public class UserCard extends JPanel{
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
+        cardViewAll = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -1105,156 +1111,178 @@ public class UserCard extends JPanel{
         jPanel13.setBackground(new java.awt.Color(33, 97, 140));
         jPanel13.setLayout(new java.awt.GridLayout(5, 1));
 
-        jPanel3.setBackground(new java.awt.Color(33, 97, 140));
-
-        jLabel5.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 16)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("VIEW ALL CANDIDATES");
-        jLabel5.setToolTipText("");
-        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+        vCandidate.setBackground(new java.awt.Color(33, 97, 140));
+        vCandidate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel5MouseClicked(evt);
+                vCandidateMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                vCandidateMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                vCandidateMouseExited(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+        sp1LBL.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 16)); // NOI18N
+        sp1LBL.setForeground(new java.awt.Color(255, 255, 255));
+        sp1LBL.setText(" VIEW CANDIDATES");
+
+        javax.swing.GroupLayout vCandidateLayout = new javax.swing.GroupLayout(vCandidate);
+        vCandidate.setLayout(vCandidateLayout);
+        vCandidateLayout.setHorizontalGroup(
+            vCandidateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(vCandidateLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(sp1LBL, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
-                .addContainerGap())
+        vCandidateLayout.setVerticalGroup(
+            vCandidateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(sp1LBL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
         );
 
-        jPanel13.add(jPanel3);
+        jPanel13.add(vCandidate);
 
-        jPanel6.setBackground(new java.awt.Color(33, 97, 140));
-
-        jLabel10.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 16)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("VIEW CANDIDATES BY PARTY");
-        jLabel10.setToolTipText("");
-        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+        vParty.setBackground(new java.awt.Color(33, 97, 140));
+        vParty.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel10MouseClicked(evt);
+                vPartyMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                vPartyMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                vPartyMouseExited(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        sp1LBL1.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 16)); // NOI18N
+        sp1LBL1.setForeground(new java.awt.Color(255, 255, 255));
+        sp1LBL1.setText("VIEW CANDIDATES BY PARTY");
+
+        javax.swing.GroupLayout vPartyLayout = new javax.swing.GroupLayout(vParty);
+        vParty.setLayout(vPartyLayout);
+        vPartyLayout.setHorizontalGroup(
+            vPartyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(vPartyLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(sp1LBL1)
+                .addContainerGap(55, Short.MAX_VALUE))
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
-                .addContainerGap())
+        vPartyLayout.setVerticalGroup(
+            vPartyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(sp1LBL1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
         );
 
-        jPanel13.add(jPanel6);
+        jPanel13.add(vParty);
 
-        jPanel9.setBackground(new java.awt.Color(33, 97, 140));
-
-        jLabel12.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 16)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("VIEW CANDIDATES BY POSITION");
-        jLabel12.setToolTipText("");
-        jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
+        vPosition.setBackground(new java.awt.Color(33, 97, 140));
+        vPosition.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel12MouseClicked(evt);
+                vPositionMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                vPositionMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                vPositionMouseExited(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+        sp1LBL2.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 16)); // NOI18N
+        sp1LBL2.setForeground(new java.awt.Color(255, 255, 255));
+        sp1LBL2.setText("VIEW CANDIDATES BY PARTY");
+
+        javax.swing.GroupLayout vPositionLayout = new javax.swing.GroupLayout(vPosition);
+        vPosition.setLayout(vPositionLayout);
+        vPositionLayout.setHorizontalGroup(
+            vPositionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(vPositionLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(sp1LBL2)
+                .addContainerGap(55, Short.MAX_VALUE))
+        );
+        vPositionLayout.setVerticalGroup(
+            vPositionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(sp1LBL2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+        );
+
+        jPanel13.add(vPosition);
+
+        vMenu.setBackground(new java.awt.Color(33, 97, 140));
+        vMenu.setPreferredSize(new java.awt.Dimension(250, 69));
+        vMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                vMenuMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                vMenuMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                vMenuMouseExited(evt);
+            }
+        });
+
+        sp2LBL3.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 16)); // NOI18N
+        sp2LBL3.setForeground(new java.awt.Color(255, 255, 255));
+        sp2LBL3.setText("BACK TO MAIN MENU");
+
+        javax.swing.GroupLayout vMenuLayout = new javax.swing.GroupLayout(vMenu);
+        vMenu.setLayout(vMenuLayout);
+        vMenuLayout.setHorizontalGroup(
+            vMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(vMenuLayout.createSequentialGroup()
                 .addGap(45, 45, 45)
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jPanel13.add(jPanel9);
-
-        jPanel11.setBackground(new java.awt.Color(33, 97, 140));
-
-        jLabel18.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 16)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel18.setText("BACK TO MAIN MENU");
-        jLabel18.setToolTipText("");
-
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jPanel13.add(jPanel11);
-
-        jPanel12.setBackground(new java.awt.Color(33, 97, 140));
-
-        jLabel20.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 16)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel20.setText("LOGOUT");
-        jLabel20.setToolTipText("");
-
-        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(sp2LBL3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel12Layout.setVerticalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
-                .addContainerGap())
+        vMenuLayout.setVerticalGroup(
+            vMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(sp2LBL3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
         );
 
-        jPanel13.add(jPanel12);
+        jPanel13.add(vMenu);
+
+        Logout.setBackground(new java.awt.Color(33, 97, 140));
+        Logout.setPreferredSize(new java.awt.Dimension(250, 69));
+        Logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LogoutMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                LogoutMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                LogoutMouseExited(evt);
+            }
+        });
+
+        sp2LBL4.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 16)); // NOI18N
+        sp2LBL4.setForeground(new java.awt.Color(255, 255, 255));
+        sp2LBL4.setText("LOGOUT");
+
+        javax.swing.GroupLayout LogoutLayout = new javax.swing.GroupLayout(Logout);
+        Logout.setLayout(LogoutLayout);
+        LogoutLayout.setHorizontalGroup(
+            LogoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LogoutLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(sp2LBL4, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        LogoutLayout.setVerticalGroup(
+            LogoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(sp2LBL4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+        );
+
+        jPanel13.add(Logout);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 312, Short.MAX_VALUE)
+            .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jSeparator1)
@@ -1268,25 +1296,12 @@ public class UserCard extends JPanel{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 255));
         jPanel2.setLayout(new java.awt.CardLayout());
-
-        javax.swing.GroupLayout cardViewAllLayout = new javax.swing.GroupLayout(cardViewAll);
-        cardViewAll.setLayout(cardViewAllLayout);
-        cardViewAllLayout.setHorizontalGroup(
-            cardViewAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1200, Short.MAX_VALUE)
-        );
-        cardViewAllLayout.setVerticalGroup(
-            cardViewAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1102, Short.MAX_VALUE)
-        );
-
-        jPanel2.add(cardViewAll, "card4");
 
         javax.swing.GroupLayout ByPartyLayout = new javax.swing.GroupLayout(ByParty);
         ByParty.setLayout(ByPartyLayout);
@@ -1632,6 +1647,19 @@ public class UserCard extends JPanel{
 
         jPanel2.add(cardDetails, "card5");
 
+        javax.swing.GroupLayout cardViewAllLayout = new javax.swing.GroupLayout(cardViewAll);
+        cardViewAll.setLayout(cardViewAllLayout);
+        cardViewAllLayout.setHorizontalGroup(
+            cardViewAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1200, Short.MAX_VALUE)
+        );
+        cardViewAllLayout.setVerticalGroup(
+            cardViewAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1102, Short.MAX_VALUE)
+        );
+
+        jPanel2.add(cardViewAll, "card4");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -1651,46 +1679,6 @@ public class UserCard extends JPanel{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        // TODO add your handling code here:
-        ByParty.setVisible(false);
-        ByPosition.setVisible(false);
-       
-        this.remove(ByParty);
-        this.remove(ByPosition);
-
-        cardViewAll.setVisible(true);
-        cardViewAll.repaint();
-        cardViewAll.revalidate();
-    }//GEN-LAST:event_jLabel5MouseClicked
-
-    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
-        // TODO add your handling code here:
-        cardViewAll.setVisible(false);
-        ByPosition.setVisible(false);
-       
-        this.remove(cardViewAll);
-        this.remove(ByPosition);
-
-        ByParty.setVisible(true);
-        ByParty.repaint();
-        ByParty.revalidate();
-    }//GEN-LAST:event_jLabel10MouseClicked
-
-    private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
-        // TODO add your handling code here:
-        
-        cardViewAll.setVisible(false);
-        ByParty.setVisible(false);
-       
-        this.remove(cardViewAll);
-        this.remove(ByParty);
-
-        ByPosition.setVisible(true);
-        ByPosition.repaint();
-        ByPosition.revalidate();
-    }//GEN-LAST:event_jLabel12MouseClicked
-
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
@@ -1702,6 +1690,110 @@ public class UserCard extends JPanel{
     private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField11ActionPerformed
+
+    private void vCandidateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vCandidateMouseClicked
+        // TODO add your handling code here:
+        cardViewAll.setVisible(false);
+        ByParty.setVisible(false);
+       
+        this.remove(cardViewAll);
+        this.remove(ByParty);
+
+        cardViewAll.setVisible(true);
+        cardViewAll.repaint();
+        cardViewAll.revalidate();
+    }//GEN-LAST:event_vCandidateMouseClicked
+
+    private void vCandidateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vCandidateMouseEntered
+        // TODO add your handling code here:
+        vCandidate.setBackground(hoverMENU);
+    }//GEN-LAST:event_vCandidateMouseEntered
+
+    private void vCandidateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vCandidateMouseExited
+        // TODO add your handling code here:
+        vCandidate.setBackground(byeMENU);
+    }//GEN-LAST:event_vCandidateMouseExited
+
+    private void vPartyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vPartyMouseClicked
+        // TODO add your handling code here:
+        cardViewAll.setVisible(false);
+        ByPosition.setVisible(false);
+       
+        this.remove(cardViewAll);
+        this.remove(ByParty);
+
+        ByParty.setVisible(true);
+        ByParty.repaint();
+        ByParty.revalidate();
+    }//GEN-LAST:event_vPartyMouseClicked
+
+    private void vPartyMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vPartyMouseEntered
+        // TODO add your handling code here:
+        vParty.setBackground(hoverMENU);
+    }//GEN-LAST:event_vPartyMouseEntered
+
+    private void vPartyMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vPartyMouseExited
+        // TODO add your handling code here:
+        vParty.setBackground(byeMENU);
+    }//GEN-LAST:event_vPartyMouseExited
+
+    private void vPositionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vPositionMouseClicked
+        // TODO add your handling code here:
+        cardViewAll.setVisible(false);
+        ByParty.setVisible(false);
+       
+        this.remove(cardViewAll);
+        this.remove(ByParty);
+
+        ByPosition.setVisible(true);
+        ByPosition.repaint();
+        ByPosition.revalidate();
+    }//GEN-LAST:event_vPositionMouseClicked
+
+    private void vPositionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vPositionMouseEntered
+        // TODO add your handling code here:
+        vPosition.setBackground(hoverMENU);
+    }//GEN-LAST:event_vPositionMouseEntered
+
+    private void vPositionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vPositionMouseExited
+        // TODO add your handling code here:
+        vPosition.setBackground(byeMENU);
+    }//GEN-LAST:event_vPositionMouseExited
+
+    private void vMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vMenuMouseClicked
+        // TODO add your handling code here:
+        menu = new UserMenu();
+        menu.setVisible(true);
+        this.setVisible(false);
+
+    }//GEN-LAST:event_vMenuMouseClicked
+
+    private void vMenuMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vMenuMouseEntered
+        // TODO add your handling code here:
+        vMenu.setBackground(hoverMENU);
+    }//GEN-LAST:event_vMenuMouseEntered
+
+    private void vMenuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vMenuMouseExited
+        // TODO add your handling code here:
+        vMenu.setBackground(byeMENU);
+    }//GEN-LAST:event_vMenuMouseExited
+
+    private void LogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogoutMouseClicked
+        // TODO add your handling code here:
+        login = new Frame_Login();
+        login.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_LogoutMouseClicked
+
+    private void LogoutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogoutMouseEntered
+        // TODO add your handling code here:
+        Logout.setBackground(hoverMENU);
+    }//GEN-LAST:event_LogoutMouseEntered
+
+    private void LogoutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogoutMouseExited
+        // TODO add your handling code here:
+        Logout.setBackground(byeMENU);
+    }//GEN-LAST:event_LogoutMouseExited
 
     /**
      * @param args the command line arguments
@@ -1742,38 +1834,29 @@ public class UserCard extends JPanel{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ByParty;
     private javax.swing.JPanel ByPosition;
+    private javax.swing.JPanel Logout;
     private javax.swing.JPanel cardDetails;
     private javax.swing.JPanel cardViewAll;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
@@ -1789,5 +1872,14 @@ public class UserCard extends JPanel{
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JLabel sp1LBL;
+    private javax.swing.JLabel sp1LBL1;
+    private javax.swing.JLabel sp1LBL2;
+    private javax.swing.JLabel sp2LBL3;
+    private javax.swing.JLabel sp2LBL4;
+    private javax.swing.JPanel vCandidate;
+    private javax.swing.JPanel vMenu;
+    private javax.swing.JPanel vParty;
+    private javax.swing.JPanel vPosition;
     // End of variables declaration//GEN-END:variables
 }

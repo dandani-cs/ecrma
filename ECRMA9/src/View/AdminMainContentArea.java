@@ -256,7 +256,6 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
             this.add(sp);
             this.add(header, BorderLayout.NORTH);
             this.add(btn_add, BorderLayout.SOUTH);
-            //this.add(btn_edit, BorderLayout.SOUTH); //////////aaaa
         }
        
     }
@@ -593,7 +592,7 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
         cardViewCandidates.setLayout(cardViewCandidatesLayout);
         cardViewCandidatesLayout.setHorizontalGroup(
             cardViewCandidatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1630, Short.MAX_VALUE)
+            .addGap(0, 1629, Short.MAX_VALUE)
         );
         cardViewCandidatesLayout.setVerticalGroup(
             cardViewCandidatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -907,7 +906,7 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
                             .addComponent(jLabel29)
                             .addComponent(jSeparator11, javax.swing.GroupLayout.DEFAULT_SIZE, 1159, Short.MAX_VALUE)
                             .addComponent(jLabel56))))
-                .addGap(0, 430, Short.MAX_VALUE))
+                .addGap(0, 429, Short.MAX_VALUE))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1216,7 +1215,7 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(137, 137, 137)
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(593, Short.MAX_VALUE))
+                .addContainerGap(592, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1742,7 +1741,7 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
                     .addGroup(cardBGLayout.createSequentialGroup()
                         .addGap(51, 51, 51)
                         .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 1130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(449, Short.MAX_VALUE))
+                .addContainerGap(448, Short.MAX_VALUE))
         );
         cardBGLayout.setVerticalGroup(
             cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1882,8 +1881,8 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
                 .addGap(0, 482, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, archivecardBGLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 1125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(446, 446, 446))
+                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 1140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(430, 430, 430))
         );
         archivecardBGLayout.setVerticalGroup(
             archivecardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1892,8 +1891,8 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
                 .addComponent(archivetitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(archivesubtitle)
-                .addGap(44, 44, 44)
-                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -1907,7 +1906,7 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
         cardViewElec.setLayout(cardViewElecLayout);
         cardViewElecLayout.setHorizontalGroup(
             cardViewElecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1630, Short.MAX_VALUE)
+            .addGap(0, 1629, Short.MAX_VALUE)
             .addGroup(cardViewElecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(cardViewElecLayout.createSequentialGroup()
                     .addComponent(archivecardBG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
