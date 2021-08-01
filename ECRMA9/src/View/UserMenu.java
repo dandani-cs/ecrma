@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 public class UserMenu extends javax.swing.JFrame {
 
     Frame_Login login;
+    UserMainContentArea usermaincontentarea;
     
     /** Creates new form UserMenu */
     public UserMenu() {
@@ -44,20 +45,20 @@ public class UserMenu extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         UserContentR1 = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        CandSearchBTN = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        PosSearchBTN = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        PartySearchBTN = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         UserContentR2 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
+        ViewAllBTN = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
+        LogoutBTN = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
@@ -118,17 +119,17 @@ public class UserMenu extends javax.swing.JFrame {
         UserContentR1.setBackground(new java.awt.Color(33, 97, 140));
         UserContentR1.setLayout(new java.awt.GridLayout(1, 3, 150, 0));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        CandSearchBTN.setBackground(new java.awt.Color(255, 255, 255));
+        CandSearchBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        CandSearchBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel1MouseClicked(evt);
+                CandSearchBTNMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jPanel1MouseEntered(evt);
+                CandSearchBTNMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jPanel1MouseExited(evt);
+                CandSearchBTNMouseExited(evt);
             }
         });
 
@@ -139,37 +140,37 @@ public class UserMenu extends javax.swing.JFrame {
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ECRMA9\\src\\Icons\\candidate2_128px.png")); // NOI18N
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout CandSearchBTNLayout = new javax.swing.GroupLayout(CandSearchBTN);
+        CandSearchBTN.setLayout(CandSearchBTNLayout);
+        CandSearchBTNLayout.setHorizontalGroup(
+            CandSearchBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(CandSearchBTNLayout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(80, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        CandSearchBTNLayout.setVerticalGroup(
+            CandSearchBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CandSearchBTNLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        UserContentR1.add(jPanel1);
+        UserContentR1.add(CandSearchBTN);
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        PosSearchBTN.setBackground(new java.awt.Color(255, 255, 255));
+        PosSearchBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel2MouseClicked(evt);
+                PosSearchBTNMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jPanel2MouseEntered(evt);
+                PosSearchBTNMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jPanel2MouseExited(evt);
+                PosSearchBTNMouseExited(evt);
             }
         });
 
@@ -180,37 +181,37 @@ public class UserMenu extends javax.swing.JFrame {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ECRMA9\\src\\Icons\\search128px.png")); // NOI18N
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout PosSearchBTNLayout = new javax.swing.GroupLayout(PosSearchBTN);
+        PosSearchBTN.setLayout(PosSearchBTNLayout);
+        PosSearchBTNLayout.setHorizontalGroup(
+            PosSearchBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PosSearchBTNLayout.createSequentialGroup()
                 .addContainerGap(75, Short.MAX_VALUE)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(71, 71, 71))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+        PosSearchBTNLayout.setVerticalGroup(
+            PosSearchBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PosSearchBTNLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        UserContentR1.add(jPanel2);
+        UserContentR1.add(PosSearchBTN);
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        PartySearchBTN.setBackground(new java.awt.Color(255, 255, 255));
+        PartySearchBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel3MouseClicked(evt);
+                PartySearchBTNMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jPanel3MouseEntered(evt);
+                PartySearchBTNMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jPanel3MouseExited(evt);
+                PartySearchBTNMouseExited(evt);
             }
         });
 
@@ -221,42 +222,42 @@ public class UserMenu extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ECRMA9\\src\\Icons\\party128px.png")); // NOI18N
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout PartySearchBTNLayout = new javax.swing.GroupLayout(PartySearchBTN);
+        PartySearchBTN.setLayout(PartySearchBTNLayout);
+        PartySearchBTNLayout.setHorizontalGroup(
+            PartySearchBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PartySearchBTNLayout.createSequentialGroup()
                 .addContainerGap(76, Short.MAX_VALUE)
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+        PartySearchBTNLayout.setVerticalGroup(
+            PartySearchBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PartySearchBTNLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        UserContentR1.add(jPanel3);
+        UserContentR1.add(PartySearchBTN);
 
         UserBacground.add(UserContentR1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, 1340, 220));
 
         UserContentR2.setBackground(new java.awt.Color(33, 97, 140));
         UserContentR2.setLayout(new java.awt.GridLayout(1, 3, 150, 0));
 
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
+        ViewAllBTN.setBackground(new java.awt.Color(255, 255, 255));
+        ViewAllBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel5MouseClicked(evt);
+                ViewAllBTNMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jPanel5MouseEntered(evt);
+                ViewAllBTNMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jPanel5MouseExited(evt);
+                ViewAllBTNMouseExited(evt);
             }
         });
 
@@ -267,37 +268,37 @@ public class UserMenu extends javax.swing.JFrame {
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ECRMA9\\src\\Icons\\view128px.png")); // NOI18N
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout ViewAllBTNLayout = new javax.swing.GroupLayout(ViewAllBTN);
+        ViewAllBTN.setLayout(ViewAllBTNLayout);
+        ViewAllBTNLayout.setHorizontalGroup(
+            ViewAllBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+            .addGroup(ViewAllBTNLayout.createSequentialGroup()
                 .addGap(73, 73, 73)
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(73, Short.MAX_VALUE))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+        ViewAllBTNLayout.setVerticalGroup(
+            ViewAllBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ViewAllBTNLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        UserContentR2.add(jPanel5);
+        UserContentR2.add(ViewAllBTN);
 
-        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel7.addMouseListener(new java.awt.event.MouseAdapter() {
+        LogoutBTN.setBackground(new java.awt.Color(255, 255, 255));
+        LogoutBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel7MouseClicked(evt);
+                LogoutBTNMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jPanel7MouseEntered(evt);
+                LogoutBTNMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jPanel7MouseExited(evt);
+                LogoutBTNMouseExited(evt);
             }
         });
 
@@ -308,26 +309,26 @@ public class UserMenu extends javax.swing.JFrame {
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ECRMA9\\src\\Icons\\logout128px.png")); // NOI18N
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout LogoutBTNLayout = new javax.swing.GroupLayout(LogoutBTN);
+        LogoutBTN.setLayout(LogoutBTNLayout);
+        LogoutBTNLayout.setHorizontalGroup(
+            LogoutBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+            .addGroup(LogoutBTNLayout.createSequentialGroup()
                 .addGap(73, 73, 73)
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+        LogoutBTNLayout.setVerticalGroup(
+            LogoutBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LogoutBTNLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        UserContentR2.add(jPanel7);
+        UserContentR2.add(LogoutBTN);
 
         jPanel6.setBackground(new java.awt.Color(33, 97, 140));
 
@@ -351,78 +352,95 @@ public class UserMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jPanel7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseExited
+    private void LogoutBTNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogoutBTNMouseExited
         // TODO add your handling code here:
-        resetColor(jPanel7);
-    }//GEN-LAST:event_jPanel7MouseExited
+        resetColor(LogoutBTN);
+    }//GEN-LAST:event_LogoutBTNMouseExited
 
-    private void jPanel7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseEntered
+    private void LogoutBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogoutBTNMouseEntered
         // TODO add your handling code here:
-        setColor(jPanel7);
-    }//GEN-LAST:event_jPanel7MouseEntered
+        setColor(LogoutBTN);
+    }//GEN-LAST:event_LogoutBTNMouseEntered
 
-    private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
+    private void LogoutBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogoutBTNMouseClicked
         // TODO add your handling code here:
         login = new Frame_Login();
         login.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jPanel7MouseClicked
+    }//GEN-LAST:event_LogoutBTNMouseClicked
 
-    private void jPanel5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseExited
+    private void ViewAllBTNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ViewAllBTNMouseExited
         // TODO add your handling code here:
-        resetColor(jPanel5);
-    }//GEN-LAST:event_jPanel5MouseExited
+        resetColor(ViewAllBTN);
+    }//GEN-LAST:event_ViewAllBTNMouseExited
 
-    private void jPanel5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseEntered
+    private void ViewAllBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ViewAllBTNMouseEntered
         // TODO add your handling code here:
-        setColor(jPanel5);
-    }//GEN-LAST:event_jPanel5MouseEntered
+        setColor(ViewAllBTN);
+    }//GEN-LAST:event_ViewAllBTNMouseEntered
 
-    private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
+    private void ViewAllBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ViewAllBTNMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPanel5MouseClicked
+        usermaincontentarea = new UserMainContentArea();
+        usermaincontentarea.setVisible(true);
+        usermaincontentarea.setCard("cardViewlAll");
+        this.setVisible(false);
+    }//GEN-LAST:event_ViewAllBTNMouseClicked
 
-    private void jPanel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseExited
+    private void PartySearchBTNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PartySearchBTNMouseExited
         // TODO add your handling code here:
-        resetColor(jPanel3);
-    }//GEN-LAST:event_jPanel3MouseExited
+        resetColor(PartySearchBTN);
+    }//GEN-LAST:event_PartySearchBTNMouseExited
 
-    private void jPanel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseEntered
+    private void PartySearchBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PartySearchBTNMouseEntered
         // TODO add your handling code here:
-        setColor(jPanel3);
-    }//GEN-LAST:event_jPanel3MouseEntered
+        setColor(PartySearchBTN);
+    }//GEN-LAST:event_PartySearchBTNMouseEntered
 
-    private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
+    private void PartySearchBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PartySearchBTNMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPanel3MouseClicked
+        usermaincontentarea = new UserMainContentArea();
+        usermaincontentarea.setVisible(true);
+        usermaincontentarea.setCard("ByParty");
+        this.setVisible(false);
+    }//GEN-LAST:event_PartySearchBTNMouseClicked
 
-    private void jPanel2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseExited
+    private void PosSearchBTNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PosSearchBTNMouseExited
         // TODO add your handling code here:
-        resetColor(jPanel2);
-    }//GEN-LAST:event_jPanel2MouseExited
+        resetColor(PosSearchBTN);
+    }//GEN-LAST:event_PosSearchBTNMouseExited
 
-    private void jPanel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseEntered
+    private void PosSearchBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PosSearchBTNMouseEntered
         // TODO add your handling code here:
-        setColor(jPanel2);
-    }//GEN-LAST:event_jPanel2MouseEntered
+        setColor(PosSearchBTN);
+    }//GEN-LAST:event_PosSearchBTNMouseEntered
 
-    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
+    private void PosSearchBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PosSearchBTNMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPanel2MouseClicked
+        usermaincontentarea = new UserMainContentArea();
+        usermaincontentarea.setVisible(true);
+        usermaincontentarea.setCard("ByPosition");
+        this.setVisible(false);
+    }//GEN-LAST:event_PosSearchBTNMouseClicked
 
-    private void jPanel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseExited
+    private void CandSearchBTNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CandSearchBTNMouseExited
         // TODO add your handling code here:
-        resetColor(jPanel1);
-    }//GEN-LAST:event_jPanel1MouseExited
+        resetColor(CandSearchBTN);
+    }//GEN-LAST:event_CandSearchBTNMouseExited
 
-    private void jPanel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseEntered
+    private void CandSearchBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CandSearchBTNMouseEntered
         // TODO add your handling code here:
-        setColor(jPanel1);
-    }//GEN-LAST:event_jPanel1MouseEntered
+        setColor(CandSearchBTN);
+    }//GEN-LAST:event_CandSearchBTNMouseEntered
 
-    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+    private void CandSearchBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CandSearchBTNMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPanel1MouseClicked
+        usermaincontentarea = new UserMainContentArea();
+        usermaincontentarea.setVisible(true);
+        usermaincontentarea.setCard("cardViewAll");
+        this.setVisible(false);
+       
+    }//GEN-LAST:event_CandSearchBTNMouseClicked
 
     public void setColor(JPanel panel){
         panel.setBackground(new java.awt.Color(211,211,211));
@@ -470,10 +488,15 @@ public class UserMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel CandSearchBTN;
+    private javax.swing.JPanel LogoutBTN;
+    private javax.swing.JPanel PartySearchBTN;
+    private javax.swing.JPanel PosSearchBTN;
     private javax.swing.JPanel UserBacground;
     private javax.swing.JPanel UserContentR1;
     private javax.swing.JPanel UserContentR2;
     private javax.swing.JPanel UserHeader;
+    private javax.swing.JPanel ViewAllBTN;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -487,12 +510,7 @@ public class UserMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 
