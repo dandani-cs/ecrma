@@ -6,6 +6,7 @@
 package View;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -42,7 +43,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Rheeeiiii
  */
-public class UserMainContent extends javax.swing.JFrame {
+public class UserMainContentArea extends javax.swing.JFrame {
     
     UserMenu menu;
     Frame_Login login;
@@ -54,18 +55,25 @@ public class UserMainContent extends javax.swing.JFrame {
     private Color hoverMENU = new Color(33,82,117);
     private Color byeMENU = new Color(33,97,140);
     
+    CardLayout card; 
+    
     /**
      * Creates new form UserCard2
      */
-    public UserMainContent() {
+    public UserMainContentArea() {
         initComponents(); 
         setSize(1920, 1080);
         this.setTitle("Election Candidates Record Management");
         cardViewAll.add(myPanel);
         ByParty.add(myPanel1);
         ByPosition.add(myPanel2);
+        
+        card = (CardLayout)MainPanel.getLayout();
     }
     
+    public void setCard(String str){
+        card.show(MainPanel, str);
+    }
     
 public class UserCard extends JPanel{
     Color bgColor;
@@ -1034,7 +1042,6 @@ public class UserCard extends JPanel{
 
         jPanel1 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel13 = new javax.swing.JPanel();
         vCandidate = new javax.swing.JPanel();
@@ -1047,7 +1054,8 @@ public class UserCard extends JPanel{
         sp2LBL3 = new javax.swing.JLabel();
         Logout = new javax.swing.JPanel();
         sp2LBL4 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        MainPanel = new javax.swing.JPanel();
         ByParty = new javax.swing.JPanel();
         ByPosition = new javax.swing.JPanel();
         cardDetails = new javax.swing.JPanel();
@@ -1089,23 +1097,15 @@ public class UserCard extends JPanel{
 
         jPanel14.setBackground(new java.awt.Color(33, 97, 140));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ecrmaLogo.png")); // NOI18N
-
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
         jPanel14Layout.setHorizontalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 140, Short.MAX_VALUE)
         );
 
         jPanel13.setBackground(new java.awt.Color(33, 97, 140));
@@ -1139,7 +1139,7 @@ public class UserCard extends JPanel{
         );
         vCandidateLayout.setVerticalGroup(
             vCandidateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(sp1LBL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+            .addComponent(sp1LBL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
         );
 
         jPanel13.add(vCandidate);
@@ -1172,7 +1172,7 @@ public class UserCard extends JPanel{
         );
         vPartyLayout.setVerticalGroup(
             vPartyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(sp1LBL1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+            .addComponent(sp1LBL1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
         );
 
         jPanel13.add(vParty);
@@ -1205,7 +1205,7 @@ public class UserCard extends JPanel{
         );
         vPositionLayout.setVerticalGroup(
             vPositionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(sp1LBL2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+            .addComponent(sp1LBL2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
         );
 
         jPanel13.add(vPosition);
@@ -1239,7 +1239,7 @@ public class UserCard extends JPanel{
         );
         vMenuLayout.setVerticalGroup(
             vMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(sp2LBL3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+            .addComponent(sp2LBL3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
         );
 
         jPanel13.add(vMenu);
@@ -1273,35 +1273,48 @@ public class UserCard extends JPanel{
         );
         LogoutLayout.setVerticalGroup(
             LogoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(sp2LBL4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+            .addComponent(sp2LBL4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
         );
 
         jPanel13.add(Logout);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ecrmaLogo.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSeparator1)
-                .addContainerGap())
-            .addComponent(jPanel14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(54, 54, 54))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(204, 255, 255));
-        jPanel2.setLayout(new java.awt.CardLayout());
+        MainPanel.setBackground(new java.awt.Color(204, 255, 255));
+        MainPanel.setLayout(new java.awt.CardLayout());
 
         javax.swing.GroupLayout ByPartyLayout = new javax.swing.GroupLayout(ByParty);
         ByParty.setLayout(ByPartyLayout);
@@ -1314,7 +1327,7 @@ public class UserCard extends JPanel{
             .addGap(0, 1102, Short.MAX_VALUE)
         );
 
-        jPanel2.add(ByParty, "card3");
+        MainPanel.add(ByParty, "ByParty");
 
         javax.swing.GroupLayout ByPositionLayout = new javax.swing.GroupLayout(ByPosition);
         ByPosition.setLayout(ByPositionLayout);
@@ -1327,7 +1340,7 @@ public class UserCard extends JPanel{
             .addGap(0, 1102, Short.MAX_VALUE)
         );
 
-        jPanel2.add(ByPosition, "card2");
+        MainPanel.add(ByPosition, "ByPosition");
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1645,7 +1658,7 @@ public class UserCard extends JPanel{
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel2.add(cardDetails, "card5");
+        MainPanel.add(cardDetails, "cardDetails");
 
         javax.swing.GroupLayout cardViewAllLayout = new javax.swing.GroupLayout(cardViewAll);
         cardViewAll.setLayout(cardViewAllLayout);
@@ -1658,7 +1671,7 @@ public class UserCard extends JPanel{
             .addGap(0, 1102, Short.MAX_VALUE)
         );
 
-        jPanel2.add(cardViewAll, "card4");
+        MainPanel.add(cardViewAll, "cardViewAll");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1667,13 +1680,13 @@ public class UserCard extends JPanel{
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1102, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -1693,15 +1706,8 @@ public class UserCard extends JPanel{
 
     private void vCandidateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vCandidateMouseClicked
         // TODO add your handling code here:
-        cardViewAll.setVisible(false);
-        ByParty.setVisible(false);
-       
-        this.remove(cardViewAll);
-        this.remove(ByParty);
-
-        cardViewAll.setVisible(true);
-        cardViewAll.repaint();
-        cardViewAll.revalidate();
+        card.show(MainPanel, "cardDetails");
+        
     }//GEN-LAST:event_vCandidateMouseClicked
 
     private void vCandidateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vCandidateMouseEntered
@@ -1716,15 +1722,7 @@ public class UserCard extends JPanel{
 
     private void vPartyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vPartyMouseClicked
         // TODO add your handling code here:
-        cardViewAll.setVisible(false);
-        ByPosition.setVisible(false);
-       
-        this.remove(cardViewAll);
-        this.remove(ByParty);
-
-        ByParty.setVisible(true);
-        ByParty.repaint();
-        ByParty.revalidate();
+        card.show(MainPanel, "ByParty");
     }//GEN-LAST:event_vPartyMouseClicked
 
     private void vPartyMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vPartyMouseEntered
@@ -1739,15 +1737,7 @@ public class UserCard extends JPanel{
 
     private void vPositionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vPositionMouseClicked
         // TODO add your handling code here:
-        cardViewAll.setVisible(false);
-        ByParty.setVisible(false);
-       
-        this.remove(cardViewAll);
-        this.remove(ByParty);
-
-        ByPosition.setVisible(true);
-        ByPosition.repaint();
-        ByPosition.revalidate();
+        card.show(MainPanel, "ByPosition");
     }//GEN-LAST:event_vPositionMouseClicked
 
     private void vPositionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vPositionMouseEntered
@@ -1812,21 +1802,23 @@ public class UserCard extends JPanel{
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UserMainContent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserMainContentArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UserMainContent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserMainContentArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UserMainContent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserMainContentArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UserMainContent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserMainContentArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UserMainContent().setVisible(true);
+                new UserMainContentArea().setVisible(true);
             }
         });
     }
@@ -1835,6 +1827,7 @@ public class UserCard extends JPanel{
     private javax.swing.JPanel ByParty;
     private javax.swing.JPanel ByPosition;
     private javax.swing.JPanel Logout;
+    private javax.swing.JPanel MainPanel;
     private javax.swing.JPanel cardDetails;
     private javax.swing.JPanel cardViewAll;
     private javax.swing.JLabel jLabel1;
@@ -1852,7 +1845,6 @@ public class UserCard extends JPanel{
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
