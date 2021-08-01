@@ -233,11 +233,11 @@ public class AdminViewCandidates extends JPanel{
                    if (col == 3) {
                        // open EditCandidate
                        System.out.println("Edit candidate: " + table.getValueAt(row, 2) + " " + table.getValueAt(row, 1));
-                       System.out.println("Candidate ID: " + table.getValueAt(row, 5));
+                       System.out.println("Candidate ID: " + model.getCandidateID(row));
                    } else if (col == 4) {
                        // open DeleteCandidate
                        System.out.println("Delete candidate: " + table.getValueAt(row, 2) + " " + table.getValueAt(row, 1));
-                       System.out.println("Candidate ID: " + table.getValueAt(row, 5));
+                       System.out.println("Candidate ID: " + model.getCandidateID(row));
                    }
                }
             });

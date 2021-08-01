@@ -60,4 +60,11 @@ public class AdminViewCandidatesTableModel extends AbstractTableModel {
         return null;
     }
     
+    public int getCandidateID(int row) {
+        if (candidate_list.size() > row) {
+            return candidate_list.get(row).get_candidate_id();
+        }
+        return 0;
+    }
+    
 }
