@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
  * @author dandani-cs
  */
 public class AdminViewCandidatesTableModel extends AbstractTableModel {
-    private Object[][] candidate_list;
+    private ArrayList<Candidate> candidate_list;
     private String [] column_names = {"Image", "Last Name", "First Name", "Edit", "Delete", "Candidate ID"};
     
     @Override
@@ -23,7 +23,7 @@ public class AdminViewCandidatesTableModel extends AbstractTableModel {
         return column_names[column]; 
     }
     
-    public void setData(Object[][] new_candidate_list){
+    public void setData(ArrayList<Candidate> new_candidate_list){
         this.candidate_list = new_candidate_list;
     }
     
@@ -46,9 +46,25 @@ public class AdminViewCandidatesTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int row, int col) {
-        if (candidate_list.length > row)
-            return candidate_list[row][col];
+        if (candidate_list.size() > row) {
+            Candidate current_candidate = candidate_list.get(row);
+            switch (col) {
+                case 1: return current_candidate.get_image_path();
+                case 2: return current_candidate.get_last_name();
+                case 3: return current_candidate.get_first_name();
+                case 4: return new JButton("Edit");
+                case 5: return new JButton("Delete");
+                case 6: return current_candidate.get_candidate_id();
+            }
+        }
         return null;
+    }
+    
+    public int getCandidateID(int row) {
+        if (candidate_list.size() > row) {
+            return candidate_list.get(row).get_candidate_id();
+        }
+        return 0;
     }
     
 }

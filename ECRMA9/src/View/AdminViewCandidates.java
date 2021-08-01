@@ -197,7 +197,7 @@ public class AdminViewCandidates extends JPanel{
                         
             model = new AdminViewCandidatesTableModel();
             
-            model.setData(main_controller.candidate_controller.query_all_candidates_for_admin_view());
+            model.setData(main_controller.candidate_controller.query_all_candidates());
             
             Object[][] main_list;
             main_list = main_controller.candidate_controller.query_all_candidates_for_admin_view();
@@ -233,11 +233,11 @@ public class AdminViewCandidates extends JPanel{
                    if (col == 3) {
                        // open EditCandidate
                        System.out.println("Edit candidate: " + table.getValueAt(row, 2) + " " + table.getValueAt(row, 1));
-                       System.out.println("Candidate ID: " + main_controller.candidate_controller.query_candidate_by_id((Integer) table.getValueAt(row, 5)).get_candidate_id());
+                       System.out.println("Candidate ID: " + table.getValueAt(row, 6));
                    } else if (col == 4) {
                        // open DeleteCandidate
-                       System.out.println("Edit candidate: " + table.getValueAt(row, 2) + " " + table.getValueAt(row, 1));
-                       System.out.println("Candidate ID: " + main_controller.candidate_controller.query_candidate_by_id((Integer) table.getValueAt(row, 5)).get_candidate_id());
+                       System.out.println("Delete candidate: " + table.getValueAt(row, 2) + " " + table.getValueAt(row, 1));
+                       System.out.println("Candidate ID: " + table.getValueAt(row, 6));
                    }
                }
             });
