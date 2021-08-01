@@ -13,6 +13,7 @@ import Model.Candidate;
 import java.awt.Toolkit;
 import javax.swing.JPanel;
 import View.Frame_Login;
+import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 
 /**
@@ -405,33 +406,34 @@ public class AdminMenu extends javax.swing.JFrame {
          // TODO add your handling code here:
         adminmaincontentarea = new AdminMainContentArea();
         adminmaincontentarea.setVisible(true);
+        adminmaincontentarea.setCard("cardViewCandidates");
         this.setVisible(false);
        
-        AddGUI add_new_candidate = new AddGUI();
-        add_new_candidate.set_form_listener(new FormListener() {
-            @Override           
-            public void formEventOccurred(FormEvent e) {
-                Boolean is_successful = candidate_controller.add_candidate(e);
-                
-                if(!is_successful)
-                {
-                    // TODO: possibly change message if there is a better message/design
-                    // Candidates are specifically unique by ID, fname, lname, sex and birthdate
-                    JOptionPane.showMessageDialog(null, 
-                                                  "A candidate with similar information already exists",
-                                                  "Add Candidate failed!",
-                                                  JOptionPane.ERROR_MESSAGE);
-                } else
-                {
-                    JOptionPane.showMessageDialog(null, 
-                                                  "Candidate has been successfully added.",
-                                                  "Successfully Added Candidate!",
-                                                  JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        });
-        add_new_candidate.setVisible(true);
-        setVisible(false);
+//        AddGUI add_new_candidate = new AddGUI();
+//        add_new_candidate.set_form_listener(new FormListener() {
+//            @Override           
+//            public void formEventOccurred(FormEvent e) {
+//                Boolean is_successful = candidate_controller.add_candidate(e);
+//                
+//                if(!is_successful)
+//                {
+//                    // TODO: possibly change message if there is a better message/design
+//                    // Candidates are specifically unique by ID, fname, lname, sex and birthdate
+//                    JOptionPane.showMessageDialog(null, 
+//                                                  "A candidate with similar information already exists",
+//                                                  "Add Candidate failed!",
+//                                                  JOptionPane.ERROR_MESSAGE);
+//                } else
+//                {
+//                    JOptionPane.showMessageDialog(null, 
+//                                                  "Candidate has been successfully added.",
+//                                                  "Successfully Added Candidate!",
+//                                                  JOptionPane.ERROR_MESSAGE);
+//                }
+//            }
+//        });
+//        add_new_candidate.setVisible(true);
+//        setVisible(false);
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void jPanel5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseExited

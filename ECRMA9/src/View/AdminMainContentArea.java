@@ -42,6 +42,9 @@ public class AdminMainContentArea extends javax.swing.JFrame{
     
     AdminViewCandidates myPanel = new AdminViewCandidates();
 
+    CardLayout card; 
+    
+   
     public AdminMainContentArea() {
         initComponents(); 
         this.pack();
@@ -53,7 +56,14 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         this.setTitle("Election Candidates Record Management");
         cardViewCandidates.add(myPanel);
         
+        card = (CardLayout)MainPanel.getLayout();
+     
     }
+    
+    public void setCard(String str){
+        card.show(MainPanel, str);
+    }
+    
     
    public void reset(){
          jTextField1.setText("NAME");
@@ -84,11 +94,6 @@ public class AdminMainContentArea extends javax.swing.JFrame{
 //         jTextField66.setText("Date");
 //         jTextArea6.setText(" ");
    }
-
-    public void setCard(String cardAddCandidate) {
-        CardLayout c1 = (CardLayout) card1.getLayout();
-        c1.show(card1, "cardAddCandidate");
-    }
 
    
 public class AdminViewCandidates extends JPanel implements ActionListener{
@@ -287,8 +292,26 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
         sp2LBL3 = new javax.swing.JLabel();
         Logout = new javax.swing.JPanel();
         sp2LBL4 = new javax.swing.JLabel();
-        card1 = new javax.swing.JPanel();
+        MainPanel = new javax.swing.JPanel();
         cardViewCandidates = new javax.swing.JPanel();
+        cardAddElec = new javax.swing.JPanel();
+        cardBG = new javax.swing.JPanel();
+        formtitle = new javax.swing.JLabel();
+        formsubtitle = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jTextField23 = new javax.swing.JTextField();
+        jTextField24 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea3 = new javax.swing.JTextArea();
+        cancelBTN = new javax.swing.JButton();
+        saveBTN = new javax.swing.JButton();
         cardViewDetails = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
@@ -384,24 +407,6 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        cardAddElec = new javax.swing.JPanel();
-        cardBG = new javax.swing.JPanel();
-        formtitle = new javax.swing.JLabel();
-        formsubtitle = new javax.swing.JLabel();
-        jSeparator5 = new javax.swing.JSeparator();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jTextField23 = new javax.swing.JTextField();
-        jTextField24 = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
-        cancelBTN = new javax.swing.JButton();
-        saveBTN = new javax.swing.JButton();
         cardViewElec = new javax.swing.JPanel();
         archivecardBG = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -583,8 +588,8 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
 
         SidePanel.add(SidePanelContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(-1, 187, 300, 310));
 
-        card1.setBackground(new java.awt.Color(204, 255, 255));
-        card1.setLayout(new java.awt.CardLayout());
+        MainPanel.setBackground(new java.awt.Color(204, 255, 255));
+        MainPanel.setLayout(new java.awt.CardLayout());
 
         cardViewCandidates.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -599,7 +604,177 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
             .addGap(0, 1278, Short.MAX_VALUE)
         );
 
-        card1.add(cardViewCandidates, "card5");
+        MainPanel.add(cardViewCandidates, "cardViewCandidates");
+
+        cardBG.setBackground(new java.awt.Color(255, 255, 255));
+
+        formtitle.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 30)); // NOI18N
+        formtitle.setForeground(new java.awt.Color(33, 82, 117));
+        formtitle.setText("ADD ELECTION PERIOD");
+
+        formsubtitle.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        formsubtitle.setForeground(new java.awt.Color(33, 82, 117));
+        formsubtitle.setText("Set the name, starting date, and final date of the Election Period.");
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(33, 82, 117));
+        jLabel1.setText("Name of Election Period:");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(33, 82, 117));
+        jLabel3.setText("Candidate:");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(33, 82, 117));
+        jLabel4.setText("Party:");
+
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(33, 82, 117));
+        jLabel26.setText("Position:");
+
+        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(33, 82, 117));
+        jLabel27.setText("Platform:");
+
+        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jComboBox1.setForeground(new java.awt.Color(33, 82, 117));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "", "" }));
+
+        jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jComboBox2.setForeground(new java.awt.Color(33, 82, 117));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "", "" }));
+
+        jTextField23.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jTextField23.setForeground(new java.awt.Color(33, 82, 117));
+
+        jTextField24.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jTextField24.setForeground(new java.awt.Color(33, 82, 117));
+
+        jTextArea3.setColumns(20);
+        jTextArea3.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jTextArea3.setForeground(new java.awt.Color(33, 82, 117));
+        jTextArea3.setLineWrap(true);
+        jTextArea3.setRows(5);
+        jScrollPane1.setViewportView(jTextArea3);
+
+        cancelBTN.setBackground(new java.awt.Color(33, 97, 140));
+        cancelBTN.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        cancelBTN.setForeground(new java.awt.Color(255, 255, 255));
+        cancelBTN.setText("Cancel");
+        cancelBTN.setContentAreaFilled(false);
+        cancelBTN.setOpaque(true);
+        cancelBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cancelBTNMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cancelBTNMouseExited(evt);
+            }
+        });
+        cancelBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBTNActionPerformed(evt);
+            }
+        });
+
+        saveBTN.setBackground(new java.awt.Color(33, 97, 140));
+        saveBTN.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        saveBTN.setForeground(new java.awt.Color(255, 255, 255));
+        saveBTN.setText("Save");
+        saveBTN.setContentAreaFilled(false);
+        saveBTN.setOpaque(true);
+        saveBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                saveBTNMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                saveBTNMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout cardBGLayout = new javax.swing.GroupLayout(cardBG);
+        cardBG.setLayout(cardBGLayout);
+        cardBGLayout.setHorizontalGroup(
+            cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cardBGLayout.createSequentialGroup()
+                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(cardBGLayout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(formsubtitle)
+                            .addComponent(formtitle)
+                            .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(cardBGLayout.createSequentialGroup()
+                                    .addComponent(cancelBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(23, 23, 23)
+                                    .addComponent(saveBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, cardBGLayout.createSequentialGroup()
+                                    .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jLabel26)
+                                        .addComponent(jLabel27))
+                                    .addGap(91, 91, 91)
+                                    .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(cardBGLayout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 1130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(448, Short.MAX_VALUE))
+        );
+        cardBGLayout.setVerticalGroup(
+            cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cardBGLayout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(formtitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(formsubtitle)
+                .addGap(34, 34, 34)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(93, 93, 93)
+                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(67, 67, 67)
+                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel26)
+                    .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(67, 67, 67)
+                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel27)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(78, 78, 78)
+                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 550, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout cardAddElecLayout = new javax.swing.GroupLayout(cardAddElec);
+        cardAddElec.setLayout(cardAddElecLayout);
+        cardAddElecLayout.setHorizontalGroup(
+            cardAddElecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(cardBG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        cardAddElecLayout.setVerticalGroup(
+            cardAddElecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(cardBG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        MainPanel.add(cardAddElec, "carrdAddElec");
 
         jPanel15.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -961,7 +1136,7 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
             .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        card1.add(cardViewDetails, "card6");
+        MainPanel.add(cardViewDetails, "cardViewDetails");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1272,7 +1447,7 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        card1.add(cardAddCandidate, "card4");
+        MainPanel.add(cardAddCandidate, "cardAddCandidate");
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1620,177 +1795,7 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        card1.add(cardEdit, "card3");
-
-        cardBG.setBackground(new java.awt.Color(255, 255, 255));
-
-        formtitle.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 30)); // NOI18N
-        formtitle.setForeground(new java.awt.Color(33, 82, 117));
-        formtitle.setText("ADD ELECTION PERIOD");
-
-        formsubtitle.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        formsubtitle.setForeground(new java.awt.Color(33, 82, 117));
-        formsubtitle.setText("Set the name, starting date, and final date of the Election Period.");
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(33, 82, 117));
-        jLabel1.setText("Name of Election Period:");
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(33, 82, 117));
-        jLabel3.setText("Candidate:");
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(33, 82, 117));
-        jLabel4.setText("Party:");
-
-        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel26.setForeground(new java.awt.Color(33, 82, 117));
-        jLabel26.setText("Position:");
-
-        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel27.setForeground(new java.awt.Color(33, 82, 117));
-        jLabel27.setText("Platform:");
-
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(33, 82, 117));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "", "" }));
-
-        jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jComboBox2.setForeground(new java.awt.Color(33, 82, 117));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "", "" }));
-
-        jTextField23.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jTextField23.setForeground(new java.awt.Color(33, 82, 117));
-
-        jTextField24.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jTextField24.setForeground(new java.awt.Color(33, 82, 117));
-
-        jTextArea3.setColumns(20);
-        jTextArea3.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jTextArea3.setForeground(new java.awt.Color(33, 82, 117));
-        jTextArea3.setLineWrap(true);
-        jTextArea3.setRows(5);
-        jScrollPane1.setViewportView(jTextArea3);
-
-        cancelBTN.setBackground(new java.awt.Color(33, 97, 140));
-        cancelBTN.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        cancelBTN.setForeground(new java.awt.Color(255, 255, 255));
-        cancelBTN.setText("Cancel");
-        cancelBTN.setContentAreaFilled(false);
-        cancelBTN.setOpaque(true);
-        cancelBTN.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                cancelBTNMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                cancelBTNMouseExited(evt);
-            }
-        });
-        cancelBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelBTNActionPerformed(evt);
-            }
-        });
-
-        saveBTN.setBackground(new java.awt.Color(33, 97, 140));
-        saveBTN.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        saveBTN.setForeground(new java.awt.Color(255, 255, 255));
-        saveBTN.setText("Save");
-        saveBTN.setContentAreaFilled(false);
-        saveBTN.setOpaque(true);
-        saveBTN.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                saveBTNMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                saveBTNMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout cardBGLayout = new javax.swing.GroupLayout(cardBG);
-        cardBG.setLayout(cardBGLayout);
-        cardBGLayout.setHorizontalGroup(
-            cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cardBGLayout.createSequentialGroup()
-                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(cardBGLayout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(formsubtitle)
-                            .addComponent(formtitle)
-                            .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(cardBGLayout.createSequentialGroup()
-                                    .addComponent(cancelBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(23, 23, 23)
-                                    .addComponent(saveBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, cardBGLayout.createSequentialGroup()
-                                    .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel1)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel4)
-                                        .addComponent(jLabel26)
-                                        .addComponent(jLabel27))
-                                    .addGap(91, 91, 91)
-                                    .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(cardBGLayout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 1130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(448, Short.MAX_VALUE))
-        );
-        cardBGLayout.setVerticalGroup(
-            cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cardBGLayout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(formtitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(formsubtitle)
-                .addGap(34, 34, 34)
-                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(93, 93, 93)
-                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(67, 67, 67)
-                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel26)
-                    .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(67, 67, 67)
-                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel27)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(78, 78, 78)
-                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(saveBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 550, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout cardAddElecLayout = new javax.swing.GroupLayout(cardAddElec);
-        cardAddElec.setLayout(cardAddElecLayout);
-        cardAddElecLayout.setHorizontalGroup(
-            cardAddElecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cardBG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        cardAddElecLayout.setVerticalGroup(
-            cardAddElecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cardBG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        card1.add(cardAddElec, "card2");
+        MainPanel.add(cardEdit, "cardEdit");
 
         archivecardBG.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1919,7 +1924,7 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
                 .addComponent(archivecardBG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        card1.add(cardViewElec, "card7");
+        MainPanel.add(cardViewElec, "cardViewElec");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1930,7 +1935,7 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(AdminBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(card1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1938,7 +1943,7 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
                 .addComponent(AdminBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(SidePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(card1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -1963,19 +1968,21 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        cardEdit.setVisible(false);
-        cardAddElec.setVisible(false);
-        cardViewDetails.setVisible(false);
-        cardAddCandidate.setVisible(false);
-        cardViewElec.setVisible(false);
-        this.remove(cardEdit);
-        this.remove(cardAddElec);
-        this.remove(cardAddCandidate);
-        this.remove(cardViewDetails);
-
-        cardViewCandidates.setVisible(true);
-        cardViewCandidates.repaint();
-        cardViewCandidates.revalidate();
+//        cardEdit.setVisible(false);
+//        cardAddElec.setVisible(false);
+//        cardViewDetails.setVisible(false);
+//        cardAddCandidate.setVisible(false);
+//        cardViewElec.setVisible(false);
+//        this.remove(cardEdit);
+//        this.remove(cardAddElec);
+//        this.remove(cardAddCandidate);
+//        this.remove(cardViewDetails);
+//
+//        cardViewCandidates.setVisible(true);
+//        cardViewCandidates.repaint();
+//        cardViewCandidates.revalidate();
+        
+        card.show(MainPanel, "cardViewCandidates");
   
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -2000,19 +2007,21 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
 
     private void cancelBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBTNActionPerformed
         // TODO add your handling code here:
-        cardEdit.setVisible(false);
-        cardAddElec.setVisible(false);
-        cardViewDetails.setVisible(false);
-        cardAddCandidate.setVisible(false);
-        cardViewCandidates.setVisible(false);
-        this.remove(cardEdit);
-        this.remove(cardAddElec);
-        this.remove(cardAddCandidate);
-        this.remove(cardViewDetails);
+//        cardEdit.setVisible(false);
+//        cardAddElec.setVisible(false);
+//        cardViewDetails.setVisible(false);
+//        cardAddCandidate.setVisible(false);
+//        cardViewCandidates.setVisible(false);
+//        this.remove(cardEdit);
+//        this.remove(cardAddElec);
+//        this.remove(cardAddCandidate);
+//        this.remove(cardViewDetails);
+//
+//        cardViewElec.setVisible(true);
+//        cardViewElec.repaint();
+//        cardViewElec.revalidate();
 
-        cardViewElec.setVisible(true);
-        cardViewElec.repaint();
-        cardViewElec.revalidate();
+          card.show(MainPanel, "cardViewElec");
     }//GEN-LAST:event_cancelBTNActionPerformed
 
     private void saveBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBTNMouseEntered
@@ -2038,20 +2047,22 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
 
     private void jButton16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton16MouseClicked
         // TODO add your handling code here:
-        cardViewCandidates.setVisible(false);
-        cardViewDetails.setVisible(false);
-        cardAddElec.setVisible(false);
-        cardAddCandidate.setVisible(false);
-        cardViewElec.setVisible(false);
-        this.remove(cardViewDetails);
-        this.remove(cardViewCandidates);
-        this.remove(cardAddElec);
-        this.remove(cardAddCandidate);
+//        cardViewCandidates.setVisible(false);
+//        cardViewDetails.setVisible(false);
+//        cardAddElec.setVisible(false);
+//        cardAddCandidate.setVisible(false);
+//        cardViewElec.setVisible(false);
+//        this.remove(cardViewDetails);
+//        this.remove(cardViewCandidates);
+//        this.remove(cardAddElec);
+//        this.remove(cardAddCandidate);
+//
+//        cardEdit.setVisible(true);
+//        cardEdit.repaint();
+//        cardEdit.revalidate();
+//        cardEdit.setSize(new Dimension(1280,800));
 
-        cardEdit.setVisible(true);
-        cardEdit.repaint();
-        cardEdit.revalidate();
-        cardEdit.setSize(new Dimension(1280,800));
+        card.show(MainPanel, "cardEdit");
     }//GEN-LAST:event_jButton16MouseClicked
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
@@ -2110,38 +2121,42 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
 
     private void vCandidateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vCandidateMouseClicked
         // TODO add your handling code here:
-        cardEdit.setVisible(false);
-        cardAddElec.setVisible(false);
-        cardViewDetails.setVisible(false);
-        cardAddCandidate.setVisible(false);
-        cardViewElec.setVisible(false);
-        this.remove(cardEdit);
-        this.remove(cardAddElec);
-        this.remove(cardAddCandidate);
-        this.remove(cardViewDetails);
+//        cardEdit.setVisible(false);
+//        cardAddElec.setVisible(false);
+//        cardViewDetails.setVisible(false);
+//        cardAddCandidate.setVisible(false);
+//        cardViewElec.setVisible(false);
+//        this.remove(cardEdit);
+//        this.remove(cardAddElec);
+//        this.remove(cardAddCandidate);
+//        this.remove(cardViewDetails);
+//
+//        cardViewCandidates.setVisible(true);
+//        cardViewCandidates.repaint();
+//        cardViewCandidates.revalidate();
+//        
+//        cardViewCandidates.setSize(new Dimension(1280,800));
 
-        cardViewCandidates.setVisible(true);
-        cardViewCandidates.repaint();
-        cardViewCandidates.revalidate();
-        
-        cardViewCandidates.setSize(new Dimension(1280,800));
+        card.show(MainPanel, "cardViewCandidates");
     }//GEN-LAST:event_vCandidateMouseClicked
 
     private void vElectionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vElectionMouseClicked
         // TODO add your handling code here:
-        cardEdit.setVisible(false);
-        cardViewCandidates.setVisible(false);
-        cardViewDetails.setVisible(false);
-        cardAddCandidate.setVisible(false);
-        cardAddElec.setVisible(false);
-        this.remove(cardEdit);
-        this.remove(cardAddElec);
-        this.remove(cardAddCandidate);
-        this.remove(cardViewDetails);
-
-        cardViewElec.setVisible(true);
-        cardViewElec.repaint();
-        cardViewElec.revalidate();
+//        cardEdit.setVisible(false);
+//        cardViewCandidates.setVisible(false);
+//        cardViewDetails.setVisible(false);
+//        cardAddCandidate.setVisible(false);
+//        cardAddElec.setVisible(false);
+//        this.remove(cardEdit);
+//        this.remove(cardAddElec);
+//        this.remove(cardAddCandidate);
+//        this.remove(cardViewDetails);
+//
+//        cardViewElec.setVisible(true);
+//        cardViewElec.repaint();
+//        cardViewElec.revalidate();
+        
+        card.show(MainPanel, "cardViewElec");
     }//GEN-LAST:event_vElectionMouseClicked
 
     private void datatableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_datatableMousePressed
@@ -2175,19 +2190,21 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         // TODO add your handling code here:
-        cardEdit.setVisible(false);
-        cardAddElec.setVisible(false);
-        cardViewDetails.setVisible(false);
-        cardAddCandidate.setVisible(false);
-        cardViewElec.setVisible(false);
-        this.remove(cardEdit);
-        this.remove(cardAddElec);
-        this.remove(cardAddCandidate);
-        this.remove(cardViewDetails);
-
-        cardViewCandidates.setVisible(true);
-        cardViewCandidates.repaint();
-        cardViewCandidates.revalidate();
+//        cardEdit.setVisible(false);
+//        cardAddElec.setVisible(false);
+//        cardViewDetails.setVisible(false);
+//        cardAddCandidate.setVisible(false);
+//        cardViewElec.setVisible(false);
+//        this.remove(cardEdit);
+//        this.remove(cardAddElec);
+//        this.remove(cardAddCandidate);
+//        this.remove(cardViewDetails);
+//
+//        cardViewCandidates.setVisible(true);
+//        cardViewCandidates.repaint();
+//        cardViewCandidates.revalidate();
+        
+        card.show(MainPanel, "cardViewCandidates");
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void resetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBtnActionPerformed
@@ -2275,19 +2292,21 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
 
     private void addElecBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addElecBTNActionPerformed
         // TODO add your handling code here:
-        cardEdit.setVisible(false);
-        cardViewCandidates.setVisible(false);
-        cardViewDetails.setVisible(false);
-        cardAddCandidate.setVisible(false);
-        cardViewElec.setVisible(false);
-        this.remove(cardEdit);
-        this.remove(cardAddElec);
-        this.remove(cardAddCandidate);
-        this.remove(cardViewDetails);
+        card.show(MainPanel, "cardAddElec");
+//        cardEdit.setVisible(false);
+//        cardViewCandidates.setVisible(false);
+//        cardViewDetails.setVisible(false);
+//        cardAddCandidate.setVisible(false);
+//        cardViewElec.setVisible(false);
+//        this.remove(cardEdit);
+//        this.remove(cardAddElec);
+//        this.remove(cardAddCandidate);
+//        this.remove(cardViewDetails);
+//
+//        cardAddElec.setVisible(true);
+//        cardAddElec.repaint();
+//        cardAddElec.revalidate();
 
-        cardAddElec.setVisible(true);
-        cardAddElec.repaint();
-        cardAddElec.revalidate();
     }//GEN-LAST:event_addElecBTNActionPerformed
 
     private void archiveBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_archiveBTNMouseEntered
@@ -2346,6 +2365,7 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AdminBackground;
     private javax.swing.JPanel Logout;
+    private javax.swing.JPanel MainPanel;
     private javax.swing.JPanel SidePanel;
     private javax.swing.JPanel SidePanelContent;
     private javax.swing.JButton addElecBTN;
@@ -2357,7 +2377,6 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
     private javax.swing.JButton browseImageBtn;
     private javax.swing.JButton cancelBTN;
     private javax.swing.JButton cancelBtn;
-    private javax.swing.JPanel card1;
     private javax.swing.JPanel cardAddCandidate;
     private javax.swing.JPanel cardAddElec;
     private javax.swing.JPanel cardBG;
