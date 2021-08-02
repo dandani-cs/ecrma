@@ -5,9 +5,11 @@
  */
 package View;
 
+import Controller.MainController;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -27,6 +29,7 @@ import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 /**
  *
@@ -43,6 +46,8 @@ public class AdminMainContentArea extends javax.swing.JFrame{
     AdminViewCandidates myPanel = new AdminViewCandidates();
 
     CardLayout card; 
+    
+    MainController main_controller = new MainController();
     
    
     public AdminMainContentArea() {
@@ -101,9 +106,12 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
     Color bgColor;
     
     Center center;
+    
+    AdminViewCandidates adminViewCandidatesPanel;
 
     
     public AdminViewCandidates(){
+        adminViewCandidatesPanel = new AdminViewCandidates();
         bgColor = new Color(255,255,255);
         
         this.setLayout(new BorderLayout());
@@ -142,11 +150,14 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
         JButton btn_edit;
         JLabel lbl_header, lbl_description;
         JPanel header;
+        TableCellRenderer button_renderer;
+        AdminViewCandidatesTableModel model;
         
         Center() {
             this.setLayout(new BorderLayout());
             this.setBorder(new EmptyBorder(60,60,60,60));
             this.setOpaque(false);
+            button_renderer = new JTableButtonRenderer();
             
             
             String[] colNames = {"","Name", "Party", "Position"};
@@ -160,49 +171,28 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
                 img[i] = new ImageIcon(imagestr);
             }
                  
-            Object[][] data = {{img[0],"Esther Hamer","Right","Senator"},
-                            {img[1],"Fred Leach","Right","Vice President"},
-                            {img[2],"Aaisha Coles","Left","Vice President"},
-                            {img[3],"Carl Carpenter","Center","President"},
-                            {img[4],"Malcolm Mcknight","Center","Vice President"},
-                            {img[5],"Bridget Everett","Left","Senator"},
-                            {img[6],"Malaki Grant","Party Party","Prime Minister"},
-                            {img[7],"Poppy-Rose Fellows","Party Party","President"},
-                            {img[8],"Barbara Emery","Right","Prime Minister"},
-                            {img[9],"Keeva Vance","Party Party","Senator"},
-                            {img[10],"Saif Southern","Center","Senator"},
-                            {img[11],"Jo Zhang","Right","President"},
-                            {img[12],"Piotr Wolf","Right","Prime Minister"},
-                            {img[13],"Kali Dorsey","Center","Senator"},
-                            {img[14],"Abdul Mccabe","Left","President"},
-                            {img[15],"Hakeem Hilton","Left","Vice President"},
-                            {img[16],"Kieren Khan","Party Party","President"},
-                            {img[17],"Romany Wells","Right","Prime Minister"},
-                            {img[18],"Emmanuella Hayden","Left","Prime Minister"},
-                            {img[19],"Naseem Marshall","Center","Vice President"},
-                            {img[20],"Frank Alford","Center","Senator"},
-                            {img[21],"Tobey Lim","Party Party","President"},
-                            {img[22],"Kareena Palmer","Left","Prime Minister"},
-                            {img[23],"Izzy Harris","Party Party","Vice President"},
-            };
+            model = new AdminViewCandidatesTableModel();
             
-            DefaultTableModel model;
-            model = new DefaultTableModel(data,colNames);
+            model.setData(main_controller.candidate_controller.query_all_candidates());
 
             table = new JTable() {
-//               public boolean editCellAt(int row, int column, java.util.EventObject e) {
-//                    return false;
-//                }
+                public boolean editCellAt(int row, int column, java.util.EventObject e) {
+                    
+                    return false;
+                }
             };
             table.setModel(model);
             table.getColumnModel().getColumn(0).setCellRenderer(table.getDefaultRenderer(ImageIcon.class));
-            
             table.getColumnModel().getColumn(0).setMaxWidth(120);
             table.getColumnModel().getColumn(0).setMinWidth(120);
             
+            table.setDefaultRenderer(JButton.class, new JTableButtonRenderer());
+            table.getColumnModel().getColumn(3).setCellRenderer(new JTableButtonRenderer());
+            table.getColumnModel().getColumn(4).setCellRenderer(new JTableButtonRenderer());
+            
             table.setRowHeight(120);
-           
-   
+            
+            
             table.getTableHeader().setFont(new Font("CALIBRI", Font.PLAIN,24));
             table.setFont(new Font("TAHOMA", Font.PLAIN, 18));
             
@@ -222,6 +212,16 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
         cardViewDetails.revalidate();
         setSize(new Dimension(1920,1080));
                     }
+                    
+                    if (col == 3) {
+                       // open EditCandidate
+                       System.out.println("Edit candidate: " + table.getValueAt(row, 2) + " " + table.getValueAt(row, 1));
+                       System.out.println("Candidate ID: " + model.getCandidateID(row));
+                   } else if (col == 4) {
+                       // open DeleteCandidate
+                       System.out.println("Delete candidate: " + table.getValueAt(row, 2) + " " + table.getValueAt(row, 1));
+                       System.out.println("Candidate ID: " + model.getCandidateID(row));
+                   }
                 }   
     });
             //add button
@@ -263,6 +263,21 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
             this.add(btn_add, BorderLayout.SOUTH);
         }
        
+    }
+    
+    private class JTableButtonRenderer implements TableCellRenderer {        
+        @Override public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            Border padding = BorderFactory.createEmptyBorder(50, 50, 50, 50);
+
+            JButton button = (JButton) value;
+            
+            if (button != null) {
+                button.setBorder(BorderFactory.createCompoundBorder(getBorder(), padding));
+            }
+                
+                
+            return button;  
+        }
     }
     
 }

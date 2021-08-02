@@ -169,7 +169,7 @@ public class AdminViewCandidates extends JPanel{
         }
     }
     
-    class Center extends JPanel {
+    public class Center extends JPanel {
         JTable table;
         JButton btn_add;
         TableCellRenderer button_renderer;
@@ -201,8 +201,6 @@ public class AdminViewCandidates extends JPanel{
             
             Object[][] main_list;
             main_list = main_controller.candidate_controller.query_all_candidates_for_admin_view();
-            
-            System.out.println((Integer) main_list[0].length);;
 
             table = new JTable() {
                 public boolean editCellAt(int row, int column, java.util.EventObject e) {
