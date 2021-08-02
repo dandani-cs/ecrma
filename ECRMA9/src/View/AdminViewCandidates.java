@@ -5,6 +5,7 @@
  */
 package View;
 
+import Controller.MainController;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -14,18 +15,25 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Random;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 
 /**
@@ -40,6 +48,7 @@ public class AdminViewCandidates extends JPanel{
     West west;
     Insets westInsets;
     Center center;
+    MainController main_controller = new MainController();
 
     public AdminViewCandidates(){
         bgColor = new Color(255,255,255);
@@ -163,69 +172,75 @@ public class AdminViewCandidates extends JPanel{
     class Center extends JPanel {
         JTable table;
         JButton btn_add;
+        TableCellRenderer button_renderer;
+        AdminViewCandidatesTableModel model;
         
         Center() {
             this.setLayout(new BorderLayout());
             this.setBorder(new EmptyBorder(60,60,60,60));
             this.setOpaque(false);
+            button_renderer = new JTableButtonRenderer();
             
             
-            String[] colNames = {"","Name", "Party", "Position"};
-            ImageIcon[] img = new ImageIcon[24];
-            for(int i = 0; i < 24; i++) {
-                Random rand = new Random();
-                String str = "C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ECRMA9\\src\\Icons\\pic"+ (rand.nextInt(4) + 1) +".jpg";
-                img[i] = new ImageIcon(str);
-                Image imagestr = img[i].getImage();
-                imagestr = imagestr.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
-                img[i] = new ImageIcon(imagestr);
-            }
-                 
-            Object[][] data = {{img[0],"Esther Hamer","Right","Senator"},
-                            {img[1],"Fred Leach","Right","Vice President"},
-                            {img[2],"Aaisha Coles","Left","Vice President"},
-                            {img[3],"Carl Carpenter","Center","President"},
-                            {img[4],"Malcolm Mcknight","Center","Vice President"},
-                            {img[5],"Bridget Everett","Left","Senator"},
-                            {img[6],"Malaki Grant","Party Party","Prime Minister"},
-                            {img[7],"Poppy-Rose Fellows","Party Party","President"},
-                            {img[8],"Barbara Emery","Right","Prime Minister"},
-                            {img[9],"Keeva Vance","Party Party","Senator"},
-                            {img[10],"Saif Southern","Center","Senator"},
-                            {img[11],"Jo Zhang","Right","President"},
-                            {img[12],"Piotr Wolf","Right","Prime Minister"},
-                            {img[13],"Kali Dorsey","Center","Senator"},
-                            {img[14],"Abdul Mccabe","Left","President"},
-                            {img[15],"Hakeem Hilton","Left","Vice President"},
-                            {img[16],"Kieren Khan","Party Party","President"},
-                            {img[17],"Romany Wells","Right","Prime Minister"},
-                            {img[18],"Emmanuella Hayden","Left","Prime Minister"},
-                            {img[19],"Naseem Marshall","Center","Vice President"},
-                            {img[20],"Frank Alford","Center","Senator"},
-                            {img[21],"Tobey Lim","Party Party","President"},
-                            {img[22],"Kareena Palmer","Left","Prime Minister"},
-                            {img[23],"Izzy Harris","Party Party","Vice President"},
-            };
             
-            DefaultTableModel model;
-            model = new DefaultTableModel(data,colNames);
+            
+//            String[] colNames = {"","Name", "Party", "Position"};
+//            ImageIcon[] img = new ImageIcon[24];
+//            for(int i = 0; i < 24; i++) {
+//                Random rand = new Random();
+//                String str = "C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ECRMA9\\src\\Icons\\pic"+ (rand.nextInt(4) + 1) +".jpg";
+//                img[i] = new ImageIcon(str);
+//                Image imagestr = img[i].getImage();
+//                imagestr = imagestr.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
+//                img[i] = new ImageIcon(imagestr);
+//            }
+                        
+            model = new AdminViewCandidatesTableModel();
+            
+            model.setData(main_controller.candidate_controller.query_all_candidates());
+            
+            Object[][] main_list;
+            main_list = main_controller.candidate_controller.query_all_candidates_for_admin_view();
+            
+            System.out.println((Integer) main_list[0].length);;
 
             table = new JTable() {
                 public boolean editCellAt(int row, int column, java.util.EventObject e) {
+                    
                     return false;
                 }
             };
             table.setModel(model);
             table.getColumnModel().getColumn(0).setCellRenderer(table.getDefaultRenderer(ImageIcon.class));
-            
             table.getColumnModel().getColumn(0).setMaxWidth(120);
             table.getColumnModel().getColumn(0).setMinWidth(120);
+            
+            table.setDefaultRenderer(JButton.class, new JTableButtonRenderer());
+            table.getColumnModel().getColumn(3).setCellRenderer(new JTableButtonRenderer());
+            table.getColumnModel().getColumn(4).setCellRenderer(new JTableButtonRenderer());
             
             table.setRowHeight(120);
             
             
             table.getTableHeader().setFont(new Font("CALIBRI", Font.PLAIN,24));
             table.setFont(new Font("CALIBRI", Font.PLAIN, 18));
+            
+            table.addMouseListener(new MouseAdapter() {
+               public void mouseClicked(MouseEvent e) {
+                   int col = table.columnAtPoint(e.getPoint());
+                   int row = table.rowAtPoint(e.getPoint());
+                   
+                   if (col == 3) {
+                       // open EditCandidate
+                       System.out.println("Edit candidate: " + table.getValueAt(row, 2) + " " + table.getValueAt(row, 1));
+                       System.out.println("Candidate ID: " + model.getCandidateID(row));
+                   } else if (col == 4) {
+                       // open DeleteCandidate
+                       System.out.println("Delete candidate: " + table.getValueAt(row, 2) + " " + table.getValueAt(row, 1));
+                       System.out.println("Candidate ID: " + model.getCandidateID(row));
+                   }
+               }
+            });
             
             JScrollPane sp = new JScrollPane(table);
             
@@ -242,6 +257,21 @@ public class AdminViewCandidates extends JPanel{
             this.add(btn_add, BorderLayout.SOUTH);
         }
         
+    }
+    
+    private class JTableButtonRenderer implements TableCellRenderer {        
+        @Override public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            Border padding = BorderFactory.createEmptyBorder(50, 50, 50, 50);
+
+            JButton button = (JButton) value;
+            
+            if (button != null) {
+                button.setBorder(BorderFactory.createCompoundBorder(getBorder(), padding));
+            }
+                
+                
+            return button;  
+        }
     }
     
 }

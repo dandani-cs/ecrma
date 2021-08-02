@@ -5,6 +5,7 @@
  */
 package ecrma9;
 import View.Frame_Login;
+import View.SearchFrame;
 import View.TestFrame;
 import java.awt.Color;
 
@@ -18,7 +19,7 @@ public class ECRMA9 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        new Frame_Login();
+        new SearchFrame();
     }
     
 }
