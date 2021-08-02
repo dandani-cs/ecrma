@@ -13,10 +13,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.File;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
@@ -58,26 +54,11 @@ public class AddGUI extends javax.swing.JFrame {
         
         gradDateSpinner.setModel(new SpinnerDateModel(new Date(), null, null, Calendar.DAY_OF_MONTH));
         gradDateSpinner.setEditor(new JSpinner.DateEditor(gradDateSpinner,
-                                                          date_fmt.toPattern()));  
+                                                          date_fmt.toPattern()));     
         
-        midInitialTxt.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                if(midInitialTxt.getText().length() >= 1)
-                    e.consume();
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-            }
-        });
-        
-        setSize(1250, 1080);
+        setSize(1250, 810);
         this.setTitle("Election Candidates Record Management");
+        this.setLocationRelativeTo(null);
     }
     
     
@@ -109,6 +90,7 @@ public class AddGUI extends javax.swing.JFrame {
         imageLabel = new javax.swing.JLabel();
         firstNameTxt = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -123,7 +105,11 @@ public class AddGUI extends javax.swing.JFrame {
         universityTxt = new javax.swing.JTextField();
         gradDateSpinner = new javax.swing.JSpinner();
         jLabel10 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         jSeparator5 = new javax.swing.JSeparator();
         cancelBtn = new javax.swing.JButton();
         resetBtn = new javax.swing.JButton();
@@ -153,11 +139,16 @@ public class AddGUI extends javax.swing.JFrame {
         firstNameTxt.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         firstNameTxt.setForeground(new java.awt.Color(33, 97, 140));
         firstNameTxt.setText("First name");
+        firstNameTxt.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
         jLabel17.setBackground(new java.awt.Color(33, 97, 140));
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(33, 97, 140));
         jLabel17.setText("Personal Information");
+
+        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jTextField3.setText("Position");
+        jTextField3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
         jPanel4.setLayout(new java.awt.BorderLayout());
 
@@ -280,6 +271,16 @@ public class AddGUI extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
         jPanel7.add(jLabel10, gridBagConstraints);
 
+        jLabel19.setBackground(new java.awt.Color(33, 97, 140));
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(33, 97, 140));
+        jLabel19.setText("Platform");
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jScrollPane1.setViewportView(jTextArea1);
+
         cancelBtn.setBackground(new java.awt.Color(33, 97, 140));
         cancelBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cancelBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -319,10 +320,12 @@ public class AddGUI extends javax.swing.JFrame {
         lastNameTxt.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         lastNameTxt.setForeground(new java.awt.Color(33, 97, 140));
         lastNameTxt.setText("Last name");
+        lastNameTxt.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
         midInitialTxt.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         midInitialTxt.setForeground(new java.awt.Color(33, 97, 140));
         midInitialTxt.setText("Middle initial");
+        midInitialTxt.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
         browseImageBtn.setText("Browse Image");
         browseImageBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -346,14 +349,18 @@ public class AddGUI extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(browseImageBtn)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(firstNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(firstNameTxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
+                                        .addGap(18, 18, 18)
                                         .addComponent(lastNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGap(18, 18, 18)
                                         .addComponent(midInitialTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1156, Short.MAX_VALUE)
+                                .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1156, Short.MAX_VALUE)
+                                .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jSeparator5, javax.swing.GroupLayout.Alignment.LEADING))))
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -370,42 +377,57 @@ public class AddGUI extends javax.swing.JFrame {
                 .addComponent(confirmBtn)
                 .addGap(86, 86, 86))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(137, 137, 137)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(175, 175, 175)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 857, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(137, 137, 137)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(197, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(93, 93, 93)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(firstNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lastNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(midInitialTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(14, 14, 14)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(browseImageBtn))
-                    .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel17)
                 .addGap(15, 15, 15)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100)
+                .addGap(22, 22, 22)
                 .addComponent(jLabel18)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(178, 178, 178)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confirmBtn)
                     .addComponent(resetBtn)
                     .addComponent(cancelBtn))
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -473,7 +495,7 @@ public class AddGUI extends javax.swing.JFrame {
         System.out.println("added candidate");
     }//GEN-LAST:event_confirmBtnActionPerformed
 
-    private String validate_input()
+     private String validate_input()
     {
         String error = "";
         boolean is_valid_fname = (!firstNameTxt.getText().isBlank() &&
@@ -484,15 +506,15 @@ public class AddGUI extends javax.swing.JFrame {
                                   !midInitialTxt.getText().equals("Middle initial"));
         boolean is_valid_uni   = (!universityTxt.getText().equals("University"));
         boolean is_valid_deg   = (!degreeTxt.getText().equals("degree"));
-        
+
         Date birth_date   = (Date) birthDateSpinner.getValue();
         Date grad_date    = (Date) gradDateSpinner.getValue();
         Date current_date = new Date();
-        
+
         boolean is_valid_bdate =  (get_date_difference(current_date, grad_date) >= (365))
                                   && (birth_date.getTime() < grad_date.getTime());
         boolean is_valid_gdate =  (get_date_difference(current_date, grad_date) >= (365));
-        
+
         if(!is_valid_fname || !is_valid_lname || !is_valid_midI)
             error += "Invalid name entered!\n";
         if(!is_valid_bdate)
@@ -502,6 +524,7 @@ public class AddGUI extends javax.swing.JFrame {
         return error;
     }
     
+    
     private long get_date_difference(Date d1, Date d2) {
         long time_diff = d1.getTime() - d2.getTime();
         return TimeUnit.DAYS.convert(time_diff, TimeUnit.MILLISECONDS);
@@ -509,6 +532,7 @@ public class AddGUI extends javax.swing.JFrame {
     
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void browseImageBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseImageBtnActionPerformed
@@ -609,6 +633,7 @@ public class AddGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -617,8 +642,12 @@ public class AddGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField lastNameTxt;
     private javax.swing.JTextField midInitialTxt;
     private javax.swing.JTextField religionTxt;
