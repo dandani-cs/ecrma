@@ -53,6 +53,11 @@ public class Candidate {
         this.sex            = sex;
     }
     
+    public String toString()
+    {
+        return String.format("%s, %s %c", last_name, first_name, middle_initial);
+    }
+    
     public void set_candidate_id(int new_id)
     {
         this.candidate_id = new_id;
