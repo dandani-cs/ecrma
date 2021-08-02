@@ -15,10 +15,10 @@ import javax.swing.JFrame;
  * @author dandani-cs
  */
 public class TestFrame extends JFrame {
-    private AddElectionPeriodPanel add_period_panel;
+    private AddCampaignPanel add_period_panel;
     
     public TestFrame() {
-       add_period_panel = new AddElectionPeriodPanel();
+       add_period_panel = new AddCampaignPanel();
        
        add(add_period_panel, BorderLayout.CENTER);
        

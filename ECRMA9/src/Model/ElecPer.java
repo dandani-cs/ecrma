@@ -26,6 +26,11 @@ public class ElecPer {
         this.fdate = fdate;
         this.archived = archived;
     }
+    
+    public String toString()
+    {
+        return name;
+    }
 
     public int getElecPerId() {
         return elecPerId;
