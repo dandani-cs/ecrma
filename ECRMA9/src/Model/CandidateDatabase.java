@@ -10,8 +10,9 @@
         degree      VARCHAR(32),
         university  VARCHAR(32),
         grad_date   DATE,
+        sex         VARCHAR(8),
         img_path    VARCHAR(32), 
-        UNIQUE (last_name, first_name, mid_initial, birth_date));
+        UNIQUE (last_name, first_name, mid_initial, birth_date, sex));
  */
 package Model;
 
@@ -72,6 +73,7 @@ public class CandidateDatabase {
                             "degree      VARCHAR(32), " +
                             "university  VARCHAR(32), " +
                             "grad_date   DATE,"         +
+                            "sex         VARCHAR(6),  " +
                             "img_path    VARCHAR(32), " +
                             "UNIQUE (last_name, first_name, mid_initial, birth_date))";
             statement.executeUpdate(query);
@@ -96,7 +98,7 @@ public class CandidateDatabase {
             Statement statement = db_connection.createStatement();
             String query = "INSERT INTO candidates "
                   + "(last_name, first_name, mid_initial, "
-                  + "birth_date, religion, degree, university, grad_date,"
+                  + "birth_date, religion, sex, degree, university, grad_date,"
                   + "img_path) "
                   + "VALUES ("
                     + "\"" + candidate.get_last_name()   + "\", "
@@ -104,6 +106,7 @@ public class CandidateDatabase {
                     + "\"" + candidate.get_mid_initial() + "\", "
                     + "\"" + date_fmt.format(candidate.get_birth_date())+ "\", "
                     + "\"" + candidate.get_religion()    + "\", "
+                    + "\"" + candidate.get_sex()         + "\", "
                     + "\"" + candidate.get_degree()      + "\", "
                     + "\"" + candidate.get_university()  + "\", "
                     + "\"" + date_fmt.format(candidate.get_grad_date())+ "\", "
@@ -142,6 +145,7 @@ public class CandidateDatabase {
                 + "birth_date  = \"" + date_fmt.format(new_information.get_birth_date()) + "\", "
                 + "religion    = \"" + new_information.get_religion()   + "\", "
                 + "degree      = \"" + new_information.get_degree()     + "\", "
+                + "sex         = \"" + new_information.get_sex()        + "\", "
                 + "university  = \"" + new_information.get_university() + "\", "
                 + "grad_date   = \"" + date_fmt.format(new_information.get_grad_date())+ "\", "
                 + "img_path    = \"" + new_information.get_image_path() + "\" "
@@ -270,6 +274,7 @@ public class CandidateDatabase {
                 (char)results.getByte("mid_initial"),
                 birth_date,
                 results.getString("religion"),
+                results.getString("sex"),
                 results.getString("degree"),
                 results.getString("university"),
                 grad_date,

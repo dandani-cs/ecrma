@@ -5,6 +5,7 @@
  */
 package View;
 
+import Controller.UserController;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -44,6 +45,8 @@ import javax.swing.*;
 public class Frame_Login extends JFrame implements ActionListener{
     AdminMenu adminmenu;
     UserMenu usermenu;
+    
+    UserController user_controller = new UserController();
     
     JPanel login_panel, about_panel, input_panel;
     ImagePanel bgImagePanel;
@@ -179,17 +182,35 @@ public class Frame_Login extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btn_login) {
-            adminmenu = new AdminMenu();
-            adminmenu.setVisible(true);
-            this.setVisible(false);
+            String username = txt_email.getText();
+            String password = txt_password.getText();
+            
+            if(user_controller.isAuthorized(username, password))
+            {
+                if(user_controller.isAdmin())
+                {
+                    adminmenu = new AdminMenu();
+                    adminmenu.setVisible(true);
+                    this.setVisible(false);    
+                } else
+                {
+                    usermenu = new UserMenu();
+                    usermenu.setVisible(true);
+                    this.setVisible(false);
+                }
+            } else
+            {
+                // TODO: possibly change this if there is a better error msg/design
+                JOptionPane.showMessageDialog(null, 
+                                              "The email and/or password is incorrect.",
+                                              "Login Failed!", 
+                                              JOptionPane.ERROR_MESSAGE);
+            }
         }
         else if (e.getSource() == btn_loginUser) {
-            usermenu = new UserMenu();
-            usermenu.setVisible(true);
-            this.setVisible(false);
+            
         }
     }
-    
 }
 
 class ImagePanel extends JComponent {

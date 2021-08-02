@@ -5,18 +5,34 @@
  */
 package View;
 
+import Controller.ElecPerController;
+import Controller.FormEvent;
+import Controller.MainController;
+import Model.ElecPer;
+import Model.ElecPerSQL;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author caeth
  */
-public class Archive extends javax.swing.JFrame {
+public class Archive extends javax.swing.JFrame {    
     
     private Color hoverMENU = new Color(33,82,117);
     private Color byeMENU = new Color(33,97,140);
@@ -30,18 +46,33 @@ public class Archive extends javax.swing.JFrame {
         this.setSize(new Dimension(1920,1080));
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
-        datatable.setAutoCreateRowSorter(true);
+        DefaultTableModel dataModel = new DefaultTableModel(ElecPerSQL.getTable(),
+                new String[] {"ELECPERID", "Name", "Starting Date", "Finish Date", "Archive"}) {
+                        @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }                
+            
+        };
+        datatable.setModel(dataModel);
+        //datatable.setAutoCreateRowSorter(true);
         
         datatable.getTableHeader().setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 15));
         datatable.getTableHeader().setBackground(new Color(255,255,255));
         datatable.getTableHeader().setForeground(new Color(33,82,117));
         datatable.setRowHeight(25);
+               
+        DefaultTableCellRenderer tableCellRenderer = new DefaultTableCellRenderer();
+        tableCellRenderer.setHorizontalAlignment(JLabel.CENTER);
+        for(int i = 0; i < datatable.getColumnModel().getColumnCount(); i++) {
+            datatable.getColumnModel().getColumn(i).setCellRenderer(tableCellRenderer);            
+        }
+        datatable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        datatable.getColumnModel().getColumn(4).setCellRenderer(datatable.getDefaultRenderer(java.lang.Boolean.class));
+        datatable.removeColumn(datatable.getColumnModel().getColumn(0));
         
-        ((DefaultTableCellRenderer)datatable.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
-        
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-        datatable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+
+
     }
 
     /**
@@ -213,10 +244,7 @@ public class Archive extends javax.swing.JFrame {
             .addComponent(vCandidate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(vElection2, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
             .addComponent(back, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sidePNLLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(logout, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addComponent(logout, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
         );
         sidePNLLayout.setVerticalGroup(
             sidePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,44 +266,14 @@ public class Archive extends javax.swing.JFrame {
 
         datatable.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
         datatable.setForeground(new java.awt.Color(33, 82, 117));
-        datatable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {2021, null},
-                {2020, null},
-                {2019, null},
-                {2018, null},
-                {2017, null},
-                {2016, null},
-                {2015, null},
-                {2014, null},
-                {2013, null},
-                {2012, null},
-                {2011, null},
-                {2010, null},
-                {2009, null},
-                {2008, null},
-                {2007, null},
-                {2006, null},
-                {2005, null},
-                {2004, null},
-                {2003, null},
-                {2002, null}
-            },
-            new String [] {
-                "Election Period", "Select"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Boolean.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
         datatable.setGridColor(new java.awt.Color(0, 51, 51));
         datatable.setRowHeight(20);
         datatable.setSelectionBackground(new java.awt.Color(33, 82, 117));
+        datatable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                datatableMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(datatable);
 
         archiveBTN.setBackground(new java.awt.Color(255, 255, 255));
@@ -317,9 +315,7 @@ public class Archive extends javax.swing.JFrame {
                     .addGroup(archivecardBGLayout.createSequentialGroup()
                         .addGroup(archivecardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jSeparator5, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(archivecardBGLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(archiveBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(archiveBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(79, 79, 79))
                     .addGroup(archivecardBGLayout.createSequentialGroup()
                         .addGroup(archivecardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -429,6 +425,27 @@ public class Archive extends javax.swing.JFrame {
         logout.setBackground(byeMENU);
     }//GEN-LAST:event_logoutMouseExited
 
+    private void datatableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_datatableMousePressed
+        if(evt.getClickCount() == 1) {
+            boolean setArchived = false;
+            
+            boolean archived = (boolean) datatable.getModel().getValueAt(datatable.getSelectedRow(), 4);
+            if(archived == true) {
+                datatable.getModel().setValueAt(setArchived, datatable.getSelectedRow(), 4);
+            } else {
+                setArchived = true;
+                datatable.getModel().setValueAt(setArchived, datatable.getSelectedRow(), 4);
+            }
+            
+            ElecPer ep = new ElecPer();
+            ep.setElecPerId((int) datatable.getModel().getValueAt(datatable.getSelectedRow(), 0));
+            ep.setArchived(setArchived);
+            FormEvent e = new FormEvent(evt, ep);
+            ElecPerController epc = new ElecPerController();
+            epc.archivedElectionPeriod(e);
+        }
+    }//GEN-LAST:event_datatableMousePressed
+
     /**
      * @param args the command line arguments
      */
@@ -477,12 +494,10 @@ public class Archive extends javax.swing.JFrame {
     private javax.swing.JPanel logout;
     private javax.swing.JPanel sidePNL;
     private javax.swing.JLabel sp1LBL;
-    private javax.swing.JLabel sp2LBL;
     private javax.swing.JLabel sp2LBL2;
     private javax.swing.JLabel sp3LBL;
     private javax.swing.JLabel sp3LBL1;
     private javax.swing.JPanel vCandidate;
-    private javax.swing.JPanel vElection;
     private javax.swing.JPanel vElection2;
     // End of variables declaration//GEN-END:variables
 }

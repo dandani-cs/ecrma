@@ -20,6 +20,7 @@ public class Candidate {
     private char   middle_initial;
     private Date   birth_date;
     private String religion;
+    private String sex;
     private String degree;
     private String university;
     private Date   grad_date;
@@ -34,6 +35,7 @@ public class Candidate {
                      char   middle_initial, 
                      Date   birth_date,
                      String religion,
+                     String sex,
                      String degree, 
                      String university, 
                      Date   grad_date, 
@@ -48,6 +50,7 @@ public class Candidate {
         this.university     = university;
         this.grad_date      = grad_date;
         this.image_path     = image_path;
+        this.sex            = sex;
     }
     
     public void set_candidate_id(int new_id)
@@ -91,8 +94,12 @@ public class Candidate {
         this.image_path = image_path;
     }
     
+    public void set_sex(String sex) {
+        this.sex = sex;
+    }
     
     public int    get_candidate_id() { return candidate_id;   }
+    public String get_sex()          { return sex;   }
     public String get_last_name()    { return last_name;      }
     public String get_first_name()   { return first_name;     }
     public char   get_mid_initial()  { return middle_initial; }

@@ -26,9 +26,9 @@ public class CandidateController {
         candidate_db = new CandidateDatabase();
     }
     
-    public void add_candidate(CandidateAddFormEvent evt)
+    public Boolean add_candidate(FormEvent evt)
     {
-        candidate_db.add_candidate(evt.get_candidate());
+        return candidate_db.add_candidate(evt.getCandidate());
     }
     
     public void delete_candidate(Candidate to_delete)
@@ -36,9 +36,9 @@ public class CandidateController {
         candidate_db.delete_candidate(to_delete.get_candidate_id());
     }
     
-    public void update_candidate(int candidate_id, Candidate new_information)
+    public Boolean update_candidate(int candidate_id, Candidate new_information)
     {
-        candidate_db.update_candidate(candidate_id, new_information);
+        return candidate_db.update_candidate(candidate_id, new_information);
     }
     
     public ArrayList<Candidate> query_all_candidates()
