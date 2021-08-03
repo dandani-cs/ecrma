@@ -45,6 +45,7 @@ public class UserViewCandidates extends JPanel {
         this.add(center, BorderLayout.CENTER);
         
         this.setBackground(bgColor);
+        this.setSize(1300, 880);
     }
     
     //add header here

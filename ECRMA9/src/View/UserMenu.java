@@ -6,7 +6,9 @@
 
 package View;
 
+import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
@@ -21,11 +23,15 @@ public class UserMenu extends javax.swing.JFrame {
     /** Creates new form UserMenu */
     public UserMenu() {
         initComponents();
+        
+        this.setSize(new Dimension(1920,1080));
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
         this.pack();
-        Toolkit tk = Toolkit.getDefaultToolkit();
+        /*Toolkit tk = Toolkit.getDefaultToolkit();
         int xsize = (int) tk.getScreenSize().getWidth();
         int ysize = (int) tk.getScreenSize().getHeight();
-        this.setSize(xsize, ysize);
+        this.setSize(xsize, ysize);*/
         this.setLocationRelativeTo(null);
     }
 
@@ -67,6 +73,7 @@ public class UserMenu extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         UserBacground.setBackground(new java.awt.Color(33, 97, 140));
+        UserBacground.setMinimumSize(new java.awt.Dimension(1920, 1080));
         UserBacground.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         UserHeader.setBackground(new java.awt.Color(33, 97, 140));
@@ -111,7 +118,7 @@ public class UserMenu extends javax.swing.JFrame {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         UserBacground.add(UserHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 320));
@@ -138,7 +145,6 @@ public class UserMenu extends javax.swing.JFrame {
         jLabel4.setText("Search a Candidate");
 
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ECRMA9\\src\\Icons\\candidate2_128px.png")); // NOI18N
 
         javax.swing.GroupLayout CandSearchBTNLayout = new javax.swing.GroupLayout(CandSearchBTN);
         CandSearchBTN.setLayout(CandSearchBTNLayout);
@@ -154,7 +160,7 @@ public class UserMenu extends javax.swing.JFrame {
             CandSearchBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CandSearchBTNLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -179,7 +185,6 @@ public class UserMenu extends javax.swing.JFrame {
         jLabel5.setText("Search a Position");
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ECRMA9\\src\\Icons\\search128px.png")); // NOI18N
 
         javax.swing.GroupLayout PosSearchBTNLayout = new javax.swing.GroupLayout(PosSearchBTN);
         PosSearchBTN.setLayout(PosSearchBTNLayout);
@@ -195,7 +200,7 @@ public class UserMenu extends javax.swing.JFrame {
             PosSearchBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PosSearchBTNLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -220,7 +225,6 @@ public class UserMenu extends javax.swing.JFrame {
         jLabel6.setText("Search a Political Party");
 
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ECRMA9\\src\\Icons\\party128px.png")); // NOI18N
 
         javax.swing.GroupLayout PartySearchBTNLayout = new javax.swing.GroupLayout(PartySearchBTN);
         PartySearchBTN.setLayout(PartySearchBTNLayout);
@@ -236,7 +240,7 @@ public class UserMenu extends javax.swing.JFrame {
             PartySearchBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PartySearchBTNLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -266,7 +270,6 @@ public class UserMenu extends javax.swing.JFrame {
         jLabel8.setText("View All");
 
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ECRMA9\\src\\Icons\\view128px.png")); // NOI18N
 
         javax.swing.GroupLayout ViewAllBTNLayout = new javax.swing.GroupLayout(ViewAllBTN);
         ViewAllBTN.setLayout(ViewAllBTNLayout);
@@ -282,7 +285,7 @@ public class UserMenu extends javax.swing.JFrame {
             ViewAllBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ViewAllBTNLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -307,7 +310,6 @@ public class UserMenu extends javax.swing.JFrame {
         jLabel7.setText("Logout");
 
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ECRMA9\\src\\Icons\\logout128px.png")); // NOI18N
 
         javax.swing.GroupLayout LogoutBTNLayout = new javax.swing.GroupLayout(LogoutBTN);
         LogoutBTN.setLayout(LogoutBTNLayout);
@@ -323,7 +325,7 @@ public class UserMenu extends javax.swing.JFrame {
             LogoutBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LogoutBTNLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -347,7 +349,7 @@ public class UserMenu extends javax.swing.JFrame {
 
         UserBacground.add(UserContentR2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 590, 1340, 220));
 
-        getContentPane().add(UserBacground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1560, 880));
+        getContentPane().add(UserBacground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 1080));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
