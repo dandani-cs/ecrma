@@ -62,7 +62,8 @@ public class UserMainContentArea extends javax.swing.JFrame {
      */
     public UserMainContentArea() {
         initComponents(); 
-        setSize(1920, 1080);
+        this.setSize(new Dimension(1920,1080));
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setTitle("Election Candidates Record Management");
         cardViewAll.add(myPanel);
         ByParty.add(myPanel1);
@@ -421,7 +422,7 @@ public class UserCard extends JPanel{
         
         pack();
         
-        setSize(1300, 880);
+        this.setSize(1620,1000);
         this.setVisible(true);
     }
     
@@ -616,8 +617,12 @@ public class UserCard extends JPanel{
     
     class Center extends JPanel {
         JTable table;
+        JPanel space;
 
         Center() {
+            
+            JPanel space = new JPanel();
+            
             
             this.setLayout(new BorderLayout());
             this.setBorder(new EmptyBorder(60,60,60,60));
@@ -740,7 +745,7 @@ public class UserCard extends JPanel{
         
         pack();
         
-        setSize(1300, 880);
+        setSize(1620,1000);
         this.setVisible(true);
     }
     
@@ -1057,7 +1062,15 @@ public class UserCard extends JPanel{
         jLabel2 = new javax.swing.JLabel();
         MainPanel = new javax.swing.JPanel();
         ByParty = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        vcpartyTitle = new javax.swing.JLabel();
+        vcpartySubtitle = new javax.swing.JLabel();
+        jSeparator7 = new javax.swing.JSeparator();
         ByPosition = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        vcpositionTitle = new javax.swing.JLabel();
+        vcpositionSubtitle = new javax.swing.JLabel();
+        jSeparator8 = new javax.swing.JSeparator();
         cardDetails = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
@@ -1088,6 +1101,10 @@ public class UserCard extends JPanel{
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
+        vcTitle = new javax.swing.JLabel();
+        vcSubtitle = new javax.swing.JLabel();
+        jSeparator6 = new javax.swing.JSeparator();
         cardViewAll = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1168,7 +1185,7 @@ public class UserCard extends JPanel{
             .addGroup(vPartyLayout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(sp1LBL1)
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         vPartyLayout.setVerticalGroup(
             vPartyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1192,7 +1209,7 @@ public class UserCard extends JPanel{
 
         sp1LBL2.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 16)); // NOI18N
         sp1LBL2.setForeground(new java.awt.Color(255, 255, 255));
-        sp1LBL2.setText("VIEW CANDIDATES BY PARTY");
+        sp1LBL2.setText("VIEW CANDIDATES BY POSITION");
 
         javax.swing.GroupLayout vPositionLayout = new javax.swing.GroupLayout(vPosition);
         vPosition.setLayout(vPositionLayout);
@@ -1201,7 +1218,7 @@ public class UserCard extends JPanel{
             .addGroup(vPositionLayout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(sp1LBL2)
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         vPositionLayout.setVerticalGroup(
             vPositionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1278,13 +1295,11 @@ public class UserCard extends JPanel{
 
         jPanel13.add(Logout);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ecrmaLogo.png")); // NOI18N
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -1316,31 +1331,117 @@ public class UserCard extends JPanel{
         MainPanel.setBackground(new java.awt.Color(204, 255, 255));
         MainPanel.setLayout(new java.awt.CardLayout());
 
+        ByParty.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        vcpartyTitle.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 30)); // NOI18N
+        vcpartyTitle.setForeground(new java.awt.Color(33, 82, 117));
+        vcpartyTitle.setText("VIEW CANDIDATES BY PARTY");
+
+        vcpartySubtitle.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        vcpartySubtitle.setForeground(new java.awt.Color(33, 82, 117));
+        vcpartySubtitle.setText("View Candidates Subtitle");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(76, 76, 76)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(vcpartySubtitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(vcpartyTitle)
+                            .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 898, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 43, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(vcpartyTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(vcpartySubtitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
         javax.swing.GroupLayout ByPartyLayout = new javax.swing.GroupLayout(ByParty);
         ByParty.setLayout(ByPartyLayout);
         ByPartyLayout.setHorizontalGroup(
             ByPartyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1200, Short.MAX_VALUE)
+            .addGroup(ByPartyLayout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 772, Short.MAX_VALUE))
         );
         ByPartyLayout.setVerticalGroup(
             ByPartyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1102, Short.MAX_VALUE)
+            .addGroup(ByPartyLayout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 950, Short.MAX_VALUE))
         );
 
         MainPanel.add(ByParty, "ByParty");
+
+        ByPosition.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+
+        vcpositionTitle.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 30)); // NOI18N
+        vcpositionTitle.setForeground(new java.awt.Color(33, 82, 117));
+        vcpositionTitle.setText("VIEW CANDIDATES BY POSITION");
+
+        vcpositionSubtitle.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        vcpositionSubtitle.setForeground(new java.awt.Color(33, 82, 117));
+        vcpositionSubtitle.setText("View Candidates by Position Subtitle");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(76, 76, 76)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(vcpositionSubtitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(vcpositionTitle)
+                            .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 898, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 43, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(vcpositionTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(vcpositionSubtitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         javax.swing.GroupLayout ByPositionLayout = new javax.swing.GroupLayout(ByPosition);
         ByPosition.setLayout(ByPositionLayout);
         ByPositionLayout.setHorizontalGroup(
             ByPositionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1200, Short.MAX_VALUE)
+            .addGroup(ByPositionLayout.createSequentialGroup()
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 772, Short.MAX_VALUE))
         );
         ByPositionLayout.setVerticalGroup(
             ByPositionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1102, Short.MAX_VALUE)
+            .addGroup(ByPositionLayout.createSequentialGroup()
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 950, Short.MAX_VALUE))
         );
 
         MainPanel.add(ByPosition, "ByPosition");
+
+        cardDetails.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1588,10 +1689,7 @@ public class UserCard extends JPanel{
                         .addGap(144, 144, 144)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(173, 173, 173)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 859, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
+                        .addGap(76, 76, 76)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 1159, Short.MAX_VALUE)
                             .addComponent(jSeparator5)
@@ -1608,8 +1706,11 @@ public class UserCard extends JPanel{
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel4)))
                             .addComponent(jLabel21)
-                            .addComponent(jLabel23))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jLabel23)))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(173, 173, 173)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 975, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 566, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1643,19 +1744,63 @@ public class UserCard extends JPanel{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(247, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(60, Short.MAX_VALUE))
+        );
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        vcTitle.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 30)); // NOI18N
+        vcTitle.setForeground(new java.awt.Color(33, 82, 117));
+        vcTitle.setText("VIEW CANDIDATES");
+
+        vcSubtitle.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        vcSubtitle.setForeground(new java.awt.Color(33, 82, 117));
+        vcSubtitle.setText("View Candidates Subtitle");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(76, 76, 76)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(vcSubtitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(vcTitle)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(vcTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(vcSubtitle)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout cardDetailsLayout = new javax.swing.GroupLayout(cardDetails);
         cardDetails.setLayout(cardDetailsLayout);
         cardDetailsLayout.setHorizontalGroup(
             cardDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(cardDetailsLayout.createSequentialGroup()
+                .addGap(76, 76, 76)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 1360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(365, Short.MAX_VALUE))
         );
         cardDetailsLayout.setVerticalGroup(
             cardDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cardDetailsLayout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38))
         );
 
         MainPanel.add(cardDetails, "cardDetails");
@@ -1664,11 +1809,11 @@ public class UserCard extends JPanel{
         cardViewAll.setLayout(cardViewAllLayout);
         cardViewAllLayout.setHorizontalGroup(
             cardViewAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1200, Short.MAX_VALUE)
+            .addGap(0, 1801, Short.MAX_VALUE)
         );
         cardViewAllLayout.setVerticalGroup(
             cardViewAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1102, Short.MAX_VALUE)
+            .addGap(0, 1139, Short.MAX_VALUE)
         );
 
         MainPanel.add(cardViewAll, "cardViewAll");
@@ -1685,7 +1830,7 @@ public class UserCard extends JPanel{
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1102, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1139, Short.MAX_VALUE)
             .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -1845,8 +1990,11 @@ public class UserCard extends JPanel{
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane2;
@@ -1854,6 +2002,9 @@ public class UserCard extends JPanel{
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
@@ -1873,5 +2024,11 @@ public class UserCard extends JPanel{
     private javax.swing.JPanel vMenu;
     private javax.swing.JPanel vParty;
     private javax.swing.JPanel vPosition;
+    private javax.swing.JLabel vcSubtitle;
+    private javax.swing.JLabel vcTitle;
+    private javax.swing.JLabel vcpartySubtitle;
+    private javax.swing.JLabel vcpartyTitle;
+    private javax.swing.JLabel vcpositionSubtitle;
+    private javax.swing.JLabel vcpositionTitle;
     // End of variables declaration//GEN-END:variables
 }
