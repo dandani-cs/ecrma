@@ -76,6 +76,11 @@ public class CandidateController {
         return candidate_db.query_candidates_by_name(pattern);
     }
     
+    public ArrayList<Object[]> query_candidates_by_name_elecper(String pattern, int elecper_id)
+    {
+        return candidate_db.query_candidates_by_name_elecper(pattern, elecper_id);
+    }
+    
     public Candidate query_candidate_by_id(int candidate_id)
     {
         return candidate_db.query_candidate_by_id(candidate_id);

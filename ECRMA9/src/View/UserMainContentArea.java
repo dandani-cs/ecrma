@@ -5,6 +5,10 @@
  */
 package View;
 
+import Controller.CandidateController;
+import Controller.MainController;
+import Model.Campaigns;
+import Model.Candidate;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -19,6 +23,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -48,10 +53,12 @@ public class UserMainContentArea extends javax.swing.JFrame {
     UserMenu menu;
     Frame_Login login;
     
-    UserCard myPanel = new UserCard();
+    UserCard myPanel;
     UserCard1 myPanel1 = new UserCard1();
     UserCard3 myPanel2 = new UserCard3();
 
+    private MainController controller;
+    private JTable search_by_name_table;
     private Color hoverMENU = new Color(33,82,117);
     private Color byeMENU = new Color(33,97,140);
     
@@ -65,6 +72,10 @@ public class UserMainContentArea extends javax.swing.JFrame {
         this.setSize(new Dimension(1920,1080));
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setTitle("Election Candidates Record Management");
+        
+        controller = new MainController();
+        myPanel    = new UserCard();
+        
         cardViewAll.add(myPanel);
         ByParty.add(myPanel1);
         ByPosition.add(myPanel2);
@@ -76,9 +87,56 @@ public class UserMainContentArea extends javax.swing.JFrame {
         card.show(MainPanel, str);
     }
     
+    private void update_search_by_name_table()
+    {
+        String query_pattern = queryInputField.getText();
+        System.out.println("Query: " + query_pattern);
+        ArrayList<Object[]> search_results = controller.candidate_controller
+                                                    .query_candidates_by_name_elecper(query_pattern, 1);
+        
+        String[] colNames = {"","Name", "Party", "Position"};
+         
+        Object[][] data = new Object[search_results.size()][4];
+        
+        for(int i = 0; i < search_results.size(); i++)
+        {
+            Candidate curr_candidate = (Candidate) search_results.get(i)[0];
+            Campaigns curr_campaign  = (Campaigns) search_results.get(i)[1];
+            Object[]  curr_row       = data[i];
+            
+            ImageIcon img_icon = new ImageIcon(curr_candidate.get_image_path());
+            Image resized_img  = img_icon.getImage().getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
+            ImageIcon img_view = new ImageIcon(resized_img);
+            
+            curr_row[0] = img_view;
+            curr_row[1] = String.format("%s %c %s", 
+                                        curr_candidate.get_first_name(),
+                                        curr_candidate.get_mid_initial(),
+                                        curr_candidate.get_last_name());
+            curr_row[2] = curr_campaign.getParty();
+            curr_row[3] = curr_campaign.getPosition();
+        }
+        
+        DefaultTableModel model;
+        model = new DefaultTableModel(data,colNames) {
+            @Override
+            public Class<?> getColumnClass(int column)
+            {
+                if(column == 0) return ImageIcon.class;
+                return Object.class;
+            }
+        };
+
+        search_by_name_table.setModel(model);
+        search_by_name_table.getColumnModel().getColumn(0).setMaxWidth(120);
+        search_by_name_table.getColumnModel().getColumn(0).setMinWidth(120);
+        search_by_name_table.setRowHeight(120);
+       
+    }
+    
 public class UserCard extends JPanel{
     Color bgColor;
-    
+
     North north;
     West west;
     Insets westInsets;
@@ -297,9 +355,9 @@ public class UserCard extends JPanel{
 
 
     }
+        
     //VIEW CANDIDATE?
     class Center extends JPanel {
-        JTable table;
 
         Center() {
             
@@ -307,72 +365,33 @@ public class UserCard extends JPanel{
             this.setBorder(new EmptyBorder(243,60,60,60));
             this.setOpaque(true);
             this.setBackground(new Color(33, 97, 140));
-
-            String[] colNames = {"","Name", "Party", "Position"};
-            ImageIcon[] img = new ImageIcon[24];
-            for(int i = 0; i < 24; i++) {
-                Random rand = new Random();
-                String str = "C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ECRMA9\\src\\Icons\\pic"+ (rand.nextInt(4) + 1) +".jpg";
-                img[i] = new ImageIcon(str);
-                Image imagestr = img[i].getImage();
-                imagestr = imagestr.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
-                img[i] = new ImageIcon(imagestr);
-            }
-                 
-            Object[][] data = {{img[0],"Esther Hamer","Right","Senator"},
-                            {img[1],"Fred Leach","Right","Vice President"},
-                            {img[2],"Aaisha Coles","Left","Vice President"},
-                            {img[3],"Carl Carpenter","Center","President"},
-                            {img[4],"Malcolm Mcknight","Center","Vice President"},
-                            {img[5],"Bridget Everett","Left","Senator"},
-                            {img[6],"Malaki Grant","Party Party","Prime Minister"},
-                            {img[7],"Poppy-Rose Fellows","Party Party","President"},
-                            {img[8],"Barbara Emery","Right","Prime Minister"},
-                            {img[9],"Keeva Vance","Party Party","Senator"},
-                            {img[10],"Saif Southern","Center","Senator"},
-                            {img[11],"Jo Zhang","Right","President"},
-                            {img[12],"Piotr Wolf","Right","Prime Minister"},
-                            {img[13],"Kali Dorsey","Center","Senator"},
-                            {img[14],"Abdul Mccabe","Left","President"},
-                            {img[15],"Hakeem Hilton","Left","Vice President"},
-                            {img[16],"Kieren Khan","Party Party","President"},
-                            {img[17],"Romany Wells","Right","Prime Minister"},
-                            {img[18],"Emmanuella Hayden","Left","Prime Minister"},
-                            {img[19],"Naseem Marshall","Center","Vice President"},
-                            {img[20],"Frank Alford","Center","Senator"},
-                            {img[21],"Tobey Lim","Party Party","President"},
-                            {img[22],"Kareena Palmer","Left","Prime Minister"},
-                            {img[23],"Izzy Harris","Party Party","Vice President"},
-            };
             
-            DefaultTableModel model;
-            model = new DefaultTableModel(data,colNames);
-            
-
-            table = new JTable() {
+            search_by_name_table = new JTable() {
                 public boolean editCellAt(int row, int column, java.util.EventObject e) {
                     return false;
                 }
             };
-            table.setModel(model);
-            table.getColumnModel().getColumn(0).setCellRenderer(table.getDefaultRenderer(ImageIcon.class));
             
-            table.getColumnModel().getColumn(0).setMaxWidth(120);
-            table.getColumnModel().getColumn(0).setMinWidth(120);
+            update_search_by_name_table();
             
-            table.setRowHeight(120);
+            search_by_name_table.getColumnModel().getColumn(0).setCellRenderer(search_by_name_table.getDefaultRenderer(ImageIcon.class));
+            
+            search_by_name_table.getColumnModel().getColumn(0).setMaxWidth(120);
+            search_by_name_table.getColumnModel().getColumn(0).setMinWidth(120);
+            
+            search_by_name_table.setRowHeight(120);
             
             
-            table.getTableHeader().setFont(new Font("CALIBRI", Font.PLAIN,24));
-            table.setFont(new Font("CALIBRI", Font.PLAIN, 18));
+            search_by_name_table.getTableHeader().setFont(new Font("CALIBRI", Font.PLAIN,24));
+            search_by_name_table.setFont(new Font("CALIBRI", Font.PLAIN, 18));
 
-            JScrollPane sp = new JScrollPane(table);
+            JScrollPane sp = new JScrollPane(search_by_name_table);
             
-            table.addMouseListener(new java.awt.event.MouseAdapter() {
+            search_by_name_table.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    int row = table.rowAtPoint(evt.getPoint());
-                    int col = table.columnAtPoint(evt.getPoint());
+                    int row = search_by_name_table.rowAtPoint(evt.getPoint());
+                    int col = search_by_name_table.columnAtPoint(evt.getPoint());
                     if (row >= 0 && col >= 0) {
                          cardViewAll.setVisible(false);
                          remove(cardViewAll);
@@ -387,7 +406,7 @@ public class UserCard extends JPanel{
          
             this.revalidate();
             this.repaint();
-            this.add(sp);
+            this.add(sp, BorderLayout.CENTER);
         }
         }
         
@@ -1067,7 +1086,7 @@ public class UserCard extends JPanel{
         vcpartySubtitle2 = new javax.swing.JLabel();
         jSeparator8 = new javax.swing.JSeparator();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        queryInputField = new javax.swing.JTextField();
         ByParty = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         vcpartyTitle = new javax.swing.JLabel();
@@ -1128,7 +1147,7 @@ public class UserCard extends JPanel{
         jPanel14.setLayout(jPanel14Layout);
         jPanel14Layout.setHorizontalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 10, Short.MAX_VALUE)
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1313,7 +1332,7 @@ public class UserCard extends JPanel{
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(19, Short.MAX_VALUE)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(14, 14, 14))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -1357,10 +1376,15 @@ public class UserCard extends JPanel{
         jLabel6.setForeground(new java.awt.Color(33, 82, 117));
         jLabel6.setText("Filter Search:");
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(33, 82, 117));
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(33, 82, 117)));
-        jTextField1.setPreferredSize(new java.awt.Dimension(64, 22));
+        queryInputField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        queryInputField.setForeground(new java.awt.Color(33, 82, 117));
+        queryInputField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(33, 82, 117)));
+        queryInputField.setPreferredSize(new java.awt.Dimension(64, 22));
+        queryInputField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                queryInputFieldActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -1380,7 +1404,7 @@ public class UserCard extends JPanel{
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(queryInputField, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(vcpartyTitle2))
                         .addGap(0, 1602, Short.MAX_VALUE))))
         );
@@ -1396,7 +1420,7 @@ public class UserCard extends JPanel{
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(queryInputField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
@@ -2035,6 +2059,10 @@ public class UserCard extends JPanel{
         Logout.setBackground(byeMENU);
     }//GEN-LAST:event_LogoutMouseExited
 
+    private void queryInputFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryInputFieldActionPerformed
+        update_search_by_name_table();
+    }//GEN-LAST:event_queryInputFieldActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2117,7 +2145,6 @@ public class UserCard extends JPanel{
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
@@ -2128,6 +2155,7 @@ public class UserCard extends JPanel{
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField queryInputField;
     private javax.swing.JLabel sp1LBL;
     private javax.swing.JLabel sp1LBL1;
     private javax.swing.JLabel sp1LBL2;
