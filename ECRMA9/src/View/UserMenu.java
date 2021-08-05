@@ -394,7 +394,7 @@ public class UserMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         usermaincontentarea = new UserMainContentArea();
         usermaincontentarea.setVisible(true);
-        usermaincontentarea.setCard("cardViewlAll");
+        usermaincontentarea.setSearchCard("name_filter");
         this.setVisible(false);
     }//GEN-LAST:event_ViewAllBTNMouseClicked
 
@@ -412,7 +412,7 @@ public class UserMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         usermaincontentarea = new UserMainContentArea();
         usermaincontentarea.setVisible(true);
-        usermaincontentarea.setCard("ByParty");
+        usermaincontentarea.setSearchCard("party_filter");
         this.setVisible(false);
     }//GEN-LAST:event_PartySearchBTNMouseClicked
 
@@ -430,7 +430,7 @@ public class UserMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         usermaincontentarea = new UserMainContentArea();
         usermaincontentarea.setVisible(true);
-        usermaincontentarea.setCard("ByPosition");
+        usermaincontentarea.setSearchCard("name_filter");
         this.setVisible(false);
     }//GEN-LAST:event_PosSearchBTNMouseClicked
 
@@ -448,7 +448,7 @@ public class UserMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         usermaincontentarea = new UserMainContentArea();
         usermaincontentarea.setVisible(true);
-        usermaincontentarea.setCard("cardViewAll");
+        usermaincontentarea.setSearchCard("name_filter");
         this.setVisible(false);
        
     }//GEN-LAST:event_CandSearchBTNMouseClicked

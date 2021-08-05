@@ -8,7 +8,7 @@
 //        POSITION VARCHAR(40),
 //        PLATFORM TEXT,
 //        PRIMARY KEY (CAMPAIGNID),
-//        FOREIGN KEY (CANDIDATEID) REFERENCES CANDIDATES(CANDIDATEID),
+//        FOREIGN KEY (CANDIDATEID) REFERENCES CANDIDATES(CANDIDATE_ID),
 //        FOREIGN KEY (ELECPERID) REFERENCES ELECPER(ELECPERID)
 //    );
 
@@ -197,6 +197,67 @@ public class CampaignsSQL {
             return campaigns;
 	} catch(SQLException se){
             System.out.println("CAMPAIGN SQL: GET ROW (1 PARAM) FAIL\n" + se.getMessage() + "\n");
+        }
+        return null;
+    }
+    
+    public static String[] getPartiesOfElecper(int elecperid) {
+        getConnection();
+        try{
+            myStmt=myConn.createStatement();	
+            //select * from campaigns where elecperid = 1;
+            String qry="SELECT DISTINCT PARTY FROM CAMPAIGNS WHERE ELECPERID = " + elecperid + ";";
+            ResultSet rs = myStmt.executeQuery(qry);                        
+            
+            ArrayList<String> al = new ArrayList<>();
+            while(rs.next()) {
+                al.add(rs.getString("PARTY"));
+            }
+            
+            String[] parties = new String[al.size() + 1];
+            parties[0] = "";
+            for(int i = 0; i < al.size(); i++) {
+                parties[i + 1] = al.get(i);
+            }
+            
+            rs.close();
+            myStmt.close();
+            System.out.println("CAMPAIGN SQL: GET PARTIES OF ELECPER SUCCESSFUL");
+            
+            return parties;
+	} catch(SQLException se){
+            System.out.println("CAMPAIGN SQL: GET PARTIES OF ELECPER FAIL\n" + se.getMessage() + "\n");
+        }
+        return null;
+    }
+    
+    public static String[] getPositionsOfElecper(int elecperid) {
+        getConnection();
+        try{
+            myStmt=myConn.createStatement();	
+            //select * from campaigns where elecperid = 1;
+            String qry="SELECT DISTINCT POSITION FROM CAMPAIGNS WHERE ELECPERID = " + elecperid + ";";
+            ResultSet rs = myStmt.executeQuery(qry);                        
+            
+            ArrayList<String> al = new ArrayList<>();
+            while(rs.next()) {
+                al.add(rs.getString("POSITION"));
+            }
+            
+            String[] parties = new String[al.size() + 1];
+            parties[0] = "";
+            for(int i = 0; i < al.size(); i++) {
+                parties[i + 1] = al.get(i);
+            }
+            
+            
+            rs.close();
+            myStmt.close();
+            System.out.println("CAMPAIGN SQL: GET POSITIOn OF ELECPER SUCCESSFUL");
+            
+            return parties;
+	} catch(SQLException se){
+            System.out.println("CAMPAIGN SQL: GET POSITION OF ELECPER FAIL\n" + se.getMessage() + "\n");
         }
         return null;
     }
