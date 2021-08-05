@@ -57,4 +57,14 @@ public class CampaignController {
         Campaigns campaign = new Campaigns(candidateID, elecperID, party, position, platform);
         CampaignsSQL.editRow(campaign);
     }
+    
+    public String[] queryParty(int elecperid)
+    {
+        return CampaignsSQL.getPartiesOfElecper(elecperid);
+    }
+    
+    public String[] queryPosition(int elecperid)
+    {
+        return CampaignsSQL.getPositionsOfElecper(elecperid);
+    }
 }

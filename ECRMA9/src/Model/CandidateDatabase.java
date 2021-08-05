@@ -234,6 +234,87 @@ public class CandidateDatabase {
     }
     
     
+    public Object[][] query_candidates_by_party_elecper(String party, int elecper) {
+        get_connection();
+        try{
+            Statement statement = db_connection.createStatement();	
+            //select * from candidates inner join campaigns on candidates.candidate_id = campaigns.candidateid where campaigns.elecperid = 10 and party = "PARTY10";
+            String qry="SELECT * FROM CANDIDATES INNER JOIN CAMPAIGNS ON "
+                    + "CANDIDATES.CANDIDATE_ID = CAMPAIGNS.CANDIDATEID WHERE "
+                    + "CAMPAIGNS.ELECPERID = " + elecper + " and "
+                    + "party = '" + party + "';";
+            ResultSet rs = statement.executeQuery(qry);                        
+            
+            
+            ArrayList<Object[]> al = new ArrayList<>();
+            while(rs.next()) {
+                String name = rs.getString("first_name");
+                name += " " + rs.getString("mid_initial");
+                name += " " + rs.getString("last_name");
+                
+                al.add(new String[] {rs.getString("img_path"), 
+                name, 
+                rs.getString("Party"),
+                rs.getString("Position")});
+            }
+            
+            Object[][] query = new Object[al.size()][];
+            
+            for(int i = 0; i < al.size(); i++) {
+                query[i] = al.get(i);
+            }
+            rs.close();
+            statement.close();
+            
+            return query;
+	} catch(SQLException se)
+        {
+            System.err.printf(ERROR_MSG_FMT, "query_candidates_by_party_elecper", se.getMessage());
+        }
+        
+        return null;
+    }
+    
+    public Object[][] query_candidates_by_position_elecper(String position, int elecper) {
+        get_connection();
+        try{
+            Statement statement = db_connection.createStatement();	
+            String qry="SELECT * FROM CANDIDATES INNER JOIN CAMPAIGNS ON "
+                    + "CANDIDATES.CANDIDATE_ID = CAMPAIGNS.CANDIDATEID WHERE "
+                    + "CAMPAIGNS.ELECPERID = " + elecper + " and "
+                    + "POSITION = '" + position + "';";
+            ResultSet rs = statement.executeQuery(qry);                        
+            
+            
+            ArrayList<Object[]> al = new ArrayList<>();
+            while(rs.next()) {
+                String name = rs.getString("first_name");
+                name += " " + rs.getString("mid_initial");
+                name += " " + rs.getString("last_name");
+                
+                al.add(new String[] {rs.getString("img_path"), 
+                name, 
+                rs.getString("Party"),
+                rs.getString("Position")});
+            }
+            
+            Object[][] query = new Object[al.size()][];
+            
+            for(int i = 0; i < al.size(); i++) {
+                query[i] = al.get(i);
+            }
+            rs.close();
+            statement.close();
+            
+            return query;
+	} catch(SQLException se)
+        {
+            System.err.printf(ERROR_MSG_FMT, "query_candidates_by_position_elecper", se.getMessage());
+        }
+        
+        return null;
+    }
+    
     public void delete_candidate(int candidate_id)
     {
         get_connection();

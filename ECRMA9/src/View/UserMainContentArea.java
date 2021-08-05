@@ -5,6 +5,8 @@
  */
 package View;
 
+import Controller.CampaignController;
+import Controller.MainController;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -56,7 +58,8 @@ public class UserMainContentArea extends javax.swing.JFrame {
     private Color byeMENU = new Color(33,97,140);
     
     CardLayout card; 
-    
+    JTable search_by_party_table;
+    JTable search_by_position_table;
     /**
      * Creates new form UserCard2
      */
@@ -400,7 +403,7 @@ public class UserCard extends JPanel{
     West west;
     Insets westInsets;
     Center center;
-
+    
     public UserCard1() {
         bgColor = new Color(255,255,255);
       
@@ -426,6 +429,7 @@ public class UserCard extends JPanel{
         this.setVisible(true);
     }
     
+   
     //add header here
     class North extends JPanel { 
             
@@ -616,7 +620,6 @@ public class UserCard extends JPanel{
     }
     
     class Center extends JPanel {
-        JTable table;
         JPanel space;
 
         Center() {
@@ -670,30 +673,30 @@ public class UserCard extends JPanel{
             model = new DefaultTableModel(data,colNames);
             
 
-            table = new JTable() {
+            search_by_party_table = new JTable() {
                 public boolean editCellAt(int row, int column, java.util.EventObject e) {
                     return false;
                 }
             };
-            table.setModel(model);
-            table.getColumnModel().getColumn(0).setCellRenderer(table.getDefaultRenderer(ImageIcon.class));
+            search_by_party_table.setModel(model);
+            search_by_party_table.getColumnModel().getColumn(0).setCellRenderer(search_by_party_table.getDefaultRenderer(ImageIcon.class));
             
-            table.getColumnModel().getColumn(0).setMaxWidth(120);
-            table.getColumnModel().getColumn(0).setMinWidth(120);
+            search_by_party_table.getColumnModel().getColumn(0).setMaxWidth(120);
+            search_by_party_table.getColumnModel().getColumn(0).setMinWidth(120);
             
-            table.setRowHeight(120);
-            
-            
-            table.getTableHeader().setFont(new Font("CALIBRI", Font.PLAIN,24));
-            table.setFont(new Font("CALIBRI", Font.PLAIN, 18));
+            search_by_party_table.setRowHeight(120);
 
-            JScrollPane sp = new JScrollPane(table);
             
-            table.addMouseListener(new java.awt.event.MouseAdapter() {
+            search_by_party_table.getTableHeader().setFont(new Font("CALIBRI", Font.PLAIN,24));
+            search_by_party_table.setFont(new Font("CALIBRI", Font.PLAIN, 18));
+
+            JScrollPane sp = new JScrollPane(search_by_party_table);
+            
+            search_by_party_table.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    int row = table.rowAtPoint(evt.getPoint());
-                    int col = table.columnAtPoint(evt.getPoint());
+                    int row = search_by_party_table.rowAtPoint(evt.getPoint());
+                    int col = search_by_party_table.columnAtPoint(evt.getPoint());
                     if (row >= 0 && col >= 0) {
                          ByParty.setVisible(false);
                          remove(ByParty);
@@ -711,7 +714,7 @@ public class UserCard extends JPanel{
             this.add(sp);
            
         }
-    }
+    }  
     }
     
     
@@ -939,7 +942,6 @@ public class UserCard extends JPanel{
     }
     
     class Center extends JPanel {
-        JTable table;
 
         Center() {
             
@@ -989,30 +991,30 @@ public class UserCard extends JPanel{
             model = new DefaultTableModel(data,colNames);
             
 
-            table = new JTable() {
+            search_by_position_table = new JTable() {
                 public boolean editCellAt(int row, int column, java.util.EventObject e) {
                     return false;
                 }
             };
-            table.setModel(model);
-            table.getColumnModel().getColumn(0).setCellRenderer(table.getDefaultRenderer(ImageIcon.class));
+            search_by_position_table.setModel(model);
+            search_by_position_table.getColumnModel().getColumn(0).setCellRenderer(search_by_position_table.getDefaultRenderer(ImageIcon.class));
             
-            table.getColumnModel().getColumn(0).setMaxWidth(120);
-            table.getColumnModel().getColumn(0).setMinWidth(120);
+            search_by_position_table.getColumnModel().getColumn(0).setMaxWidth(120);
+            search_by_position_table.getColumnModel().getColumn(0).setMinWidth(120);
             
-            table.setRowHeight(120);
+            search_by_position_table.setRowHeight(120);
             
             
-            table.getTableHeader().setFont(new Font("CALIBRI", Font.PLAIN,24));
-            table.setFont(new Font("CALIBRI", Font.PLAIN, 18));
+            search_by_position_table.getTableHeader().setFont(new Font("CALIBRI", Font.PLAIN,24));
+            search_by_position_table.setFont(new Font("CALIBRI", Font.PLAIN, 18));
 
-            JScrollPane sp = new JScrollPane(table);
+            JScrollPane sp = new JScrollPane(search_by_position_table);
             
-             table.addMouseListener(new java.awt.event.MouseAdapter() {
+             search_by_position_table.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    int row = table.rowAtPoint(evt.getPoint());
-                    int col = table.columnAtPoint(evt.getPoint());
+                    int row = search_by_position_table.rowAtPoint(evt.getPoint());
+                    int col = search_by_position_table.columnAtPoint(evt.getPoint());
                     if (row >= 0 && col >= 0) {
                          ByPosition.setVisible(false);
                          remove(ByPosition);
@@ -1431,8 +1433,14 @@ public class UserCard extends JPanel{
         jLabel5.setForeground(new java.awt.Color(33, 82, 117));
         jLabel5.setText("Filter Search:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CampaignController cc = new CampaignController();
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(cc.queryParty(1)));
         jComboBox1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -1467,8 +1475,8 @@ public class UserCard extends JPanel{
                 .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox1)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBox1))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
@@ -1503,8 +1511,13 @@ public class UserCard extends JPanel{
         jLabel10.setForeground(new java.awt.Color(33, 82, 117));
         jLabel10.setText("Filter Search:");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(cc.queryPosition(1)));
         jComboBox3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -1941,7 +1954,7 @@ public class UserCard extends JPanel{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
@@ -2034,6 +2047,38 @@ public class UserCard extends JPanel{
         // TODO add your handling code here:
         Logout.setBackground(byeMENU);
     }//GEN-LAST:event_LogoutMouseExited
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        DefaultTableModel model = new DefaultTableModel();
+        
+        if(jComboBox1.getSelectedIndex() != 0) {
+            MainController mc = new MainController();
+            String[] colNames = {"","Name", "Party", "Position"};
+            Object[][] data = mc.candidate_controller.query_candidates_by_party_elecper((String) jComboBox1.getSelectedItem(), 1);
+            model = new DefaultTableModel(data, colNames);
+        }
+        
+        search_by_party_table.setModel(model);
+        search_by_party_table.getColumnModel().getColumn(0).setMaxWidth(120);
+        search_by_party_table.getColumnModel().getColumn(0).setMinWidth(120);
+        search_by_party_table.setRowHeight(120);
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        DefaultTableModel model = new DefaultTableModel();
+        
+        if(jComboBox3.getSelectedIndex() != 0) {
+            MainController mc = new MainController();
+            String[] colNames = {"","Name", "Party", "Position"};
+            Object[][] data = mc.candidate_controller.query_candidates_by_position_elecper((String) jComboBox3.getSelectedItem(), 1);
+            model = new DefaultTableModel(data, colNames);
+        }
+        
+        search_by_position_table.setModel(model);
+        search_by_position_table.getColumnModel().getColumn(0).setMaxWidth(120);
+        search_by_position_table.getColumnModel().getColumn(0).setMinWidth(120);
+        search_by_position_table.setRowHeight(120);
+    }//GEN-LAST:event_jComboBox3ActionPerformed
 
     /**
      * @param args the command line arguments
