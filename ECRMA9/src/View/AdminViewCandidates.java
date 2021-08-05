@@ -178,7 +178,7 @@ public class AdminViewCandidates extends JPanel{
         
         Center() {
             this.setLayout(new BorderLayout());
-            this.setBorder(new EmptyBorder(60,60,60,60));
+            this.setBorder(new EmptyBorder(20, 60, 60, 60));
             this.setOpaque(false);
             button_renderer = new JTableButtonRenderer();
             
