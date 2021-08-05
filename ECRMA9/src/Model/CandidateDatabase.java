@@ -244,7 +244,8 @@ public class CandidateDatabase {
             String qry="SELECT * FROM CANDIDATES INNER JOIN CAMPAIGNS ON "
                     + "CANDIDATES.CANDIDATE_ID = CAMPAIGNS.CANDIDATEID WHERE "
                     + "CAMPAIGNS.ELECPERID = " + elecper + " and "
-                    + "party = '" + party + "';";
+                    + "party LIKE '" + party + "%';";
+            System.out.println(qry);
             ResultSet rs = statement.executeQuery(qry);                        
             
             
@@ -281,6 +282,45 @@ public class CandidateDatabase {
         return null;
     }
     
+    public ArrayList<Object[]> query_candidates_by_name_elecper(String pattern, int elecper)
+    {
+        ArrayList<Object[]> query_set = new ArrayList<>();
+        
+        get_connection();
+        try 
+        {
+            Statement statement = db_connection.createStatement();
+            String query = "SELECT * FROM candidates " +
+                            "    INNER JOIN (SELECT * FROM campaigns WHERE ELECPERID = " + elecper + ") X " +
+                            "    ON candidates.candidate_id = X.CANDIDATEID " +
+                            "    WHERE CONCAT(last_name, ' ', first_name, ' ', mid_initial) LIKE '%"+ pattern +"%'";
+            //System.out.println("Query: " + query);
+            
+            ResultSet results = statement.executeQuery(query);
+            while(results.next())
+            {
+                Campaigns campaign = new Campaigns();
+                campaign.setCampaignId(results.getInt("CAMPAIGNID"));
+                campaign.setCandidateId(results.getInt("CANDIDATEID"));
+                campaign.setElecPerId(results.getInt("ELECPERID"));
+                campaign.setParty(results.getString("PARTY"));
+                campaign.setPosition(results.getString("POSITION"));
+                campaign.setPlatform(results.getString("PLATFORM"));
+                query_set.add(new Object[] { 
+                    construct_from_result(results),
+                    campaign
+                });
+            }
+            
+            statement.close();
+        } catch(SQLException se)
+        {
+            System.err.printf(ERROR_MSG_FMT, "query_candidate_by_name", se.getMessage());
+        }
+        
+        return query_set;
+    }
+    
     public Object[][] query_candidates_by_position_elecper(String position, int elecper) {
         get_connection();
         try{
@@ -288,7 +328,7 @@ public class CandidateDatabase {
             String qry="SELECT * FROM CANDIDATES INNER JOIN CAMPAIGNS ON "
                     + "CANDIDATES.CANDIDATE_ID = CAMPAIGNS.CANDIDATEID WHERE "
                     + "CAMPAIGNS.ELECPERID = " + elecper + " and "
-                    + "POSITION = '" + position + "';";
+                    + "POSITION LIKE '" + position + "%';";
             ResultSet rs = statement.executeQuery(qry);                        
 
             

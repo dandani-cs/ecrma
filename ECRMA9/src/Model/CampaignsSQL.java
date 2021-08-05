@@ -215,11 +215,10 @@ public class CampaignsSQL {
             }
             
             String[] parties = new String[al.size() + 1];
-            
+            parties[0] = "";
             for(int i = 0; i < al.size(); i++) {
                 parties[i + 1] = al.get(i);
             }
-            
             
             rs.close();
             myStmt.close();
@@ -246,7 +245,7 @@ public class CampaignsSQL {
             }
             
             String[] parties = new String[al.size() + 1];
-            
+            parties[0] = "";
             for(int i = 0; i < al.size(); i++) {
                 parties[i + 1] = al.get(i);
             }
