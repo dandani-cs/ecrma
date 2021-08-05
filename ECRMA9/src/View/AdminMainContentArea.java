@@ -5,6 +5,8 @@
  */
 package View;
 
+import Controller.FormEvent;
+import Controller.FormListener;
 import Controller.MainController;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -53,7 +55,6 @@ public class AdminMainContentArea extends javax.swing.JFrame{
     
     MainController program_main_controller = new MainController();
     
-   
     public AdminMainContentArea() {
         initComponents(); 
         this.pack();
@@ -69,12 +70,17 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         this.setTitle("Election Candidates Record Management");
         
         card = (CardLayout)MainPanel.getLayout();
-        viewCandidateDetails = new CandidateDetailsPanel(program_main_controller); // candidateid TO BE ADDED TO cardViewDetails
+        //viewCandidateDetails = new CandidateDetailsPanel(program_main_controller); // candidateid TO BE ADDED TO cardViewDetails
         
         myPanel = new AdminViewCandidates(program_main_controller);
-        myPanel.setFormListener(
-                
-        );
+        
+        myPanel.setFormListener(new FormListener() {
+                           @Override
+                           public void formEventOccurred(FormEvent e) {
+                               viewCandidateDetails = new CandidateDetailsPanel(program_main_controller, e.getCandidate());
+                               cardViewDetails.add(viewCandidateDetails, BorderLayout.CENTER);
+                           }
+                       });
         cardViewCandidates.add(myPanel, BorderLayout.CENTER);
         
      
@@ -216,7 +222,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         vcpartySubtitle6 = new javax.swing.JLabel();
         jSeparator18 = new javax.swing.JSeparator();
         cardViewCandidates = new javax.swing.JPanel();
-        jPanel14 = new CandidateDetailsPanel();
+        jPanel14 = new javax.swing.JPanel();
         vcpartyTitle4 = new javax.swing.JLabel();
         vcpartySubtitle4 = new javax.swing.JLabel();
         jSeparator16 = new javax.swing.JSeparator();
@@ -1337,6 +1343,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         cardViewCandidates.setOpaque(false);
         cardViewCandidates.setLayout(new java.awt.BorderLayout());
 
+        //jPanel14 = new CandidateDetailsPanel();
         jPanel14.setBackground(new java.awt.Color(255, 255, 255));
 
         vcpartyTitle4.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 30)); // NOI18N

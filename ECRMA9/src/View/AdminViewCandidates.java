@@ -5,6 +5,8 @@
  */
 package View;
 
+import Controller.FormEvent;
+import Controller.FormListener;
 import Controller.MainController;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -49,7 +51,8 @@ public class AdminViewCandidates extends JPanel{
     Insets westInsets;
     Center center;
     MainController main_controller;
-
+    FormListener formListener;
+    
     public AdminViewCandidates(MainController passed_mc) {
         bgColor = new Color(255,255,255);
         
@@ -68,6 +71,10 @@ public class AdminViewCandidates extends JPanel{
         setVisible(true);
         setSize(new Dimension(1280,800));
         
+    }
+
+    public void setFormListener(FormListener formListener) {
+        this.formListener = formListener;
     }
     
     class North extends JPanel{
@@ -229,9 +236,12 @@ public class AdminViewCandidates extends JPanel{
                    int row = table.rowAtPoint(e.getPoint());
                    if (col == 0 || col == 1 || col == 2) {
                        //EVENT HERE
+                       FormEvent ev = new FormEvent(e, 
+                               main_controller.candidate_controller.query_candidate_by_id(model.getCandidateID(row)));
                        // SEND CANDIDATE ID 
                        // create form event
                        // call formlistener
+                       formListener.formEventOccurred(ev);
                    }
                    
                    if (col == 3) {
