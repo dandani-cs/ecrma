@@ -10,9 +10,9 @@ package Controller;
  * @author dandani-cs
  */
 public class MainController {
-    public static UserController user_controller;
-    public static ElecPerController elecper_controller;
-    public static CampaignController campaign_controller;
+    public UserController user_controller;
+    public ElecPerController elecper_controller;
+    public CampaignController campaign_controller;
     public CandidateController candidate_controller;
     
     public MainController () {

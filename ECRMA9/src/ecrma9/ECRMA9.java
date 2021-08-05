@@ -19,7 +19,7 @@ public class ECRMA9 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        new SearchFrame();
+        new Frame_Login();
     }
     
 }
