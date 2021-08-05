@@ -16,6 +16,7 @@
  */
 package Model;
 
+import java.awt.Image;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -252,7 +254,11 @@ public class CandidateDatabase {
                 name += " " + rs.getString("mid_initial");
                 name += " " + rs.getString("last_name");
                 
-                al.add(new String[] {rs.getString("img_path"), 
+                ImageIcon img_icon = new ImageIcon(rs.getString("img_path"));
+                Image resized_img  = img_icon.getImage().getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
+                ImageIcon img_view = new ImageIcon(resized_img);
+                
+                al.add(new Object[] {img_view, 
                 name, 
                 rs.getString("Party"),
                 rs.getString("Position")});
@@ -284,15 +290,19 @@ public class CandidateDatabase {
                     + "CAMPAIGNS.ELECPERID = " + elecper + " and "
                     + "POSITION = '" + position + "';";
             ResultSet rs = statement.executeQuery(qry);                        
-            
+
             
             ArrayList<Object[]> al = new ArrayList<>();
             while(rs.next()) {
                 String name = rs.getString("first_name");
                 name += " " + rs.getString("mid_initial");
                 name += " " + rs.getString("last_name");
+
+                ImageIcon img_icon = new ImageIcon(rs.getString("img_path"));
+                Image resized_img  = img_icon.getImage().getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
+                ImageIcon img_view = new ImageIcon(resized_img);
                 
-                al.add(new String[] {rs.getString("img_path"), 
+                al.add(new Object[] {img_view, 
                 name, 
                 rs.getString("Party"),
                 rs.getString("Position")});
