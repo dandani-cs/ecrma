@@ -162,7 +162,7 @@ public class ElecPerSQL {
             myStmt=myConn.createStatement();	
             
             String qry="SELECT * FROM ELECPER;";
-            ResultSet rs = myStmt.executeQuery(qry);                        
+            ResultSet rs = myStmt.executeQuery(qry); 
                         
             ArrayList<Object[]> al = new ArrayList<>();
             while(rs.next()) {

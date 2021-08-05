@@ -8,6 +8,7 @@ package View;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -34,6 +35,12 @@ public class UserMenu extends javax.swing.JFrame {
         this.setSize(xsize, ysize);*/
         this.setLocationRelativeTo(null);
         
+        candIcon.setIcon(new ImageIcon("src\\Icons\\candidate2_128px.png"));
+        posIcon.setIcon(new ImageIcon("src\\Icons\\search128px.png"));
+        partyIcon.setIcon(new ImageIcon("src\\Icons\\party128px.png"));
+        viewIcon.setIcon(new ImageIcon("src\\Icons\\view128px.png"));
+        logoutIcon.setIcon(new ImageIcon("src\\Icons\\logout128px.png"));
+
     }
 
     /** This method is called from within the constructor to
@@ -54,20 +61,20 @@ public class UserMenu extends javax.swing.JFrame {
         UserContentR1 = new javax.swing.JPanel();
         CandSearchBTN = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        candIcon = new javax.swing.JLabel();
         PosSearchBTN = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        posIcon = new javax.swing.JLabel();
         PartySearchBTN = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        partyIcon = new javax.swing.JLabel();
         UserContentR2 = new javax.swing.JPanel();
         ViewAllBTN = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        viewIcon = new javax.swing.JLabel();
         LogoutBTN = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        logoutIcon = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -145,7 +152,7 @@ public class UserMenu extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Search a Candidate");
 
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        candIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout CandSearchBTNLayout = new javax.swing.GroupLayout(CandSearchBTN);
         CandSearchBTN.setLayout(CandSearchBTNLayout);
@@ -154,14 +161,14 @@ public class UserMenu extends javax.swing.JFrame {
             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(CandSearchBTNLayout.createSequentialGroup()
                 .addGap(66, 66, 66)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(candIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(80, Short.MAX_VALUE))
         );
         CandSearchBTNLayout.setVerticalGroup(
             CandSearchBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CandSearchBTNLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                .addComponent(candIcon, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -185,7 +192,7 @@ public class UserMenu extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Search a Position");
 
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        posIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout PosSearchBTNLayout = new javax.swing.GroupLayout(PosSearchBTN);
         PosSearchBTN.setLayout(PosSearchBTNLayout);
@@ -194,14 +201,14 @@ public class UserMenu extends javax.swing.JFrame {
             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PosSearchBTNLayout.createSequentialGroup()
                 .addContainerGap(75, Short.MAX_VALUE)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(posIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(71, 71, 71))
         );
         PosSearchBTNLayout.setVerticalGroup(
             PosSearchBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PosSearchBTNLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                .addComponent(posIcon, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -225,7 +232,7 @@ public class UserMenu extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Search a Political Party");
 
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        partyIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout PartySearchBTNLayout = new javax.swing.GroupLayout(PartySearchBTN);
         PartySearchBTN.setLayout(PartySearchBTNLayout);
@@ -234,14 +241,14 @@ public class UserMenu extends javax.swing.JFrame {
             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PartySearchBTNLayout.createSequentialGroup()
                 .addContainerGap(76, Short.MAX_VALUE)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(partyIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70))
         );
         PartySearchBTNLayout.setVerticalGroup(
             PartySearchBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PartySearchBTNLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                .addComponent(partyIcon, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -270,7 +277,7 @@ public class UserMenu extends javax.swing.JFrame {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("View All");
 
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        viewIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout ViewAllBTNLayout = new javax.swing.GroupLayout(ViewAllBTN);
         ViewAllBTN.setLayout(ViewAllBTNLayout);
@@ -279,14 +286,14 @@ public class UserMenu extends javax.swing.JFrame {
             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(ViewAllBTNLayout.createSequentialGroup()
                 .addGap(73, 73, 73)
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(viewIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(73, Short.MAX_VALUE))
         );
         ViewAllBTNLayout.setVerticalGroup(
             ViewAllBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ViewAllBTNLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                .addComponent(viewIcon, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -310,7 +317,7 @@ public class UserMenu extends javax.swing.JFrame {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Logout");
 
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logoutIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout LogoutBTNLayout = new javax.swing.GroupLayout(LogoutBTN);
         LogoutBTN.setLayout(LogoutBTNLayout);
@@ -319,14 +326,14 @@ public class UserMenu extends javax.swing.JFrame {
             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
             .addGroup(LogoutBTNLayout.createSequentialGroup()
                 .addGap(73, 73, 73)
-                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(logoutIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         LogoutBTNLayout.setVerticalGroup(
             LogoutBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LogoutBTNLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                .addComponent(logoutIcon, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -500,11 +507,8 @@ public class UserMenu extends javax.swing.JFrame {
     private javax.swing.JPanel UserContentR2;
     private javax.swing.JPanel UserHeader;
     private javax.swing.JPanel ViewAllBTN;
+    private javax.swing.JLabel candIcon;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -512,9 +516,12 @@ public class UserMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel logoutIcon;
+    private javax.swing.JLabel partyIcon;
+    private javax.swing.JLabel posIcon;
+    private javax.swing.JLabel viewIcon;
     // End of variables declaration//GEN-END:variables
 
 }
