@@ -1,13 +1,16 @@
 package View;
 
+import Controller.MainController;
 import java.awt.*;
 import javax.swing.*;
 
 public class SearchFrame extends JFrame {
-    AdminViewCandidates adminviewcand;
+    CandidateDetailsPanel adminviewcand;
+    MainController main_controller = new MainController();
     
     public SearchFrame() {
-        adminviewcand = new AdminViewCandidates();
+        adminviewcand = new CandidateDetailsPanel(main_controller, main_controller.candidate_controller.query_candidate_by_id(1));
+        
         this.add(adminviewcand);
         
         this.setSize(new Dimension(1920,1080));
