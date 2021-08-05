@@ -309,8 +309,8 @@ public class CandidateDetailsPanel extends JPanel {
             JPanel pers_info = new JPanel();
             pers_info.setLayout(new BorderLayout());
             
-            pers_gbc.gridx   = i % 2;
-            pers_gbc.gridy   = i / 2;
+            pers_gbc.gridx   = i % 3;
+            pers_gbc.gridy   = 0;
             pers_gbc.weightx = 0.5f;
             pers_gbc.weighty = 0.5f;
             
