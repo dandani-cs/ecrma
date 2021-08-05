@@ -43,11 +43,11 @@ public class AdminMainContentArea extends javax.swing.JFrame{
     private Color hoverMENU = new Color(33,82,117);
     private Color byeMENU = new Color(33,97,140);
     
-    AdminViewCandidates myPanel = new AdminViewCandidates();
+    AdminViewCandidates myPanel;
 
     CardLayout card; 
     
-    MainController main_controller = new MainController();
+    MainController program_main_controller = new MainController();
     
    
     public AdminMainContentArea() {
@@ -59,10 +59,12 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         this.setSize(xsize, ysize);
         this.setLocationRelativeTo(null);
         this.setTitle("Election Candidates Record Management");
-        cardViewCandidates.add(myPanel);
         
         card = (CardLayout)MainPanel.getLayout();
-     
+        CandidateDetailsPanel jPanel15 = new CandidateDetailsPanel();
+        
+        myPanel = new AdminViewCandidates(program_main_controller);
+        cardViewCandidates.add(myPanel);
     }
     
     public void setCard(String str){
@@ -85,7 +87,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
          jTextArea1.setText(" ");
      }
    
-   public void reset1(){
+   public void reset1() {
 //         jTextField56.setText("NAME");
 //         jTextField57.setText("Position");
 //         jTextField58.setText(" ");
@@ -101,26 +103,25 @@ public class AdminMainContentArea extends javax.swing.JFrame{
    }
 
    
-public class AdminViewCandidates extends JPanel implements ActionListener{
+public class AdminViewCandidatesMainContent extends JPanel{
     
     Color bgColor;
     
     Center center;
     
-    AdminViewCandidates adminViewCandidatesPanel;
-
+    MainController main_controller;
     
-    public AdminViewCandidates(){
-        adminViewCandidatesPanel = new AdminViewCandidates();
+    public AdminViewCandidatesMainContent(MainController passed_mc){
         bgColor = new Color(255,255,255);
         
         this.setLayout(new BorderLayout());
         Border ogg_border = this.getBorder();
         Border margin1 = new EmptyBorder(0,-30, 0, 30);
         this.setBorder(new CompoundBorder(ogg_border, margin1));
+        
+        main_controller = passed_mc;
     
-        center = new Center();
-        center.btn_add.addActionListener(this);
+        center = new Center(main_controller);
         
         this.add(center, BorderLayout.CENTER);
 
@@ -128,21 +129,7 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
         
         setVisible(true);
         setSize(new Dimension(1280,800));
-    }
- @Override
-    public void actionPerformed(ActionEvent e) {
-        cardAddElec.setVisible(false);
-        this.remove(cardAddElec);
-        cardViewCandidates.setVisible(false);
-        this.remove(cardViewCandidates);
-
-        cardAddCandidate.setVisible(true);
-        cardAddCandidate.repaint();
-        cardAddCandidate.revalidate();
-        
-         setSize(new Dimension(1280,800));
-    }
-    
+    }    
     
     class Center extends JPanel {
         JTable table;
@@ -152,12 +139,15 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
         JPanel header;
         TableCellRenderer button_renderer;
         AdminViewCandidatesTableModel model;
+        MainController center_main_controller;
         
-        Center() {
+        Center(MainController passed_mc) {
             this.setLayout(new BorderLayout());
             this.setBorder(new EmptyBorder(60,60,60,60));
             this.setOpaque(false);
             button_renderer = new JTableButtonRenderer();
+            
+            center_main_controller = passed_mc;
             
             
             String[] colNames = {"","Name", "Party", "Position"};
@@ -173,11 +163,10 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
                  
             model = new AdminViewCandidatesTableModel();
             
-            model.setData(main_controller.candidate_controller.query_all_candidates());
+            model.setData(center_main_controller.candidate_controller.query_all_candidates());
 
             table = new JTable() {
                 public boolean editCellAt(int row, int column, java.util.EventObject e) {
-                    
                     return false;
                 }
             };
@@ -204,13 +193,6 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
                     int row = table.rowAtPoint(evt.getPoint());
                     int col = table.columnAtPoint(evt.getPoint());
                     if (row >= 0 && col >= 0) {
-                         cardViewCandidates.setVisible(false);
-                         remove(cardViewCandidates);
-
-        cardViewDetails.setVisible(true);
-        cardViewDetails.repaint();
-        cardViewDetails.revalidate();
-        setSize(new Dimension(1920,1080));
                     }
                     
                     if (col == 3) {
@@ -256,11 +238,13 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
             header.setPreferredSize(new Dimension(720, 100));
             header.setBackground(Color.WHITE);
             
-            this.revalidate();
-            this.repaint();
             this.add(sp);
             this.add(header, BorderLayout.NORTH);
             this.add(btn_add, BorderLayout.SOUTH);
+        }
+        
+        public void setMainController(MainController mc) {
+            center_main_controller = mc;
         }
        
     }
@@ -391,7 +375,7 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
         jButton3 = new javax.swing.JButton();
         cardViewCandidates = new javax.swing.JPanel();
         cardViewDetails = new javax.swing.JPanel();
-        jPanel15 = new javax.swing.JPanel();
+        jPanel15 = new CandidateDetailsPanel();
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jPanel16 = new javax.swing.JPanel();
@@ -441,8 +425,6 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
         SidePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(33, 97, 140));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ecrmaLogo.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
