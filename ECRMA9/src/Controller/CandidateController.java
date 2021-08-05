@@ -80,4 +80,14 @@ public class CandidateController {
     {
         return candidate_db.query_candidate_by_id(candidate_id);
     }
+    
+    public Object[][] query_candidates_by_party_elecper(String party, int elecper)
+    {
+        return candidate_db.query_candidates_by_party_elecper(party, elecper);
+    }
+    
+    public Object[][] query_candidates_by_position_elecper(String position, int elecper)
+    {
+        return candidate_db.query_candidates_by_position_elecper(position, elecper);
+    }
 }

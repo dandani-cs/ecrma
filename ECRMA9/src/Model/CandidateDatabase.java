@@ -16,6 +16,7 @@
  */
 package Model;
 
+import java.awt.Image;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -233,6 +235,95 @@ public class CandidateDatabase {
         return result;
     }
     
+    
+    public Object[][] query_candidates_by_party_elecper(String party, int elecper) {
+        get_connection();
+        try{
+            Statement statement = db_connection.createStatement();	
+            //select * from candidates inner join campaigns on candidates.candidate_id = campaigns.candidateid where campaigns.elecperid = 10 and party = "PARTY10";
+            String qry="SELECT * FROM CANDIDATES INNER JOIN CAMPAIGNS ON "
+                    + "CANDIDATES.CANDIDATE_ID = CAMPAIGNS.CANDIDATEID WHERE "
+                    + "CAMPAIGNS.ELECPERID = " + elecper + " and "
+                    + "party = '" + party + "';";
+            ResultSet rs = statement.executeQuery(qry);                        
+            
+            
+            ArrayList<Object[]> al = new ArrayList<>();
+            while(rs.next()) {
+                String name = rs.getString("first_name");
+                name += " " + rs.getString("mid_initial");
+                name += " " + rs.getString("last_name");
+                
+                ImageIcon img_icon = new ImageIcon(rs.getString("img_path"));
+                Image resized_img  = img_icon.getImage().getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
+                ImageIcon img_view = new ImageIcon(resized_img);
+                
+                al.add(new Object[] {img_view, 
+                name, 
+                rs.getString("Party"),
+                rs.getString("Position")});
+            }
+            
+            Object[][] query = new Object[al.size()][];
+            
+            for(int i = 0; i < al.size(); i++) {
+                query[i] = al.get(i);
+            }
+            rs.close();
+            statement.close();
+            
+            return query;
+	} catch(SQLException se)
+        {
+            System.err.printf(ERROR_MSG_FMT, "query_candidates_by_party_elecper", se.getMessage());
+        }
+        
+        return null;
+    }
+    
+    public Object[][] query_candidates_by_position_elecper(String position, int elecper) {
+        get_connection();
+        try{
+            Statement statement = db_connection.createStatement();	
+            String qry="SELECT * FROM CANDIDATES INNER JOIN CAMPAIGNS ON "
+                    + "CANDIDATES.CANDIDATE_ID = CAMPAIGNS.CANDIDATEID WHERE "
+                    + "CAMPAIGNS.ELECPERID = " + elecper + " and "
+                    + "POSITION = '" + position + "';";
+            ResultSet rs = statement.executeQuery(qry);                        
+
+            
+            ArrayList<Object[]> al = new ArrayList<>();
+            while(rs.next()) {
+                String name = rs.getString("first_name");
+                name += " " + rs.getString("mid_initial");
+                name += " " + rs.getString("last_name");
+
+                ImageIcon img_icon = new ImageIcon(rs.getString("img_path"));
+                Image resized_img  = img_icon.getImage().getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
+                ImageIcon img_view = new ImageIcon(resized_img);
+                
+                al.add(new Object[] {img_view, 
+                name, 
+                rs.getString("Party"),
+                rs.getString("Position")});
+            }
+            
+            Object[][] query = new Object[al.size()][];
+            
+            for(int i = 0; i < al.size(); i++) {
+                query[i] = al.get(i);
+            }
+            rs.close();
+            statement.close();
+            
+            return query;
+	} catch(SQLException se)
+        {
+            System.err.printf(ERROR_MSG_FMT, "query_candidates_by_position_elecper", se.getMessage());
+        }
+        
+        return null;
+    }
     
     public void delete_candidate(int candidate_id)
     {

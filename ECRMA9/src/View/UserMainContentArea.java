@@ -5,6 +5,8 @@
  */
 package View;
 
+import Controller.CampaignController;
+import Controller.MainController;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -38,7 +40,6 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
 
 /**
  *
@@ -57,7 +58,8 @@ public class UserMainContentArea extends javax.swing.JFrame {
     private Color byeMENU = new Color(33,97,140);
     
     CardLayout card; 
-    
+    JTable search_by_party_table;
+    JTable search_by_position_table;
     /**
      * Creates new form UserCard2
      */
@@ -71,12 +73,6 @@ public class UserMainContentArea extends javax.swing.JFrame {
         ByPosition.add(myPanel2);
         
         card = (CardLayout)MainPanel.getLayout();
-        
-        JTableHeader campaignheader = campaigntable.getTableHeader();
-        
-        campaignheader.setForeground(hoverMENU);
-        campaignheader.setBackground(Color.WHITE);
-        campaignheader.setFont(new Font("Tahoma", Font.BOLD, 14));
     }
     
     public void setCard(String str){
@@ -371,13 +367,7 @@ public class UserCard extends JPanel{
             
             
             table.getTableHeader().setFont(new Font("CALIBRI", Font.PLAIN,24));
-            table.setFont(new Font("Tahoma", Font.PLAIN, 14));
-            
-            JTableHeader editfeel = table.getTableHeader();
-        
-            editfeel.setForeground(hoverMENU);
-            editfeel.setBackground(Color.WHITE);
-            editfeel.setFont(new Font("Tahoma", Font.BOLD, 14));
+            table.setFont(new Font("CALIBRI", Font.PLAIN, 18));
 
             JScrollPane sp = new JScrollPane(table);
             
@@ -413,7 +403,7 @@ public class UserCard extends JPanel{
     West west;
     Insets westInsets;
     Center center;
-
+    
     public UserCard1() {
         bgColor = new Color(255,255,255);
       
@@ -439,6 +429,7 @@ public class UserCard extends JPanel{
         this.setVisible(true);
     }
     
+   
     //add header here
     class North extends JPanel { 
             
@@ -629,7 +620,6 @@ public class UserCard extends JPanel{
     }
     
     class Center extends JPanel {
-        JTable table;
         JPanel space;
 
         Center() {
@@ -683,36 +673,30 @@ public class UserCard extends JPanel{
             model = new DefaultTableModel(data,colNames);
             
 
-            table = new JTable() {
+            search_by_party_table = new JTable() {
                 public boolean editCellAt(int row, int column, java.util.EventObject e) {
                     return false;
                 }
             };
-            table.setModel(model);
-            table.getColumnModel().getColumn(0).setCellRenderer(table.getDefaultRenderer(ImageIcon.class));
+            search_by_party_table.setModel(model);
+            search_by_party_table.getColumnModel().getColumn(0).setCellRenderer(search_by_party_table.getDefaultRenderer(ImageIcon.class));
             
-            table.getColumnModel().getColumn(0).setMaxWidth(120);
-            table.getColumnModel().getColumn(0).setMinWidth(120);
+            search_by_party_table.getColumnModel().getColumn(0).setMaxWidth(120);
+            search_by_party_table.getColumnModel().getColumn(0).setMinWidth(120);
             
-            table.setRowHeight(120);
-            
-            
-            table.getTableHeader().setFont(new Font("CALIBRI", Font.PLAIN,24));
-            table.setFont(new Font("Tahoma", Font.PLAIN, 14));
-            
-            JTableHeader editfeel = table.getTableHeader();
-        
-            editfeel.setForeground(hoverMENU);
-            editfeel.setBackground(Color.WHITE);
-            editfeel.setFont(new Font("Tahoma", Font.BOLD, 14));
+            search_by_party_table.setRowHeight(120);
 
-            JScrollPane sp = new JScrollPane(table);
             
-            table.addMouseListener(new java.awt.event.MouseAdapter() {
+            search_by_party_table.getTableHeader().setFont(new Font("CALIBRI", Font.PLAIN,24));
+            search_by_party_table.setFont(new Font("CALIBRI", Font.PLAIN, 18));
+
+            JScrollPane sp = new JScrollPane(search_by_party_table);
+            
+            search_by_party_table.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    int row = table.rowAtPoint(evt.getPoint());
-                    int col = table.columnAtPoint(evt.getPoint());
+                    int row = search_by_party_table.rowAtPoint(evt.getPoint());
+                    int col = search_by_party_table.columnAtPoint(evt.getPoint());
                     if (row >= 0 && col >= 0) {
                          ByParty.setVisible(false);
                          remove(ByParty);
@@ -730,7 +714,7 @@ public class UserCard extends JPanel{
             this.add(sp);
            
         }
-    }
+    }  
     }
     
     
@@ -958,7 +942,6 @@ public class UserCard extends JPanel{
     }
     
     class Center extends JPanel {
-        JTable table;
 
         Center() {
             
@@ -1008,36 +991,30 @@ public class UserCard extends JPanel{
             model = new DefaultTableModel(data,colNames);
             
 
-            table = new JTable() {
+            search_by_position_table = new JTable() {
                 public boolean editCellAt(int row, int column, java.util.EventObject e) {
                     return false;
                 }
             };
-            table.setModel(model);
-            table.getColumnModel().getColumn(0).setCellRenderer(table.getDefaultRenderer(ImageIcon.class));
+            search_by_position_table.setModel(model);
+            search_by_position_table.getColumnModel().getColumn(0).setCellRenderer(search_by_position_table.getDefaultRenderer(ImageIcon.class));
             
-            table.getColumnModel().getColumn(0).setMaxWidth(120);
-            table.getColumnModel().getColumn(0).setMinWidth(120);
+            search_by_position_table.getColumnModel().getColumn(0).setMaxWidth(120);
+            search_by_position_table.getColumnModel().getColumn(0).setMinWidth(120);
             
-            table.setRowHeight(120);
+            search_by_position_table.setRowHeight(120);
             
             
-            table.getTableHeader().setFont(new Font("CALIBRI", Font.PLAIN,24));
-            table.setFont(new Font("Tahoma", Font.PLAIN, 14));
-            
-            JTableHeader editfeel = table.getTableHeader();
-        
-            editfeel.setForeground(hoverMENU);
-            editfeel.setBackground(Color.WHITE);
-            editfeel.setFont(new Font("Tahoma", Font.BOLD, 14));
+            search_by_position_table.getTableHeader().setFont(new Font("CALIBRI", Font.PLAIN,24));
+            search_by_position_table.setFont(new Font("CALIBRI", Font.PLAIN, 18));
 
-            JScrollPane sp = new JScrollPane(table);
+            JScrollPane sp = new JScrollPane(search_by_position_table);
             
-             table.addMouseListener(new java.awt.event.MouseAdapter() {
+             search_by_position_table.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    int row = table.rowAtPoint(evt.getPoint());
-                    int col = table.columnAtPoint(evt.getPoint());
+                    int row = search_by_position_table.rowAtPoint(evt.getPoint());
+                    int col = search_by_position_table.columnAtPoint(evt.getPoint());
                     if (row >= 0 && col >= 0) {
                          ByPosition.setVisible(false);
                          remove(ByPosition);
@@ -1112,6 +1089,15 @@ public class UserCard extends JPanel{
         jLabel14 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jTextField12 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jTextField6 = new javax.swing.JTextField();
@@ -1125,15 +1111,9 @@ public class UserCard extends JPanel{
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
-        jPanel15 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
-        religionTxt1 = new javax.swing.JTextField();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        birthDateSpinner1 = new javax.swing.JSpinner();
-        sexComboBox1 = new javax.swing.JComboBox<>();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        campaigntable = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
         vcTitle = new javax.swing.JLabel();
         vcSubtitle = new javax.swing.JLabel();
@@ -1453,8 +1433,14 @@ public class UserCard extends JPanel{
         jLabel5.setForeground(new java.awt.Color(33, 82, 117));
         jLabel5.setText("Filter Search:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CampaignController cc = new CampaignController();
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(cc.queryParty(1)));
         jComboBox1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -1489,8 +1475,8 @@ public class UserCard extends JPanel{
                 .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox1)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBox1))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
@@ -1525,8 +1511,13 @@ public class UserCard extends JPanel{
         jLabel10.setForeground(new java.awt.Color(33, 82, 117));
         jLabel10.setText("Filter Search:");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(cc.queryPosition(1)));
         jComboBox3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -1594,6 +1585,107 @@ public class UserCard extends JPanel{
         jLabel21.setText("Personal Information");
 
         jPanel5.setLayout(new java.awt.BorderLayout());
+
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel7.setLayout(new java.awt.GridBagLayout());
+
+        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 201;
+        gridBagConstraints.ipady = 13;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(11, 32, 0, 0);
+        jPanel7.add(jTextField2, gridBagConstraints);
+
+        jTextField4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextField4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.ipadx = 201;
+        gridBagConstraints.ipady = 13;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(11, 445, 0, 24);
+        jPanel7.add(jTextField4, gridBagConstraints);
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(33, 97, 140));
+        jLabel7.setText("Sex");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(11, 533, 0, 0);
+        jPanel7.add(jLabel7, gridBagConstraints);
+
+        jTextField5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextField5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 201;
+        gridBagConstraints.ipady = 13;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(35, 32, 0, 0);
+        jPanel7.add(jTextField5, gridBagConstraints);
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(33, 97, 140));
+        jLabel8.setText("Party List");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(11, 108, 0, 0);
+        jPanel7.add(jLabel8, gridBagConstraints);
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(33, 97, 140));
+        jLabel9.setText("Date of Birth");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(11, 85, 0, 0);
+        jPanel7.add(jLabel9, gridBagConstraints);
+
+        jTextField12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextField12.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField12.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.ipadx = 201;
+        gridBagConstraints.ipady = 13;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(35, 445, 0, 24);
+        jPanel7.add(jTextField12, gridBagConstraints);
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(33, 97, 140));
+        jLabel13.setText("Religion");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(11, 518, 0, 0);
+        jPanel7.add(jLabel13, gridBagConstraints);
 
         jLabel22.setBackground(new java.awt.Color(33, 97, 140));
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -1698,158 +1790,58 @@ public class UserCard extends JPanel{
         jLabel23.setBackground(new java.awt.Color(33, 97, 140));
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(33, 97, 140));
-        jLabel23.setText("Campaign");
+        jLabel23.setText("Platform");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 21)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(33, 97, 140));
         jLabel1.setText("NAME");
 
-        jPanel15.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel15.setLayout(new java.awt.GridBagLayout());
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel3.setText("Position");
 
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(33, 97, 140));
-        jLabel15.setText("Sex");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
-        gridBagConstraints.weightx = 0.33;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
-        jPanel15.add(jLabel15, gridBagConstraints);
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jLabel4.setText("Party");
 
-        religionTxt1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        religionTxt1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        religionTxt1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipady = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 0.33;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
-        jPanel15.add(religionTxt1, gridBagConstraints);
-
-        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(33, 97, 140));
-        jLabel16.setText("Religion");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
-        gridBagConstraints.weightx = 0.33;
-        jPanel15.add(jLabel16, gridBagConstraints);
-
-        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel24.setForeground(new java.awt.Color(33, 97, 140));
-        jLabel24.setText("Date of Birth");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
-        gridBagConstraints.weightx = 0.33;
-        gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 30);
-        jPanel15.add(jLabel24, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipady = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 0.33;
-        gridBagConstraints.insets = new java.awt.Insets(0, 30, 5, 30);
-        jPanel15.add(birthDateSpinner1, gridBagConstraints);
-
-        sexComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipady = 10;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 30);
-        jPanel15.add(sexComboBox1, gridBagConstraints);
-
-        campaigntable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        campaigntable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Election Period", "Party", "Position", "Platform"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        campaigntable.setFocusable(false);
-        campaigntable.setGridColor(new java.awt.Color(33, 82, 117));
-        campaigntable.setSelectionBackground(new java.awt.Color(33, 82, 117));
-        jScrollPane6.setViewportView(campaigntable);
+        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jScrollPane2.setToolTipText("");
+        jScrollPane2.setName(""); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(170, 170, 170)
-                        .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(76, 76, 76)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 1125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 1159, Short.MAX_VALUE)
-                        .addComponent(jSeparator5)
-                        .addComponent(jSeparator4)
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel22)
-                                .addGroup(jPanel4Layout.createSequentialGroup()
-                                    .addGap(98, 98, 98)
-                                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 895, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel4Layout.createSequentialGroup()
-                                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jLabel1))
-                                .addComponent(jLabel21)
-                                .addComponent(jLabel23))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(144, 144, 144)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 1159, Short.MAX_VALUE)
+                            .addComponent(jSeparator5)
+                            .addComponent(jSeparator4)
+                            .addComponent(jLabel22)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(98, 98, 98)
+                                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 895, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)))
+                            .addComponent(jLabel21)
+                            .addComponent(jLabel23)))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(173, 173, 173)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 975, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 777, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1863,12 +1855,16 @@ public class UserCard extends JPanel{
                         .addComponent(jLabel21))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel22)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1878,9 +1874,9 @@ public class UserCard extends JPanel{
                 .addComponent(jLabel23)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(180, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -1923,18 +1919,19 @@ public class UserCard extends JPanel{
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(cardDetailsLayout.createSequentialGroup()
-                .addGap(79, 79, 79)
+                .addGap(76, 76, 76)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 1360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(573, Short.MAX_VALUE))
+                .addContainerGap(576, Short.MAX_VALUE))
         );
         cardDetailsLayout.setVerticalGroup(
             cardDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cardDetailsLayout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38))
         );
 
         MainPanel.add(cardDetails, "cardDetails");
@@ -1957,6 +1954,10 @@ public class UserCard extends JPanel{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
         // TODO add your handling code here:
@@ -2047,6 +2048,48 @@ public class UserCard extends JPanel{
         Logout.setBackground(byeMENU);
     }//GEN-LAST:event_LogoutMouseExited
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void update_table_by_party()
+    {
+        DefaultTableModel model = new DefaultTableModel();
+        
+        if(jComboBox1.getSelectedIndex() != 0) {
+            MainController mc = new MainController();
+            String[] colNames = {"","Name", "Party", "Position"};
+            Object[][] data = mc.candidate_controller.query_candidates_by_party_elecper((String) jComboBox1.getSelectedItem(), 1);
+            model = new DefaultTableModel(data, colNames);
+        }
+        
+        search_by_party_table.setModel(model);
+        search_by_party_table.getColumnModel().getColumn(0).setMaxWidth(120);
+        search_by_party_table.getColumnModel().getColumn(0).setMinWidth(120);
+        search_by_party_table.setRowHeight(120);
+    }
+    
+    private void update_table_by_position()
+    {
+        DefaultTableModel model = new DefaultTableModel();
+        
+        if(jComboBox3.getSelectedIndex() != 0) {
+            MainController mc = new MainController();
+            String[] colNames = {"","Name", "Party", "Position"};
+            Object[][] data = mc.candidate_controller.query_candidates_by_position_elecper((String) jComboBox3.getSelectedItem(), 1);
+            model = new DefaultTableModel(data, colNames);
+        }
+        
+        search_by_position_table.setModel(model);
+        search_by_position_table.getColumnModel().getColumn(0).setMaxWidth(120);
+        search_by_position_table.getColumnModel().getColumn(0).setMinWidth(120);
+        search_by_position_table.setRowHeight(120);
+    }
+    
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        
+    }//GEN-LAST:event_jComboBox3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2090,36 +2133,37 @@ public class UserCard extends JPanel{
     private javax.swing.JPanel ByPosition;
     private javax.swing.JPanel Logout;
     private javax.swing.JPanel MainPanel;
-    private javax.swing.JSpinner birthDateSpinner1;
-    private javax.swing.JTable campaigntable;
     private javax.swing.JPanel cardDetails;
     private javax.swing.JPanel cardViewAll;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
@@ -2131,12 +2175,14 @@ public class UserCard extends JPanel{
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
+    private javax.swing.JTextField jTextField12;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
-    private javax.swing.JTextField religionTxt1;
-    private javax.swing.JComboBox<String> sexComboBox1;
     private javax.swing.JLabel sp1LBL;
     private javax.swing.JLabel sp1LBL1;
     private javax.swing.JLabel sp1LBL2;
