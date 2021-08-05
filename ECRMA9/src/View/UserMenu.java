@@ -41,7 +41,6 @@ public class UserMenu extends javax.swing.JFrame {
         viewIcon.setIcon(new ImageIcon("src\\Icons\\view128px.png"));
         logoutIcon.setIcon(new ImageIcon("src\\Icons\\logout128px.png"));
 
-          
     }
 
     /** This method is called from within the constructor to
