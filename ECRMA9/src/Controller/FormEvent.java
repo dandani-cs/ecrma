@@ -22,6 +22,7 @@ public class FormEvent extends EventObject {
     private Candidate candidate;
     private ElecPer election_period;
     private Campaigns campaign;
+    private String purpose;
     
     public FormEvent(Object source){
         super(source);
