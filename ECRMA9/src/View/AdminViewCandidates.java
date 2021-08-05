@@ -48,25 +48,26 @@ public class AdminViewCandidates extends JPanel{
     West west;
     Insets westInsets;
     Center center;
-    MainController main_controller = new MainController();
+    MainController main_controller;
 
-    public AdminViewCandidates(){
+    public AdminViewCandidates(MainController passed_mc) {
         bgColor = new Color(255,255,255);
         
-        this.setLayout(new BorderLayout());
-        north = new North();
-        north.setBorder(new EmptyBorder(10,10,10,10));
-        westInsets = new Insets(5,5,5,5);
-        west = new West();
-        west.setBorder(new CompoundBorder(new EmptyBorder(westInsets),
-                    new MatteBorder(0, 0, 0, 0, Color.black))                );
-        center = new Center();
+        main_controller = passed_mc;
         
-        this.add(north, BorderLayout.NORTH);
-        this.add(west, BorderLayout.WEST);
+        this.setLayout(new BorderLayout());
+        Border ogg_border = this.getBorder();
+        Border margin1 = new EmptyBorder(0,-30, 0, 30);
+        this.setBorder(new CompoundBorder(ogg_border, margin1));
+        center = new Center();
+
         this.add(center, BorderLayout.CENTER);
         
         this.setBackground(bgColor);
+        
+        setVisible(true);
+        setSize(new Dimension(1280,800));
+        
     }
     
     class North extends JPanel{
@@ -177,7 +178,7 @@ public class AdminViewCandidates extends JPanel{
         
         Center() {
             this.setLayout(new BorderLayout());
-            this.setBorder(new EmptyBorder(60,60,60,60));
+            this.setBorder(new EmptyBorder(20, 60, 60, 60));
             this.setOpaque(false);
             button_renderer = new JTableButtonRenderer();
             
@@ -204,7 +205,6 @@ public class AdminViewCandidates extends JPanel{
 
             table = new JTable() {
                 public boolean editCellAt(int row, int column, java.util.EventObject e) {
-                    
                     return false;
                 }
             };
@@ -227,6 +227,12 @@ public class AdminViewCandidates extends JPanel{
                public void mouseClicked(MouseEvent e) {
                    int col = table.columnAtPoint(e.getPoint());
                    int row = table.rowAtPoint(e.getPoint());
+                   if (col == 0 || col == 1 || col == 2) {
+                       //EVENT HERE
+                       // SEND CANDIDATE ID 
+                       // create form event
+                       // call formlistener
+                   }
                    
                    if (col == 3) {
                        // open EditCandidate
