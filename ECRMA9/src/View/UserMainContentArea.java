@@ -30,6 +30,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractListModel;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -47,6 +49,8 @@ import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
@@ -82,6 +86,11 @@ public class UserMainContentArea extends javax.swing.JFrame {
         this.setTitle("Election Candidates Record Management");
         
         MainPanel.add(search_panel, BorderLayout.CENTER);
+    }
+    
+    public void setSearchCard(String card)
+    {
+        search_panel.setCard(card);
     }
     
         /**

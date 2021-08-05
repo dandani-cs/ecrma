@@ -88,8 +88,6 @@ public class CandidateSearchPanel extends javax.swing.JPanel {
         };
         
         update_table_model();
-        
-        search_results_table.getColumnModel().getColumn(0).setCellRenderer(search_results_table.getDefaultRenderer(ImageIcon.class));
 
         search_results_table.getColumnModel().getColumn(0).setMaxWidth(120);
         search_results_table.getColumnModel().getColumn(0).setMinWidth(120);
@@ -143,9 +141,38 @@ public class CandidateSearchPanel extends javax.swing.JPanel {
     }
     
     public void setCard(String str){
-        filter_container_cards.show(candidate_filters, str);
+        if(str.equals("all_filter"))
+        {
+            filter_container_cards.show(candidate_filters, "name_filter");
+            name_text_field.setEnabled(false);
+        }
+        else
+        {
+            filter_container_cards.show(candidate_filters, str);
+            name_text_field.setEnabled(true);
+        }
         current_filter_card = str;
         update_table_model();
+        
+        if(str.equals("party_filter")) 
+        {
+            set_header("Filter Candidate by Party",
+                        "Select the party of the candidate in dropdown below along with the corresponding election period");
+            
+        } else if(current_filter_card.equals("position_filter"))
+        {
+            set_header("Filter Candidate by Position",
+                        "Select the party of the candidate in dropdown below along with the corresponding election period");
+
+        } else if(str.equals("name_filter"))
+        {
+            set_header("Filter Candidate by Name",
+                       "Input the name of the candidate in the text field below along with the corresponding election period");
+        } else
+        {
+            set_header("View All Candidates",
+                       "All of the candidates who participated in the shown election period are listed below");
+        }
     }
     
     
@@ -205,7 +232,9 @@ public class CandidateSearchPanel extends javax.swing.JPanel {
         DefaultTableModel model = new DefaultTableModel(data, colNames);
         
         search_results_table.setModel(model);
-        search_results_table.getColumnModel().getColumn(0).setCellRenderer(search_results_table.getDefaultRenderer(ImageIcon.class));
+        search_results_table.getColumnModel()
+                .getColumn(0)
+                .setCellRenderer(search_results_table.getDefaultRenderer(ImageIcon.class));
         search_results_table.getColumnModel().getColumn(0).setMaxWidth(120);
         search_results_table.getColumnModel().getColumn(0).setMinWidth(120);
         search_results_table.setRowHeight(120);
@@ -235,6 +264,7 @@ public class CandidateSearchPanel extends javax.swing.JPanel {
         position_filter = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         position_combo_box = new javax.swing.JComboBox<>();
+        no_filter = new javax.swing.JPanel();
         elecper_filter_container = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         eper_combo_box = new javax.swing.JComboBox<>();
@@ -289,6 +319,7 @@ public class CandidateSearchPanel extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 8;
         gridBagConstraints.weightx = 0.75;
         name_filter.add(name_text_field, gridBagConstraints);
 
@@ -312,6 +343,7 @@ public class CandidateSearchPanel extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 10;
         gridBagConstraints.weightx = 0.75;
         party_filter.add(party_combo_box, gridBagConstraints);
 
@@ -335,10 +367,15 @@ public class CandidateSearchPanel extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 10;
         gridBagConstraints.weightx = 0.75;
         position_filter.add(position_combo_box, gridBagConstraints);
 
         candidate_filters.add(position_filter, "position_filter");
+
+        no_filter.setBackground(new java.awt.Color(255, 255, 255));
+        no_filter.setLayout(new java.awt.GridBagLayout());
+        candidate_filters.add(no_filter, "no_filter");
 
         filter_container.add(candidate_filters);
 
@@ -356,6 +393,7 @@ public class CandidateSearchPanel extends javax.swing.JPanel {
         eper_combo_box.setPreferredSize(new java.awt.Dimension(256, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 10;
         gridBagConstraints.weightx = 0.75;
         elecper_filter_container.add(eper_combo_box, gridBagConstraints);
 
@@ -394,6 +432,7 @@ public class CandidateSearchPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel name_filter;
     private javax.swing.JTextField name_text_field;
+    private javax.swing.JPanel no_filter;
     private javax.swing.JComboBox<String> party_combo_box;
     private javax.swing.JPanel party_filter;
     private javax.swing.JComboBox<String> position_combo_box;
