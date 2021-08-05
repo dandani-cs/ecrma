@@ -68,7 +68,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         this.setTitle("Election Candidates Record Management");
         
         card = (CardLayout)MainPanel.getLayout();
-        CandidateDetailsPanel jPanel15 = new CandidateDetailsPanel(program_main_controller);
+        CandidateDetailsPanel jPanel15 = new CandidateDetailsPanel(program_main_controller); // candidateid
         
         myPanel = new AdminViewCandidates(program_main_controller);
         cardViewCandidates.add(myPanel, BorderLayout.CENTER);
