@@ -33,6 +33,7 @@ public class UserMenu extends javax.swing.JFrame {
         int ysize = (int) tk.getScreenSize().getHeight();
         this.setSize(xsize, ysize);*/
         this.setLocationRelativeTo(null);
+        
     }
 
     /** This method is called from within the constructor to
