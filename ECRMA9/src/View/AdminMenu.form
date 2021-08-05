@@ -49,7 +49,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="0" width="-1" height="340"/>
+              <AbsoluteConstraints x="0" y="0" width="-1" height="300"/>
             </Constraint>
           </Constraints>
 
@@ -81,7 +81,7 @@
                       <Component id="jLabel3" min="-2" pref="43" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                       <Component id="jSeparator1" min="-2" pref="17" max="-2" attributes="0"/>
-                      <EmptySpace pref="43" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -174,7 +174,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jLabel9" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="addIcon" min="-2" pref="200" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jLabel4" alignment="0" pref="346" max="32767" attributes="0"/>
@@ -184,7 +184,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                          <Component id="jLabel9" pref="144" max="32767" attributes="0"/>
+                          <Component id="addIcon" pref="144" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel4" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
@@ -201,13 +201,16 @@
                     <Property name="text" type="java.lang.String" value="Add Candidate"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel9">
+                <Component class="javax.swing.JLabel" name="addIcon">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="C:\Users\Admin\Documents\GitHub\ecrma\ECRMA9\src\Icons\add128px.png"/>
+                      <Image iconType="3" name="/add128px.png"/>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="AdminMenu_addIcon"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -228,7 +231,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jLabel10" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="editIcon" min="-2" pref="200" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jLabel5" alignment="0" pref="346" max="32767" attributes="0"/>
@@ -238,7 +241,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                          <Component id="jLabel10" pref="144" max="32767" attributes="0"/>
+                          <Component id="editIcon" pref="144" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel5" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
@@ -255,11 +258,11 @@
                     <Property name="text" type="java.lang.String" value="Edit Candidate Details"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel10">
+                <Component class="javax.swing.JLabel" name="editIcon">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="C:\Users\Admin\Documents\GitHub\ecrma\ECRMA9\src\Icons\edit128px.png"/>
+                      <Image iconType="3" name="/edit128px.png"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -283,7 +286,7 @@
                       <Component id="jLabel6" alignment="0" pref="346" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jLabel11" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="deleteIcon" min="-2" pref="200" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -292,7 +295,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                          <Component id="jLabel11" pref="144" max="32767" attributes="0"/>
+                          <Component id="deleteIcon" pref="144" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel6" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
@@ -309,11 +312,11 @@
                     <Property name="text" type="java.lang.String" value="Delete Candidate"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel11">
+                <Component class="javax.swing.JLabel" name="deleteIcon">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="C:\Users\Admin\Documents\GitHub\ecrma\ECRMA9\src\Icons\delete128px.png"/>
+                      <Image iconType="3" name="/delete128px.png"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -357,7 +360,7 @@
                       <Component id="jLabel8" alignment="0" pref="346" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
-                          <Component id="jLabel12" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="searchIcon" min="-2" pref="200" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -366,7 +369,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                          <Component id="jLabel12" pref="144" max="32767" attributes="0"/>
+                          <Component id="searchIcon" pref="144" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel8" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
@@ -383,11 +386,11 @@
                     <Property name="text" type="java.lang.String" value="View Data"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel12">
+                <Component class="javax.swing.JLabel" name="searchIcon">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="C:\Users\Admin\Documents\GitHub\ecrma\ECRMA9\src\Icons\view2_128px.png"/>
+                      <Image iconType="3" name="/view2_128px.png"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -411,7 +414,7 @@
                       <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
-                          <Component id="jLabel13" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="archiveIcon" min="-2" pref="200" max="-2" attributes="0"/>
                           <EmptySpace pref="75" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -420,7 +423,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                          <Component id="jLabel13" pref="144" max="32767" attributes="0"/>
+                          <Component id="archiveIcon" pref="144" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel7" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
@@ -437,11 +440,11 @@
                     <Property name="text" type="java.lang.String" value="Archive Data"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel13">
+                <Component class="javax.swing.JLabel" name="archiveIcon">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="C:\Users\Admin\Documents\GitHub\ecrma\ECRMA9\src\Icons\archive128px.png"/>
+                      <Image iconType="3" name="/archive128px.png"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -465,7 +468,7 @@
                       <Component id="jLabel14" alignment="0" pref="346" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jLabel15" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="logoutIcon" min="-2" pref="200" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -474,7 +477,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                          <Component id="jLabel15" pref="144" max="32767" attributes="0"/>
+                          <Component id="logoutIcon" pref="144" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel14" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
@@ -491,11 +494,11 @@
                     <Property name="text" type="java.lang.String" value="Logout"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel15">
+                <Component class="javax.swing.JLabel" name="logoutIcon">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="C:\Users\Admin\Documents\GitHub\ecrma\ECRMA9\src\Icons\logout128px.png"/>
+                      <Image iconType="3" name="/logout128px.png"/>
                     </Property>
                   </Properties>
                 </Component>

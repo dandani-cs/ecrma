@@ -66,6 +66,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         this.setSize(xsize, ysize);*/
         this.setLocationRelativeTo(null);
         this.setTitle("Election Candidates Record Management");
+        panelLogo.setIcon(new ImageIcon("C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ECRMA9\\src\\Icons\\candidate2_128px.png"));
         cardViewCandidates.add(myPanel);
         
         card = (CardLayout)MainPanel.getLayout();
@@ -301,7 +302,7 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
 
         SidePanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        panelLogo = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         SidePanelContent = new javax.swing.JPanel();
         vCandidate = new javax.swing.JPanel();
@@ -460,19 +461,21 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
 
         jPanel1.setBackground(new java.awt.Color(33, 97, 140));
 
+        panelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ecrmaLogo.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -2523,7 +2526,6 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -2603,6 +2605,7 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTextField lastNameTxt;
     private javax.swing.JTextField midInitialTxt;
+    private javax.swing.JLabel panelLogo;
     private javax.swing.JTextField religionTxt;
     private javax.swing.JTextField religionTxt1;
     private javax.swing.JButton resetBtn;
