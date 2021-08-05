@@ -72,6 +72,9 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         viewCandidateDetails = new CandidateDetailsPanel(program_main_controller); // candidateid TO BE ADDED TO cardViewDetails
         
         myPanel = new AdminViewCandidates(program_main_controller);
+        myPanel.setFormListener(
+                
+        );
         cardViewCandidates.add(myPanel, BorderLayout.CENTER);
         
      

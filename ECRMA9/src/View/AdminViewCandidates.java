@@ -230,6 +230,8 @@ public class AdminViewCandidates extends JPanel{
                    if (col == 0 || col == 1 || col == 2) {
                        //EVENT HERE
                        // SEND CANDIDATE ID 
+                       // create form event
+                       // call formlistener
                    }
                    
                    if (col == 3) {
