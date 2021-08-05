@@ -74,21 +74,6 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         myPanel = new AdminViewCandidates(program_main_controller);
         cardViewCandidates.add(myPanel, BorderLayout.CENTER);
         
-//        DefaultTableCellRenderer tableCellRenderer = new DefaultTableCellRenderer();
-//        tableCellRenderer.setHorizontalAlignment(JLabel.CENTER);
-//        for(int i = 0; i < campaigntable.getColumnModel().getColumnCount(); i++) {
-//            campaigntable.getColumnModel().getColumn(i).setCellRenderer(tableCellRenderer);           
-//            
-//        JTableHeader campaignheader = campaigntable.getTableHeader();
-//        
-//        campaignheader.setForeground(hoverMENU);
-//        campaignheader.setBackground(Color.WHITE);
-//        campaignheader.setFont(new Font("Tahoma", Font.BOLD, 14));
-//        
-//        setSize(1620,1000);
-//        
-//        
-//        }
      
     }
     

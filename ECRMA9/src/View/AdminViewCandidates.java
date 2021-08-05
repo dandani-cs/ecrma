@@ -227,6 +227,10 @@ public class AdminViewCandidates extends JPanel{
                public void mouseClicked(MouseEvent e) {
                    int col = table.columnAtPoint(e.getPoint());
                    int row = table.rowAtPoint(e.getPoint());
+                   if (col == 0 || col == 1 || col == 2) {
+                       //EVENT HERE
+                       // SEND CANDIDATE ID 
+                   }
                    
                    if (col == 3) {
                        // open EditCandidate
