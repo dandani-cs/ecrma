@@ -77,6 +77,8 @@ public class UserMainContentArea extends javax.swing.JFrame {
         campaignheader.setForeground(hoverMENU);
         campaignheader.setBackground(Color.WHITE);
         campaignheader.setFont(new Font("Tahoma", Font.BOLD, 14));
+        
+        panelLogo.setIcon(new ImageIcon("src\\Icons\\ecrmaLogo.png"));
     }
     
     public void setCard(String str){
@@ -1072,7 +1074,7 @@ public class UserCard extends JPanel{
 
         jPanel1 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        panelLogo = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel13 = new javax.swing.JPanel();
         vCandidate = new javax.swing.JPanel();
@@ -1147,22 +1149,20 @@ public class UserCard extends JPanel{
 
         jPanel14.setBackground(new java.awt.Color(33, 97, 140));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ecrmaLogo.png"))); // NOI18N
-
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
         jPanel14Layout.setHorizontalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
                 .addGap(0, 19, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(panelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel13.setBackground(new java.awt.Color(33, 97, 140));
@@ -2106,7 +2106,6 @@ public class UserCard extends JPanel{
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
@@ -2136,6 +2135,7 @@ public class UserCard extends JPanel{
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JLabel panelLogo;
     private javax.swing.JTextField religionTxt1;
     private javax.swing.JComboBox<String> sexComboBox1;
     private javax.swing.JLabel sp1LBL;

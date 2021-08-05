@@ -35,11 +35,13 @@ public class UserMenu extends javax.swing.JFrame {
         this.setSize(xsize, ysize);*/
         this.setLocationRelativeTo(null);
         
-//        candIcon.setIcon(new ImageIcon("C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ECRMA9\\src\\Icons\\candidate2_128px.png"));
-//        posIcon.setIcon(new ImageIcon("C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ECRMA9\\src\\Icons\\search128px.png"));
-//        partyIcon.setIcon(new ImageIcon("C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ECRMA9\\src\\Icons\\party128px.png"));
-//        viewIcon.setIcon(new ImageIcon("C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ECRMA9\\src\\Icons\\view128px.png"));
-//        logoutIcon.setIcon(new ImageIcon("C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ECRMA9\\src\\Icons\\logout128px.png"));
+        candIcon.setIcon(new ImageIcon("src\\Icons\\candidate2_128px.png"));
+        posIcon.setIcon(new ImageIcon("src\\Icons\\search128px.png"));
+        partyIcon.setIcon(new ImageIcon("src\\Icons\\party128px.png"));
+        viewIcon.setIcon(new ImageIcon("src\\Icons\\view128px.png"));
+        logoutIcon.setIcon(new ImageIcon("src\\Icons\\logout128px.png"));
+
+          
     }
 
     /** This method is called from within the constructor to
@@ -152,7 +154,6 @@ public class UserMenu extends javax.swing.JFrame {
         jLabel4.setText("Search a Candidate");
 
         candIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        candIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/candidate2_128px.png"))); // NOI18N
 
         javax.swing.GroupLayout CandSearchBTNLayout = new javax.swing.GroupLayout(CandSearchBTN);
         CandSearchBTN.setLayout(CandSearchBTNLayout);
@@ -193,7 +194,6 @@ public class UserMenu extends javax.swing.JFrame {
         jLabel5.setText("Search a Position");
 
         posIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        posIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/search128px.png"))); // NOI18N
 
         javax.swing.GroupLayout PosSearchBTNLayout = new javax.swing.GroupLayout(PosSearchBTN);
         PosSearchBTN.setLayout(PosSearchBTNLayout);
@@ -234,7 +234,6 @@ public class UserMenu extends javax.swing.JFrame {
         jLabel6.setText("Search a Political Party");
 
         partyIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        partyIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/party128px.png"))); // NOI18N
 
         javax.swing.GroupLayout PartySearchBTNLayout = new javax.swing.GroupLayout(PartySearchBTN);
         PartySearchBTN.setLayout(PartySearchBTNLayout);
@@ -280,7 +279,6 @@ public class UserMenu extends javax.swing.JFrame {
         jLabel8.setText("View All");
 
         viewIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        viewIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view128px.png"))); // NOI18N
 
         javax.swing.GroupLayout ViewAllBTNLayout = new javax.swing.GroupLayout(ViewAllBTN);
         ViewAllBTN.setLayout(ViewAllBTNLayout);
@@ -321,7 +319,6 @@ public class UserMenu extends javax.swing.JFrame {
         jLabel7.setText("Logout");
 
         logoutIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        logoutIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logout128px.png"))); // NOI18N
 
         javax.swing.GroupLayout LogoutBTNLayout = new javax.swing.GroupLayout(LogoutBTN);
         LogoutBTN.setLayout(LogoutBTNLayout);

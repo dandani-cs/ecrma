@@ -17,6 +17,7 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.LayoutManager;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -33,6 +34,8 @@ import javax.swing.JOptionPane;
 public class AdminMenu extends javax.swing.JFrame {
     
     Frame_Login login;
+    ImageIcon iconAdd, iconEdit, iconDelete, iconView, iconArchive, iconLogout;
+//    JPanel AddBTN;
     AdminMainContentArea adminmaincontentarea;
 //    ImageIcon icon;
     //TODO: change this to main controller due to ElecPerController errors for now
@@ -50,6 +53,22 @@ public class AdminMenu extends javax.swing.JFrame {
         int ysize = (int) tk.getScreenSize().getHeight();
         this.setSize(xsize, ysize);
         this.setLocationRelativeTo(null);
+        
+        //Icons
+        iconAdd = new ImageIcon("src/Icons/add128px.png");
+        iconEdit = new ImageIcon("src/Icons/edit128px.png");
+        iconDelete = new ImageIcon("src/Icons/delete128px.png");
+        iconView = new ImageIcon("src/Icons/view2_128px.png");
+        iconArchive = new ImageIcon("src/Icons/archive128px.png");
+        iconLogout = new ImageIcon("src/Icons/logout128px.png");
+        
+        addIcon.setIcon(iconAdd);
+        editIcon.setIcon(iconEdit);
+        deleteIcon.setIcon(iconDelete);
+        viewIcon.setIcon(iconView);
+        archiveIcon.setIcon(iconArchive);
+        logoutIcon.setIcon(iconLogout);
+
         
     }
 
@@ -83,7 +102,7 @@ public class AdminMenu extends javax.swing.JFrame {
         UserContentR2 = new javax.swing.JPanel();
         ViewBTN = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        searchIcon = new javax.swing.JLabel();
+        viewIcon = new javax.swing.JLabel();
         ArchiveBTN = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         archiveIcon = new javax.swing.JLabel();
@@ -166,7 +185,6 @@ public class AdminMenu extends javax.swing.JFrame {
         jLabel4.setText("Add Candidate");
 
         addIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        addIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add128px.png"))); // NOI18N
 
         javax.swing.GroupLayout AddBTNLayout = new javax.swing.GroupLayout(AddBTN);
         AddBTN.setLayout(AddBTNLayout);
@@ -207,7 +225,6 @@ public class AdminMenu extends javax.swing.JFrame {
         jLabel5.setText("Edit Candidate Details");
 
         editIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        editIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edit128px.png"))); // NOI18N
 
         javax.swing.GroupLayout EditBTNLayout = new javax.swing.GroupLayout(EditBTN);
         EditBTN.setLayout(EditBTNLayout);
@@ -248,7 +265,6 @@ public class AdminMenu extends javax.swing.JFrame {
         jLabel6.setText("Delete Candidate");
 
         deleteIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        deleteIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/delete128px.png"))); // NOI18N
 
         javax.swing.GroupLayout DeleteBTNLayout = new javax.swing.GroupLayout(DeleteBTN);
         DeleteBTN.setLayout(DeleteBTNLayout);
@@ -293,24 +309,23 @@ public class AdminMenu extends javax.swing.JFrame {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("View Data");
 
-        searchIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        searchIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view2_128px.png"))); // NOI18N
+        viewIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout ViewBTNLayout = new javax.swing.GroupLayout(ViewBTN);
         ViewBTN.setLayout(ViewBTNLayout);
         ViewBTNLayout.setHorizontalGroup(
             ViewBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
-            .addGroup(ViewBTNLayout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addComponent(searchIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ViewBTNLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(viewIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(68, 68, 68))
         );
         ViewBTNLayout.setVerticalGroup(
             ViewBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ViewBTNLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(searchIcon, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                .addComponent(viewIcon, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -335,7 +350,6 @@ public class AdminMenu extends javax.swing.JFrame {
         jLabel7.setText("Archive Data");
 
         archiveIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        archiveIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/archive128px.png"))); // NOI18N
 
         javax.swing.GroupLayout ArchiveBTNLayout = new javax.swing.GroupLayout(ArchiveBTN);
         ArchiveBTN.setLayout(ArchiveBTNLayout);
@@ -376,7 +390,6 @@ public class AdminMenu extends javax.swing.JFrame {
         jLabel14.setText("Logout");
 
         logoutIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        logoutIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logout128px.png"))); // NOI18N
 
         javax.swing.GroupLayout LogoutBTNLayout = new javax.swing.GroupLayout(LogoutBTN);
         LogoutBTN.setLayout(LogoutBTNLayout);
@@ -637,6 +650,6 @@ public class AdminMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel logoutIcon;
-    private javax.swing.JLabel searchIcon;
+    private javax.swing.JLabel viewIcon;
     // End of variables declaration//GEN-END:variables
 }

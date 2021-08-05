@@ -82,6 +82,8 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         campaignheader.setBackground(Color.WHITE);
         campaignheader.setFont(new Font("Tahoma", Font.BOLD, 14));
         
+        panelLogo.setIcon(new ImageIcon("src\\Icons\\ecrmaLogo.png"));
+        
         setSize(1620,1000);
         
         
@@ -460,8 +462,6 @@ public class AdminViewCandidates extends JPanel implements ActionListener{
         SidePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(33, 97, 140));
-
-        panelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ecrmaLogo.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

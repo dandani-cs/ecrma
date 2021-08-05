@@ -97,11 +97,6 @@
           </Layout>
           <SubComponents>
             <Component class="javax.swing.JLabel" name="panelLogo">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ecrmaLogo.png"/>
-                </Property>
-              </Properties>
             </Component>
           </SubComponents>
         </Container>

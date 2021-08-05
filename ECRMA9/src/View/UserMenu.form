@@ -207,9 +207,6 @@
                 <Component class="javax.swing.JLabel" name="candIcon">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/candidate2_128px.png"/>
-                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -261,9 +258,6 @@
                 <Component class="javax.swing.JLabel" name="posIcon">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/search128px.png"/>
-                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -315,9 +309,6 @@
                 <Component class="javax.swing.JLabel" name="partyIcon">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/party128px.png"/>
-                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -389,9 +380,6 @@
                 <Component class="javax.swing.JLabel" name="viewIcon">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/view128px.png"/>
-                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -443,9 +431,6 @@
                 <Component class="javax.swing.JLabel" name="logoutIcon">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/logout128px.png"/>
-                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>

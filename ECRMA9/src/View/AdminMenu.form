@@ -204,9 +204,6 @@
                 <Component class="javax.swing.JLabel" name="addIcon">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/add128px.png"/>
-                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="AdminMenu_addIcon"/>
@@ -261,9 +258,6 @@
                 <Component class="javax.swing.JLabel" name="editIcon">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/edit128px.png"/>
-                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -315,9 +309,6 @@
                 <Component class="javax.swing.JLabel" name="deleteIcon">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/delete128px.png"/>
-                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -358,10 +349,10 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel8" alignment="0" pref="346" max="32767" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
-                          <Component id="searchIcon" min="-2" pref="200" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
+                          <Component id="viewIcon" min="-2" pref="200" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -369,7 +360,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                          <Component id="searchIcon" pref="144" max="32767" attributes="0"/>
+                          <Component id="viewIcon" pref="144" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel8" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
@@ -386,12 +377,9 @@
                     <Property name="text" type="java.lang.String" value="View Data"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="searchIcon">
+                <Component class="javax.swing.JLabel" name="viewIcon">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/view2_128px.png"/>
-                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -443,9 +431,6 @@
                 <Component class="javax.swing.JLabel" name="archiveIcon">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/archive128px.png"/>
-                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -497,9 +482,6 @@
                 <Component class="javax.swing.JLabel" name="logoutIcon">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/logout128px.png"/>
-                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>
