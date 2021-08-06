@@ -156,6 +156,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
                                                   JOptionPane.INFORMATION_MESSAGE);
                     myPanel.center.refresh();
                 }
+                setCard("cardViewCandidates");
             }
         });
         

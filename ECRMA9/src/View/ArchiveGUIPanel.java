@@ -26,6 +26,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ArchiveGUIPanel extends javax.swing.JPanel {
     FormListener form_listener;
+    DefaultTableModel dataModel;
     /**
      * Creates new form ArchiveGUIPanel
      */
@@ -34,7 +35,7 @@ public class ArchiveGUIPanel extends javax.swing.JPanel {
         
         this.setSize(new Dimension(1620,1080));
         
-        DefaultTableModel dataModel = new DefaultTableModel(ElecPerSQL.getTable(),
+        dataModel = new DefaultTableModel(ElecPerSQL.getTable(),
                 new String[] {"ELECPERID", "Name", "Starting Date", "Finish Date", "Archive"}) {
                         @Override
             public boolean isCellEditable(int row, int column) {
@@ -242,6 +243,9 @@ public class ArchiveGUIPanel extends javax.swing.JPanel {
         form_listener.formEventOccurred(ev);
     }//GEN-LAST:event_archiveBTNActionPerformed
 
+    public void refresh() {
+        dataModel.fireTableDataChanged();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton archiveBTN;
