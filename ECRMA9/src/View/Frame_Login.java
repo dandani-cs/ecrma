@@ -5,6 +5,7 @@
  */
 package View;
 
+import Controller.MainController;
 import Controller.UserController;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -46,7 +47,7 @@ public class Frame_Login extends JFrame implements ActionListener{
     AdminMenu adminmenu;
     UserMenu usermenu;
     
-    UserController user_controller = new UserController();
+    MainController main_controller = new MainController();
     
     JPanel login_panel, about_panel, input_panel;
     ImagePanel bgImagePanel;
@@ -188,9 +189,9 @@ public class Frame_Login extends JFrame implements ActionListener{
             String username = txt_email.getText();
             String password = txt_password.getText();
             
-            if(user_controller.isAuthorized(username, password))
+            if(main_controller.user_controller.isAuthorized(username, password))
             {
-                if(user_controller.isAdmin())
+                if(main_controller.user_controller.isAdmin())
                 {
                     adminmenu = new AdminMenu();
                     adminmenu.setVisible(true);
@@ -198,6 +199,7 @@ public class Frame_Login extends JFrame implements ActionListener{
                 } else
                 {
                     usermenu = new UserMenu();
+                    usermenu.set_main_controller(main_controller);
                     usermenu.setVisible(true);
                     this.setVisible(false);
                 }

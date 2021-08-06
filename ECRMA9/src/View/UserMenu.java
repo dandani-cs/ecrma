@@ -6,6 +6,7 @@
 
 package View;
 
+import Controller.MainController;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
@@ -20,6 +21,7 @@ public class UserMenu extends javax.swing.JFrame {
 
     Frame_Login login;
     UserMainContentArea usermaincontentarea;
+    MainController controller;
     
     /** Creates new form UserMenu */
     public UserMenu() {
@@ -41,6 +43,11 @@ public class UserMenu extends javax.swing.JFrame {
         viewIcon.setIcon(new ImageIcon("src\\Icons\\view128px.png"));
         logoutIcon.setIcon(new ImageIcon("src\\Icons\\logout128px.png"));
 
+    }
+    
+    public void set_main_controller(MainController mc)
+    {
+        this.controller = mc;
     }
 
     /** This method is called from within the constructor to
@@ -394,6 +401,7 @@ public class UserMenu extends javax.swing.JFrame {
         usermaincontentarea = new UserMainContentArea();
         usermaincontentarea.setVisible(true);
         usermaincontentarea.setSearchCard("name_filter");
+        usermaincontentarea.set_controller(controller);
         this.setVisible(false);
     }//GEN-LAST:event_ViewAllBTNMouseClicked
 
@@ -412,6 +420,7 @@ public class UserMenu extends javax.swing.JFrame {
         usermaincontentarea = new UserMainContentArea();
         usermaincontentarea.setVisible(true);
         usermaincontentarea.setSearchCard("party_filter");
+        usermaincontentarea.set_controller(controller);
         this.setVisible(false);
     }//GEN-LAST:event_PartySearchBTNMouseClicked
 
@@ -429,7 +438,8 @@ public class UserMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         usermaincontentarea = new UserMainContentArea();
         usermaincontentarea.setVisible(true);
-        usermaincontentarea.setSearchCard("name_filter");
+        usermaincontentarea.setSearchCard("position_filter");
+        usermaincontentarea.set_controller(controller);
         this.setVisible(false);
     }//GEN-LAST:event_PosSearchBTNMouseClicked
 
@@ -447,6 +457,7 @@ public class UserMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         usermaincontentarea = new UserMainContentArea();
         usermaincontentarea.setVisible(true);
+        usermaincontentarea.set_controller(controller);
         usermaincontentarea.setSearchCard("name_filter");
         this.setVisible(false);
        

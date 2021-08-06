@@ -6,6 +6,8 @@
 package View;
 
 import Controller.CampaignController;
+import Controller.FormEvent;
+import Controller.FormListener;
 import Controller.MainController;
 import Model.Campaigns;
 import Model.CampaignsSQL;
@@ -68,14 +70,19 @@ public class UserMainContentArea extends javax.swing.JFrame {
     }
     
     private String current_filter_card = "name_filter";
+    private String current_main_card   = "search_panel";
     
     UserMenu menu;
     Frame_Login login;
    
-    private CandidateSearchPanel search_panel = new CandidateSearchPanel();
     private Color hoverMENU = new Color(33,82,117);
     private Color byeMENU   = new Color(33,97,140);
    
+    private CardLayout main_panel_layout;
+    private MainController controller;
+    private CandidateSearchPanel search_panel;
+    private CandidateDetailsPanel details_panel;
+    
     /**
      * Creates new form UserCard2
      */
@@ -85,16 +92,50 @@ public class UserMainContentArea extends javax.swing.JFrame {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setTitle("Election Candidates Record Management");
         panelLogo.setIcon(new ImageIcon("src\\Icons\\ecrmaLogo.png"));
-		
-        MainPanel.add(search_panel, BorderLayout.CENTER);
+        
+        //TODO: change to actual controller
+        controller   = new MainController();
+        search_panel = new CandidateSearchPanel();
+        search_panel.set_form_listener(new FormListener() {
+            @Override
+            public void formEventOccurred(FormEvent e) {
+                Candidate evt_candidate = e.getCandidate();
+                
+                if(details_panel != null)
+                    MainPanel.remove(details_panel);
+                
+                details_panel = new CandidateDetailsPanel(controller, 
+                                                          evt_candidate);
+                MainPanel.add(details_panel, "details_panel");
+                
+                current_main_card = "details_panel";
+                main_panel_layout.show(MainPanel, "details_panel");
+            }
+        });
+        current_main_card = "search_panel";
+        MainPanel.add(search_panel, "search_panel");
+        
+        main_panel_layout = (CardLayout) MainPanel.getLayout();
     }
     
     public void setCard(String str){
         //card.show(MainPanel, str);
     }
     
+    public void set_controller(MainController controller)
+    {
+        this.controller = controller;
+    }
+    
     public void setSearchCard(String card)
     {
+        search_panel.setCard(card);
+    }
+    
+    private void switch_from_details_view(String card)
+    {
+        if(current_main_card.equals("details_panel"))
+            main_panel_layout.show(MainPanel, "search_panel");
         search_panel.setCard(card);
     }
     
@@ -106,7 +147,6 @@ public class UserMainContentArea extends javax.swing.JFrame {
         @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
@@ -323,9 +363,9 @@ public class UserMainContentArea extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+            .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -348,7 +388,7 @@ public class UserMainContentArea extends javax.swing.JFrame {
         );
 
         MainPanel.setBackground(new java.awt.Color(255, 255, 255));
-        MainPanel.setLayout(new java.awt.BorderLayout());
+        MainPanel.setLayout(new java.awt.CardLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -374,7 +414,7 @@ public class UserMainContentArea extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void vCandidateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vCandidateMouseClicked
-        search_panel.setCard("name_filter");
+        switch_from_details_view("name_filter");
     }//GEN-LAST:event_vCandidateMouseClicked
 
     private void vCandidateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vCandidateMouseEntered
@@ -389,7 +429,7 @@ public class UserMainContentArea extends javax.swing.JFrame {
 
     private void vPartyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vPartyMouseClicked
         // TODO add your handling code here:
-        search_panel.setCard("party_filter");
+        switch_from_details_view("party_filter");
     }//GEN-LAST:event_vPartyMouseClicked
 
     private void vPartyMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vPartyMouseEntered
@@ -404,7 +444,7 @@ public class UserMainContentArea extends javax.swing.JFrame {
 
     private void vPositionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vPositionMouseClicked
         // TODO add your handling code here:
-        search_panel.setCard("position_filter");
+        switch_from_details_view("position_filter");
     }//GEN-LAST:event_vPositionMouseClicked
 
     private void vPositionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vPositionMouseEntered

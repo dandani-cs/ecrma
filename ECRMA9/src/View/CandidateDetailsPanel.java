@@ -120,7 +120,9 @@ public class CandidateDetailsPanel extends JPanel {
     
     public CandidateDetailsPanel(MainController main_controller, Candidate candidate) {
         // Dummy data
-        setData(candidate);
+        if(candidate != null)
+            setData(candidate);
+        
         personal_info_list = new ArrayList<>();
         education_bg_list  = new ArrayList<>();
         
@@ -172,9 +174,9 @@ public class CandidateDetailsPanel extends JPanel {
         header_gbc.weighty    = 1.0f;
         header_gbc.gridx      = 0;
         header_gbc.gridy      = 0;
-        header_gbc.insets     = new Insets(inset/2, inset, inset / 2, inset / 2);
+        header_gbc.insets     = new Insets(inset/2, inset, inset / 2, 0);
         
-        AvatarImagePanel image_test   = new AvatarImagePanel("img/avatar-icon.png"); // TODO: image relative path
+        AvatarImagePanel image_test   = new AvatarImagePanel(candidate.get_image_path()); // TODO: image relative path
         
         image_test.setBackground(primary_bg);
         image_panel.setLayout(new BorderLayout());
@@ -209,25 +211,7 @@ public class CandidateDetailsPanel extends JPanel {
         first_name_label.setFont(new Font(Font.DIALOG, Font.BOLD, (int)(full_name_size * 0.6f)));
         party_label.setFont   (new Font(Font.DIALOG, Font.PLAIN,(int)(full_name_size * 0.5f)));
         
-        JButton edit_button   = new JButton("EDIT");
-        JButton delete_button = new JButton("DELETE");
-        
         Font button_font = new Font(Font.DIALOG, Font.BOLD, 18);
-        
-        edit_button.setFont(button_font);
-        edit_button.setBackground(primary_blue);
-        edit_button.setForeground(primary_bg);
-        
-        delete_button.setFont(button_font);
-        delete_button.setBackground(primary_blue);
-        delete_button.setForeground(primary_bg);
-        
-        JPanel main_info_buttons = new JPanel();
-        main_info_buttons.setBackground(primary_bg);
-        
-        main_info_buttons.setLayout(new GridLayout(1, 2, 10, 0));
-        main_info_buttons.add(edit_button);
-        main_info_buttons.add(delete_button);
         
         GridBagConstraints minfo_gbc = new GridBagConstraints();
         minfo_gbc.anchor     = GridBagConstraints.FIRST_LINE_START;
@@ -247,9 +231,33 @@ public class CandidateDetailsPanel extends JPanel {
         minfo_gbc.gridy      = 2;
         main_info_content.add(party_label, minfo_gbc);
         
+        JButton edit_button   = new JButton("EDIT");
+        JButton delete_button = new JButton("DELETE");
+
+        edit_button.setFont(button_font);
+        edit_button.setBackground(primary_blue);
+        edit_button.setForeground(primary_bg);
+
+        delete_button.setFont(button_font);
+        delete_button.setBackground(primary_blue);
+        delete_button.setForeground(primary_bg);
+
+        JPanel main_info_buttons = new JPanel();
+        main_info_buttons.setBackground(primary_bg);
+
+        main_info_buttons.setLayout(new GridLayout(1, 2, 10, 0));
+        main_info_buttons.add(edit_button);
+        main_info_buttons.add(delete_button);
+
         minfo_gbc.gridx      = 0;
         minfo_gbc.gridy      = 3;
         main_info_content.add(main_info_buttons, minfo_gbc);
+        if(!main_controller.user_controller.isAdmin())
+        {
+            main_info_buttons.setVisible(false);
+            main_info_buttons.setVisible(false);
+            main_info_content.setBorder(BorderFactory.createEmptyBorder(inset, 0, 0, 0));
+        }
         
         main_info_panel.add(main_info_content, BorderLayout.SOUTH);
         
@@ -334,7 +342,6 @@ public class CandidateDetailsPanel extends JPanel {
         pers_info_panel.add(pers_info_content, BorderLayout.CENTER);
         pers_info_panel.add(pers_info_header, BorderLayout.NORTH);
         
-        
         content_panel.add(pers_info_panel, content_gbc);
         
         // Educational Background
@@ -406,6 +413,7 @@ public class CandidateDetailsPanel extends JPanel {
         platform_header.add(new JSeparator(JSeparator.HORIZONTAL), BorderLayout.SOUTH);
         
         scrollpane.setBorder(BorderFactory.createEmptyBorder());
+        scrollpane.setBackground(primary_bg);
         platform_text_area.setOpaque(true);
         platform_text_area.setEditable(false);
         platform_text_area.setLineWrap(true);
@@ -418,8 +426,25 @@ public class CandidateDetailsPanel extends JPanel {
         platform_panel.setBackground(primary_bg);
         //platform_panel.setBorder(BorderFactory.createLineBorder(Color.gray));
         
+        JPanel add_campaign_container = new JPanel();
+        JButton add_campaign_button   = new JButton("Add Campaigns");
+        add_campaign_button.setBackground(primary_blue);
+        add_campaign_button.setForeground(primary_bg);
+        platform_panel.add(add_campaign_container, BorderLayout.SOUTH);
+        
+        
+        add_campaign_container.setLayout(new FlowLayout(FlowLayout.RIGHT, 0, 0));
+        add_campaign_container.setBackground(primary_bg);
+        add_campaign_container.add(add_campaign_button);
+        
         platform_panel.add(platform_header, BorderLayout.NORTH);
         platform_panel.add(scrollpane, BorderLayout.CENTER);
+        
+        boolean is_admin_logged_in = main_controller.user_controller.isAdmin();
+        
+        add_campaign_button.setVisible(is_admin_logged_in);
+        add_campaign_button.setEnabled(is_admin_logged_in);
+        
         
         //content_panel.setLayout(new FlowLayout(FlowLayout.LEFT));
         
