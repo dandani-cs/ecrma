@@ -10,6 +10,8 @@ import Controller.FormEvent;
 import Controller.FormListener;
 import Model.Candidate;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -54,6 +56,20 @@ public class AddGUIPanel extends javax.swing.JPanel {
         gradDateSpinner.setEditor(new JSpinner.DateEditor(gradDateSpinner,
                                                           date_fmt.toPattern()));     
         
+        midInitialTxt.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if(midInitialTxt.getText().length() == 1)
+                    e.consume();
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {}
+            
+            @Override
+            public void keyReleased(KeyEvent e) {}
+        });
+        
         setSize(1250, 810);
     }
     
@@ -69,6 +85,11 @@ public class AddGUIPanel extends javax.swing.JPanel {
          firstNameTxt.setText("First name");
          lastNameTxt.setText("Last name");
          midInitialTxt.setText("Middle initial");
+         birthDateSpinner.setValue(new Date());
+         gradDateSpinner.setValue(new Date());
+         religionTxt.setText("Religion");
+         universityTxt.setText("University");
+         degreeTxt.setText("Degree");
      }
 
      private String validate_input()
@@ -78,10 +99,10 @@ public class AddGUIPanel extends javax.swing.JPanel {
                                   !firstNameTxt.getText().equals("First name"));
         boolean is_valid_lname = (!lastNameTxt.getText().isEmpty() &&
                                   !lastNameTxt.getText().equals("Last name"));
-        boolean is_valid_midI  = (!midInitialTxt.getText().isEmpty() &&
+        boolean is_valid_midI  = (midInitialTxt.getText().length() == 1 &&
                                   !midInitialTxt.getText().equals("Middle initial"));
         boolean is_valid_uni   = (!universityTxt.getText().equals("University"));
-        boolean is_valid_deg   = (!degreeTxt.getText().equals("degree"));
+        boolean is_valid_deg   = (!degreeTxt.getText().equals("Degree"));
 
         Date birth_date   = (Date) birthDateSpinner.getValue();
         Date grad_date    = (Date) gradDateSpinner.getValue();
@@ -459,15 +480,21 @@ public class AddGUIPanel extends javax.swing.JPanel {
 
         String first_name  = firstNameTxt.getText();
         String last_name   = lastNameTxt.getText();
-        char mid_initial   = midInitialTxt.getText().charAt(0);
+        char mid_initial   = Character.toUpperCase(midInitialTxt.getText().charAt(0));
         String religion    = religionTxt.getText();
         Date birth_date    = (Date) birthDateSpinner.getValue();
 
         String degree      = degreeTxt.getText();
         String univeristy  = universityTxt.getText();
         Date grad_date     = (Date) gradDateSpinner.getValue();
-
-        candidate_info = new Candidate();
+        
+        boolean is_existing = true;
+        if(candidate_info == null)
+        {
+            candidate_info = new Candidate();
+            is_existing    = false;
+        }
+        
         candidate_info.set_birth_date(birth_date);
         candidate_info.set_first_name(first_name);
         candidate_info.set_last_name(last_name);
@@ -483,6 +510,7 @@ public class AddGUIPanel extends javax.swing.JPanel {
         {
             FormEvent form_event = new FormEvent(this);
             form_event.setCandidate(candidate_info);
+            form_event.setPurpose(is_existing ? "candidate_add" : "candidate_update");
             form_listener.formEventOccurred(form_event);
         }
         System.out.println("added candidate");

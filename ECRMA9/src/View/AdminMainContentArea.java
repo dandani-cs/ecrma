@@ -8,6 +8,7 @@ package View;
 import Controller.FormEvent;
 import Controller.FormListener;
 import Controller.MainController;
+import Model.Candidate;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -25,6 +26,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -82,6 +84,58 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         editCandidatePanel = new AddGUIPanel();
         cardEdit.add(editCandidatePanel);
 
+        addCandidatePanel.set_form_listener(new FormListener() {
+            @Override
+            public void formEventOccurred(FormEvent e) {
+                System.out.println("Confirmed editing candidate!");
+                Candidate new_info = e.getCandidate();
+                boolean is_successful = program_main_controller
+                                            .candidate_controller
+                                            .add_candidate(e);
+                if(!is_successful)
+                {
+                    JOptionPane.showMessageDialog(null, 
+                                                  "This candidate candidate already exists.",
+                                                  "Failed to Add Candidate",
+                                                  JOptionPane.ERROR_MESSAGE);
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, 
+                                                  "Candidate information was successfully added.",
+                                                  "Successfully Added Candidate",
+                                                  JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+        
+        editCandidatePanel.set_form_listener(new FormListener() {
+            @Override
+            public void formEventOccurred(FormEvent e) {
+                System.out.println("Confirmed editing candidate!");
+                Candidate new_info = e.getCandidate();
+                
+                boolean is_successful = program_main_controller
+                                            .candidate_controller
+                                            .update_candidate(new_info.get_candidate_id(),
+                                                              new_info);
+                
+                if(!is_successful)
+                {
+                    JOptionPane.showMessageDialog(null, 
+                                                  "New information is a duplicate of an existing candidate.",
+                                                  "Failed to Update Candidate",
+                                                  JOptionPane.ERROR_MESSAGE);
+                } else
+                {
+                    JOptionPane.showMessageDialog(null, 
+                                                  "Candidate information was successfully updated.",
+                                                  "Successfully Edited Candidate",
+                                                  JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+        
         myPanel.setFormListener(new FormListener() {
                            @Override
                            public void formEventOccurred(FormEvent e) {
