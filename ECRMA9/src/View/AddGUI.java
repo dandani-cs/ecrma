@@ -498,11 +498,11 @@ public class AddGUI extends javax.swing.JFrame {
      private String validate_input()
     {
         String error = "";
-        boolean is_valid_fname = (!firstNameTxt.getText().isBlank() &&
+        boolean is_valid_fname = (!firstNameTxt.getText().isEmpty() &&
                                   !firstNameTxt.getText().equals("First name"));
-        boolean is_valid_lname = (!lastNameTxt.getText().isBlank() &&
+        boolean is_valid_lname = (!lastNameTxt.getText().isEmpty() &&
                                   !lastNameTxt.getText().equals("Last name"));
-        boolean is_valid_midI  = (!midInitialTxt.getText().isBlank() &&
+        boolean is_valid_midI  = (!midInitialTxt.getText().isEmpty() &&
                                   !midInitialTxt.getText().equals("Middle initial"));
         boolean is_valid_uni   = (!universityTxt.getText().equals("University"));
         boolean is_valid_deg   = (!degreeTxt.getText().equals("degree"));
@@ -582,7 +582,7 @@ public class AddGUI extends javax.swing.JFrame {
         sexComboBox.setSelectedItem((String) candidate_info.get_sex());
         birthDateSpinner.setValue(candidate_info.get_birth_date());
         
-        if(!candidate_info.get_image_path().isBlank())
+        if(!candidate_info.get_image_path().isEmpty())
             set_image_label(candidate_info.get_image_path());
     }
     

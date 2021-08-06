@@ -221,6 +221,7 @@ public class AdminViewCandidates extends JPanel{
             };
              
             table.setModel(model);
+            System.out.println("settablemodel");
             table.getColumnModel().getColumn(0).setCellRenderer(table.getDefaultRenderer(ImageIcon.class));
             table.getColumnModel().getColumn(0).setMaxWidth(140);
             table.getColumnModel().getColumn(0).setMinWidth(140);
@@ -252,7 +253,7 @@ public class AdminViewCandidates extends JPanel{
             }
 
             
-            table.setDefaultRenderer(JButton.class, new JTableButtonRenderer());
+            //table.setDefaultRenderer(JButton.class, new JTableButtonRenderer());
             table.getColumnModel().getColumn(3).setCellRenderer(new JTableButtonRenderer());
             table.getColumnModel().getColumn(4).setCellRenderer(new JTableButtonRenderer());
             
