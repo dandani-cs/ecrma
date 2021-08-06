@@ -46,6 +46,9 @@ public class AdminViewCandidatesTableModel extends AbstractTableModel {
     
     @Override
         public Class<?> getColumnClass(int columnIndex) {
+            if (columnIndex == 0) {   
+                return ImageIcon.class;            
+            }
             if (columnIndex == 3 || columnIndex == 4)
                 return JButton.class;
             return Object.class;
@@ -59,14 +62,14 @@ public class AdminViewCandidatesTableModel extends AbstractTableModel {
                 case 0: 
 //                  ImageIcon img = new ImageIcon(current_candidate.get_image_path());
                     try {
-                        ImageIcon img = new ImageIcon(getClass().getResource(current_candidate.get_image_path()));
+                        ImageIcon img = new ImageIcon(current_candidate.get_image_path());
                         Image imgtmp = img.getImage();
                         imgtmp = imgtmp.getScaledInstance(120, 120, SCALE_SMOOTH);
                         img = new ImageIcon(imgtmp);
                         return img;
                         
                     } catch (Exception e) {
-                        ImageIcon img = new ImageIcon("img/candidate2_128px.png");
+                        ImageIcon img = new ImageIcon("src/Icons/candidate2_128px.png");                        
                         Image imgtmp = img.getImage();
                         imgtmp = imgtmp.getScaledInstance(120, 120, SCALE_SMOOTH);
                         img = new ImageIcon(imgtmp);
