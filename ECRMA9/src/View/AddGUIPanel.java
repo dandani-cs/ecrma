@@ -141,6 +141,8 @@ public class AddGUIPanel extends javax.swing.JPanel {
         midInitialTxt = new javax.swing.JTextField();
         browseImageBtn = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         imageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         imageLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(33, 97, 140)));
 
