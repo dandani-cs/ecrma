@@ -103,9 +103,9 @@ public class ArchiveGUIPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(datatable);
 
-        archiveBTN.setBackground(new java.awt.Color(255, 255, 255));
+        archiveBTN.setBackground(new java.awt.Color(33, 82, 117));
         archiveBTN.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 15)); // NOI18N
-        archiveBTN.setForeground(new java.awt.Color(33, 82, 117));
+        archiveBTN.setForeground(new java.awt.Color(255, 255, 255));
         archiveBTN.setText("Add New Election");
         archiveBTN.setBorderPainted(false);
         archiveBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -221,18 +221,18 @@ public class ArchiveGUIPanel extends javax.swing.JPanel {
 
     private void archiveBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_archiveBTNMouseEntered
         // TODO add your handling code here:
-        Color hoverBTN = new Color(15,43,61);
-
-        archiveBTN.setBackground(hoverBTN);
-        archiveBTN.setForeground(Color.WHITE);
+//        Color hoverBTN = new Color(15,43,61);
+//
+//        archiveBTN.setBackground(hoverBTN);
+//        archiveBTN.setForeground(Color.WHITE);
     }//GEN-LAST:event_archiveBTNMouseEntered
 
     private void archiveBTNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_archiveBTNMouseExited
         // TODO add your handling code here:
-        Color byeBTN = new Color(0,51,51);
-
-        archiveBTN.setBackground(Color.WHITE);
-        archiveBTN.setForeground(byeBTN);
+//        Color byeBTN = new Color(0,51,51);
+//
+//        archiveBTN.setBackground(Color.WHITE);
+//        archiveBTN.setForeground(byeBTN);
     }//GEN-LAST:event_archiveBTNMouseExited
 
     private void archiveBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_archiveBTNActionPerformed
