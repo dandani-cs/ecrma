@@ -37,6 +37,10 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionEvent; 
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.*;
 
 /**
@@ -53,10 +57,15 @@ public class Frame_Login extends JFrame implements ActionListener{
     ImagePanel bgImagePanel;
     BufferedImage bgImage;
     JLabel lbl_email, lbl_password, lbl_about, lbl_logo, lbl_header;
-    JTextField txt_email, txt_password;
+    JTextField txt_email;
+    JPasswordField txt_password;
     JButton btn_login, btn_empty, btn_loginUser;
+    
    
     public Frame_Login() {    
+        
+        this.setTitle("Election Candidates Record Management");
+        
         Color main = new Color(33, 97, 140);
         login_panel = new JPanel(new BorderLayout());
         
@@ -93,10 +102,12 @@ public class Frame_Login extends JFrame implements ActionListener{
         txt_email.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.WHITE));
         
         //lbl_password = new JLabel("Password:");
-        txt_password = new JTextField();
+        txt_password = new JPasswordField(8);
         txt_password.setText("Password...");
         txt_password.setBackground(main);
         txt_password.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.WHITE));
+        
+        txt_password.setEchoChar('*');
         
         JCheckBox checkBox1 = new JCheckBox("Show Password");
         checkBox1.setBounds(100,100, 50,50);
@@ -156,11 +167,81 @@ public class Frame_Login extends JFrame implements ActionListener{
         Border lbl_about_border = new EmptyBorder(250, 50, 50, 50);
         lbl_about.setBorder(lbl_about_border);
         
+        txt_email.addMouseListener(new MouseListener(){
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                txt_email.setText("");
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                
+            }
+            
+        });
+        
+        txt_password.addMouseListener(new MouseListener(){
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                txt_password.setText("");
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                
+            }
+            
+        });
+        
+    
+        checkBox1.addItemListener(new ItemListener(){
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    //checkbox has been selected //do selected action... 
+                    txt_password.setEchoChar((char)0);
+                } else {
+                    //checkbox has been deselected //do deselected action... 
+                    txt_password.setEchoChar('*');
+                }
+            }
+        });
+        
         
         try {
-            System.out.println(new File(".").getCanonicalPath() + "src\\img\\bg2.jpg");
+            System.out.println(new File(".").getCanonicalPath() + "src\\img\\bg.jpg");
             System.out.println("path: " + getClass().getResource("Icons\\add128px.png"));
-            bgImage = ImageIO.read(new File(new File(".").getCanonicalPath() + "\\img\\bg2.jpg"));
+            bgImage = ImageIO.read(new File(new File(".").getCanonicalPath() + "\\img\\bg.jpg"));
             bgImagePanel = new ImagePanel(bgImage);
             bgImagePanel.setLayout(new BorderLayout());
             setContentPane(bgImagePanel);
@@ -175,10 +256,8 @@ public class Frame_Login extends JFrame implements ActionListener{
         bgImagePanel.add(about_panel, BorderLayout.EAST);
         
         this.pack();
-        Toolkit tk = Toolkit.getDefaultToolkit();
-        int xsize = (int) tk.getScreenSize().getWidth();
-        int ysize = (int) tk.getScreenSize().getHeight();
-        this.setSize(xsize, ysize);
+        this.setSize(new Dimension(1920,1080));
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
@@ -187,7 +266,7 @@ public class Frame_Login extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btn_login) {
             String username = txt_email.getText();
-            String password = txt_password.getText();
+            String password = String.valueOf(txt_password.getPassword());
             
             if(main_controller.user_controller.isAuthorized(username, password))
             {
