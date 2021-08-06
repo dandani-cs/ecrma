@@ -236,6 +236,13 @@ public class AdminViewCandidates extends JPanel{
                public void mouseClicked(MouseEvent e) {
                    int col = table.columnAtPoint(e.getPoint());
                    int row = table.rowAtPoint(e.getPoint());
+                   
+                   if (col == 0 || col == 1 || col == 2) {
+                       content = new AdminMainContentArea();
+                       content.setVisible(true);
+                       content.setCard("cardViewDetails");
+                       content.setVisible(true);
+                   }
                     
                    if (col == 3) {
                        // open EditCandidate
