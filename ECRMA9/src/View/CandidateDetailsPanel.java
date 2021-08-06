@@ -139,7 +139,7 @@ public class CandidateDetailsPanel extends JPanel {
             }
         );
         
-        personal_info_list.add(new Object[] { candidate.get_birth_date(), "Birthdate" }); // Birthday
+        personal_info_list.add(new Object[] { date_format.format(candidate.get_birth_date()), "Birthdate" }); // Birthday
         personal_info_list.add(new Object[] { candidate.get_sex(), "Sex" }); // Sex
         personal_info_list.add(new Object[] { candidate.get_religion(), "Religion" }); // religion
         
