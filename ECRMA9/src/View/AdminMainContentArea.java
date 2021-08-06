@@ -108,7 +108,6 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         card.show(MainPanel, str);
     }
 
-
    public void reset(){
          jTextField1.setText("NAME");
          jTextField3.setText("Position");
