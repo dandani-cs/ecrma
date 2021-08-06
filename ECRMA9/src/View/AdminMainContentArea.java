@@ -257,6 +257,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         vcpartySubtitle3 = new javax.swing.JLabel();
         jSeparator15 = new javax.swing.JSeparator();
         cardViewElec = new javax.swing.JPanel();
+        cardAddCampaign = new javax.swing.JPanel();
         AdminBackground = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -620,6 +621,8 @@ public class AdminMainContentArea extends javax.swing.JFrame{
 
         MainPanel.add(cardViewDetails, "cardViewDetails");
 
+        cardViewElec.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout cardViewElecLayout = new javax.swing.GroupLayout(cardViewElec);
         cardViewElec.setLayout(cardViewElecLayout);
         cardViewElecLayout.setHorizontalGroup(
@@ -632,6 +635,21 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         );
 
         MainPanel.add(cardViewElec, "cardViewElec");
+
+        cardAddCampaign.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout cardAddCampaignLayout = new javax.swing.GroupLayout(cardAddCampaign);
+        cardAddCampaign.setLayout(cardAddCampaignLayout);
+        cardAddCampaignLayout.setHorizontalGroup(
+            cardAddCampaignLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1629, Short.MAX_VALUE)
+        );
+        cardAddCampaignLayout.setVerticalGroup(
+            cardAddCampaignLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1454, Short.MAX_VALUE)
+        );
+
+        MainPanel.add(cardAddCampaign, "card8");
 
         AdminBackground.setBackground(new java.awt.Color(255, 255, 255));
         AdminBackground.setOpaque(false);
@@ -740,6 +758,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
     private javax.swing.JPanel MainPanel;
     private javax.swing.JPanel SidePanel;
     private javax.swing.JPanel SidePanelContent;
+    private javax.swing.JPanel cardAddCampaign;
     private javax.swing.JPanel cardAddCandidate;
     private javax.swing.JPanel cardAddElec;
     private javax.swing.JPanel cardEdit;
