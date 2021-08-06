@@ -58,6 +58,13 @@ public class AddCampaignPanel extends JPanel {
     
     private FormListener form_listener;
     
+    
+    
+    public void set_controller(MainController mc)
+    {
+        controller = mc;
+    }
+    
     public AddCampaignPanel()
     {
         controller       = new MainController();
@@ -293,6 +300,7 @@ public class AddCampaignPanel extends JPanel {
                 }
                 else
                 {
+                    System.out.println("NO ERROR");
                     Candidate candidate = (Candidate)candidates_combo.getSelectedItem(); 
                     ElecPer   elecper   = (ElecPer)  elecper_combo.getSelectedItem();
 
@@ -313,6 +321,8 @@ public class AddCampaignPanel extends JPanel {
                     fe.setCampaign(campaign);
                     fe.setCandidate((Candidate)candidates_combo.getSelectedItem());
                     fe.setElection_period(elecper);
+                    
+                    controller.campaign_controller.addCampaign(fe);
 
                     if(form_listener != null)
                         form_listener.formEventOccurred(fe);
@@ -347,7 +357,7 @@ public class AddCampaignPanel extends JPanel {
         party_container.add(party_text);
     }
 
-    void setFormListener(FormListener formListener) {
+    public void setFormListener(FormListener formListener) {
         this.form_listener = form_listener;
     }
 }
