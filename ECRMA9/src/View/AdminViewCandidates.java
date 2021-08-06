@@ -188,7 +188,6 @@ public class AdminViewCandidates extends JPanel{
         
         Center() {
             this.setLayout(new BorderLayout());
-<<<<<<< HEAD
             this.setBorder(new EmptyBorder(60, 101, 60, 60));
             this.setOpaque(false);
             button_renderer = new JTableButtonRenderer();
@@ -256,8 +255,6 @@ public class AdminViewCandidates extends JPanel{
             table.getColumnModel().getColumn(3).setCellRenderer(new JTableButtonRenderer());
             table.getColumnModel().getColumn(4).setCellRenderer(new JTableButtonRenderer());
             
-            
-<<<<<<< HEAD
             table.setIntercellSpacing(new Dimension(10, 10));
             
             table.setRowHeight(120);
