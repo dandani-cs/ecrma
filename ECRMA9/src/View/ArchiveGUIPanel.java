@@ -7,6 +7,7 @@ package View;
 
 import Controller.ElecPerController;
 import Controller.FormEvent;
+import Controller.FormListener;
 import Controller.MainController;
 import Model.ElecPer;
 import Model.ElecPerSQL;
@@ -24,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
  * @author dandani-cs
  */
 public class ArchiveGUIPanel extends javax.swing.JPanel {
-
+    FormListener form_listener;
     /**
      * Creates new form ArchiveGUIPanel
      */
@@ -64,6 +65,12 @@ public class ArchiveGUIPanel extends javax.swing.JPanel {
         datatable.getColumnModel().getColumn(4).setCellRenderer(datatable.getDefaultRenderer(java.lang.Boolean.class));
         datatable.removeColumn(datatable.getColumnModel().getColumn(0));
     }
+
+    public void setFormListener(FormListener form_listener) {
+        this.form_listener = form_listener;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -230,6 +237,9 @@ public class ArchiveGUIPanel extends javax.swing.JPanel {
 
     private void archiveBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_archiveBTNActionPerformed
         // TODO add your handling code here:
+        System.out.println("archive btn");
+        FormEvent ev = new FormEvent(evt, "cardAddElec");
+        form_listener.formEventOccurred(ev);
     }//GEN-LAST:event_archiveBTNActionPerformed
 
 

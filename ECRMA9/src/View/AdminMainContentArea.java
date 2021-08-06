@@ -9,6 +9,7 @@ import Controller.FormEvent;
 import Controller.FormListener;
 import Controller.MainController;
 import Model.Candidate;
+import Model.ElecPer;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -54,6 +55,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
     CandidateDetailsPanel viewCandidateDetails;
     ArchiveGUIPanel archivePanel;
     AddGUIPanel addCandidatePanel, editCandidatePanel;
+    AddElectionPeriodPanel addElecPerPanel;
     CardLayout card;
 
     MainController program_main_controller;
@@ -85,6 +87,20 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         
         editCandidatePanel = new AddGUIPanel();
         cardEdit.add(editCandidatePanel);
+        
+        addElecPerPanel = new AddElectionPeriodPanel();
+        addElecPerPanel.setFormListener(new FormListener() {
+            @Override
+            public void formEventOccurred(FormEvent e) {
+                program_main_controller.elecper_controller.addElectionPeriod(e);
+                JOptionPane.showMessageDialog(null, 
+                                                  "Election Period was successfully added.",
+                                                  "Successfully Added Election Period",
+                                                  JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        
+        cardAddElec.add(addElecPerPanel, BorderLayout.CENTER);
 
         addCandidatePanel.set_form_listener(new FormListener() {
             @Override
@@ -170,6 +186,13 @@ public class AdminMainContentArea extends javax.swing.JFrame{
 
         archivePanel = new ArchiveGUIPanel(program_main_controller);
         cardViewElec.add(archivePanel);
+        
+        archivePanel.setFormListener(new FormListener() {
+            @Override
+                           public void formEventOccurred(FormEvent e) {
+                               setCard(e.getText());
+                           }
+        });
 
 
     }
@@ -209,23 +232,6 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         vcpartySubtitle5 = new javax.swing.JLabel();
         jSeparator17 = new javax.swing.JSeparator();
         cardAddElec = new javax.swing.JPanel();
-        cardBG = new javax.swing.JPanel();
-        formtitle = new javax.swing.JLabel();
-        formsubtitle = new javax.swing.JLabel();
-        jSeparator5 = new javax.swing.JSeparator();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jTextField23 = new javax.swing.JTextField();
-        jTextField24 = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
-        cancelBTN = new javax.swing.JButton();
-        saveBTN = new javax.swing.JButton();
         cardEdit = new javax.swing.JPanel();
         jPanel19 = new javax.swing.JPanel();
         vcpartyTitle6 = new javax.swing.JLabel();
@@ -461,174 +467,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
 
         MainPanel.add(cardAddCandidate, "cardAddCandidate");
 
-        cardBG.setBackground(new java.awt.Color(255, 255, 255));
-
-        formtitle.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 30)); // NOI18N
-        formtitle.setForeground(new java.awt.Color(33, 82, 117));
-        formtitle.setText("ADD ELECTION PERIOD");
-
-        formsubtitle.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        formsubtitle.setForeground(new java.awt.Color(33, 82, 117));
-        formsubtitle.setText("Set the name, starting date, and final date of the Election Period.");
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(33, 82, 117));
-        jLabel1.setText("Name of Election Period:");
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(33, 82, 117));
-        jLabel3.setText("Candidate:");
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(33, 82, 117));
-        jLabel4.setText("Party:");
-
-        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel26.setForeground(new java.awt.Color(33, 82, 117));
-        jLabel26.setText("Position:");
-
-        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel27.setForeground(new java.awt.Color(33, 82, 117));
-        jLabel27.setText("Platform:");
-
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(33, 82, 117));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "", "" }));
-
-        jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jComboBox2.setForeground(new java.awt.Color(33, 82, 117));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "", "" }));
-
-        jTextField23.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jTextField23.setForeground(new java.awt.Color(33, 82, 117));
-
-        jTextField24.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jTextField24.setForeground(new java.awt.Color(33, 82, 117));
-
-        jTextArea3.setColumns(20);
-        jTextArea3.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jTextArea3.setForeground(new java.awt.Color(33, 82, 117));
-        jTextArea3.setLineWrap(true);
-        jTextArea3.setRows(5);
-        jScrollPane1.setViewportView(jTextArea3);
-
-        cancelBTN.setBackground(new java.awt.Color(33, 97, 140));
-        cancelBTN.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        cancelBTN.setForeground(new java.awt.Color(255, 255, 255));
-        cancelBTN.setText("Cancel");
-        cancelBTN.setContentAreaFilled(false);
-        cancelBTN.setOpaque(true);
-        cancelBTN.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                cancelBTNMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                cancelBTNMouseExited(evt);
-            }
-        });
-        cancelBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelBTNActionPerformed(evt);
-            }
-        });
-
-        saveBTN.setBackground(new java.awt.Color(33, 97, 140));
-        saveBTN.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        saveBTN.setForeground(new java.awt.Color(255, 255, 255));
-        saveBTN.setText("Save");
-        saveBTN.setContentAreaFilled(false);
-        saveBTN.setOpaque(true);
-        saveBTN.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                saveBTNMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                saveBTNMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout cardBGLayout = new javax.swing.GroupLayout(cardBG);
-        cardBG.setLayout(cardBGLayout);
-        cardBGLayout.setHorizontalGroup(
-            cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cardBGLayout.createSequentialGroup()
-                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(cardBGLayout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(formsubtitle)
-                            .addComponent(formtitle)
-                            .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(cardBGLayout.createSequentialGroup()
-                                    .addComponent(cancelBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(23, 23, 23)
-                                    .addComponent(saveBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, cardBGLayout.createSequentialGroup()
-                                    .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel1)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel4)
-                                        .addComponent(jLabel26)
-                                        .addComponent(jLabel27))
-                                    .addGap(91, 91, 91)
-                                    .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(cardBGLayout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 1130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(448, Short.MAX_VALUE))
-        );
-        cardBGLayout.setVerticalGroup(
-            cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cardBGLayout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(formtitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(formsubtitle)
-                .addGap(34, 34, 34)
-                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(93, 93, 93)
-                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(67, 67, 67)
-                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel26)
-                    .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(67, 67, 67)
-                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel27)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(78, 78, 78)
-                .addGroup(cardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(saveBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 725, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout cardAddElecLayout = new javax.swing.GroupLayout(cardAddElec);
-        cardAddElec.setLayout(cardAddElecLayout);
-        cardAddElecLayout.setHorizontalGroup(
-            cardAddElecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cardBG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        cardAddElecLayout.setVerticalGroup(
-            cardAddElecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cardBG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
+        cardAddElec.setLayout(new java.awt.BorderLayout());
         MainPanel.add(cardAddElec, "cardAddElec");
 
         cardEdit.setBackground(new java.awt.Color(255, 255, 255));
@@ -813,30 +652,6 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cancelBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelBTNMouseEntered
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_cancelBTNMouseEntered
-
-    private void cancelBTNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelBTNMouseExited
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_cancelBTNMouseExited
-
-    private void cancelBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBTNActionPerformed
-        // TODO add your handling code here:
-          card.show(MainPanel, "cardViewElec");
-    }//GEN-LAST:event_cancelBTNActionPerformed
-
-    private void saveBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBTNMouseEntered
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_saveBTNMouseEntered
-
-    private void saveBTNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBTNMouseExited
-
-    }//GEN-LAST:event_saveBTNMouseExited
-
     private void vCandidateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vCandidateMouseEntered
         // TODO add your handling code here:
         vCandidate.setBackground(hoverMENU);
@@ -916,40 +731,23 @@ public class AdminMainContentArea extends javax.swing.JFrame{
     private javax.swing.JPanel MainPanel;
     private javax.swing.JPanel SidePanel;
     private javax.swing.JPanel SidePanelContent;
-    private javax.swing.JButton cancelBTN;
     private javax.swing.JPanel cardAddCandidate;
     private javax.swing.JPanel cardAddElec;
-    private javax.swing.JPanel cardBG;
     private javax.swing.JPanel cardEdit;
     private javax.swing.JPanel cardViewCandidates;
     private javax.swing.JPanel cardViewDetails;
     private javax.swing.JPanel cardViewElec;
-    private javax.swing.JLabel formsubtitle;
-    private javax.swing.JLabel formtitle;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel19;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator15;
     private javax.swing.JSeparator jSeparator16;
     private javax.swing.JSeparator jSeparator17;
     private javax.swing.JSeparator jSeparator18;
-    private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextField jTextField23;
-    private javax.swing.JTextField jTextField24;
     private javax.swing.JLabel panelLogo;
-    private javax.swing.JButton saveBTN;
     private javax.swing.JLabel sp1LBL;
     private javax.swing.JLabel sp2LBL2;
     private javax.swing.JLabel sp2LBL3;

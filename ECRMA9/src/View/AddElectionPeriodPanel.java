@@ -8,6 +8,7 @@ package View;
 import Controller.ElecPerController;
 import Controller.FormEvent;
 import Controller.FormListener;
+import Controller.MainController;
 import Model.ElecPer;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -109,17 +110,6 @@ public class AddElectionPeriodPanel extends JPanel {
         add(panel_content, BorderLayout.CENTER);
         add(panel_options, BorderLayout.SOUTH);
         
-        
-        formListener = new FormListener() {
-            @Override
-            public void formEventOccurred(FormEvent e) {
-                if(validate_input() == true) {
-                    ElecPerController epc = new ElecPerController();
-                    epc.addElectionPeriod(e);                    
-                }
-            }
-        };
-        
         btn_save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -137,6 +127,10 @@ public class AddElectionPeriodPanel extends JPanel {
                 formListener.formEventOccurred(fe);
             }
         });
+    }
+
+    public void setFormListener(FormListener formListener) {
+        this.formListener = formListener;
     }
     
     public boolean validate_input() {
