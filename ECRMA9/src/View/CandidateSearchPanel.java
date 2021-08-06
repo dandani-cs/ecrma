@@ -5,6 +5,8 @@
  */
 package View;
 
+import Controller.FormEvent;
+import Controller.FormListener;
 import Controller.MainController;
 import Model.Campaigns;
 import Model.CampaignsSQL;
@@ -31,7 +33,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CandidateSearchPanel extends javax.swing.JPanel {
 
-    
+    private FormListener form_listener;
     private String current_filter_card = "name_filter";
     
     UserMenu menu;
@@ -43,7 +45,9 @@ public class CandidateSearchPanel extends javax.swing.JPanel {
     private JPanel name_filters     = new JPanel();
     private JPanel party_filters    = new JPanel();
     private JPanel position_filters = new JPanel();
+    private Object[][] data         = null;
     private Object[][] elec_periods = null;
+    private Object[] candidate_ids  = null;
     private Object[] parties        = null;
     private Object[] positions      = null;
     
@@ -102,16 +106,20 @@ public class CandidateSearchPanel extends javax.swing.JPanel {
         search_results_table.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-//                    int row = search_results_table.rowAtPoint(evt.getPoint());
-//                    int col = search_results_table.columnAtPoint(evt.getPoint());
-//                    if (row >= 0 && col >= 0) {
-//                         cardViewAll.setVisible(false);
-//                         remove(cardViewAll);
-//
-//                        cardDetails.setVisible(true);
-//                        cardDetails.repaint();
-//                        cardDetails.revalidate();
-//                        setSize(new Dimension(1720,1080));
+                    int row = search_results_table.rowAtPoint(evt.getPoint());
+                    int col = search_results_table.columnAtPoint(evt.getPoint());
+                    if (row >= 0 && col >= 0) 
+                    {
+                        FormEvent view_details_evt = new FormEvent(this);
+                        view_details_evt.setCandidate(controller
+                                                        .candidate_controller
+                                                        .query_candidate_by_id((int)data[row][4]));
+                        
+                        if(form_listener != null)
+                            form_listener.formEventOccurred(view_details_evt);
+                        else
+                            System.err.println("[ERROR] Null form listener on CandidateSearchPanel");
+                    }
             }
         });
         table_container.add(scrollpane, BorderLayout.CENTER);
@@ -121,6 +129,11 @@ public class CandidateSearchPanel extends javax.swing.JPanel {
         setCard("name_filter");
         set_header("Filter Candidate by Name",
                    "Input the name of the candidate in the text field below along with the corresponding election period");
+    }
+    
+    public void set_form_listener(FormListener fl) 
+    {
+        this.form_listener = fl;
     }
     
     private void set_header(String title, String subtitle)
@@ -178,7 +191,6 @@ public class CandidateSearchPanel extends javax.swing.JPanel {
     
     private void update_table_model()
     {
-        Object[][] data   = null;
         String[] colNames = {"", "Name", "Party", "Position"};
         int elecper_id    = (int) elec_periods[eper_combo_box.getSelectedIndex()][0];
         
@@ -197,6 +209,9 @@ public class CandidateSearchPanel extends javax.swing.JPanel {
                         .query_candidates_by_position_elecper(
                                 (String) position_combo_box.getSelectedItem(), 
                                 elecper_id);
+            
+            for(int i = 0; i < data[0].length; i++)
+                System.out.println(data[0][i]);
 
         } else
         {
@@ -204,7 +219,7 @@ public class CandidateSearchPanel extends javax.swing.JPanel {
             ArrayList<Object[]> search_results = controller.candidate_controller
                                                         .query_candidates_by_name_elecper(query_pattern, elecper_id);
 
-            data = new Object[search_results.size()][4];
+            data = new Object[search_results.size()][5];
 
             for(int i = 0; i < search_results.size(); i++)
             {
@@ -224,10 +239,12 @@ public class CandidateSearchPanel extends javax.swing.JPanel {
                 System.out.println(curr_row[1]);
                 curr_row[2] = curr_campaign.getParty();
                 curr_row[3] = curr_campaign.getPosition();
+                curr_row[4] = curr_candidate.get_candidate_id();
             }
             
             System.out.println("filter by name");
         }
+        
         
         DefaultTableModel model = new DefaultTableModel(data, colNames);
         

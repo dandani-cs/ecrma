@@ -259,10 +259,13 @@ public class CandidateDatabase {
                 Image resized_img  = img_icon.getImage().getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
                 ImageIcon img_view = new ImageIcon(resized_img);
                 
-                al.add(new Object[] {img_view, 
-                name, 
-                rs.getString("Party"),
-                rs.getString("Position")});
+                al.add(new Object[] {
+                    img_view, 
+                    name, 
+                    rs.getString("Party"),
+                    rs.getString("Position"),
+                    rs.getInt("candidate_id")
+                });
             }
             
             Object[][] query = new Object[al.size()][];
@@ -342,10 +345,14 @@ public class CandidateDatabase {
                 Image resized_img  = img_icon.getImage().getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
                 ImageIcon img_view = new ImageIcon(resized_img);
                 
-                al.add(new Object[] {img_view, 
-                name, 
-                rs.getString("Party"),
-                rs.getString("Position")});
+                Object[] elem = new Object[] {
+                    img_view, 
+                    name, 
+                    rs.getString("Party"),
+                    rs.getString("Position"),
+                    rs.getInt("candidate_id")
+                };
+                al.add(elem);
             }
             
             Object[][] query = new Object[al.size()][];
