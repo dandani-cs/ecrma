@@ -205,6 +205,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         });
         
         addCampaignPanel = new AddCampaignPanel();
+        addCampaignPanel.set_controller(program_main_controller);
         addCampaignPanel.setFormListener(new FormListener() {
             @Override
             public void formEventOccurred(FormEvent e) {
