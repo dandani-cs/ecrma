@@ -28,7 +28,6 @@ public class UserViewCandidates extends JPanel {
     public UserViewCandidates() {
         bgColor = new Color(255,255,255);
         
-        
         this.setLayout(new BorderLayout());
         north = new North();
         north.setBorder(new EmptyBorder(10,10,10,10));
@@ -45,7 +44,7 @@ public class UserViewCandidates extends JPanel {
         this.add(center, BorderLayout.CENTER);
         
         this.setBackground(bgColor);
-        this.setSize(1300, 880);
+        this.setSize(1620,1080);
     }
     
     //add header here
@@ -283,7 +282,7 @@ public class UserViewCandidates extends JPanel {
         
         Center() {
             this.setLayout(new BorderLayout());
-            this.setBorder(new EmptyBorder(60,60,60,60));
+            this.setBorder(new EmptyBorder(60,60,1500,600));
             this.setOpaque(false);
             
             

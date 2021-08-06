@@ -63,7 +63,7 @@ public class AdminViewCandidates extends JPanel{
 
         this.setLayout(new BorderLayout());
         Border ogg_border = this.getBorder();
-        Border margin1 = new EmptyBorder(0,13, 0, 30);
+        Border margin1 = new EmptyBorder(0,-28, 531, 60);
         this.setBorder(new CompoundBorder(ogg_border, margin1));
         center = new Center();
         
@@ -72,7 +72,7 @@ public class AdminViewCandidates extends JPanel{
         this.setBackground(bgColor);
         
         setVisible(true);
-        setSize(new Dimension(1920,1080));
+        setSize(new Dimension(1620,1080));
         
     }
 
@@ -218,6 +218,7 @@ public class AdminViewCandidates extends JPanel{
                     return false;
                 }
             };
+            
              
             table.setModel(model);
             table.getColumnModel().getColumn(0).setCellRenderer(table.getDefaultRenderer(ImageIcon.class));
@@ -236,7 +237,6 @@ public class AdminViewCandidates extends JPanel{
             }
         };*/
             
-            table.setIntercellSpacing(new Dimension(50,50));
             
             table.setGridColor(new Color(216,216,216));
             table.setShowHorizontalLines(true);
@@ -255,7 +255,7 @@ public class AdminViewCandidates extends JPanel{
             table.getColumnModel().getColumn(3).setCellRenderer(new JTableButtonRenderer());
             table.getColumnModel().getColumn(4).setCellRenderer(new JTableButtonRenderer());
             
-            table.setIntercellSpacing(new Dimension(10, 10));
+            table.setIntercellSpacing(new Dimension(50, 50)); //?
             
             table.getColumnModel().getColumn(0).setCellRenderer(table.getDefaultRenderer(ImageIcon.class));
             table.getColumnModel().getColumn(0).setMaxWidth(120);

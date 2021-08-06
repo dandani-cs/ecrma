@@ -69,7 +69,9 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         this.setSize(xsize, ysize);*/
         this.setLocationRelativeTo(null);
         this.setTitle("Election Candidates Record Management");
-
+        
+        panelLogo.setIcon(new ImageIcon("src\\Icons\\ecrmaLogo.png"));
+        
         card = (CardLayout)MainPanel.getLayout();
 
         myPanel = new AdminViewCandidates(program_main_controller);
@@ -123,7 +125,6 @@ public class AdminMainContentArea extends javax.swing.JFrame{
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         SidePanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();

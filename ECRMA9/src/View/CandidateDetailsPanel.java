@@ -35,6 +35,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -330,6 +331,7 @@ public class CandidateDetailsPanel extends JPanel {
         pers_info_header.setLayout(new BorderLayout());
         pers_info_header.add(pers_info_title, BorderLayout.CENTER);
         pers_info_header.add(new JSeparator(JSeparator.HORIZONTAL), BorderLayout.SOUTH);
+        pers_info_header.setBorder(new EmptyBorder(0,0,1,-10));
         
         pers_info_panel.add(pers_info_content, BorderLayout.CENTER);
         pers_info_panel.add(pers_info_header, BorderLayout.NORTH);
@@ -387,6 +389,12 @@ public class CandidateDetailsPanel extends JPanel {
         for(int i = 0; i < campaigns_table.getColumnModel().getColumnCount(); i++) {
             campaigns_table.getColumnModel().getColumn(i).setCellRenderer(tableCellRenderer);           
         }
+    
+        campaigns_table.setPreferredSize(new Dimension(40, 150));
+        
+        campaigns_table.setGridColor(new Color(33,82,117));
+        campaigns_table.setShowHorizontalLines(true);
+        campaigns_table.setShowVerticalLines(true);
         
         JTableHeader campaignheader = campaigns_table.getTableHeader();
         
@@ -401,7 +409,7 @@ public class CandidateDetailsPanel extends JPanel {
         platform_title.setForeground(primary_blue);
         
         platform_header.setLayout(new BorderLayout());
-        platform_header.setBackground(primary_bg);
+        platform_header.setBackground(primary_bg); 
         platform_header.add(platform_title, BorderLayout.CENTER);
         platform_header.add(new JSeparator(JSeparator.HORIZONTAL), BorderLayout.SOUTH);
         
@@ -414,7 +422,7 @@ public class CandidateDetailsPanel extends JPanel {
         platform_text_area.setFont(new Font("Calibri", Font.PLAIN, 16));
         
         JPanel platform_panel = new JPanel();
-        platform_panel.setLayout(new BorderLayout(0, 10));
+        platform_panel.setLayout(new BorderLayout(5, 10));
         platform_panel.setBackground(primary_bg);
         //platform_panel.setBorder(BorderFactory.createLineBorder(Color.gray));
         
