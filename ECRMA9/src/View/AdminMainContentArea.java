@@ -69,7 +69,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         
         card = (CardLayout)MainPanel.getLayout();
         CandidateDetailsPanel jPanel15 = new CandidateDetailsPanel();
-        
+            
         myPanel = new AdminViewCandidates(program_main_controller);
         cardViewCandidates.add(myPanel, BorderLayout.CENTER);
         
@@ -88,13 +88,12 @@ public class AdminMainContentArea extends javax.swing.JFrame{
 //        
 //        
 //        }
-     
+   
     }
     
     public void setCard(String str){
         card.show(MainPanel, str);
     }
-    
     
    public void reset(){
          jTextField1.setText("NAME");
