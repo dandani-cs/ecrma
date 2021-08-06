@@ -57,11 +57,22 @@ public class AdminViewCandidatesTableModel extends AbstractTableModel {
             Candidate current_candidate = candidate_list.get(row);
             switch (col) {
                 case 0: 
-                    ImageIcon img = new ImageIcon(current_candidate.get_image_path());
-                    Image imgtmp = img.getImage();
-                    imgtmp = imgtmp.getScaledInstance(120, 120, SCALE_SMOOTH);
-                    img = new ImageIcon(imgtmp);
-                    return img;
+//                  ImageIcon img = new ImageIcon(current_candidate.get_image_path());
+                    try {
+                        ImageIcon img = new ImageIcon(getClass().getResource(current_candidate.get_image_path()));
+                        Image imgtmp = img.getImage();
+                        imgtmp = imgtmp.getScaledInstance(120, 120, SCALE_SMOOTH);
+                        img = new ImageIcon(imgtmp);
+                        return img;
+                        
+                    } catch (Exception e) {
+                        ImageIcon img = new ImageIcon("img/candidate2_128px.png");
+                        Image imgtmp = img.getImage();
+                        imgtmp = imgtmp.getScaledInstance(120, 120, SCALE_SMOOTH);
+                        img = new ImageIcon(imgtmp);
+                        return img;
+                    }
+                    
                 case 1: return current_candidate.get_last_name();
                 case 2: return current_candidate.get_first_name();
                 case 3: return new JButton("Edit");

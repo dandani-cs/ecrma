@@ -288,7 +288,9 @@ public class AdminViewCandidates extends JPanel{
                        
                    } else if (col == 4) {
                        // open DeleteCandidate
-                       new DeleteGUI().setVisible(true);
+                       DeleteGUI delete_candidate = new DeleteGUI(main_controller);
+                       delete_candidate.setCandidateName(table.getValueAt(row, 2) + " " + table.getValueAt(row, 1));
+                       delete_candidate.setVisible(true);
                        
                        System.out.println("Delete candidate: " + table.getValueAt(row, 2) + " " + table.getValueAt(row, 1));
                        System.out.println("Candidate ID: " + model.getCandidateID(row));

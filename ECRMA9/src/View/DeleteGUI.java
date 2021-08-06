@@ -5,6 +5,7 @@
  */
 package View;
 
+import Controller.MainController;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 /**
@@ -13,14 +14,20 @@ import javax.swing.table.DefaultTableModel;
  */
 public class DeleteGUI extends javax.swing.JFrame {
      AdminViewCandidates myPanel;
+     MainController main_controller;
 
     /**
      * Creates new form DeleteGUI
      */
-    public DeleteGUI() {
+    public DeleteGUI(MainController passed_mc) {
         initComponents();
         this.setLocationRelativeTo(null);
         
+        main_controller = passed_mc;
+    }
+    
+    public void setCandidateName(String candidate_name) {
+        candName.setText(candidate_name);
     }
 
     /**
@@ -140,7 +147,8 @@ public class DeleteGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        // CONFIRMED DELETE CANDIDATE
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -185,7 +193,7 @@ public class DeleteGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DeleteGUI().setVisible(true);
+                
             }
         });
     }
