@@ -173,6 +173,13 @@ public class AdminMainContentArea extends javax.swing.JFrame{
                                    }
                                    
                                    viewCandidateDetails = new CandidateDetailsPanel(program_main_controller, e.getCandidate());
+                                   viewCandidateDetails.setFormListener(new FormListener() {
+                                       @Override
+                                       public void formEventOccurred(FormEvent e) {
+                                           setCard("cardAddCampaign");
+                                       }
+                                       
+                                   });
                                    cardViewDetails.add(viewCandidateDetails, BorderLayout.CENTER);
                                    
                                    setCard("cardViewDetails");
@@ -202,6 +209,22 @@ public class AdminMainContentArea extends javax.swing.JFrame{
             @Override
             public void formEventOccurred(FormEvent e) {
                 program_main_controller.campaign_controller.addCampaign(e);
+               
+                if (viewCandidateDetails != null) {
+                    cardViewDetails.remove(viewCandidateDetails);
+                }
+
+                viewCandidateDetails = new CandidateDetailsPanel(program_main_controller, e.getCandidate());
+                viewCandidateDetails.setFormListener(new FormListener() {
+                    @Override
+                    public void formEventOccurred(FormEvent e) {
+                        setCard("cardAddCampaign");
+                    }
+
+                });
+                cardViewDetails.add(viewCandidateDetails, BorderLayout.CENTER);
+
+                setCard("cardViewDetails");
             }
         });
         
@@ -642,7 +665,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
 
         cardAddCampaign.setBackground(new java.awt.Color(255, 255, 255));
         cardAddCampaign.setLayout(new java.awt.BorderLayout());
-        MainPanel.add(cardAddCampaign, "card8");
+        MainPanel.add(cardAddCampaign, "cardAddCampaign");
 
         AdminBackground.setBackground(new java.awt.Color(255, 255, 255));
         AdminBackground.setOpaque(false);

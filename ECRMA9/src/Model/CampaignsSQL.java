@@ -65,6 +65,7 @@ public class CampaignsSQL {
     public static void addRow(Campaigns campaign) {
         getConnection();
         try{
+            System.out.println("ADD ROW CAMPAIGN IN SQL SUCCESFUL");
             myStmt=myConn.createStatement();	
             
             String qry="INSERT INTO CAMPAIGNS(CANDIDATEID, ELECPERID, PARTY, POSITION, PLATFORM) VALUES ("

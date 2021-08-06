@@ -5,6 +5,8 @@
  */
 package View;
 
+import Controller.FormEvent;
+import Controller.FormListener;
 import Controller.MainController;
 import Model.Candidate;
 import java.awt.BorderLayout;
@@ -18,6 +20,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -70,6 +74,8 @@ public class CandidateDetailsPanel extends JPanel {
     private final float header_weighty = 0.05f;
     
     private Candidate current_candidate;
+    
+    private FormListener formListener;
     
     public void set_education_bg(ArrayList<Object[]> new_educ_bg) {
         this.education_bg_list = new_educ_bg;
@@ -461,6 +467,15 @@ public class CandidateDetailsPanel extends JPanel {
         add_campaign_button.setVisible(is_admin_logged_in);
         add_campaign_button.setEnabled(is_admin_logged_in);
         
+        add_campaign_button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FormEvent ev = new FormEvent(e, "cardAddCampaign");
+                formListener.formEventOccurred(ev);
+            }
+            
+        });
+        
         
         //content_panel.setLayout(new FlowLayout(FlowLayout.LEFT));
         
@@ -468,6 +483,10 @@ public class CandidateDetailsPanel extends JPanel {
         content_panel.setBorder(BorderFactory.createEmptyBorder(0, 0, 100, 0));
         //content_panel.setBorder(BorderFactory.createLineBorder(Color.gray));
         add(content_panel, main_gbc);
+    }
+
+    public void setFormListener(FormListener formListener) {
+        this.formListener = formListener;
     }
 }
 
