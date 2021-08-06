@@ -118,7 +118,6 @@ public class AddGUIPanel extends javax.swing.JPanel {
         imageLabel = new javax.swing.JLabel();
         firstNameTxt = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -133,11 +132,7 @@ public class AddGUIPanel extends javax.swing.JPanel {
         universityTxt = new javax.swing.JTextField();
         gradDateSpinner = new javax.swing.JSpinner();
         jLabel10 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
-        jSeparator4 = new javax.swing.JSeparator();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jSeparator5 = new javax.swing.JSeparator();
         cancelBtn = new javax.swing.JButton();
         resetBtn = new javax.swing.JButton();
@@ -153,15 +148,16 @@ public class AddGUIPanel extends javax.swing.JPanel {
         firstNameTxt.setForeground(new java.awt.Color(33, 97, 140));
         firstNameTxt.setText("First name");
         firstNameTxt.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        firstNameTxt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                firstNameTxtMouseClicked(evt);
+            }
+        });
 
         jLabel17.setBackground(new java.awt.Color(33, 97, 140));
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(33, 97, 140));
         jLabel17.setText("Personal Information");
-
-        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jTextField3.setText("Position");
-        jTextField3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
         jPanel4.setLayout(new java.awt.BorderLayout());
 
@@ -243,6 +239,11 @@ public class AddGUIPanel extends javax.swing.JPanel {
         degreeTxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         degreeTxt.setText("Degree");
         degreeTxt.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        degreeTxt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                degreeTxtMouseClicked(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -250,14 +251,18 @@ public class AddGUIPanel extends javax.swing.JPanel {
         gridBagConstraints.ipady = 15;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(0, 30, 15, 30);
+        gridBagConstraints.insets = new java.awt.Insets(0, 30, 15, 20);
         jPanel7.add(degreeTxt, gridBagConstraints);
 
-        universityTxt.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        universityTxt.setForeground(new java.awt.Color(33, 97, 140));
+        universityTxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         universityTxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         universityTxt.setText("University");
         universityTxt.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        universityTxt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                universityTxtMouseClicked(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -265,7 +270,7 @@ public class AddGUIPanel extends javax.swing.JPanel {
         gridBagConstraints.ipady = 15;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(0, 120, 0, 120);
+        gridBagConstraints.insets = new java.awt.Insets(0, 30, 15, 20);
         jPanel7.add(universityTxt, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -283,16 +288,6 @@ public class AddGUIPanel extends javax.swing.JPanel {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
         jPanel7.add(jLabel10, gridBagConstraints);
-
-        jLabel19.setBackground(new java.awt.Color(33, 97, 140));
-        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(33, 97, 140));
-        jLabel19.setText("Platform");
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jScrollPane1.setViewportView(jTextArea1);
 
         cancelBtn.setBackground(new java.awt.Color(33, 97, 140));
         cancelBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -334,11 +329,21 @@ public class AddGUIPanel extends javax.swing.JPanel {
         lastNameTxt.setForeground(new java.awt.Color(33, 97, 140));
         lastNameTxt.setText("Last name");
         lastNameTxt.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        lastNameTxt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lastNameTxtMouseClicked(evt);
+            }
+        });
 
         midInitialTxt.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         midInitialTxt.setForeground(new java.awt.Color(33, 97, 140));
         midInitialTxt.setText("Middle initial");
         midInitialTxt.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        midInitialTxt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                midInitialTxtMouseClicked(evt);
+            }
+        });
 
         browseImageBtn.setText("Browse Image");
         browseImageBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -362,18 +367,14 @@ public class AddGUIPanel extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(browseImageBtn)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(firstNameTxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
+                                        .addComponent(firstNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(lastNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(midInitialTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1156, Short.MAX_VALUE)
-                                .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1156, Short.MAX_VALUE)
                                 .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jSeparator5, javax.swing.GroupLayout.Alignment.LEADING))))
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -381,23 +382,18 @@ public class AddGUIPanel extends javax.swing.JPanel {
                         .addGap(139, 139, 139)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(137, 137, 137)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(160, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cancelBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(resetBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(confirmBtn)
-                .addGap(86, 86, 86))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(175, 175, 175)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 857, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(160, Short.MAX_VALUE))
+                .addGap(84, 84, 84))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -405,14 +401,12 @@ public class AddGUIPanel extends javax.swing.JPanel {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
+                        .addGap(129, 129, 129)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(firstNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lastNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(midInitialTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(14, 14, 14)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(browseImageBtn))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -429,18 +423,12 @@ public class AddGUIPanel extends javax.swing.JPanel {
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel19)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confirmBtn)
                     .addComponent(resetBtn)
                     .addComponent(cancelBtn))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(188, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -519,6 +507,31 @@ public class AddGUIPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_browseImageBtnActionPerformed
 
+    private void firstNameTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_firstNameTxtMouseClicked
+        // TODO add your handling code here:
+        firstNameTxt.setText("");
+    }//GEN-LAST:event_firstNameTxtMouseClicked
+
+    private void lastNameTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lastNameTxtMouseClicked
+        // TODO add your handling code here:
+        lastNameTxt.setText("");
+    }//GEN-LAST:event_lastNameTxtMouseClicked
+
+    private void midInitialTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_midInitialTxtMouseClicked
+        // TODO add your handling code here:
+        midInitialTxt.setText("");
+    }//GEN-LAST:event_midInitialTxtMouseClicked
+
+    private void degreeTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_degreeTxtMouseClicked
+        // TODO add your handling code here:
+        degreeTxt.setText("");
+    }//GEN-LAST:event_degreeTxtMouseClicked
+
+    private void universityTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_universityTxtMouseClicked
+        // TODO add your handling code here:
+        universityTxt.setText("");
+    }//GEN-LAST:event_universityTxtMouseClicked
+
     private void set_image_label(String path)
     {
         ImageIcon img_icon  = new ImageIcon(path);
@@ -549,6 +562,7 @@ public class AddGUIPanel extends javax.swing.JPanel {
             set_image_label(candidate_info.get_image_path());
     }
     
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner birthDateSpinner;
@@ -562,19 +576,14 @@ public class AddGUIPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField lastNameTxt;
     private javax.swing.JTextField midInitialTxt;
     private javax.swing.JTextField religionTxt;

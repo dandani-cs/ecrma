@@ -6,12 +6,16 @@
 package View;
 
 import Model.Candidate;
+import java.awt.Component;
 import java.awt.Image;
 import static java.awt.Image.SCALE_SMOOTH;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
@@ -67,6 +71,17 @@ public class AdminViewCandidatesTableModel extends AbstractTableModel {
         }
         return null;
     }
+    
+    DefaultTableCellRenderer cellpad = new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object
+                ob, boolean b1, boolean b2, int row, int column) {
+                super.getTableCellRendererComponent(
+                    table, ob, b1, b2, row, column);
+                setBorder(BorderFactory.createEmptyBorder(100, 100, 100, 100));
+                return this;
+            }
+        };
     
     public int getCandidateID(int row) {
         if (candidate_list.size() > row) {

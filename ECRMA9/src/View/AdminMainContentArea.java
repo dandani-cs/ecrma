@@ -50,6 +50,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
     
     AdminViewCandidates myPanel;
     CandidateDetailsPanel viewCandidateDetails;
+    ArchiveGUIPanel archivePanel;
 
     CardLayout card; 
     
@@ -70,7 +71,6 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         this.setTitle("Election Candidates Record Management");
         
         card = (CardLayout)MainPanel.getLayout();
-        //viewCandidateDetails = new CandidateDetailsPanel(program_main_controller); // candidateid TO BE ADDED TO cardViewDetails
         
         myPanel = new AdminViewCandidates(program_main_controller);
         
@@ -81,7 +81,11 @@ public class AdminMainContentArea extends javax.swing.JFrame{
                                cardViewDetails.add(viewCandidateDetails, BorderLayout.CENTER);
                            }
                        });
+
         cardViewCandidates.add(myPanel, BorderLayout.CENTER);
+        
+        archivePanel = new ArchiveGUIPanel(program_main_controller);
+        cardViewElec.add(archivePanel);
         
      
     }
@@ -120,7 +124,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
 
         SidePanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        panelLogo = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         SidePanelContent = new javax.swing.JPanel();
         vCandidate = new javax.swing.JPanel();
@@ -222,7 +226,11 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         vcpartySubtitle6 = new javax.swing.JLabel();
         jSeparator18 = new javax.swing.JSeparator();
         cardViewCandidates = new javax.swing.JPanel();
+<<<<<<< HEAD
         jPanel14 = new javax.swing.JPanel();
+=======
+        jPanel14 = new JPanel();
+>>>>>>> main
         vcpartyTitle4 = new javax.swing.JLabel();
         vcpartySubtitle4 = new javax.swing.JLabel();
         jSeparator16 = new javax.swing.JSeparator();
@@ -232,14 +240,6 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         vcpartySubtitle3 = new javax.swing.JLabel();
         jSeparator15 = new javax.swing.JSeparator();
         cardViewElec = new javax.swing.JPanel();
-        archivecardBG = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        datatable = new javax.swing.JTable();
-        archivetitle = new javax.swing.JLabel();
-        archivesubtitle = new javax.swing.JLabel();
-        jSeparator7 = new javax.swing.JSeparator();
-        addElecBTN = new javax.swing.JButton();
-        archiveBTN = new javax.swing.JButton();
         AdminBackground = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -257,13 +257,13 @@ public class AdminMainContentArea extends javax.swing.JFrame{
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1352,7 +1352,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
 
         vcpartySubtitle4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         vcpartySubtitle4.setForeground(new java.awt.Color(33, 82, 117));
-        vcpartySubtitle4.setText("Subtitle");
+        vcpartySubtitle4.setText("View candidates");
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -1434,135 +1434,20 @@ public class AdminMainContentArea extends javax.swing.JFrame{
 
         MainPanel.add(cardViewDetails, "cardViewDetails");
 
-        archivecardBG.setBackground(new java.awt.Color(255, 255, 255));
-
-        datatable.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
-        datatable.setForeground(new java.awt.Color(33, 82, 117));
-        datatable.setGridColor(new java.awt.Color(0, 51, 51));
-        datatable.setRowHeight(20);
-        datatable.setSelectionBackground(new java.awt.Color(33, 82, 117));
-        datatable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                datatableMousePressed(evt);
-            }
-        });
-        jScrollPane3.setViewportView(datatable);
-
-        archivetitle.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 30)); // NOI18N
-        archivetitle.setForeground(new java.awt.Color(33, 82, 117));
-        archivetitle.setText("MANAGE DATA BY ELECTION PERIOD");
-
-        archivesubtitle.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        archivesubtitle.setForeground(new java.awt.Color(33, 82, 117));
-        archivesubtitle.setText("Select the Election Period/s to archive from the data table below.");
-
-        addElecBTN.setBackground(new java.awt.Color(33, 97, 140));
-        addElecBTN.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        addElecBTN.setForeground(new java.awt.Color(255, 255, 255));
-        addElecBTN.setText("Add Election");
-        addElecBTN.setContentAreaFilled(false);
-        addElecBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        addElecBTN.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        addElecBTN.setOpaque(true);
-        addElecBTN.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                addElecBTNMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                addElecBTNMouseExited(evt);
-            }
-        });
-        addElecBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addElecBTNActionPerformed(evt);
-            }
-        });
-
-        archiveBTN.setBackground(new java.awt.Color(33, 97, 140));
-        archiveBTN.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        archiveBTN.setForeground(new java.awt.Color(255, 255, 255));
-        archiveBTN.setText("Archive Election");
-        archiveBTN.setContentAreaFilled(false);
-        archiveBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        archiveBTN.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        archiveBTN.setOpaque(true);
-        archiveBTN.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                archiveBTNMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                archiveBTNMouseExited(evt);
-            }
-        });
-        archiveBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                archiveBTNActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout archivecardBGLayout = new javax.swing.GroupLayout(archivecardBG);
-        archivecardBG.setLayout(archivecardBGLayout);
-        archivecardBGLayout.setHorizontalGroup(
-            archivecardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(archivecardBGLayout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addGroup(archivecardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(archivesubtitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(archivecardBGLayout.createSequentialGroup()
-                        .addComponent(archivetitle)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(archivecardBGLayout.createSequentialGroup()
-                .addGap(116, 116, 116)
-                .addGroup(archivecardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(archivecardBGLayout.createSequentialGroup()
-                        .addComponent(addElecBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(archiveBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1031, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 482, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, archivecardBGLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 1140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(430, 430, 430))
-        );
-        archivecardBGLayout.setVerticalGroup(
-            archivecardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, archivecardBGLayout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(archivetitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(archivesubtitle)
-                .addGap(32, 32, 32)
-                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(archivecardBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addElecBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(archiveBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(798, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout cardViewElecLayout = new javax.swing.GroupLayout(cardViewElec);
         cardViewElec.setLayout(cardViewElecLayout);
         cardViewElecLayout.setHorizontalGroup(
             cardViewElecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1629, Short.MAX_VALUE)
-            .addGroup(cardViewElecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(cardViewElecLayout.createSequentialGroup()
-                    .addComponent(archivecardBG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         cardViewElecLayout.setVerticalGroup(
             cardViewElecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1454, Short.MAX_VALUE)
-            .addGroup(cardViewElecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(archivecardBG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         MainPanel.add(cardViewElec, "cardViewElec");
 
+        AdminBackground.setBackground(new java.awt.Color(255, 255, 255));
         AdminBackground.setOpaque(false);
         AdminBackground.setLayout(new java.awt.BorderLayout());
 
@@ -1695,27 +1580,6 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         card.show(MainPanel, "cardViewElec");
     }//GEN-LAST:event_vElectionMouseClicked
 
-    private void datatableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_datatableMousePressed
-        if(evt.getClickCount() == 1) {
-            boolean setArchived = false;
-
-            boolean archived = (boolean) datatable.getModel().getValueAt(datatable.getSelectedRow(), 4);
-            if(archived == true) {
-                datatable.getModel().setValueAt(setArchived, datatable.getSelectedRow(), 4);
-            } else {
-                setArchived = true;
-                datatable.getModel().setValueAt(setArchived, datatable.getSelectedRow(), 4);
-            }
-
-            //ElecPer ep = new ElecPer();
-            //ep.setElecPerId((int) datatable.getModel().getValueAt(datatable.getSelectedRow(), 0));
-            //ep.setArchived(setArchived);
-            //FormEvent e = new FormEvent(evt, ep);
-            //ElecPerController epc = new ElecPerController();
-            //epc.archivedElectionPeriod(e);
-        }
-    }//GEN-LAST:event_datatableMousePressed
-
     private void vMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vMenuMouseClicked
         // TODO add your handling code here:
         menu = new AdminMenu();
@@ -1806,32 +1670,6 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         this.setVisible(false);
     }//GEN-LAST:event_LogoutMouseClicked
 
-    private void addElecBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addElecBTNMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addElecBTNMouseEntered
-
-    private void addElecBTNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addElecBTNMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addElecBTNMouseExited
-
-    private void addElecBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addElecBTNActionPerformed
-        // TODO add your handling code here:
-        card.show(MainPanel, "cardAddElec");
-
-    }//GEN-LAST:event_addElecBTNActionPerformed
-
-    private void archiveBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_archiveBTNMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_archiveBTNMouseEntered
-
-    private void archiveBTNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_archiveBTNMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_archiveBTNMouseExited
-
-    private void archiveBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_archiveBTNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_archiveBTNActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -1879,11 +1717,6 @@ public class AdminMainContentArea extends javax.swing.JFrame{
     private javax.swing.JPanel MainPanel;
     private javax.swing.JPanel SidePanel;
     private javax.swing.JPanel SidePanelContent;
-    private javax.swing.JButton addElecBTN;
-    private javax.swing.JButton archiveBTN;
-    private javax.swing.JPanel archivecardBG;
-    private javax.swing.JLabel archivesubtitle;
-    private javax.swing.JLabel archivetitle;
     private javax.swing.JSpinner birthDateSpinner;
     private javax.swing.JButton browseImageBtn;
     private javax.swing.JButton cancelBTN;
@@ -1896,7 +1729,6 @@ public class AdminMainContentArea extends javax.swing.JFrame{
     private javax.swing.JPanel cardViewDetails;
     private javax.swing.JPanel cardViewElec;
     private javax.swing.JButton confirmBtn;
-    private javax.swing.JTable datatable;
     private javax.swing.JTextField degreeTxt;
     private javax.swing.JTextField firstNameTxt;
     private javax.swing.JLabel formsubtitle;
@@ -1917,7 +1749,6 @@ public class AdminMainContentArea extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -1943,7 +1774,6 @@ public class AdminMainContentArea extends javax.swing.JFrame{
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator13;
@@ -1955,7 +1785,6 @@ public class AdminMainContentArea extends javax.swing.JFrame{
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTextArea jTextArea1;
@@ -1977,6 +1806,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTextField lastNameTxt;
     private javax.swing.JTextField midInitialTxt;
+    private javax.swing.JLabel panelLogo;
     private javax.swing.JTextField religionTxt;
     private javax.swing.JButton resetBtn;
     private javax.swing.JButton saveBTN;

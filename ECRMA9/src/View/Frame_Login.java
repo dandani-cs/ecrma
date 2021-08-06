@@ -65,8 +65,10 @@ public class Frame_Login extends JFrame implements ActionListener{
         Border login_margin = new EmptyBorder(150, 100, 250, 100);
         login_panel.setBorder(login_margin);
         
-        ImageIcon icon = new ImageIcon("C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ecrmaLogo.png");
+        ImageIcon icon = new ImageIcon("src/Icons/ecrmaLogo.png");
         lbl_logo = new JLabel(icon);
+        
+        
         
         lbl_header = new JLabel("Login Your Account");
         lbl_header.setFont(new Font("Tahoma", Font.BOLD, 30));
