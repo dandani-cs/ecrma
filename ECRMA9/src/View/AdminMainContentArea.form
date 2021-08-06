@@ -1931,11 +1931,7 @@
                 </Property>
               </Properties>
               <AuxValues>
-<<<<<<< HEAD
                 <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="//jPanel14 = new CandidateDetailsPanel();"/>
-=======
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JPanel()"/>
->>>>>>> main
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">

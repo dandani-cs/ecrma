@@ -41,39 +41,39 @@ import javax.swing.table.TableCellRenderer;
  * @author Rheeeiiii
  */
 public class AdminMainContentArea extends javax.swing.JFrame{
-    
+
     AdminMenu menu;
     Frame_Login login;
-    
+
     private Color hoverMENU = new Color(33,82,117);
     private Color byeMENU = new Color(33,97,140);
-    
+
     AdminViewCandidates myPanel;
     CandidateDetailsPanel viewCandidateDetails;
     ArchiveGUIPanel archivePanel;
 
-    CardLayout card; 
-    
+    CardLayout card;
+
     MainController program_main_controller = new MainController();
-    
+
     public AdminMainContentArea() {
-        initComponents(); 
+        initComponents();
         this.pack();
-        
+
         this.setSize(new Dimension(1920,1080));
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        
+
         /*Toolkit tk = Toolkit.getDefaultToolkit();
         int xsize = (int) tk.getScreenSize().getWidth();
         int ysize = (int) tk.getScreenSize().getHeight();
         this.setSize(xsize, ysize);*/
         this.setLocationRelativeTo(null);
         this.setTitle("Election Candidates Record Management");
-        
+
         card = (CardLayout)MainPanel.getLayout();
-        
+
         myPanel = new AdminViewCandidates(program_main_controller);
-        
+
         myPanel.setFormListener(new FormListener() {
                            @Override
                            public void formEventOccurred(FormEvent e) {
@@ -83,18 +83,18 @@ public class AdminMainContentArea extends javax.swing.JFrame{
                        });
 
         cardViewCandidates.add(myPanel, BorderLayout.CENTER);
-        
+
         archivePanel = new ArchiveGUIPanel(program_main_controller);
         cardViewElec.add(archivePanel);
-        
-     
+
+
     }
-    
+
     public void setCard(String str){
         card.show(MainPanel, str);
     }
-    
-    
+
+
    public void reset(){
          jTextField1.setText("NAME");
          jTextField3.setText("Position");
@@ -226,11 +226,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         vcpartySubtitle6 = new javax.swing.JLabel();
         jSeparator18 = new javax.swing.JSeparator();
         cardViewCandidates = new javax.swing.JPanel();
-<<<<<<< HEAD
         jPanel14 = new javax.swing.JPanel();
-=======
-        jPanel14 = new JPanel();
->>>>>>> main
         vcpartyTitle4 = new javax.swing.JLabel();
         vcpartySubtitle4 = new javax.swing.JLabel();
         jSeparator16 = new javax.swing.JSeparator();
@@ -1494,7 +1490,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         card.show(MainPanel, "cardViewCandidates");
-  
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -1508,12 +1504,12 @@ public class AdminMainContentArea extends javax.swing.JFrame{
 
     private void cancelBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelBTNMouseEntered
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_cancelBTNMouseEntered
 
     private void cancelBTNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelBTNMouseExited
         // TODO add your handling code here:
-      
+
     }//GEN-LAST:event_cancelBTNMouseExited
 
     private void cancelBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBTNActionPerformed
@@ -1523,11 +1519,11 @@ public class AdminMainContentArea extends javax.swing.JFrame{
 
     private void saveBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBTNMouseEntered
         // TODO add your handling code here:
-     
+
     }//GEN-LAST:event_saveBTNMouseEntered
 
     private void saveBTNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBTNMouseExited
-      
+
     }//GEN-LAST:event_saveBTNMouseExited
 
     private void vCandidateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vCandidateMouseEntered
@@ -1585,7 +1581,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         menu = new AdminMenu();
         menu.setVisible(true);
         this.setVisible(false);
-        
+
     }//GEN-LAST:event_vMenuMouseClicked
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
@@ -1638,7 +1634,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
 //            form_listener.formEventOccurred(form_event);
 //        }
         System.out.println("added candidate");
-        
+
         card.show(MainPanel, "cardViewCandidates");
     }//GEN-LAST:event_confirmBtnActionPerformed
 
@@ -1677,7 +1673,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -1697,15 +1693,15 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         }
         //</editor-fold>
         //</editor-fold>
-        
-         
-        
+
+
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            
+
             public void run() {
-                
-                new AdminMainContentArea().setVisible(true);    
+
+                new AdminMainContentArea().setVisible(true);
             }
 
         });
