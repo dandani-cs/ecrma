@@ -10,6 +10,8 @@ import Controller.FormEvent;
 import Controller.FormListener;
 import Model.Candidate;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -53,6 +55,20 @@ public class AddGUIPanel extends javax.swing.JPanel {
         gradDateSpinner.setModel(new SpinnerDateModel(new Date(), null, null, Calendar.DAY_OF_MONTH));
         gradDateSpinner.setEditor(new JSpinner.DateEditor(gradDateSpinner,
                                                           date_fmt.toPattern()));     
+        
+        midInitialTxt.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if(midInitialTxt.getText().length() == 1)
+                    e.consume();
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {}
+            
+            @Override
+            public void keyReleased(KeyEvent e) {}
+        });
         
         setSize(1250, 810);
     }
@@ -464,7 +480,7 @@ public class AddGUIPanel extends javax.swing.JPanel {
 
         String first_name  = firstNameTxt.getText();
         String last_name   = lastNameTxt.getText();
-        char mid_initial   = midInitialTxt.getText().charAt(0);
+        char mid_initial   = Character.toUpperCase(midInitialTxt.getText().charAt(0));
         String religion    = religionTxt.getText();
         Date birth_date    = (Date) birthDateSpinner.getValue();
 
