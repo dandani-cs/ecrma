@@ -256,6 +256,10 @@ public class AdminViewCandidates extends JPanel{
             
             //table.getColumnModel().getColumn(3).setCellRenderer(cellpad);
             
+            table.getColumnModel().getColumn(0).setCellRenderer(table.getDefaultRenderer(ImageIcon.class));
+            table.getColumnModel().getColumn(0).setMaxWidth(120);
+            table.getColumnModel().getColumn(0).setMinWidth(120);
+            
             
             
             table.getTableHeader().setFont(new Font("CALIBRI", Font.PLAIN,18));
