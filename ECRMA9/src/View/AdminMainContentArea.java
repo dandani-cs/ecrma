@@ -5,6 +5,8 @@
  */
 package View;
 
+import Controller.FormEvent;
+import Controller.FormListener;
 import Controller.MainController;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -39,56 +41,74 @@ import javax.swing.table.TableCellRenderer;
  * @author Rheeeiiii
  */
 public class AdminMainContentArea extends javax.swing.JFrame{
-    
+
     AdminMenu menu;
     Frame_Login login;
-    
+
     private Color hoverMENU = new Color(33,82,117);
     private Color byeMENU = new Color(33,97,140);
-    
+
     AdminViewCandidates myPanel;
     CandidateDetailsPanel viewCandidateDetails;
     ArchiveGUIPanel archivePanel;
+    AddGUIPanel addCandidatePanel;
 
-    CardLayout card; 
-    
+    CardLayout card;
+
     MainController program_main_controller = new MainController();
-    
-   
+
     public AdminMainContentArea() {
-        initComponents(); 
+        initComponents();
         this.pack();
-        
+
         this.setSize(new Dimension(1920,1080));
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        
+
         /*Toolkit tk = Toolkit.getDefaultToolkit();
         int xsize = (int) tk.getScreenSize().getWidth();
         int ysize = (int) tk.getScreenSize().getHeight();
         this.setSize(xsize, ysize);*/
         this.setLocationRelativeTo(null);
         this.setTitle("Election Candidates Record Management");
-        
+
         card = (CardLayout)MainPanel.getLayout();
-//        viewCandidateDetails = new CandidateDetailsPanel(program_main_controller); // candidateid TO BE ADDED TO cardViewDetails
-        
+
         myPanel = new AdminViewCandidates(program_main_controller);
-//        myPanel.setFormListener(
-//                
-//        );
-        cardViewCandidates.add(myPanel, BorderLayout.CENTER);
         
+        addCandidatePanel = new AddGUIPanel();
+        cardAddCandidate.add(addCandidatePanel);
+
+        myPanel.setFormListener(new FormListener() {
+                           @Override
+                           public void formEventOccurred(FormEvent e) {
+                               String purpose = e.getPurpose();
+                               System.out.println("Listener triggered");
+                               System.out.println(purpose);
+                               
+                               if ("candidate details".equals(purpose)) {
+                                   System.out.println("CANDIDATES ARE SHOWN");
+                                   viewCandidateDetails = new CandidateDetailsPanel(program_main_controller, e.getCandidate());
+                                   cardViewDetails.add(viewCandidateDetails, BorderLayout.CENTER);
+                                   setCard("cardViewDetails");
+                               } else if (purpose == "candidate add") {
+                                       setCard(e.getText());
+                               } 
+                           } // form event occurred
+                       }); // form listener
+
+        cardViewCandidates.add(myPanel, BorderLayout.CENTER);
+
         archivePanel = new ArchiveGUIPanel(program_main_controller);
         cardViewElec.add(archivePanel);
-        
-     
+
+
     }
-    
+
     public void setCard(String str){
         card.show(MainPanel, str);
     }
-    
-    
+
+
    public void reset(){
          jTextField1.setText("NAME");
          jTextField3.setText("Position");
@@ -131,37 +151,6 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         sp2LBL4 = new javax.swing.JLabel();
         MainPanel = new javax.swing.JPanel();
         cardAddCandidate = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        imageLabel = new javax.swing.JLabel();
-        firstNameTxt = new javax.swing.JTextField();
-        jLabel20 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
-        jPanel6 = new javax.swing.JPanel();
-        jPanel9 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
-        religionTxt = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        birthDateSpinner = new javax.swing.JSpinner();
-        sexComboBox = new javax.swing.JComboBox<>();
-        jLabel21 = new javax.swing.JLabel();
-        jPanel10 = new javax.swing.JPanel();
-        degreeTxt = new javax.swing.JTextField();
-        universityTxt = new javax.swing.JTextField();
-        gradDateSpinner = new javax.swing.JSpinner();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jSeparator8 = new javax.swing.JSeparator();
-        jSeparator9 = new javax.swing.JSeparator();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        jSeparator13 = new javax.swing.JSeparator();
-        cancelBtn = new javax.swing.JButton();
-        resetBtn = new javax.swing.JButton();
-        confirmBtn = new javax.swing.JButton();
-        lastNameTxt = new javax.swing.JTextField();
-        midInitialTxt = new javax.swing.JTextField();
-        browseImageBtn = new javax.swing.JButton();
         jPanel17 = new javax.swing.JPanel();
         vcpartyTitle5 = new javax.swing.JLabel();
         vcpartySubtitle5 = new javax.swing.JLabel();
@@ -220,7 +209,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         vcpartySubtitle6 = new javax.swing.JLabel();
         jSeparator18 = new javax.swing.JSeparator();
         cardViewCandidates = new javax.swing.JPanel();
-        jPanel14 = new JPanel();
+        jPanel14 = new javax.swing.JPanel();
         vcpartyTitle4 = new javax.swing.JLabel();
         vcpartySubtitle4 = new javax.swing.JLabel();
         jSeparator16 = new javax.swing.JSeparator();
@@ -404,305 +393,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         MainPanel.setLayout(new java.awt.CardLayout());
 
         cardAddCandidate.setBackground(new java.awt.Color(255, 255, 255));
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        imageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imageLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(33, 97, 140)));
-
-        firstNameTxt.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        firstNameTxt.setForeground(new java.awt.Color(33, 97, 140));
-        firstNameTxt.setText("First name");
-        firstNameTxt.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-
-        jLabel20.setBackground(new java.awt.Color(33, 97, 140));
-        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(33, 97, 140));
-        jLabel20.setText("Personal Information");
-
-        jTextField12.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jTextField12.setText("Position");
-        jTextField12.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-
-        jPanel6.setLayout(new java.awt.BorderLayout());
-
-        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel9.setLayout(new java.awt.GridBagLayout());
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(33, 97, 140));
-        jLabel10.setText("Sex");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
-        gridBagConstraints.weightx = 0.33;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
-        jPanel9.add(jLabel10, gridBagConstraints);
-
-        religionTxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        religionTxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        religionTxt.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipady = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 0.33;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
-        jPanel9.add(religionTxt, gridBagConstraints);
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(33, 97, 140));
-        jLabel11.setText("Religion");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
-        gridBagConstraints.weightx = 0.33;
-        jPanel9.add(jLabel11, gridBagConstraints);
-
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(33, 97, 140));
-        jLabel12.setText("Date of Birth");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
-        gridBagConstraints.weightx = 0.33;
-        gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 30);
-        jPanel9.add(jLabel12, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipady = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 0.33;
-        gridBagConstraints.insets = new java.awt.Insets(0, 30, 5, 30);
-        jPanel9.add(birthDateSpinner, gridBagConstraints);
-
-        sexComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipady = 10;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 30);
-        jPanel9.add(sexComboBox, gridBagConstraints);
-
-        jLabel21.setBackground(new java.awt.Color(33, 97, 140));
-        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(33, 97, 140));
-        jLabel21.setText("Educational Background");
-
-        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel10.setLayout(new java.awt.GridBagLayout());
-
-        degreeTxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        degreeTxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        degreeTxt.setText("Degree");
-        degreeTxt.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipady = 15;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(0, 30, 15, 30);
-        jPanel10.add(degreeTxt, gridBagConstraints);
-
-        universityTxt.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        universityTxt.setForeground(new java.awt.Color(33, 97, 140));
-        universityTxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        universityTxt.setText("University");
-        universityTxt.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipady = 15;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(0, 120, 0, 120);
-        jPanel10.add(universityTxt, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 15, 0);
-        jPanel10.add(gradDateSpinner, gridBagConstraints);
-
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(33, 97, 140));
-        jLabel13.setText("Graduation Date");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
-        jPanel10.add(jLabel13, gridBagConstraints);
-
-        jLabel22.setBackground(new java.awt.Color(33, 97, 140));
-        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(33, 97, 140));
-        jLabel22.setText("Platform");
-
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jTextArea2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jScrollPane5.setViewportView(jTextArea2);
-
-        cancelBtn.setBackground(new java.awt.Color(33, 97, 140));
-        cancelBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        cancelBtn.setForeground(new java.awt.Color(255, 255, 255));
-        cancelBtn.setText("Cancel");
-        cancelBtn.setContentAreaFilled(false);
-        cancelBtn.setOpaque(true);
-        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelBtnActionPerformed(evt);
-            }
-        });
-
-        resetBtn.setBackground(new java.awt.Color(33, 97, 140));
-        resetBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        resetBtn.setForeground(new java.awt.Color(255, 255, 255));
-        resetBtn.setText("Reset");
-        resetBtn.setContentAreaFilled(false);
-        resetBtn.setOpaque(true);
-        resetBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                resetBtnActionPerformed(evt);
-            }
-        });
-
-        confirmBtn.setBackground(new java.awt.Color(33, 97, 140));
-        confirmBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        confirmBtn.setForeground(new java.awt.Color(255, 255, 255));
-        confirmBtn.setText("Confirm");
-        confirmBtn.setContentAreaFilled(false);
-        confirmBtn.setOpaque(true);
-        confirmBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmBtnActionPerformed(evt);
-            }
-        });
-
-        lastNameTxt.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        lastNameTxt.setForeground(new java.awt.Color(33, 97, 140));
-        lastNameTxt.setText("Last name");
-        lastNameTxt.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-
-        midInitialTxt.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        midInitialTxt.setForeground(new java.awt.Color(33, 97, 140));
-        midInitialTxt.setText("Middle initial");
-        midInitialTxt.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-
-        browseImageBtn.setText("Browse Image");
-        browseImageBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                browseImageBtnActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(browseImageBtn)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jTextField12, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(firstNameTxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
-                                        .addGap(18, 18, 18)
-                                        .addComponent(lastNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(midInitialTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jSeparator9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1156, Short.MAX_VALUE)
-                                .addComponent(jSeparator8, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jSeparator13, javax.swing.GroupLayout.Alignment.LEADING))))
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(139, 139, 139)
-                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(175, 175, 175)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(cancelBtn)
-                                .addGap(18, 18, 18)
-                                .addComponent(resetBtn)
-                                .addGap(18, 18, 18)
-                                .addComponent(confirmBtn))
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 857, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(592, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(firstNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lastNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(midInitialTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(14, 14, 14)
-                        .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(browseImageBtn)))
-                .addGap(41, 41, 41)
-                .addComponent(jLabel20)
-                .addGap(15, 15, 15)
-                .addComponent(jSeparator13, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
-                .addComponent(jLabel21)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel22)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(218, 218, 218)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(confirmBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(resetBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(414, Short.MAX_VALUE))
-        );
+        cardAddCandidate.setLayout(new java.awt.BorderLayout());
 
         jPanel17.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -743,21 +434,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout cardAddCandidateLayout = new javax.swing.GroupLayout(cardAddCandidate);
-        cardAddCandidate.setLayout(cardAddCandidateLayout);
-        cardAddCandidateLayout.setHorizontalGroup(
-            cardAddCandidateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        cardAddCandidateLayout.setVerticalGroup(
-            cardAddCandidateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cardAddCandidateLayout.createSequentialGroup()
-                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(66, Short.MAX_VALUE))
-        );
+        cardAddCandidate.add(jPanel17, java.awt.BorderLayout.NORTH);
 
         MainPanel.add(cardAddCandidate, "cardAddCandidate");
 
@@ -1333,6 +1010,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         cardViewCandidates.setOpaque(false);
         cardViewCandidates.setLayout(new java.awt.BorderLayout());
 
+        //jPanel14 = new CandidateDetailsPanel();
         jPanel14.setBackground(new java.awt.Color(255, 255, 255));
 
         vcpartyTitle4.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 30)); // NOI18N
@@ -1483,7 +1161,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         card.show(MainPanel, "cardViewCandidates");
-  
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -1497,12 +1175,12 @@ public class AdminMainContentArea extends javax.swing.JFrame{
 
     private void cancelBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelBTNMouseEntered
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_cancelBTNMouseEntered
 
     private void cancelBTNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelBTNMouseExited
         // TODO add your handling code here:
-      
+
     }//GEN-LAST:event_cancelBTNMouseExited
 
     private void cancelBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBTNActionPerformed
@@ -1512,11 +1190,11 @@ public class AdminMainContentArea extends javax.swing.JFrame{
 
     private void saveBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBTNMouseEntered
         // TODO add your handling code here:
-     
+
     }//GEN-LAST:event_saveBTNMouseEntered
 
     private void saveBTNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBTNMouseExited
-      
+
     }//GEN-LAST:event_saveBTNMouseExited
 
     private void vCandidateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vCandidateMouseEntered
@@ -1574,83 +1252,8 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         menu = new AdminMenu();
         menu.setVisible(true);
         this.setVisible(false);
-        
+
     }//GEN-LAST:event_vMenuMouseClicked
-
-    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
-        // TODO add your handling code here:
-        card.show(MainPanel, "cardViewCandidates");
-    }//GEN-LAST:event_cancelBtnActionPerformed
-
-    private void resetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBtnActionPerformed
-        // TODO add your handling code here:
-        reset();
-    }//GEN-LAST:event_resetBtnActionPerformed
-
-    private void confirmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmBtnActionPerformed
-//        if(!validate_input())
-//        {
-//            // TODO: possibly change message if there is a better message/design
-//            JOptionPane.showMessageDialog(null,
-//                "Invalid information entered on some fields",
-//                "Add Candidate failed!",
-//                JOptionPane.ERROR_MESSAGE);
-//            return;
-//        }
-//
-//        String first_name  = firstNameTxt.getText();
-//        String last_name   = lastNameTxt.getText();
-//        char mid_initial   = midInitialTxt.getText().charAt(0);
-//        String religion    = religionTxt.getText();
-//        Date birth_date    = (Date) birthDateSpinner.getValue();
-//
-//        String degree      = degreeTxt.getText();
-//        String univeristy  = universityTxt.getText();
-//        Date grad_date     = (Date) gradDateSpinner.getValue();
-//
-//        candidate_info = new Candidate();
-//        candidate_info.set_birth_date(birth_date);
-//        candidate_info.set_first_name(first_name);
-//        candidate_info.set_last_name(last_name);
-//        candidate_info.set_middle_initial(mid_initial);
-//        candidate_info.set_religion(religion);
-//        candidate_info.set_degree(degree);
-//        candidate_info.set_university(univeristy);
-//        candidate_info.set_grad_date(grad_date);
-//        candidate_info.set_sex((String) sexComboBox.getSelectedItem());
-//        candidate_info.set_image_path(image_path);
-//
-//        if(form_listener != null)
-//        {
-//            FormEvent form_event = new FormEvent(this);
-//            form_event.setCandidate(candidate_info);
-//            form_listener.formEventOccurred(form_event);
-//        }
-        System.out.println("added candidate");
-        
-        card.show(MainPanel, "cardViewCandidates");
-    }//GEN-LAST:event_confirmBtnActionPerformed
-
-    private void browseImageBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseImageBtnActionPerformed
-//        int return_val = image_chooser.showDialog(null, "Select");
-//
-//        if(return_val == JFileChooser.APPROVE_OPTION)
-//        {
-//            File selected_file = image_chooser.getSelectedFile();
-//            try {
-//                image_path = "img/" + selected_file.getName();
-//
-//                Files.copy(selected_file.toPath(),
-//                    new File(image_path).toPath(),
-//                    StandardCopyOption.REPLACE_EXISTING);
-//
-//                set_image_label(image_path);
-//
-//            } catch (IOException ex) {
-//                Logger.getLogger(AddGUI.class.getName()).log(Level.ALL.SEVERE, null, ex);
-//            }
-//        }
-    }//GEN-LAST:event_browseImageBtnActionPerformed
 
     private void LogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogoutMouseClicked
         // TODO add your handling code here:
@@ -1666,7 +1269,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -1686,15 +1289,15 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         }
         //</editor-fold>
         //</editor-fold>
-        
-         
-        
+
+
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            
+
             public void run() {
-                
-                new AdminMainContentArea().setVisible(true);    
+
+                new AdminMainContentArea().setVisible(true);
             }
 
         });
@@ -1706,10 +1309,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
     private javax.swing.JPanel MainPanel;
     private javax.swing.JPanel SidePanel;
     private javax.swing.JPanel SidePanelContent;
-    private javax.swing.JSpinner birthDateSpinner;
-    private javax.swing.JButton browseImageBtn;
     private javax.swing.JButton cancelBTN;
-    private javax.swing.JButton cancelBtn;
     private javax.swing.JPanel cardAddCandidate;
     private javax.swing.JPanel cardAddElec;
     private javax.swing.JPanel cardBG;
@@ -1717,30 +1317,18 @@ public class AdminMainContentArea extends javax.swing.JFrame{
     private javax.swing.JPanel cardViewCandidates;
     private javax.swing.JPanel cardViewDetails;
     private javax.swing.JPanel cardViewElec;
-    private javax.swing.JButton confirmBtn;
-    private javax.swing.JTextField degreeTxt;
-    private javax.swing.JTextField firstNameTxt;
     private javax.swing.JLabel formsubtitle;
     private javax.swing.JLabel formtitle;
-    private javax.swing.JSpinner gradDateSpinner;
-    private javax.swing.JLabel imageLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
@@ -1749,23 +1337,17 @@ public class AdminMainContentArea extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel19;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator13;
     private javax.swing.JSeparator jSeparator15;
     private javax.swing.JSeparator jSeparator16;
     private javax.swing.JSeparator jSeparator17;
@@ -1774,15 +1356,11 @@ public class AdminMainContentArea extends javax.swing.JFrame{
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JSeparator jSeparator8;
-    private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField23;
     private javax.swing.JTextField jTextField24;
@@ -1793,18 +1371,12 @@ public class AdminMainContentArea extends javax.swing.JFrame{
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
-    private javax.swing.JTextField lastNameTxt;
-    private javax.swing.JTextField midInitialTxt;
     private javax.swing.JLabel panelLogo;
-    private javax.swing.JTextField religionTxt;
-    private javax.swing.JButton resetBtn;
     private javax.swing.JButton saveBTN;
-    private javax.swing.JComboBox<String> sexComboBox;
     private javax.swing.JLabel sp1LBL;
     private javax.swing.JLabel sp2LBL2;
     private javax.swing.JLabel sp2LBL3;
     private javax.swing.JLabel sp2LBL4;
-    private javax.swing.JTextField universityTxt;
     private javax.swing.JPanel vCandidate;
     private javax.swing.JPanel vElection;
     private javax.swing.JPanel vMenu;
