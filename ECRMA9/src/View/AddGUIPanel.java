@@ -60,7 +60,10 @@ public class AddGUIPanel extends javax.swing.JPanel {
             @Override
             public void keyTyped(KeyEvent e) {
                 if(midInitialTxt.getText().length() == 1)
+                {
+                    midInitialTxt.setText(("" + e.getKeyChar()));
                     e.consume();
+                }
             }
 
             @Override

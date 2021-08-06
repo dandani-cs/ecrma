@@ -193,7 +193,7 @@ public class Frame_Login extends JFrame implements ActionListener{
             {
                 if(main_controller.user_controller.isAdmin())
                 {
-                    adminmenu = new AdminMenu();
+                    adminmenu = new AdminMenu(main_controller);
                     adminmenu.setVisible(true);
                     this.setVisible(false);    
                 } else

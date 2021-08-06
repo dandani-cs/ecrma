@@ -36,7 +36,7 @@ public class AdminViewCandidatesTableModel extends AbstractTableModel {
     
     @Override
     public int getRowCount() {
-        return 5;
+        return candidate_list.size();
     }
     
     @Override
@@ -62,14 +62,12 @@ public class AdminViewCandidatesTableModel extends AbstractTableModel {
                 case 0: 
 //                  ImageIcon img = new ImageIcon(current_candidate.get_image_path());
                     try {
-                        
-                        ImageIcon img = new ImageIcon("src/Icons/candidate2_128px.png");
+                        ImageIcon img = new ImageIcon(current_candidate.get_image_path());
                         Image imgtmp = img.getImage();
                         imgtmp = imgtmp.getScaledInstance(120, 120, SCALE_SMOOTH);
                         img = new ImageIcon(imgtmp);
-                        System.out.println("found image");
+                        System.out.println("found image" + current_candidate.get_image_path());
                         return img;
-                        
                         
                     } catch (Exception e) {
                         System.out.println("in catch");

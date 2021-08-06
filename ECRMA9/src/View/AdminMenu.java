@@ -39,13 +39,13 @@ public class AdminMenu extends javax.swing.JFrame {
     AdminMainContentArea adminmaincontentarea;
 //    ImageIcon icon;
     //TODO: change this to main controller due to ElecPerController errors for now
-    CandidateController candidate_controller = new CandidateController();
+    MainController main_controller;
 
     
     /**
      * Creates new form AdminMenu
      */
-    public AdminMenu() {
+    public AdminMenu(MainController passed_mc) {
         initComponents();
         this.pack();
         Toolkit tk = Toolkit.getDefaultToolkit();
@@ -53,6 +53,8 @@ public class AdminMenu extends javax.swing.JFrame {
         int ysize = (int) tk.getScreenSize().getHeight();
         this.setSize(xsize, ysize);
         this.setLocationRelativeTo(null);
+        
+        main_controller = passed_mc;
         
         //Icons
         iconAdd = new ImageIcon("src/Icons/add128px.png");
@@ -431,7 +433,7 @@ public class AdminMenu extends javax.swing.JFrame {
 
     private void ViewBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ViewBTNMouseClicked
         // TODO add your handling code here:
-        adminmaincontentarea = new AdminMainContentArea();
+        adminmaincontentarea = new AdminMainContentArea(main_controller);
         adminmaincontentarea.setVisible(true);
         adminmaincontentarea.setCard("cardViewCandidates");
         this.setVisible(false);
@@ -449,9 +451,9 @@ public class AdminMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_EditBTNMouseEntered
 
     private void EditBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditBTNMouseClicked
-        adminmaincontentarea = new AdminMainContentArea();
+        adminmaincontentarea = new AdminMainContentArea(main_controller);
         adminmaincontentarea.setVisible(true);
-        adminmaincontentarea.setCard("cardAddCandidate");
+        adminmaincontentarea.setCard("cardViewCandidates");
         this.setVisible(false);
         
 //        AddGUI edit_candidate = new AddGUI();
@@ -493,7 +495,7 @@ public class AdminMenu extends javax.swing.JFrame {
 
     private void ArchiveBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ArchiveBTNMouseClicked
         // TODO add your handling code here:
-        adminmaincontentarea = new AdminMainContentArea();
+        adminmaincontentarea = new AdminMainContentArea(main_controller);
         adminmaincontentarea.setVisible(true);
         adminmaincontentarea.setCard("cardViewElec");
         this.setVisible(false);
@@ -511,7 +513,7 @@ public class AdminMenu extends javax.swing.JFrame {
 
     private void DeleteBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteBTNMouseClicked
         // TODO add your handling code here:
-        adminmaincontentarea = new AdminMainContentArea();
+        adminmaincontentarea = new AdminMainContentArea(main_controller);
         adminmaincontentarea.setVisible(true);
         adminmaincontentarea.setCard("cardViewCandidates");
         this.setVisible(false);
@@ -547,7 +549,7 @@ public class AdminMenu extends javax.swing.JFrame {
 
     private void AddBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddBTNMouseClicked
         // TODO add your handling code here:
-        adminmaincontentarea = new AdminMainContentArea();
+        adminmaincontentarea = new AdminMainContentArea(main_controller);
         adminmaincontentarea.setVisible(true);
         adminmaincontentarea.setCard("cardAddCandidate");
         this.setVisible(false);
@@ -589,40 +591,6 @@ public class AdminMenu extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AdminMenu().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AddBTN;

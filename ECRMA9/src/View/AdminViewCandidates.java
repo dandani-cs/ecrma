@@ -259,7 +259,7 @@ public class AdminViewCandidates extends JPanel{
             
             table.setIntercellSpacing(new Dimension(50, 50)); //?
             
-//            table.getColumnModel().getColumn(0).setCellRenderer(table.getDefaultRenderer(ImageIcon.class));
+            table.getColumnModel().getColumn(0).setCellRenderer(table.getDefaultRenderer(ImageIcon.class));
             table.getColumnModel().getColumn(0).setMaxWidth(120);
             table.getColumnModel().getColumn(0).setMinWidth(120);
             
@@ -298,9 +298,9 @@ public class AdminViewCandidates extends JPanel{
                            @Override
                            public void formEventOccurred(FormEvent e) {
                                if (e.getPurpose().equals("candidate delete")) {
-                                   model.setData(main_controller.candidate_controller.query_all_candidates());
+                                   refresh();
 //                                   
-//                                   delete_candidate.dispatchEvent(new WindowEvent(delete_candidate, WindowEvent.WINDOW_CLOSING));
+                                   delete_candidate.dispatchEvent(new WindowEvent(delete_candidate, WindowEvent.WINDOW_CLOSING));
                                }
                            }
                        });
@@ -337,6 +337,11 @@ public class AdminViewCandidates extends JPanel{
             
         }
         
+        public void refresh() {
+            model.setData(main_controller.candidate_controller.query_all_candidates());
+            model.fireTableDataChanged();
+        }
+        
     }
     
     private class JTableButtonRenderer implements TableCellRenderer {       
@@ -353,6 +358,8 @@ public class AdminViewCandidates extends JPanel{
             return button;  
         }
     }
+    
+    
     
 }
 

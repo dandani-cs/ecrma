@@ -31,7 +31,7 @@ public class DeleteGUI extends javax.swing.JFrame {
     public DeleteGUI(MainController passed_mc, Candidate new_candidate) {
         initComponents();
         this.setLocationRelativeTo(null);
-//        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
         main_controller = passed_mc;
         this.candidate = new_candidate;

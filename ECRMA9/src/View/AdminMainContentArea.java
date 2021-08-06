@@ -56,9 +56,9 @@ public class AdminMainContentArea extends javax.swing.JFrame{
     AddGUIPanel addCandidatePanel, editCandidatePanel;
     CardLayout card;
 
-    MainController program_main_controller = new MainController();
+    MainController program_main_controller;
 
-    public AdminMainContentArea() {
+    public AdminMainContentArea(MainController passed_mc) {
         initComponents();
         this.pack();
 
@@ -71,6 +71,8 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         this.setSize(xsize, ysize);*/
         this.setLocationRelativeTo(null);
         this.setTitle("Election Candidates Record Management");
+        
+        program_main_controller = passed_mc;
         
         panelLogo.setIcon(new ImageIcon("src\\Icons\\ecrmaLogo.png"));
         
@@ -105,6 +107,9 @@ public class AdminMainContentArea extends javax.swing.JFrame{
                                                   "Candidate information was successfully added.",
                                                   "Successfully Added Candidate",
                                                   JOptionPane.INFORMATION_MESSAGE);
+                    
+                    myPanel.center.refresh();
+                    setCard("cardViewCandidates");
                 }
             }
         });
@@ -144,9 +149,13 @@ public class AdminMainContentArea extends javax.swing.JFrame{
                                System.out.println(purpose);
                                
                                if ("candidate details".equals(purpose)) {
-                                   System.out.println("CANDIDATES ARE SHOWN");
+                                   if (viewCandidateDetails != null) {
+                                       cardViewDetails.remove(viewCandidateDetails);
+                                   }
+                                   
                                    viewCandidateDetails = new CandidateDetailsPanel(program_main_controller, e.getCandidate());
                                    cardViewDetails.add(viewCandidateDetails, BorderLayout.CENTER);
+                                   
                                    setCard("cardViewDetails");
                                } else if (purpose == "candidate add") {
                                    setCard(e.getText());
@@ -887,7 +896,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
 
     private void vMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vMenuMouseClicked
         // TODO add your handling code here:
-        menu = new AdminMenu();
+        menu = new AdminMenu(program_main_controller);
         menu.setVisible(true);
         this.setVisible(false);
 
@@ -900,46 +909,6 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         this.setVisible(false);
     }//GEN-LAST:event_LogoutMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminMainContentArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminMainContentArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminMainContentArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminMainContentArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-
-                new AdminMainContentArea().setVisible(true);
-            }
-
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AdminBackground;

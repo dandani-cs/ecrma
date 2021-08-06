@@ -69,6 +69,8 @@ public class CandidateDetailsPanel extends JPanel {
         
     private final float header_weighty = 0.25f;
     
+    private Candidate current_candidate;
+    
     public void set_education_bg(ArrayList<Object[]> new_educ_bg) {
         this.education_bg_list = new_educ_bg;
         
@@ -114,15 +116,19 @@ public class CandidateDetailsPanel extends JPanel {
     }
     
     public void setData(Candidate candidate) {
-        this.last_name = candidate.get_last_name();
-        this.first_name = candidate.get_first_name();
-        this.middle_initial = candidate.get_mid_initial();
+        this.last_name = current_candidate.get_last_name();
+        this.first_name = current_candidate.get_first_name();
+        this.middle_initial = current_candidate.get_mid_initial();
     }
+    
+//    public void
     
     public CandidateDetailsPanel(MainController main_controller, Candidate candidate) {
         // Dummy data
-        if(candidate != null)
-            setData(candidate);
+        current_candidate = candidate;
+        
+        
+        setData(candidate);
         
         personal_info_list = new ArrayList<>();
         education_bg_list  = new ArrayList<>();
@@ -133,7 +139,7 @@ public class CandidateDetailsPanel extends JPanel {
             }
         );
         
-        personal_info_list.add(new Object[] { "January 12, 1980", "Birthdate" }); // Birthday
+        personal_info_list.add(new Object[] { candidate.get_birth_date(), "Birthdate" }); // Birthday
         personal_info_list.add(new Object[] { candidate.get_sex(), "Sex" }); // Sex
         personal_info_list.add(new Object[] { candidate.get_religion(), "Religion" }); // religion
         
