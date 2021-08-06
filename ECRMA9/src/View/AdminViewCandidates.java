@@ -257,7 +257,6 @@ public class AdminViewCandidates extends JPanel{
             
             table.setIntercellSpacing(new Dimension(10, 10));
             
-<<<<<<< HEAD
             table.getColumnModel().getColumn(0).setCellRenderer(table.getDefaultRenderer(ImageIcon.class));
             table.getColumnModel().getColumn(0).setMaxWidth(120);
             table.getColumnModel().getColumn(0).setMinWidth(120);
@@ -265,11 +264,6 @@ public class AdminViewCandidates extends JPanel{
             
             
             table.getTableHeader().setFont(new Font("CALIBRI", Font.PLAIN,18));
-=======
-            table.setRowHeight(120);
-
-            table.getTableHeader().setFont(new Font("CALIBRI", Font.PLAIN,24));
->>>>>>> main
             table.setFont(new Font("CALIBRI", Font.PLAIN, 18));
             
              
