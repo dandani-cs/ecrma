@@ -397,7 +397,7 @@ public class CandidateDetailsPanel extends JPanel {
             campaigns_table.getColumnModel().getColumn(i).setCellRenderer(tableCellRenderer);           
         }
     
-        campaigns_table.setPreferredSize(new Dimension(40, 150));
+        campaigns_table.setPreferredSize(new Dimension(40, 100));
         
         campaigns_table.setGridColor(new Color(33,82,117));
         campaigns_table.setShowHorizontalLines(true);
