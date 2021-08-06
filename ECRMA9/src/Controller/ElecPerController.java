@@ -8,6 +8,7 @@ import java.util.Date;
 public class ElecPerController {
     
     public void addElectionPeriod(FormEvent e) {
+        System.out.println("ELEC PER CONTROLLER CALLED");
         String name = e.getElection_period().getName();
         LocalDate sDate = e.getElection_period().getSdate();
         LocalDate fDate = e.getElection_period().getFdate();

@@ -98,6 +98,9 @@ public class AdminMainContentArea extends javax.swing.JFrame{
                                                   "Election Period was successfully added.",
                                                   "Successfully Added Election Period",
                                                   JOptionPane.INFORMATION_MESSAGE);
+                
+                archivePanel.refresh();
+                setCard("cardViewElec");
             }
         });
         

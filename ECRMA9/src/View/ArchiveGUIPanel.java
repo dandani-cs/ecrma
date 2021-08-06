@@ -244,6 +244,8 @@ public class ArchiveGUIPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_archiveBTNActionPerformed
 
     public void refresh() {
+        dataModel.setDataVector(ElecPerSQL.getTable(),
+                new String[] {"ELECPERID", "Name", "Starting Date", "Finish Date", "Archive"});
         dataModel.fireTableDataChanged();
     }
 
