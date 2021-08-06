@@ -110,21 +110,6 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         card.show(MainPanel, str);
     }
 
-   public void reset(){
-         jTextField1.setText("NAME");
-         jTextField3.setText("Position");
-         jTextField2.setText(" ");
-         jTextField4.setText(" ");
-         jTextField5.setText(" ");
-         jTextField6.setText("Course");
-         jTextField7.setText("University");
-         jTextField8.setText("Date");
-         jTextField9.setText("Course");
-         jTextField10.setText("University");
-         jTextField11.setText("Date");
-         jTextArea1.setText(" ");
-     }
-
 
 
     /**
