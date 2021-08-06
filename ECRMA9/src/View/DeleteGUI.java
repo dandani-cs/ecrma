@@ -5,6 +5,8 @@
  */
 package View;
 
+import Controller.FormEvent;
+import Controller.FormListener;
 import Controller.MainController;
 import Model.Candidate;
 import javax.swing.JFrame;
@@ -17,22 +19,25 @@ public class DeleteGUI extends javax.swing.JFrame {
      AdminViewCandidates myPanel;
      MainController main_controller;
      Candidate candidate;
+     FormListener form_listener;
+
+    public void setFormListener(FormListener form_listener) {
+        this.form_listener = form_listener;
+    }
 
     /**
      * Creates new form DeleteGUI
      */
-    public DeleteGUI(MainController passed_mc) {
+    public DeleteGUI(MainController passed_mc, Candidate new_candidate) {
         initComponents();
         this.setLocationRelativeTo(null);
+//        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
         main_controller = passed_mc;
+        this.candidate = new_candidate;
         candName.setText(candidate.get_last_name() + ", " + candidate.get_first_name());
     }
-    
-    public void setCandidate(Candidate new_candidate) {
-        this.candidate = new_candidate;
-    }
-
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -152,6 +157,10 @@ public class DeleteGUI extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // CONFIRMED DELETE CANDIDATE
         main_controller.candidate_controller.delete_candidate(candidate);
+        FormEvent ev = new FormEvent(evt, "cardViewCandidates");
+        ev.setPurpose("candidate delete");
+        
+        form_listener.formEventOccurred(ev);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

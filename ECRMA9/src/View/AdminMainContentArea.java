@@ -815,7 +815,14 @@ public class AdminMainContentArea extends javax.swing.JFrame{
 
     private void vCandidateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vCandidateMouseClicked
         // TODO add your handling code here:
-        card.show(MainPanel, "cardViewCandidates");
+        System.out.println("CALLED MOUSE CLICK");
+        try {
+            System.out.println("before called vCandidate");
+            card.show(MainPanel, "cardViewCandidates");
+            System.out.println("after called vCandidate");
+        } catch (Exception e) {
+            System.out.println("ERROR OCCURRED");
+        }
     }//GEN-LAST:event_vCandidateMouseClicked
 
     private void vElectionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vElectionMouseClicked

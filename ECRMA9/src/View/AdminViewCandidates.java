@@ -23,6 +23,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
 import java.util.Random;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -288,9 +289,20 @@ public class AdminViewCandidates extends JPanel{
                        
                    } else if (col == 4) {
                        // open DeleteCandidate
-                       DeleteGUI delete_candidate = new DeleteGUI(main_controller);
-                       delete_candidate.setCandidate(main_controller.candidate_controller.query_candidate_by_id(model.getCandidateID(row)));
+                       System.out.println("DELETE CANDIDATE");
+                       DeleteGUI delete_candidate = new DeleteGUI(main_controller, main_controller.candidate_controller.query_candidate_by_id(model.getCandidateID(row)));
                        delete_candidate.setVisible(true);
+                       
+                       delete_candidate.setFormListener(new FormListener() {
+                           @Override
+                           public void formEventOccurred(FormEvent e) {
+                               if (e.getPurpose().equals("candidate delete")) {
+//                                   model.setData(main_controller.candidate_controller.query_all_candidates());
+//                                   
+//                                   delete_candidate.dispatchEvent(new WindowEvent(delete_candidate, WindowEvent.WINDOW_CLOSING));
+                               }
+                           }
+                       });
                        
                        System.out.println("Delete candidate: " + table.getValueAt(row, 2) + " " + table.getValueAt(row, 1));
                        System.out.println("Candidate ID: " + model.getCandidateID(row));
@@ -319,8 +331,6 @@ public class AdminViewCandidates extends JPanel{
             }
             });
             
-            this.revalidate();
-            this.repaint();
             this.add(sp);
             this.add(btn_add, BorderLayout.SOUTH);
             
