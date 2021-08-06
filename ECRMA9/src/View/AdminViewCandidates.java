@@ -17,6 +17,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Random;
@@ -264,9 +266,11 @@ public class AdminViewCandidates extends JPanel{
                    int col = table.columnAtPoint(e.getPoint());
                    int row = table.rowAtPoint(e.getPoint());
                    if (col == 0 || col == 1 || col == 2) {
-                       //EVENT HERE
+                       System.out.println("event triggered");
+                        //EVENT HERE
                        FormEvent ev = new FormEvent(e, 
                                main_controller.candidate_controller.query_candidate_by_id(model.getCandidateID(row)));
+                       ev.setPurpose("candidate details");
                        // SEND CANDIDATE ID 
                        // create form event
                        // call formlistener
@@ -292,6 +296,18 @@ public class AdminViewCandidates extends JPanel{
             btn_add.setBackground(new Color(51,55,69));
             btn_add.setFont(new Font("CALIBRI", Font.BOLD, 18));
             btn_add.setForeground(Color.WHITE);
+            btn_add.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                String card_name = "cardAddCandidate";
+                //tPanel.ta.setText(Integer.toString(num*num));
+                FormEvent ev=new FormEvent(this,card_name);
+                ev.setPurpose("candidate add");
+                
+                if(formListener != null){
+                    formListener.formEventOccurred(ev);
+                }
+            }
+            });
             
             
             this.revalidate();
