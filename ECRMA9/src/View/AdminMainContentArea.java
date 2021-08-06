@@ -599,11 +599,11 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
+                .addGap(17, 17, 17)
                 .addComponent(vcpartyTitle3)
                 .addGap(12, 12, 12)
                 .addComponent(vcpartySubtitle3)
-                .addGap(55, 55, 55)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator15, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );

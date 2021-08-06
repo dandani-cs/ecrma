@@ -67,7 +67,7 @@ public class CandidateDetailsPanel extends JPanel {
     
     private final DateFormat date_format = new SimpleDateFormat("MMMMM dd, yyyy");
         
-    private final float header_weighty = 0.25f;
+    private final float header_weighty = 0.05f;
     
     private Candidate current_candidate;
     
@@ -181,7 +181,7 @@ public class CandidateDetailsPanel extends JPanel {
         header_gbc.weighty    = 1.0f;
         header_gbc.gridx      = 0;
         header_gbc.gridy      = 0;
-        header_gbc.insets     = new Insets(inset/2, inset, inset / 2, 0);
+        header_gbc.insets     = new Insets(0, inset, inset / 2, 0);
         
         AvatarImagePanel image_test   = new AvatarImagePanel(candidate.get_image_path()); // TODO: image relative path
         
@@ -286,7 +286,7 @@ public class CandidateDetailsPanel extends JPanel {
         content_gbc.fill       = GridBagConstraints.BOTH;
         content_gbc.gridwidth  = 1;
         content_gbc.gridheight = 1;
-        content_gbc.insets     = new Insets(5, inset, 5, inset);
+        content_gbc.insets     = new Insets(5, inset, 0, inset);
 
         // Personal Information
         content_gbc.weightx = 1.0f;
@@ -353,6 +353,7 @@ public class CandidateDetailsPanel extends JPanel {
         content_panel.add(pers_info_panel, content_gbc);
         
         // Educational Background
+        content_gbc.fill    = GridBagConstraints.HORIZONTAL;
         content_gbc.weightx = 1.0f;
         content_gbc.weighty = 0.10f;
         content_gbc.gridx   = 0;
@@ -386,8 +387,9 @@ public class CandidateDetailsPanel extends JPanel {
         content_panel.add(educ_panel, content_gbc);
         
         // Platform
+        content_gbc.fill    = GridBagConstraints.HORIZONTAL;
         content_gbc.weightx = 1.0f;
-        content_gbc.weighty = 0.33f;
+        content_gbc.weighty = 1;
         content_gbc.gridx   = 0;
         content_gbc.gridy   = 2;
         
@@ -403,7 +405,7 @@ public class CandidateDetailsPanel extends JPanel {
             campaigns_table.getColumnModel().getColumn(i).setCellRenderer(tableCellRenderer);           
         }
     
-        campaigns_table.setPreferredSize(new Dimension(40, 100));
+        //campaigns_table.setPreferredSize(new Dimension(40, 100));
         
         campaigns_table.setGridColor(new Color(33,82,117));
         campaigns_table.setShowHorizontalLines(true);
@@ -436,7 +438,7 @@ public class CandidateDetailsPanel extends JPanel {
         platform_text_area.setFont(new Font("Calibri", Font.PLAIN, 16));
         
         JPanel platform_panel = new JPanel();
-        platform_panel.setLayout(new BorderLayout(5, 10));
+        platform_panel.setLayout(new BorderLayout(0, 0));
         platform_panel.setBackground(primary_bg);
         //platform_panel.setBorder(BorderFactory.createLineBorder(Color.gray));
         
@@ -463,6 +465,7 @@ public class CandidateDetailsPanel extends JPanel {
         //content_panel.setLayout(new FlowLayout(FlowLayout.LEFT));
         
         content_panel.add(platform_panel, content_gbc);
+        content_panel.setBorder(BorderFactory.createEmptyBorder(0, 0, 100, 0));
         //content_panel.setBorder(BorderFactory.createLineBorder(Color.gray));
         add(content_panel, main_gbc);
     }
