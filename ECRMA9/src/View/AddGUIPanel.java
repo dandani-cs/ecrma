@@ -78,7 +78,7 @@ public class AddGUIPanel extends javax.swing.JPanel {
                                   !firstNameTxt.getText().equals("First name"));
         boolean is_valid_lname = (!lastNameTxt.getText().isEmpty() &&
                                   !lastNameTxt.getText().equals("Last name"));
-        boolean is_valid_midI  = (!midInitialTxt.getText().isEmpty() &&
+        boolean is_valid_midI  = (midInitialTxt.getText().length() == 1 &&
                                   !midInitialTxt.getText().equals("Middle initial"));
         boolean is_valid_uni   = (!universityTxt.getText().equals("University"));
         boolean is_valid_deg   = (!degreeTxt.getText().equals("degree"));
@@ -464,8 +464,14 @@ public class AddGUIPanel extends javax.swing.JPanel {
         String degree      = degreeTxt.getText();
         String univeristy  = universityTxt.getText();
         Date grad_date     = (Date) gradDateSpinner.getValue();
-
-        candidate_info = new Candidate();
+        
+        boolean is_existing = true;
+        if(candidate_info == null)
+        {
+            candidate_info = new Candidate();
+            is_existing    = false;
+        }
+        
         candidate_info.set_birth_date(birth_date);
         candidate_info.set_first_name(first_name);
         candidate_info.set_last_name(last_name);
@@ -481,6 +487,7 @@ public class AddGUIPanel extends javax.swing.JPanel {
         {
             FormEvent form_event = new FormEvent(this);
             form_event.setCandidate(candidate_info);
+            form_event.setPurpose(is_existing ? "candidate_add" : "candidate_update");
             form_listener.formEventOccurred(form_event);
         }
         System.out.println("added candidate");
