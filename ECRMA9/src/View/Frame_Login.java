@@ -65,8 +65,10 @@ public class Frame_Login extends JFrame implements ActionListener{
         Border login_margin = new EmptyBorder(150, 100, 250, 100);
         login_panel.setBorder(login_margin);
         
-        ImageIcon icon = new ImageIcon("C:\\Users\\Admin\\Documents\\GitHub\\ecrma\\ecrmaLogo.png");
+        ImageIcon icon = new ImageIcon("src/Icons/ecrmaLogo.png");
         lbl_logo = new JLabel(icon);
+        
+        
         
         lbl_header = new JLabel("Login Your Account");
         lbl_header.setFont(new Font("Tahoma", Font.BOLD, 30));
@@ -155,8 +157,9 @@ public class Frame_Login extends JFrame implements ActionListener{
         
         
         try {
-            System.out.println(new File(".").getCanonicalPath() + "\\bg.jpg");
-            bgImage = ImageIO.read(new File(new File(".").getCanonicalPath() + "\\img\\bg.jpg"));
+            System.out.println(new File(".").getCanonicalPath() + "src\\img\\bg2.jpg");
+            System.out.println("path: " + getClass().getResource("Icons\\add128px.png"));
+            bgImage = ImageIO.read(new File(new File(".").getCanonicalPath() + "\\img\\bg2.jpg"));
             bgImagePanel = new ImagePanel(bgImage);
             bgImagePanel.setLayout(new BorderLayout());
             setContentPane(bgImagePanel);

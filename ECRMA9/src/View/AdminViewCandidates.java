@@ -5,7 +5,9 @@
  */
 package View;
 
-import View.AdminMainContentArea;
+
+import Controller.FormEvent;
+import Controller.FormListener;
 import Controller.MainController;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -17,6 +19,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Random;
@@ -37,7 +41,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
-
 /**
  *
  * @author Admin
@@ -51,9 +54,8 @@ public class AdminViewCandidates extends JPanel{
     Insets westInsets;
     Center center;
     MainController main_controller;
-    AdminMainContentArea content;
-
-
+    FormListener formListener;
+    
     public AdminViewCandidates(MainController passed_mc) {
         bgColor = new Color(255,255,255);
         
@@ -61,7 +63,7 @@ public class AdminViewCandidates extends JPanel{
 
         this.setLayout(new BorderLayout());
         Border ogg_border = this.getBorder();
-        Border margin1 = new EmptyBorder(0,-30, 0, 30);
+        Border margin1 = new EmptyBorder(0,13, 0, 30);
         this.setBorder(new CompoundBorder(ogg_border, margin1));
         center = new Center();
         
@@ -72,6 +74,10 @@ public class AdminViewCandidates extends JPanel{
         setVisible(true);
         setSize(new Dimension(1920,1080));
         
+    }
+
+    public void setFormListener(FormListener formListener) {
+        this.formListener = formListener;
     }
     
     class North extends JPanel{
@@ -182,6 +188,7 @@ public class AdminViewCandidates extends JPanel{
         
         Center() {
             this.setLayout(new BorderLayout());
+<<<<<<< HEAD
             this.setBorder(new EmptyBorder(60, 101, 60, 60));
             this.setOpaque(false);
             button_renderer = new JTableButtonRenderer();
@@ -219,11 +226,38 @@ public class AdminViewCandidates extends JPanel{
             table.getColumnModel().getColumn(0).setMinWidth(140);
    
             
+            /*DefaultTableCellRenderer cellpad = new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object
+                ob, boolean b1, boolean b2, int row, int column) {
+                super.getTableCellRendererComponent(
+                    table, ob, b1, b2, row, column);
+                setBorder(BorderFactory.createEmptyBorder(100, 100, 100, 100));
+                return this;
+            }
+        };*/
+            
+            table.setIntercellSpacing(new Dimension(50,50));
+            
+            table.setGridColor(new Color(216,216,216));
+            table.setShowHorizontalLines(true);
+            table.setShowVerticalLines(true);
+            
+            DefaultTableCellRenderer tableCellRenderer = new DefaultTableCellRenderer();
+            tableCellRenderer.setHorizontalAlignment(JLabel.CENTER);
+            tableCellRenderer.setBackground(Color.white);
+            
+            for(int i = 0; i < table.getColumnModel().getColumnCount(); i++) {
+            table.getColumnModel().getColumn(i).setCellRenderer(tableCellRenderer);            
+            }
+
+            
             table.setDefaultRenderer(JButton.class, new JTableButtonRenderer());
             table.getColumnModel().getColumn(3).setCellRenderer(new JTableButtonRenderer());
             table.getColumnModel().getColumn(4).setCellRenderer(new JTableButtonRenderer());
             
             
+<<<<<<< HEAD
             table.setIntercellSpacing(new Dimension(10, 10));
             
             table.setRowHeight(120);
@@ -236,21 +270,21 @@ public class AdminViewCandidates extends JPanel{
                public void mouseClicked(MouseEvent e) {
                    int col = table.columnAtPoint(e.getPoint());
                    int row = table.rowAtPoint(e.getPoint());
-                   
                    if (col == 0 || col == 1 || col == 2) {
-                       content = new AdminMainContentArea();
-                       content.setVisible(true);
-                       content.setCard("cardViewDetails");
-                       content.setVisible(true);
+                       System.out.println("event triggered");
+                        //EVENT HERE
+                       FormEvent ev = new FormEvent(e, 
+                               main_controller.candidate_controller.query_candidate_by_id(model.getCandidateID(row)));
+                       ev.setPurpose("candidate details");
+                       // SEND CANDIDATE ID 
+                       // create form event
+                       // call formlistener
+                       formListener.formEventOccurred(ev);
                    }
+                   
                     
                    if (col == 3) {
                        // open EditCandidate
-                       
-                       content = new AdminMainContentArea();
-                       content.setVisible(true);
-                       content.setCard("cardEdit");
-                       content.setVisible(true);
                        
                        System.out.println("Edit candidate: " + table.getValueAt(row, 2) + " " + table.getValueAt(row, 1));
                        System.out.println("Candidate ID: " + model.getCandidateID(row));
@@ -272,6 +306,18 @@ public class AdminViewCandidates extends JPanel{
             btn_add.setBackground(new Color(51,55,69));
             btn_add.setFont(new Font("CALIBRI", Font.BOLD, 18));
             btn_add.setForeground(Color.WHITE);
+            btn_add.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                String card_name = "cardAddCandidate";
+                //tPanel.ta.setText(Integer.toString(num*num));
+                FormEvent ev=new FormEvent(this,card_name);
+                ev.setPurpose("candidate add");
+                
+                if(formListener != null){
+                    formListener.formEventOccurred(ev);
+                }
+            }
+            });
             
             this.revalidate();
             this.repaint();

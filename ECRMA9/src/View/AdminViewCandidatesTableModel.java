@@ -6,9 +6,16 @@
 package View;
 
 import Model.Candidate;
+import java.awt.Component;
+import java.awt.Image;
+import static java.awt.Image.SCALE_SMOOTH;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
@@ -49,7 +56,12 @@ public class AdminViewCandidatesTableModel extends AbstractTableModel {
         if (candidate_list.size() > row) {
             Candidate current_candidate = candidate_list.get(row);
             switch (col) {
-                case 0: return current_candidate.get_image_path();
+                case 0: 
+                    ImageIcon img = new ImageIcon(current_candidate.get_image_path());
+                    Image imgtmp = img.getImage();
+                    imgtmp = imgtmp.getScaledInstance(120, 120, SCALE_SMOOTH);
+                    img = new ImageIcon(imgtmp);
+                    return img;
                 case 1: return current_candidate.get_last_name();
                 case 2: return current_candidate.get_first_name();
                 case 3: return new JButton("Edit");
@@ -59,6 +71,17 @@ public class AdminViewCandidatesTableModel extends AbstractTableModel {
         }
         return null;
     }
+    
+    DefaultTableCellRenderer cellpad = new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object
+                ob, boolean b1, boolean b2, int row, int column) {
+                super.getTableCellRendererComponent(
+                    table, ob, b1, b2, row, column);
+                setBorder(BorderFactory.createEmptyBorder(100, 100, 100, 100));
+                return this;
+            }
+        };
     
     public int getCandidateID(int row) {
         if (candidate_list.size() > row) {

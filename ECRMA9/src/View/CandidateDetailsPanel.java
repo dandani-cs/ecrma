@@ -5,6 +5,8 @@
  */
 package View;
 
+import Controller.MainController;
+import Model.Candidate;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -31,7 +33,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 /**
  *
@@ -39,25 +45,9 @@ import javax.swing.JTextArea;
  */
 public class CandidateDetailsPanel extends JPanel {
     // TODO: Actual candidate data, replace later on w/ class
-    private static final String first_name = "Juan";
-    private static final String last_name  = "Dela Cruz";
-    private static final String position   = "President";
-    private static final String party      = "Party";
-    private static final String platform   = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
-                                            + "Donec elementum tellus diam, a tempus est sodales sit amet."
-                                            + "Sed sit amet turpis eu felis ullamcorper aliquam ac id ex."
-                                            + "Vivamus purus erat, mollis eu semper a, dignissim nec odio. "
-                                            + "Fusce augue sapien, fringilla sit amet nulla quis, porta "
-                                            + "venenatis sapien. Phasellus id interdum mauris. Suspendisse "
-                                            + "sollicitudin velit mattis dolor hendrerit, ac tristique ante "
-                                            + "faucibus. Aliquam at tincidunt quam, id feugiat tellus. Aliquam "
-                                            + "euismod malesuada porta. Nulla eu arcu sed tortor tincidunt rutrum ac quis purus.\n" +
-                                              "\n" +
-                                              "Pellentesque ut eros id purus dapibus tincidunt. "
-                                            + "Cras vitae lobortis tortor. Ut cursus tellus eu arcu accumsan, "
-                                            + "a sodales leo luctus. Duis euismod nibh a malesuada suscipit. "
-                                            + "Vestibulum posuere interdum aliquam. Pellentesque imperdiet leo id "
-                                            + "molestie pellentesque. Praesent vestibulum luctus ipsum, at finibus turpis pulvinar\"";
+    private String first_name;
+    private String last_name;
+    private char middle_initial;
     
     private ArrayList<Object[]> personal_info_list;
     private ArrayList<Object[]> education_bg_list;
@@ -122,20 +112,27 @@ public class CandidateDetailsPanel extends JPanel {
         educ_content.revalidate();
     }
     
-    public CandidateDetailsPanel() {
+    public void setData(Candidate candidate) {
+        this.last_name = candidate.get_last_name();
+        this.first_name = candidate.get_first_name();
+        this.middle_initial = candidate.get_mid_initial();
+    }
+    
+    public CandidateDetailsPanel(MainController main_controller, Candidate candidate) {
         // Dummy data
+        setData(candidate);
         personal_info_list = new ArrayList<>();
         education_bg_list  = new ArrayList<>();
         
         education_bg_list.add( 
             new Object[]{ 
-                "Masters of Science in Computer Science", "Mapua University", new Date(105, 06, 13)
+                candidate.get_degree(), candidate.get_university(), candidate.get_grad_date()
             }
         );
         
-        personal_info_list.add(new Object[] { "January 12, 1980", "1st Birthday" });
-        personal_info_list.add(new Object[] { "January 16, 1980", "2nd Birthday" });
-        personal_info_list.add(new Object[] { "January 21, 1980", "3rd Birthday" });
+        personal_info_list.add(new Object[] { "January 12, 1980", "Birthdate" }); // Birthday
+        personal_info_list.add(new Object[] { candidate.get_sex(), "Sex" }); // Sex
+        personal_info_list.add(new Object[] { candidate.get_religion(), "Religion" }); // religion
         
         setBackground(primary_bg);
         header_panel.setBackground(primary_bg);
@@ -177,7 +174,7 @@ public class CandidateDetailsPanel extends JPanel {
         header_gbc.gridy      = 0;
         header_gbc.insets     = new Insets(inset/2, inset, inset / 2, inset / 2);
         
-        AvatarImagePanel image_test   = new AvatarImagePanel("img/avatar-icon.png");
+        AvatarImagePanel image_test   = new AvatarImagePanel("img/avatar-icon.png"); // TODO: image relative path
         
         image_test.setBackground(primary_bg);
         image_panel.setLayout(new BorderLayout());
@@ -202,14 +199,14 @@ public class CandidateDetailsPanel extends JPanel {
         main_info_content.setBackground(primary_bg);
         main_info_content.setLayout(new GridBagLayout());
         
-        JLabel full_name_label = new JLabel((last_name + ", " + first_name).toUpperCase());
-        JLabel position_label  = new JLabel(position);
-        JLabel party_label     = new JLabel(party);
+        JLabel full_name_label = new JLabel((last_name).toUpperCase());
+        JLabel first_name_label  = new JLabel(first_name + " " + middle_initial);
+        JLabel party_label     = new JLabel("");
         
         full_name_label.setFont(new Font(Font.DIALOG, Font.BOLD, full_name_size));
         full_name_label.setForeground(primary_blue);
         
-        position_label.setFont(new Font(Font.DIALOG, Font.BOLD, (int)(full_name_size * 0.6f)));
+        first_name_label.setFont(new Font(Font.DIALOG, Font.BOLD, (int)(full_name_size * 0.6f)));
         party_label.setFont   (new Font(Font.DIALOG, Font.PLAIN,(int)(full_name_size * 0.5f)));
         
         JButton edit_button   = new JButton("EDIT");
@@ -244,7 +241,7 @@ public class CandidateDetailsPanel extends JPanel {
         
         minfo_gbc.gridx      = 0;
         minfo_gbc.gridy      = 1;
-        main_info_content.add(position_label, minfo_gbc);
+        main_info_content.add(first_name_label, minfo_gbc);
         
         minfo_gbc.gridx      = 0;
         minfo_gbc.gridy      = 2;
@@ -278,7 +275,7 @@ public class CandidateDetailsPanel extends JPanel {
 
         // Personal Information
         content_gbc.weightx = 1.0f;
-        content_gbc.weighty = 0.33f;
+        content_gbc.weighty = 0.10f;
         content_gbc.gridx   = 0;
         content_gbc.gridy   = 0;
         
@@ -309,10 +306,10 @@ public class CandidateDetailsPanel extends JPanel {
             JPanel pers_info = new JPanel();
             pers_info.setLayout(new BorderLayout());
             
-            pers_gbc.gridx   = i % 2;
-            pers_gbc.gridy   = i / 2;
-            pers_gbc.weightx = 0.5f;
-            pers_gbc.weighty = 0.5f;
+            pers_gbc.gridx   = i % 3;
+            pers_gbc.gridy   = 0;
+            pers_gbc.weightx = 0.33f;
+            pers_gbc.weighty = 1;
             
             JLabel pers_info_head = new JLabel((String) personal_info_list.get(i)[0]);
             JLabel pers_info_sub  = new JLabel((String) personal_info_list.get(i)[1]);
@@ -342,7 +339,7 @@ public class CandidateDetailsPanel extends JPanel {
         
         // Educational Background
         content_gbc.weightx = 1.0f;
-        content_gbc.weighty = 0.33f;
+        content_gbc.weighty = 0.10f;
         content_gbc.gridx   = 0;
         content_gbc.gridy   = 1;
         
@@ -380,8 +377,24 @@ public class CandidateDetailsPanel extends JPanel {
         content_gbc.gridy   = 2;
         
         JTextArea platform_text_area = new JTextArea(0, 1);
-        JLabel platform_title  = new JLabel("Platform");
-        JScrollPane scrollpane = new JScrollPane(platform_text_area);
+        
+        DefaultTableModel campaigns_model;
+        Object[] campaigns_column = {"Election Period", "Party", "Position", "Platform"};
+        campaigns_model = new DefaultTableModel(main_controller.campaign_controller.getCandidateCampaigns(candidate.get_candidate_id()), campaigns_column);
+        JTable campaigns_table = new JTable(campaigns_model);
+        DefaultTableCellRenderer tableCellRenderer = new DefaultTableCellRenderer();
+        tableCellRenderer.setHorizontalAlignment(JLabel.CENTER);
+        for(int i = 0; i < campaigns_table.getColumnModel().getColumnCount(); i++) {
+            campaigns_table.getColumnModel().getColumn(i).setCellRenderer(tableCellRenderer);           
+        }
+        
+        JTableHeader campaignheader = campaigns_table.getTableHeader();
+        
+        campaignheader.setBackground(Color.WHITE);
+        campaignheader.setFont(new Font("Tahoma", Font.BOLD, 14));
+      
+        JLabel platform_title  = new JLabel("Campaigns");
+        JScrollPane scrollpane = new JScrollPane(campaigns_table);
         JPanel platform_header = new JPanel();
         
         platform_title.setFont(title_font);
@@ -397,7 +410,7 @@ public class CandidateDetailsPanel extends JPanel {
         platform_text_area.setEditable(false);
         platform_text_area.setLineWrap(true);
         platform_text_area.setWrapStyleWord(true);
-        platform_text_area.setText(platform);
+        platform_text_area.setText("THIS IS MY PLATFORM");
         platform_text_area.setFont(new Font("Calibri", Font.PLAIN, 16));
         
         JPanel platform_panel = new JPanel();
