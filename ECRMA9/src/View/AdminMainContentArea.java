@@ -93,8 +93,11 @@ public class AdminMainContentArea extends javax.swing.JFrame{
                                    cardViewDetails.add(viewCandidateDetails, BorderLayout.CENTER);
                                    setCard("cardViewDetails");
                                } else if (purpose == "candidate add") {
-                                       setCard(e.getText());
-                               } 
+                                   setCard(e.getText());
+                               } else if (purpose == "candidate edit") {
+                                   editCandidatePanel.set_candidate_details(e.getCandidate());
+                                   setCard("cardEdit");
+                               }
                            } // form event occurred
                        }); // form listener
 
