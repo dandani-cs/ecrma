@@ -56,7 +56,7 @@ public class AddCampaignPanel extends JPanel {
     private JButton    save_btn;
     private JButton    cancel_btn;
     
-    private FormListener form_listener;
+    FormListener form_listener;
     
     
     

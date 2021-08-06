@@ -212,8 +212,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         addCampaignPanel.setFormListener(new FormListener() {
             @Override
             public void formEventOccurred(FormEvent e) {
-                program_main_controller.campaign_controller.addCampaign(e);
-               
+                              
                 if (viewCandidateDetails != null) {
                     cardViewDetails.remove(viewCandidateDetails);
                 }
