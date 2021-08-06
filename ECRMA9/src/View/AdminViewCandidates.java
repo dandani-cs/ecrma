@@ -257,9 +257,13 @@ public class AdminViewCandidates extends JPanel{
             
             table.setIntercellSpacing(new Dimension(10, 10));
             
+            table.getColumnModel().getColumn(0).setCellRenderer(table.getDefaultRenderer(ImageIcon.class));
+            table.getColumnModel().getColumn(0).setMaxWidth(120);
+            table.getColumnModel().getColumn(0).setMinWidth(120);
+            
             table.setRowHeight(120);
-
-            table.getTableHeader().setFont(new Font("CALIBRI", Font.PLAIN,24));
+            
+            table.getTableHeader().setFont(new Font("CALIBRI", Font.PLAIN,18));
             table.setFont(new Font("CALIBRI", Font.PLAIN, 18));
             
              
@@ -268,23 +272,20 @@ public class AdminViewCandidates extends JPanel{
                    int col = table.columnAtPoint(e.getPoint());
                    int row = table.rowAtPoint(e.getPoint());
                    if (col == 0 || col == 1 || col == 2) {
-                       System.out.println("event triggered");
-                        //EVENT HERE
                        FormEvent ev = new FormEvent(e, 
                                main_controller.candidate_controller.query_candidate_by_id(model.getCandidateID(row)));
                        ev.setPurpose("candidate details");
-                       // SEND CANDIDATE ID 
-                       // create form event
-                       // call formlistener
                        formListener.formEventOccurred(ev);
                    }
                    
                     
                    if (col == 3) {
                        // open EditCandidate
+                       FormEvent ev = new FormEvent(e, 
+                               main_controller.candidate_controller.query_candidate_by_id(model.getCandidateID(row)));
+                       ev.setPurpose("candidate edit");
+                       formListener.formEventOccurred(ev);
                        
-                       System.out.println("Edit candidate: " + table.getValueAt(row, 2) + " " + table.getValueAt(row, 1));
-                       System.out.println("Candidate ID: " + model.getCandidateID(row));
                    } else if (col == 4) {
                        // open DeleteCandidate
                        new DeleteGUI().setVisible(true);

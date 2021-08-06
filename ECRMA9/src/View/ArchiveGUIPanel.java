@@ -99,7 +99,7 @@ public class ArchiveGUIPanel extends javax.swing.JPanel {
         archiveBTN.setBackground(new java.awt.Color(255, 255, 255));
         archiveBTN.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 15)); // NOI18N
         archiveBTN.setForeground(new java.awt.Color(33, 82, 117));
-        archiveBTN.setText("Archive Data");
+        archiveBTN.setText("Add New Election");
         archiveBTN.setBorderPainted(false);
         archiveBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         archiveBTN.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
