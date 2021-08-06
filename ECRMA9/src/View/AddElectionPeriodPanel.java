@@ -27,6 +27,7 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
+import javax.swing.border.Border;
 
 /**
  *
@@ -46,9 +47,12 @@ public class AddElectionPeriodPanel extends JPanel {
             editor_final_date;
     private JButton btn_save, btn_cancel;
     
-    private JPanel panel_content, panel_options;
+    private JPanel panel_content;
     
     private HeaderPanel panel_header;
+    
+    private static final Color primary_blue = new Color(33, 97, 140);
+    private static final Color primary_bg   = Color.white;
     
     Date today = new Date();
     Date start_date, final_date;
@@ -59,11 +63,14 @@ public class AddElectionPeriodPanel extends JPanel {
         setLayout(new BorderLayout());
         setBackground(Color.WHITE);
         
+        // create a line border with the specified color and width
+        Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
+        
         panel_header = new HeaderPanel("ADD ELECTION PERIOD", "Specify the name, starting date, and final date of the new election period. ");
         
-        panel_content = new JPanel(new GridLayout(4, 2));
+        panel_content = new JPanel(new GridLayout(6, 2));
         panel_content.setOpaque(false);
-        panel_content.setBorder(BorderFactory.createEmptyBorder(20, 50, 690, 50));
+        panel_content.setBorder(BorderFactory.createEmptyBorder(0, 50, 890, 50));
         
         
         //for validation
@@ -75,18 +82,32 @@ public class AddElectionPeriodPanel extends JPanel {
         
         
         lbl_name = new JLabel("Election Period Name: ");
+        lbl_name.setBorder(border);
         txt_name = new JTextField(20);
+        txt_name.setBorder(border);
         
         lbl_start_date = new JLabel("Start date: ");
+        lbl_start_date.setBorder(border);
         spinner_start_date = new JSpinner(new SpinnerDateModel(today, null, null, Calendar.MONTH));
         editor_start_date = new JSpinner.DateEditor(spinner_start_date, "MM/dd/yy");
         spinner_start_date.setEditor(editor_start_date);
+        spinner_start_date.setBorder(border);
         
         lbl_final_date = new JLabel("Final date: ");
+        lbl_final_date.setBorder(border);
         spinner_final_date = new JSpinner(new SpinnerDateModel(today, null, null, Calendar.MONTH));
         editor_final_date = new JSpinner.DateEditor(spinner_final_date, "MM/dd/yy");
         spinner_final_date.setEditor(editor_final_date);
+        spinner_final_date.setBorder(border);
         
+        btn_save = new JButton("SAVE");
+        btn_cancel = new JButton("CANCEL");
+        
+//        btn_save.setBackground(primary_blue);
+//        btn_save.setForeground(primary_bg);
+//        
+//        btn_cancel.setBackground(primary_blue);
+//        btn_cancel.setForeground(primary_bg);
         
         panel_content.add(lbl_validation);
         panel_content.add(new Component() {});
@@ -96,19 +117,21 @@ public class AddElectionPeriodPanel extends JPanel {
         panel_content.add(spinner_start_date);
         panel_content.add(lbl_final_date);
         panel_content.add(spinner_final_date);
+        panel_content.add(btn_cancel);
+        panel_content.add(btn_save);
         
-        panel_options = new JPanel(new FlowLayout(FlowLayout.TRAILING));
-        panel_options.setOpaque(false);
+//        panel_options = new JPanel(new FlowLayout(FlowLayout.TRAILING));
+//        panel_options.setOpaque(false);
         
-        btn_save = new JButton("SAVE");
-        btn_cancel = new JButton("CANCEL");
+//        btn_save = new JButton("SAVE");
+//        btn_cancel = new JButton("CANCEL");
         
-        panel_options.add(btn_cancel);
-        panel_options.add(btn_save);
+//        panel_options.add(btn_cancel);
+//        panel_options.add(btn_save);
         
         add(panel_header, BorderLayout.NORTH);
         add(panel_content, BorderLayout.CENTER);
-        add(panel_options, BorderLayout.SOUTH);
+//        add(panel_options, BorderLayout.SOUTH);
         
         btn_save.addActionListener(new ActionListener() {
             @Override
@@ -129,6 +152,7 @@ public class AddElectionPeriodPanel extends JPanel {
         });
     }
 
+    
     public void setFormListener(FormListener formListener) {
         this.formListener = formListener;
     }
