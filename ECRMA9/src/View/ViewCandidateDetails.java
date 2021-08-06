@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proj;
+package View;
 
 import View.AddGUI;
 import View.DeleteGUI;
@@ -434,7 +434,7 @@ public class ViewCandidateDetails extends javax.swing.JFrame {
 
     private void jButton17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton17MouseClicked
         // TODO add your handling code here:
-        new DeleteGUI().setVisible(true);
+//        new DeleteGUI().setVisible(true);
     }//GEN-LAST:event_jButton17MouseClicked
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed

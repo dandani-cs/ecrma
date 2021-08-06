@@ -1,0 +1,516 @@
+[33mcommit 9e9f91a9f5f19b7fcff0c93350d01a0d0c6352ab[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Dani <dani.cstech@gmail.com>
+Date:   Fri Aug 6 15:57:19 2021 +0800
+
+    image icon debugging
+
+[33mcommit 6872c31f91afc4dd9c9e2b149907bef4808c520b[m
+Merge: a59e49b 0ffc560
+Author: Dani <dani.cstech@gmail.com>
+Date:   Fri Aug 6 15:40:22 2021 +0800
+
+    Merge branch 'ViewCandidates'
+
+[33mcommit 0ffc5609826f962c418be66e0b7d761af85d1b48[m[33m ([m[1;32mViewCandidates[m[33m)[m
+Author: Dani <dani.cstech@gmail.com>
+Date:   Fri Aug 6 15:39:26 2021 +0800
+
+    show edit candidate finished
+
+[33mcommit 17eba01202285a4557546ecf89fdbf6afd909488[m
+Author: Dani <dani.cstech@gmail.com>
+Date:   Fri Aug 6 15:33:27 2021 +0800
+
+    fixing merge conflicts
+
+[33mcommit 6220820d7fc8f55238ca80a7d76ad20635125e31[m
+Author: Dani <dani.cstech@gmail.com>
+Date:   Fri Aug 6 15:32:08 2021 +0800
+
+    fixes for project properties and edit candidate event created
+
+[33mcommit 91a2f609713879146963ce84d73c7cd6c0dffe81[m
+Author: Dani <dani.cstech@gmail.com>
+Date:   Fri Aug 6 15:30:42 2021 +0800
+
+    image icons not rendering
+
+[33mcommit 35e95e134f05eea3cdc52f2610c717b708e1c3c0[m
+Author: Dani <dani.cstech@gmail.com>
+Date:   Fri Aug 6 15:25:36 2021 +0800
+
+    for image icon rendering
+
+[33mcommit 0913863a58d1d5ad2da910167df1d1364ebff643[m
+Merge: 4d1a0d1 a59e49b
+Author: Dani <dani.cstech@gmail.com>
+Date:   Fri Aug 6 15:25:07 2021 +0800
+
+    for image icon rendering
+
+[33mcommit a59e49b2fc3b086a8e57e993fcc3429ffdede59c[m
+Merge: 423e7ee 8fd5e6b
+Author: Dani <dani.cstech@gmail.com>
+Date:   Fri Aug 6 15:02:32 2021 +0800
+
+    Merge branch 'Update_buttonShowEditDelete'
+
+[33mcommit 8fd5e6bf3f89cd3fa8bc120bd7b0f9645a72ca23[m[33m ([m[1;32mUpdate_buttonShowEditDelete[m[33m)[m
+Author: Dani <dani.cstech@gmail.com>
+Date:   Fri Aug 6 15:02:08 2021 +0800
+
+    fixed merge and syntax conflicts
+
+[33mcommit e761e516a39edec8ecb72e6dae46ee0c97969936[m
+Merge: f4102b5 423e7ee
+Author: Dani <dani.cstech@gmail.com>
+Date:   Fri Aug 6 14:56:23 2021 +0800
+
+    merged design for event listeners
+
+[33mcommit 4d1a0d1aae15b78acd385b29e11d1bec58e95752[m
+Author: Dani <dani.cstech@gmail.com>
+Date:   Fri Aug 6 14:39:40 2021 +0800
+
+    image rendering fix
+
+[33mcommit f4102b5fca34b22fd324aaa57b8aca686ea887b5[m[33m ([m[1;31morigin/Update_buttonShowEditDelete[m[33m)[m
+Author: Rheeeiiii <ellazarrazmin@gmail.com>
+Date:   Fri Aug 6 14:24:55 2021 +0800
+
+    show card edit, delete, candidate details
+
+[33mcommit 7104bb603ad7d26e0bb4b7996f00370bb82b1bee[m
+Author: Rheeeiiii <ellazarrazmin@gmail.com>
+Date:   Fri Aug 6 14:17:38 2021 +0800
+
+    show card edit and delete
+
+[33mcommit 423e7eebd43df022b858c353b0528224b9ae2c6a[m
+Merge: 371aa0e 060f7bb
+Author: Dani <dani.cstech@gmail.com>
+Date:   Fri Aug 6 14:16:20 2021 +0800
+
+    Merge branch 'AdminViewCandidate-FormEvent'
+
+[33mcommit 060f7bb8f05425eea096147e557d51735e588a97[m[33m ([m[1;32mAdminViewCandidate-FormEvent[m[33m)[m
+Author: Dani <dani.cstech@gmail.com>
+Date:   Fri Aug 6 14:15:43 2021 +0800
+
+    working events for view candidate details and add candidate
+
+[33mcommit 7a7104e22b31b6ca5b6376d094e4d6a50dc5c583[m
+Author: Rheeeiiii <ellazarrazmin@gmail.com>
+Date:   Fri Aug 6 14:14:19 2021 +0800
+
+    jlabel
+
+[33mcommit 8c91547dc5483be710768e8946e5dd8e8273efbd[m
+Author: Rheeeiiii <ellazarrazmin@gmail.com>
+Date:   Fri Aug 6 14:08:41 2021 +0800
+
+[33mcommit e8f70e0940158bc14fbd25e6ae879282fcf70e22[m
+Author: Dani <dani.cstech@gmail.com>
+Date:   Fri Aug 6 13:37:22 2021 +0800
+
+    resolved conflicts on form event viewcandidatedetails
+
+[33mcommit 0e7d3bdfb8b931632d19450d2289456173465958[m
+Merge: 961c137 371aa0e
+Author: Dani <dani.cstech@gmail.com>
+Date:   Fri Aug 6 13:33:41 2021 +0800
+
+    form event added to candidates
+
+[33mcommit 371aa0e85284f5851b5429b1a226dc0c75bc6018[m
+Merge: 8c057da 7d68463
+Author: dandani-cs <dcsamonte@gmail.com>
+Date:   Fri Aug 6 13:23:51 2021 +0800
+
+    Merge pull request #40 from dandani-cs/santos_uiedit3
+    
+    Archive and View Candidates (UI)
+
+[33mcommit 7d68463aa836940feaebd8ead2c77fce06d746e8[m[33m ([m[1;31morigin/santos_uiedit3[m[33m)[m
+Author: Ayesha Keith Santos <ayeshakeithsantos@gmail.com>
+Date:   Fri Aug 6 09:41:15 2021 +0800
+
+    Archive and View Candidates (UI)
+    
+    Archive
+    - switched alternating color to gridlines instead
+    - adjusted table position on frame
+    
+    View Candidates
+    - adjusted table position on frame
+    - adjusted cell spacing (intercell spacing) so buttons for edit and delete will be a bit smaller
+
+[33mcommit 8c057da7b7df9d5a2267552e8bfd73c6b2042720[m
+Merge: 3a3ba59 79df00b
+Author: Dani <dani.cstech@gmail.com>
+Date:   Thu Aug 5 23:10:09 2021 +0800
+
+    Merge branch 'UpdatedAddGUIPanel'
+
+[33mcommit 79df00b6406ff661dccce26c4f61709b8a2cab22[m[33m ([m[1;32mUpdatedAddGUIPanel[m[33m)[m
+Merge: b3aef53 3a3ba59
+Author: Dani <dani.cstech@gmail.com>
+Date:   Thu Aug 5 23:09:39 2021 +0800
+
+    merging conflictx on UserMenu pathing resolved
+
+[33mcommit 3a3ba59afea0ecab5890a83a85bcc5b309319f66[m
+Merge: e4d4a7d fa88282
+Author: Dani <dani.cstech@gmail.com>
+Date:   Thu Aug 5 23:07:25 2021 +0800
+
+    Merge branch 'ImagePaths'
+
+[33mcommit fa8828293a8eb5016114c2d25f51e7085eebab87[m[33m ([m[1;32mImagePaths[m[33m)[m
+Merge: aa790dd 15e03af
+Author: Dani <dani.cstech@gmail.com>
+Date:   Thu Aug 5 23:06:04 2021 +0800
+
+    Merge branch 'main' of https://github.com/dandani-cs/ecrma into ImagePaths
+
+[33mcommit aa790ddeef3a9a67009092443b7f0af310653e0a[m
+Merge: 55e96be e4d4a7d
+Author: Dani <dani.cstech@gmail.com>
+Date:   Thu Aug 5 23:05:44 2021 +0800
+
+    usermaincontentarea conflicts resolved
+
+[33mcommit b3aef53163e724c7ae0a4c0cff2e3f8d35036c6b[m[33m ([m[1;31morigin/UpdatedAddGUIPanel[m[33m)[m
+Author: Gabriela Andes <gabriela.andes05@gmail.com>
+Date:   Thu Aug 5 23:00:52 2021 +0800
+
+    Changes Made
+    
+    - deleted position
+    - coded text fields to clear text upon mouseclicked
+    - deleted platform
+    -resized university
+
+[33mcommit 55e96be1560b53933e0896deb139ff8571876925[m[33m ([m[1;31morigin/ImagePaths[m[33m)[m
+Merge: 39491fa 6e25901
+Author: Uriel Federez <uafederez@gmail.com>
+Date:   Thu Aug 5 22:52:07 2021 +0800
+
+    Resolved conflict on UserMainContentArea
+
+[33mcommit 961c137731792e97b77d4d5839f3743a44257431[m[33m ([m[1;31morigin/AdminViewCandidate-FormEvent[m[33m)[m
+Author: apmbonifacio <60639961+apmbonifacio@users.noreply.github.com>
+Date:   Thu Aug 5 22:38:45 2021 +0800
+
+    added formevent for adminviewcandidate; jpanel14 customcode change
+
+[33mcommit 15e03af0691c98137843052ba329d278c3e14045[m
+Merge: e4d4a7d 533e428
+Author: dandani-cs <dcsamonte@gmail.com>
+Date:   Thu Aug 5 22:26:18 2021 +0800
+
+    Merge pull request #37 from dandani-cs/Archive-Table
+    
+    separated archive panel
+
+[33mcommit 533e4285637dee96a578de5658b37a064c43202d[m[33m ([m[1;31morigin/Archive-Table[m[33m, [m[1;32mArchive-Table[m[33m)[m
+Author: Dani <dani.cstech@gmail.com>
+Date:   Thu Aug 5 22:25:40 2021 +0800
+
+    separated archive panel
+
+[33mcommit e4d4a7d097e846c77d5562ee022edb2730c8cb39[m
+Author: Dani <dani.cstech@gmail.com>
+Date:   Thu Aug 5 21:45:32 2021 +0800
+
+    additional instructions on formevents and listener
+
+[33mcommit 634d0b94d5ca2964525f6f095101a0b629e9a5d2[m
+Author: Dani <dani.cstech@gmail.com>
+Date:   Thu Aug 5 21:36:49 2021 +0800
+
+    resave of changes for event
+
+[33mcommit c1d882c4176a0eeb5b3b13bc862bfa0eaebe68a9[m
+Author: Dani <dani.cstech@gmail.com>
+Date:   Thu Aug 5 21:14:46 2021 +0800
+
+    added more code to show viewCandidateDetials panel
+
+[33mcommit cf55ab9a42d1655c3ca93e3b1d5e9d966713693a[m
+Author: Dani <dani.cstech@gmail.com>
+Date:   Thu Aug 5 21:09:53 2021 +0800
+
+    added comments for form event
+
+[33mcommit 7c3cd82c996264802127321da44cb75f6bbb3f57[m
+Merge: ffbd223 1614d5a
+Author: Dani <dani.cstech@gmail.com>
+Date:   Thu Aug 5 21:04:02 2021 +0800
+
+    Merge branch 'view_candidate_details'
+
+[33mcommit 1614d5ad28499821916b91d632b33ad4f8149f27[m[33m ([m[1;32mview_candidate_details[m[33m)[m
+Merge: b93b8e3 ffbd223
+Author: Dani <dani.cstech@gmail.com>
+Date:   Thu Aug 5 21:01:55 2021 +0800
+
+    merged campaigns cconflict
+
+[33mcommit ffbd223a5534935f89bf7de695da494758385e5b[m
+Merge: 534e171 6e25901
+Author: dandani-cs <dcsamonte@gmail.com>
+Date:   Thu Aug 5 20:52:25 2021 +0800
+
+    Merge pull request #35 from dandani-cs/federez_user_main_content
+    
+    UserMainContent integrated searches, updated linking from UserMenu
+
+[33mcommit 534e171579d96e845ac7fc8ed7cb0ceba60f806b[m
+Merge: 18b50e0 7b37f03
+Author: dandani-cs <dcsamonte@gmail.com>
+Date:   Thu Aug 5 20:51:48 2021 +0800
+
+    Merge pull request #32 from dandani-cs/AdminViewCandidatesTM-IconImage
+    
+    return ImageIcon
+
+[33mcommit b93b8e377e4e0510d047b464ec29d15330dd54b6[m[33m ([m[1;31morigin/view_candidate_details[m[33m)[m
+Author: Dani <dani.cstech@gmail.com>
+Date:   Thu Aug 5 20:50:35 2021 +0800
+
+    campaigns table working
+
+[33mcommit 6e25901ae3d4b5830dbf47855b2f803beda4c035[m[33m ([m[1;31morigin/federez_user_main_content[m[33m)[m
+Author: Uriel Federez <uafederez@gmail.com>
+Date:   Thu Aug 5 20:29:33 2021 +0800
+
+    AddGUIPanel
+
+[33mcommit 7562f97574c467f0f115a2d26a4fecedd9e3aa01[m
+Author: Uriel Federez <uafederez@gmail.com>
+Date:   Thu Aug 5 20:13:59 2021 +0800
+
+    Added changes to linking from UserMenu
+
+[33mcommit b2addf6ab626ad43f2377a4b87e73af9284a146d[m
+Author: Uriel Federez <uafederez@gmail.com>
+Date:   Thu Aug 5 19:45:16 2021 +0800
+
+    Separated search into CandidateSearchPanel
+
+[33mcommit 9190c8a856e109c36da4cff1abb6d1592296a2a0[m
+Author: Uriel Federez <uafederez@gmail.com>
+Date:   Thu Aug 5 19:23:22 2021 +0800
+
+    UserMainContentArea search integration
+
+[33mcommit 39491fac96b9f084da66aec605689dbc34a9a89e[m
+Author: Gabriela Andes <gabriela.andes05@gmail.com>
+Date:   Thu Aug 5 19:17:27 2021 +0800
+
+    Working Icons
+
+[33mcommit 0a72d79ea636162f526019af0516fc2b81a116cf[m
+Author: Gabriela Andes <gabriela.andes05@gmail.com>
+Date:   Thu Aug 5 18:04:20 2021 +0800
+
+    CheckIcons
+
+[33mcommit ae28b4acd2e73ff3c600b2e732738f00c8feeba3[m
+Merge: 121b77f efdddaa
+Author: Uriel Federez <uafederez@gmail.com>
+Date:   Thu Aug 5 15:33:19 2021 +0800
+
+    Merged changes on filter by party and position
+
+[33mcommit 7b37f0397e9bcc519a542963a7c9ecee5abacd49[m[33m ([m[1;31morigin/AdminViewCandidatesTM-IconImage[m[33m)[m
+Author: apmbonifacio <60639961+apmbonifacio@users.noreply.github.com>
+Date:   Thu Aug 5 15:20:34 2021 +0800
+
+    return ImageIcon
+
+[33mcommit 18b50e0ee774158531129dd389c188fa75ba779f[m
+Merge: b1b2f63 121b77f
+Author: Dani <dani.cstech@gmail.com>
+Date:   Thu Aug 5 15:10:18 2021 +0800
+
+    added changes into adminmaincontentarea for view candidates
+
+[33mcommit b1b2f6386f602e7e39e8df9086cde9ac890e613c[m
+Author: Dani <dani.cstech@gmail.com>
+Date:   Thu Aug 5 14:22:45 2021 +0800
+
+    adminmaincontentarea debugged view candidates
+
+[33mcommit efdddaa02517c055dbe75e99e06eee11e498c17e[m[33m ([m[1;31morigin/SearchbyPartyPosition[m[33m)[m
+Author: apmbonifacio <60639961+apmbonifacio@users.noreply.github.com>
+Date:   Thu Aug 5 11:27:08 2021 +0800
+
+    included imageicon sa object[][]
+
+[33mcommit aeec7646b78799ebabcbcbd3b9fd2ed84f364f7e[m
+Author: apmbonifacio <60639961+apmbonifacio@users.noreply.github.com>
+Date:   Thu Aug 5 11:17:02 2021 +0800
+
+    Search by Party, Position
+    
+    elecperid is set to 1. has to be changed after merging
+    direct reference to CampaignController. Maincontroller is static.
+
+[33mcommit 121b77fb0cef70ae82db3f0f40212317e7398284[m
+Merge: 11f7194 357e2c2
+Author: dandani-cs <dcsamonte@gmail.com>
+Date:   Thu Aug 5 09:58:20 2021 +0800
+
+    Merge pull request #28 from dandani-cs/santos_uiedit2
+    
+    Admin Main Content Area (UI)
+
+[33mcommit 357e2c20318d29c09afd2095f8abdbafc2c7915a[m[33m ([m[1;31morigin/santos_uiedit2[m[33m)[m
+Author: Ayesha Keith Santos <ayeshakeithsantos@gmail.com>
+Date:   Wed Aug 4 19:12:42 2021 +0800
+
+    Admin Main Content Area (UI)
+    
+    Fixed the following:
+    - headers
+    - platform to campaign table
+    - linking
+    
+    Note:
+    - model for view candidate table commented for the meantime (caused the frame to have a layer over the components)
+
+[33mcommit 11f7194f4e4a3d0bbeb591bd18c30502a2cfd8e8[m
+Merge: 15ca531 ac01592
+Author: dandani-cs <dcsamonte@gmail.com>
+Date:   Tue Aug 3 22:53:49 2021 +0800
+
+    Merge pull request #27 from dandani-cs/santos_uiedit
+    
+    Main Content Area (UI edits)
+
+[33mcommit ac015926d84315ddb8a18ae01c71474ceb5170d8[m[33m ([m[1;31morigin/santos_uiedit[m[33m)[m
+Author: Ayesha Keith Santos <ayeshakeithsantos@gmail.com>
+Date:   Tue Aug 3 22:52:32 2021 +0800
+
+    Main Content Area (UI edits)
+    
+    - User Main Content Area (UI) with search filters and header already
+    - linking fixed as well (side panel)
+
+[33mcommit 15ca531c68d6c5402e67ae9c06a61ad5fc5aad6d[m
+Merge: e6784ed 7094a54
+Author: dandani-cs <dcsamonte@gmail.com>
+Date:   Tue Aug 3 20:09:28 2021 +0800
+
+    Merge pull request #26 from dandani-cs/santos_header
+    
+    UserMainContentArea Header
+
+[33mcommit 7094a5411fcd134fee399da4cac998ea47dbfb51[m[33m ([m[1;31morigin/santos_header[m[33m)[m
+Author: Ayesha Keith Santos <ayeshakeithsantos@gmail.com>
+Date:   Tue Aug 3 19:14:46 2021 +0800
+
+    UserMainContentArea Header
+    
+    Header for view candidates, by party, by position inserted.
+    To-fix: combo box for search part, change linked class for by position.
+
+[33mcommit e6784edb207b74a943ea388456576c22b54acfce[m
+Merge: db25c35 94063ed
+Author: Dani <dani.cstech@gmail.com>
+Date:   Mon Aug 2 21:20:39 2021 +0800
+
+    Merge branch 'main' of https://github.com/dandani-cs/ecrma
+
+[33mcommit db25c359c06ef169f6d63a5b74bd37201052b3a3[m
+Author: Dani <dani.cstech@gmail.com>
+Date:   Mon Aug 2 21:20:15 2021 +0800
+
+    ViewCandidates integrated into card layout
+
+[33mcommit 94063edb85127276e76c654db38a9e9c43259a50[m
+Merge: d1534fb 9c27bc3
+Author: dandani-cs <dcsamonte@gmail.com>
+Date:   Mon Aug 2 20:39:06 2021 +0800
+
+    Merge pull request #23 from dandani-cs/federez_add_campaign
+    
+    AddCampaign, Modified AddCandidate
+
+[33mcommit d1534fb7cc6023a4f87cf828df1dc601ebab7dfc[m
+Merge: d1b84e6 5888704
+Author: Dani <dani.cstech@gmail.com>
+Date:   Mon Aug 2 20:38:36 2021 +0800
+
+    Merge branch 'ViewCandidates'
+
+[33mcommit 5888704c6cfd8c6f7c7f5d8a77cbf1eced54dd85[m
+Merge: 630ca4c d1b84e6
+Author: Dani <dani.cstech@gmail.com>
+Date:   Mon Aug 2 20:38:05 2021 +0800
+
+    integrated ViewCandidates to main
+
+[33mcommit 9c27bc39f019761439632a2edca032231144cce4[m[33m ([m[1;31morigin/federez_add_campaign[m[33m)[m
+Author: Uriel Federez <uafederez@gmail.com>
+Date:   Mon Aug 2 20:37:19 2021 +0800
+
+    Merged updated AdminMenu.java from gab
+
+[33mcommit 1121209224798119251ee10f12846639cc14b07b[m
+Author: Uriel Federez <uafederez@gmail.com>
+Date:   Mon Aug 2 20:34:49 2021 +0800
+
+    Merged updated AddGUI
+
+[33mcommit d1b84e6ba5d7b428d9bd06b597e90117fb3eb067[m
+Merge: 6a94dfb f56cf4d
+Author: dandani-cs <dcsamonte@gmail.com>
+Date:   Sun Aug 1 23:05:47 2021 +0800
+
+    Merge pull request #25 from dandani-cs/FINALinking
+    
+    overall linking
+
+[33mcommit f56cf4d63231c9ae8651cc42ea526fe14dcf8489[m[33m ([m[1;31morigin/FINALinking[m[33m)[m
+Author: Gabriela Andes <gabriela.andes05@gmail.com>
+Date:   Sun Aug 1 23:01:36 2021 +0800
+
+    overall linking
+    
+    overall linking for admin/user menu working
+
+[33mcommit 6a94dfbd30c254b550341cf65c2d79bead7039a2[m
+Merge: 715ebcc 6db984d
+Author: dandani-cs <dcsamonte@gmail.com>
+Date:   Sun Aug 1 21:48:52 2021 +0800
+
+    Merge pull request #22 from dandani-cs/UpdatedLinking
+    
+    Admin Linking Semi Complete
+
+[33mcommit 630ca4ce251b92e617f6604a3bb7edaafef9f858[m[33m ([m[1;31morigin/ViewCandidates[m[33m)[m
+Author: Dani <dani.cstech@gmail.com>
+Date:   Sun Aug 1 21:48:06 2021 +0800
+
+    candidate id can now be passed
+
+[33mcommit 25253a621d7690b858046593be9f52d04e20510c[m
+Author: Dani <dani.cstech@gmail.com>
+Date:   Sun Aug 1 21:35:20 2021 +0800
+
+    debugged to show table
+
+[33mcommit 03809ebe6e9ecc534fce49a1a0e1f1d3ac0ffc23[m
+Author: Dani <dani.cstech@gmail.com>
+Date:   Sun Aug 1 21:28:09 2021 +0800
+
+    removed unnecessary code
+
+[33mcommit 01591973293e223a8dc5235b72ba5316064dde08[m
+Author: Dani <dani.cstech@gmail.com>
+Date:   Sun Aug 1 21:27:43 2021 +0800
+
+    fixed iterable of adminviewcandidates table model
