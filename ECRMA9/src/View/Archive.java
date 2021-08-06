@@ -17,16 +17,23 @@ import java.awt.Font;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
+import javax.swing.BorderFactory;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
+import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 /**
  *
@@ -36,6 +43,7 @@ public class Archive extends javax.swing.JFrame {
     
     private Color hoverMENU = new Color(33,82,117);
     private Color byeMENU = new Color(33,97,140);
+    
 
     /**
      * Creates new form Archive
@@ -57,24 +65,31 @@ public class Archive extends javax.swing.JFrame {
         datatable.setModel(dataModel);
         //datatable.setAutoCreateRowSorter(true);
         
+        
         datatable.getTableHeader().setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 15));
         datatable.getTableHeader().setBackground(new Color(255,255,255));
         datatable.getTableHeader().setForeground(new Color(33,82,117));
         datatable.setRowHeight(25);
+        
+        datatable.setGridColor(new Color(33,82,117));
+        datatable.setShowHorizontalLines(true);
+        datatable.setShowVerticalLines(true);
                
         DefaultTableCellRenderer tableCellRenderer = new DefaultTableCellRenderer();
         tableCellRenderer.setHorizontalAlignment(JLabel.CENTER);
+        tableCellRenderer.setBackground(Color.white);
+        
+        
         for(int i = 0; i < datatable.getColumnModel().getColumnCount(); i++) {
             datatable.getColumnModel().getColumn(i).setCellRenderer(tableCellRenderer);            
         }
         datatable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         datatable.getColumnModel().getColumn(4).setCellRenderer(datatable.getDefaultRenderer(java.lang.Boolean.class));
         datatable.removeColumn(datatable.getColumnModel().getColumn(0));
-        
-
-
+       
     }
 
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -266,9 +281,10 @@ public class Archive extends javax.swing.JFrame {
 
         datatable.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
         datatable.setForeground(new java.awt.Color(33, 82, 117));
-        datatable.setGridColor(new java.awt.Color(0, 51, 51));
+        datatable.setGridColor(new java.awt.Color(0, 0, 0));
         datatable.setRowHeight(20);
         datatable.setSelectionBackground(new java.awt.Color(33, 82, 117));
+        datatable.getTableHeader().setReorderingAllowed(false);
         datatable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 datatableMousePressed(evt);

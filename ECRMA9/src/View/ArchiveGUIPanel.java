@@ -31,7 +31,7 @@ public class ArchiveGUIPanel extends javax.swing.JPanel {
     public ArchiveGUIPanel(MainController main_controller) {
         initComponents();
         
-        this.setSize(new Dimension(1920,1080));
+        this.setSize(new Dimension(1620,1080));
         
         DefaultTableModel dataModel = new DefaultTableModel(ElecPerSQL.getTable(),
                 new String[] {"ELECPERID", "Name", "Starting Date", "Finish Date", "Archive"}) {
@@ -48,9 +48,15 @@ public class ArchiveGUIPanel extends javax.swing.JPanel {
         datatable.getTableHeader().setBackground(new Color(255,255,255));
         datatable.getTableHeader().setForeground(new Color(33,82,117));
         datatable.setRowHeight(25);
+        
+        datatable.setGridColor(new Color(33,82,117));
+        datatable.setShowHorizontalLines(true);
+        datatable.setShowVerticalLines(true);
                
         DefaultTableCellRenderer tableCellRenderer = new DefaultTableCellRenderer();
         tableCellRenderer.setHorizontalAlignment(JLabel.CENTER);
+        tableCellRenderer.setBackground(Color.white);
+        
         for(int i = 0; i < datatable.getColumnModel().getColumnCount(); i++) {
             datatable.getColumnModel().getColumn(i).setCellRenderer(tableCellRenderer);            
         }

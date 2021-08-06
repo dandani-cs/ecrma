@@ -1341,7 +1341,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
 
         vcpartySubtitle4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         vcpartySubtitle4.setForeground(new java.awt.Color(33, 82, 117));
-        vcpartySubtitle4.setText("Subtitle");
+        vcpartySubtitle4.setText("View candidates");
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -1436,6 +1436,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
 
         MainPanel.add(cardViewElec, "cardViewElec");
 
+        AdminBackground.setBackground(new java.awt.Color(255, 255, 255));
         AdminBackground.setOpaque(false);
         AdminBackground.setLayout(new java.awt.BorderLayout());
 

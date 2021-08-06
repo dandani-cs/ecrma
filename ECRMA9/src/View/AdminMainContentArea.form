@@ -1995,7 +1995,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="75" green="52" red="21" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Subtitle"/>
+                    <Property name="text" type="java.lang.String" value="View candidates"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JSeparator" name="jSeparator16">
@@ -2122,6 +2122,9 @@
     </Container>
     <Container class="javax.swing.JPanel" name="AdminBackground">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="opaque" type="boolean" value="false"/>
       </Properties>
 
