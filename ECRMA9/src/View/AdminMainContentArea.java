@@ -56,6 +56,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
     ArchiveGUIPanel archivePanel;
     AddGUIPanel addCandidatePanel, editCandidatePanel;
     AddElectionPeriodPanel addElecPerPanel;
+    AddCampaignPanel addCampaignPanel;
     CardLayout card;
 
     MainController program_main_controller;
@@ -192,6 +193,14 @@ public class AdminMainContentArea extends javax.swing.JFrame{
                            public void formEventOccurred(FormEvent e) {
                                setCard(e.getText());
                            }
+        });
+        
+        addCampaignPanel = new AddCampaignPanel();
+        addCampaignPanel.setFormListener(new FormListener() {
+            @Override
+            public void formEventOccurred(FormEvent e) {
+                program_main_controller.campaign_controller.addCampaign(e);
+            }
         });
 
 
