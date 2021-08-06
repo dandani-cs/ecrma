@@ -69,6 +69,11 @@ public class AddGUIPanel extends javax.swing.JPanel {
          firstNameTxt.setText("First name");
          lastNameTxt.setText("Last name");
          midInitialTxt.setText("Middle initial");
+         birthDateSpinner.setValue(new Date());
+         gradDateSpinner.setValue(new Date());
+         religionTxt.setText("Religion");
+         universityTxt.setText("University");
+         degreeTxt.setText("Degree");
      }
 
      private String validate_input()
@@ -81,7 +86,7 @@ public class AddGUIPanel extends javax.swing.JPanel {
         boolean is_valid_midI  = (midInitialTxt.getText().length() == 1 &&
                                   !midInitialTxt.getText().equals("Middle initial"));
         boolean is_valid_uni   = (!universityTxt.getText().equals("University"));
-        boolean is_valid_deg   = (!degreeTxt.getText().equals("degree"));
+        boolean is_valid_deg   = (!degreeTxt.getText().equals("Degree"));
 
         Date birth_date   = (Date) birthDateSpinner.getValue();
         Date grad_date    = (Date) gradDateSpinner.getValue();
@@ -140,6 +145,8 @@ public class AddGUIPanel extends javax.swing.JPanel {
         lastNameTxt = new javax.swing.JTextField();
         midInitialTxt = new javax.swing.JTextField();
         browseImageBtn = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(255, 255, 255));
 
         imageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         imageLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(33, 97, 140)));
