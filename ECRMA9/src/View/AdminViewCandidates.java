@@ -259,7 +259,7 @@ public class AdminViewCandidates extends JPanel{
             
             table.setIntercellSpacing(new Dimension(10, 10));
             
-            table.getColumnModel().getColumn(0).setCellRenderer(table.getDefaultRenderer(ImageIcon.class));
+//            table.getColumnModel().getColumn(0).setCellRenderer(table.getDefaultRenderer(ImageIcon.class));
             table.getColumnModel().getColumn(0).setMaxWidth(120);
             table.getColumnModel().getColumn(0).setMinWidth(120);
             
@@ -298,7 +298,7 @@ public class AdminViewCandidates extends JPanel{
                            @Override
                            public void formEventOccurred(FormEvent e) {
                                if (e.getPurpose().equals("candidate delete")) {
-//                                   model.setData(main_controller.candidate_controller.query_all_candidates());
+                                   model.setData(main_controller.candidate_controller.query_all_candidates());
 //                                   
 //                                   delete_candidate.dispatchEvent(new WindowEvent(delete_candidate, WindowEvent.WINDOW_CLOSING));
                                }

@@ -62,13 +62,17 @@ public class AdminViewCandidatesTableModel extends AbstractTableModel {
                 case 0: 
 //                  ImageIcon img = new ImageIcon(current_candidate.get_image_path());
                     try {
-                        ImageIcon img = new ImageIcon(current_candidate.get_image_path());
+                        
+                        ImageIcon img = new ImageIcon("src/Icons/candidate2_128px.png");
                         Image imgtmp = img.getImage();
                         imgtmp = imgtmp.getScaledInstance(120, 120, SCALE_SMOOTH);
                         img = new ImageIcon(imgtmp);
+                        System.out.println("found image");
                         return img;
                         
+                        
                     } catch (Exception e) {
+                        System.out.println("in catch");
                         ImageIcon img = new ImageIcon("src/Icons/candidate2_128px.png");                        
                         Image imgtmp = img.getImage();
                         imgtmp = imgtmp.getScaledInstance(120, 120, SCALE_SMOOTH);
