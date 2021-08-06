@@ -425,7 +425,7 @@ public class ViewCandidateDetails extends javax.swing.JFrame {
 
     private void jButton16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton16MouseClicked
         // TODO add your handling code here:
-        //card.show(MainPanel, "cardEdit");
+        card.show(MainPanel, "cardEdit");
     }//GEN-LAST:event_jButton16MouseClicked
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
