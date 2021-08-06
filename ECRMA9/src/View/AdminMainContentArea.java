@@ -154,6 +154,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
                                                   "Candidate information was successfully updated.",
                                                   "Successfully Edited Candidate",
                                                   JOptionPane.INFORMATION_MESSAGE);
+                    myPanel.center.refresh();
                 }
             }
         });
@@ -202,6 +203,8 @@ public class AdminMainContentArea extends javax.swing.JFrame{
                 program_main_controller.campaign_controller.addCampaign(e);
             }
         });
+        
+        cardAddCampaign.add(addCampaignPanel, BorderLayout.CENTER);
 
 
     }
@@ -637,18 +640,7 @@ public class AdminMainContentArea extends javax.swing.JFrame{
         MainPanel.add(cardViewElec, "cardViewElec");
 
         cardAddCampaign.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout cardAddCampaignLayout = new javax.swing.GroupLayout(cardAddCampaign);
-        cardAddCampaign.setLayout(cardAddCampaignLayout);
-        cardAddCampaignLayout.setHorizontalGroup(
-            cardAddCampaignLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1629, Short.MAX_VALUE)
-        );
-        cardAddCampaignLayout.setVerticalGroup(
-            cardAddCampaignLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1454, Short.MAX_VALUE)
-        );
-
+        cardAddCampaign.setLayout(new java.awt.BorderLayout());
         MainPanel.add(cardAddCampaign, "card8");
 
         AdminBackground.setBackground(new java.awt.Color(255, 255, 255));

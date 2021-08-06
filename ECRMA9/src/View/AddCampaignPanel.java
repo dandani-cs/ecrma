@@ -320,12 +320,6 @@ public class AddCampaignPanel extends JPanel {
             }
         });
         
-        form_listener = new FormListener() {
-            @Override
-            public void formEventOccurred(FormEvent e) {
-                controller.campaign_controller.addCampaign(e);
-            }
-        };
     }
     
     private String validate_input()
@@ -351,5 +345,9 @@ public class AddCampaignPanel extends JPanel {
     {
         party_combo.setVisible(false);
         party_container.add(party_text);
+    }
+
+    void setFormListener(FormListener formListener) {
+        this.form_listener = form_listener;
     }
 }
