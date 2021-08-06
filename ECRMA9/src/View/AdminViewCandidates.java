@@ -5,10 +5,12 @@
  */
 package View;
 
+
 import Controller.FormEvent;
 import Controller.FormListener;
 import Controller.MainController;
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -39,7 +41,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
-
 /**
  *
  * @author Admin
@@ -59,19 +60,19 @@ public class AdminViewCandidates extends JPanel{
         bgColor = new Color(255,255,255);
         
         main_controller = passed_mc;
-        
+
         this.setLayout(new BorderLayout());
         Border ogg_border = this.getBorder();
         Border margin1 = new EmptyBorder(0,13, 0, 30);
         this.setBorder(new CompoundBorder(ogg_border, margin1));
         center = new Center();
-
+        
         this.add(center, BorderLayout.CENTER);
         
         this.setBackground(bgColor);
         
         setVisible(true);
-        setSize(new Dimension(1280,800));
+        setSize(new Dimension(1920,1080));
         
     }
 
@@ -187,7 +188,7 @@ public class AdminViewCandidates extends JPanel{
         
         Center() {
             this.setLayout(new BorderLayout());
-            this.setBorder(new EmptyBorder(20, 60, 631, 60));
+            this.setBorder(new EmptyBorder(60, 101, 60, 60));
             this.setOpaque(false);
             button_renderer = new JTableButtonRenderer();
             
@@ -204,9 +205,9 @@ public class AdminViewCandidates extends JPanel{
 //                imagestr = imagestr.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
 //                img[i] = new ImageIcon(imagestr);
 //            }
-                        
+              
             model = new AdminViewCandidatesTableModel();
-            
+   
             model.setData(main_controller.candidate_controller.query_all_candidates());
             
             Object[][] main_list;
@@ -217,10 +218,12 @@ public class AdminViewCandidates extends JPanel{
                     return false;
                 }
             };
+             
             table.setModel(model);
             table.getColumnModel().getColumn(0).setCellRenderer(table.getDefaultRenderer(ImageIcon.class));
-            table.getColumnModel().getColumn(0).setMaxWidth(120);
-            table.getColumnModel().getColumn(0).setMinWidth(120);
+            table.getColumnModel().getColumn(0).setMaxWidth(140);
+            table.getColumnModel().getColumn(0).setMinWidth(140);
+   
             
             /*DefaultTableCellRenderer cellpad = new DefaultTableCellRenderer() {
             @Override
@@ -252,15 +255,14 @@ public class AdminViewCandidates extends JPanel{
             table.getColumnModel().getColumn(3).setCellRenderer(new JTableButtonRenderer());
             table.getColumnModel().getColumn(4).setCellRenderer(new JTableButtonRenderer());
             
+            table.setIntercellSpacing(new Dimension(10, 10));
+            
             table.setRowHeight(120);
-            
-            //table.getColumnModel().getColumn(3).setCellRenderer(cellpad);
-            
-            
-            
-            table.getTableHeader().setFont(new Font("CALIBRI", Font.PLAIN,18));
+
+            table.getTableHeader().setFont(new Font("CALIBRI", Font.PLAIN,24));
             table.setFont(new Font("CALIBRI", Font.PLAIN, 18));
             
+             
             table.addMouseListener(new MouseAdapter() {
                public void mouseClicked(MouseEvent e) {
                    int col = table.columnAtPoint(e.getPoint());
@@ -277,12 +279,16 @@ public class AdminViewCandidates extends JPanel{
                        formListener.formEventOccurred(ev);
                    }
                    
+                    
                    if (col == 3) {
                        // open EditCandidate
+                       
                        System.out.println("Edit candidate: " + table.getValueAt(row, 2) + " " + table.getValueAt(row, 1));
                        System.out.println("Candidate ID: " + model.getCandidateID(row));
                    } else if (col == 4) {
                        // open DeleteCandidate
+                       new DeleteGUI().setVisible(true);
+                       
                        System.out.println("Delete candidate: " + table.getValueAt(row, 2) + " " + table.getValueAt(row, 1));
                        System.out.println("Candidate ID: " + model.getCandidateID(row));
                    }
@@ -291,6 +297,7 @@ public class AdminViewCandidates extends JPanel{
             
             JScrollPane sp = new JScrollPane(table);
             
+
             //add button
             btn_add = new JButton("<html><center>ADD CANDIDATES</center></html>");
             btn_add.setBackground(new Color(51,55,69));
@@ -309,29 +316,30 @@ public class AdminViewCandidates extends JPanel{
             }
             });
             
-            
             this.revalidate();
             this.repaint();
             this.add(sp);
             this.add(btn_add, BorderLayout.SOUTH);
+            
         }
         
     }
     
-    private class JTableButtonRenderer implements TableCellRenderer {        
-        @Override public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-            Border padding = BorderFactory.createEmptyBorder(50, 50, 50, 50);
+    private class JTableButtonRenderer implements TableCellRenderer {       
 
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            Border padding = BorderFactory.createEmptyBorder(60,60,60,60);
+            
             JButton button = (JButton) value;
             
             if (button != null) {
-                button.setBorder(BorderFactory.createCompoundBorder(getBorder(), padding));
-                button.setBackground(Color.LIGHT_GRAY);
+                button.setFont(new Font("Tahoma", Font.PLAIN, 14));
             }
-                
-                
+            
             return button;  
         }
     }
     
 }
+
+    
